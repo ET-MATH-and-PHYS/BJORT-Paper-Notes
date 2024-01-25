@@ -1,0 +1,25 @@
+\contentsline {chapter}{\numberline {1}BJORT}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Cross Effects for Functors}{3}{section.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.0.1}Contracting Homotopies}{17}{subsubsection.1.1.0.1}%
+\contentsline {section}{\numberline {1.2}A categorical context for abelian functor calculus}{20}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Pointwise versus Natural Equivalences}{20}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}The Taylor tower in abelian functor calculus}{26}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Linear Approximations}{38}{section.1.4}%
+\contentsline {section}{\numberline {1.5}A General Bicomplex Retraction}{39}{section.1.5}%
+\contentsline {section}{\numberline {1.A}Appendices}{42}{section.1.1.A}%
+\contentsline {subsection}{\numberline {1.A.1}Simplicial Object 2-Monad}{42}{subsection.1.1.A.1}%
+\contentsline {subsubsection}{\numberline {1.A.1.1}Simplicial Homotopies}{45}{subsubsection.1.1.A.1.1}%
+\contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{47}{subsection.1.1.A.2}%
+\contentsline {chapter}{\numberline {2}Side Work}{51}{appendix.2}%
+\contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{51}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{51}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Quotient Monad}{54}{subsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.2.1}Simplicial Homotopies}{58}{subsubsection.2.1.2.1}%
+\contentsline {chapter}{\numberline {3}Project Notes and Future Directions}{61}{appendix.3}%
+\contentsline {section}{\numberline {3.1}Current Questions}{61}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Meeting Notes}{61}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}September 27 Notes}{61}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}October 4 Notes}{61}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}October 18 Notes}{62}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}To-do List}{62}{section.3.3}%
+\contentsfinish 
