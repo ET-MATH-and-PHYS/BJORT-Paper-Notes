@@ -1,0 +1,264 @@
+
+In this section we attempt to construct a (pseudo)monad on $2\cat{Ab}$ corresponding to simplicial objects. The goal is that this (pseudo)monad is easier to construct than the chain complex pseudomonad, and that via conjugation by the Dold-Kan equivalence, we can obtain the chain complex pseudomonad, at least up to a suitable equivalence.
+
+We define $(-)\Sob:2\cat{Ab}\rightarrow2\cat{Ab}$ as a pseudofunctor as follows:
+\begin{enumerate}
+    \item On 0-cells, $(-)\Sob$ sends an abelian category $\mathcal{A}$ to its category of simplicial objects $\mathcal{A}\Sob$
+    \item Given abelian categories $\mathcal{A},\mathcal{B}$, we have a functor $(-)\Sob:[\mathcal{A},\mathcal{B}]\rightarrow [\mathcal{A}\Sob,\mathcal{B}\Sob]$ given as follows:
+    \begin{enumerate}
+        \item A functor $F:\mathcal{A}\rightarrow \mathcal{B}$ is sent to its push-forward $F_* :\mathcal{A}\Sob\rightarrow \mathcal{B}\Sob$ defined by post-composition
+        \item A natural transformation $\gamma:F\Rightarrow G:\mathcal{A}\rightarrow \mathcal{B}$ is sent to a natural transformation $\gamma\Sob:F_*\Rightarrow G_*$ such that for $X \in \mathcal{A}\Sob_0$,
+        %%
+        \begin{equation*}
+            \gamma\Sob_X:F\circ X\Rightarrow G\circ X := \gamma_X
+        \end{equation*}
+        %%
+    \end{enumerate}
+    \item We observe $m(F,G) := 1_{(G\circ F)_*}:G_*\circ F_*\Rightarrow (G\circ F)_*$ is our comparison 2-cell
+    \item For each abelian category $\mathcal{A}$, an invertible 2-cell $i:= 1_{1_{\mathcal{A}\Sob}}:1_{\mathcal{A}\Sob}\Rightarrow (1_\mathcal{A})_*$ which is an identity.
+\end{enumerate}
+The psuedofunctor comes with the following monad data:
+\begin{enumerate}
+    \item A pseudonatural transformation $\eta:1_{2\cat{Ab}}\Rightarrow (-)\Sob$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a functor $\eta_\mathcal{A}:\mathcal{A}\Rightarrow \mathcal{A}\Sob$ given by the diagonal functor, sending an object $A$ to the constant functor for $A$ with identities on arrows.
+        \item For each functor $F:\mathcal{A}\rightarrow \mathcal{B}$ a natural transformation $\eta_F:\eta_\mathcal{B}\circ F\Rightarrow F_*\circ \eta_\mathcal{A}$
+        \[\begin{tikzcd}
+        	{\mathcal{A}} & {\mathcal{B}} \\
+        	{\mathcal{A}\Sob} & {\mathcal{B}\Sob}
+        	\arrow["F", from=1-1, to=1-2]
+        	\arrow["{\eta_\mathcal{B}}", from=1-2, to=2-2]
+        	\arrow["{\eta_\mathcal{A}}"', from=1-1, to=2-1]
+        	\arrow["{F_*}"', from=2-1, to=2-2]
+        	\arrow["{\eta_F}"{description}, Rightarrow, from=1-2, to=2-1]
+        \end{tikzcd}\]
+        which is the identity, since the square commutes
+    \end{enumerate}
+    \item A pseudonatural transformation $m:(-)\Sob\circ (-)\Sob\Rightarrow(-)\Sob$ given by the following data:
+    \begin{enumerate}
+        \item For every abelian category $\mathcal{A}$, a functor $m_\mathcal{A}:(\mathcal{A}\Sob)\Sob\rightarrow \mathcal{A}\Sob$. For $A \in (\mathcal{A}\Sob)\Sob$
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(A)([n]) := A([n])([n])
+        \end{equation*}
+        %%
+        and for $\alpha:[n]\rightarrow [m]$ we set
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(A)(\alpha):A([m])([m])\rightarrow A([n])([n]) := A([n])(\alpha) \circ A(\alpha)_{[m]} = A(\alpha)_{[n]}\circ A([m])(\alpha)
+        \end{equation*}
+        %%
+        by naturality of $A(\alpha)$. Given a map of simplicial objects $\beta:A\Rightarrow B$ in $(\mathcal{A}\Sob)\Sob$, we set
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(\beta):m_\mathcal{A}(A)\rightarrow m_\mathcal{A}(B)
+        \end{equation*}
+        %%
+        with $[n]$th component given by
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(\beta)_{[n]}:A([n])([n])\rightarrow B([n])([n]) := (\beta_{[n]})_{[n]}
+        \end{equation*}
+        \item For each functor $F:\mathcal{A}\rightarrow \mathcal{B}$ between abelian categories, a natural transformation $m_F:m_\mathcal{B}\circ (F_*)_*\Rightarrow F_*\circ m_\mathcal{A}$
+        \[\begin{tikzcd}
+        	{(\mathcal{A}\Sob)\Sob} & {(\mathcal{B}\Sob)\Sob} \\
+        	{\mathcal{A}\Sob} & {\mathcal{B}\Sob}
+        	\arrow["{(F_*)_*}", from=1-1, to=1-2]
+        	\arrow["{m_\mathcal{B}}", from=1-2, to=2-2]
+        	\arrow["{m_\mathcal{A}}"', from=1-1, to=2-1]
+        	\arrow["{F_*}"', from=2-1, to=2-2]
+        	\arrow["{m_F}"{description}, Rightarrow, from=1-2, to=2-1]
+        \end{tikzcd}\]
+        which is the identity since the square commutes. Indeed, for each $A \in (\mathcal{A}\Sob)\Sob$, and each $[n] \in\cat{Ob}(\Delta)$
+        %%
+        \begin{equation*}
+            m_\mathcal{B}\circ (F_*)_*(A)([n]) = m_\mathcal{B}(F_*\circ A)([n]) = F(A([n])([n])) = F_*\circ m_\mathcal{A}(A)([n])
+        \end{equation*}
+        %%
+        while for $\alpha:[m]\rightarrow [n]$
+        %%
+        \begin{align*}
+            m_\mathcal{B}\circ (F_*)_*(A)(\alpha) &= m_\mathcal{B}(F_*\circ A)(\alpha) \\
+            &= F(A([n])(\alpha)\circ A(\alpha)_{[m]}) \\
+            &= F_*\circ m_\mathcal{A}(A)(\alpha)
+        \end{align*}
+        %%
+        Further, for $\alpha:A\rightarrow A'$ in $(\mathcal{A}\Sob)\Sob$, and $[n] \in \cat{Ob}(\Delta)$,
+        \begin{align*}
+            m_\mathcal{B}\circ (F_*)_*(\alpha)_{[n]} &= m_\mathcal{B}(F_*\alpha)_{[n]} \\
+            &= F(\alpha_{[n]})_{[n]}) \\
+            &= F(m_\mathcal{A}(\alpha)_{[n]}) \\
+            &= F_*\circ m_\mathcal{A}(\alpha)_{[n]}
+        \end{align*}
+        Thus the functors along each edge are equal, so the comparison cell is the identity.
+    \end{enumerate}
+    \item An invertible modification $\mu:m\circ (-)\Sob m\Rrightarrow m\circ m_{(-)\Sob}$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\mu_\mathcal{A}:m_\mathcal{A}\circ (-)\Sob m_\mathcal{A}\Rightarrow m_\mathcal{A}\circ m_{\mathcal{A}\Sob}$ which has identity components since for a simplicial object $A \in ((\mathcal{A}\Sob)\Sob)\Sob$
+        %%
+        \begin{align*}
+            m_\mathcal{A}((m_{\mathcal{A}})_*A)([n]) &= (m_\mathcal{A}\circ A)([n])([n]) \\
+            &= m_\mathcal{A}(A([n]))([n]) \\
+            &= A([n])([n])([n]) \\
+            &= m_{\mathcal{A}\Sob}(A)([n])([n]) \\
+            &= (m_\mathcal{A}\circ m_{\mathcal{A}\Sob}(A))([n]) 
+        \end{align*}
+        %%
+        and for $\alpha:[m]\rightarrow [n]$,
+        %%
+        \begin{align*}
+            m_\mathcal{A}((m_{\mathcal{A}})_*A)(\alpha) &= (m_\mathcal{A}\circ A)([n])(\alpha)\circ (m_\mathcal{A}\circ A)(\alpha)_{[m]} \\
+            &= m_\mathcal{A}(A([n]))(\alpha)\circ m_\mathcal{A}(A(\alpha))_{[m]} \\
+            &= A([n])([n])(\alpha)\circ A([n])(\alpha)_{[m]}\circ (A(\alpha)_{[m]})_{[m]} \\
+            &= A([n])([n])(\alpha)\circ (A([n])(\alpha)\circ A(\alpha)_{[m]})_{[m]} \\
+            &= m_{\mathcal{A}\Sob}(A)([n])(\alpha)\circ m_{\mathcal{A}\Sob}(A)(\alpha)_{[m]} \\
+            &= (m_\mathcal{A}(m_{\mathcal{A}\Sob}(A)))(\alpha)
+        \end{align*}
+        %%
+    \end{enumerate}
+    \item An invertible modification $\lambda:m\circ \eta_{(-)\Sob} \Rrightarrow 1_{(-)\Sob}$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\lambda_\mathcal{A}:m_\mathcal{A}\circ \eta_{\mathcal{A}\Sob}\Rightarrow 1_{\mathcal{A}\Sob}$ which is given by identities since for a simplicial object $A$
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(\eta_{\mathcal{A}\Sob}(A))([n]) = \eta_{\mathcal{A}\Sob}(A)([n])([n]) = A([n])
+        \end{equation*}
+        %%
+        and for $\alpha:[m]\rightarrow [n]$,
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(\eta_{\mathcal{A}\Sob}(A))(\alpha) = \eta_{\mathcal{A}\Sob}(A)([n])(\alpha)\circ \eta_{\mathcal{A}\Sob}(A)(\alpha)_{[m]} = A(\alpha)\circ (1_A)_{[m]}=A(\alpha)
+        \end{equation*}
+        %%
+    \end{enumerate}
+    \item An invertible modification $\rho:m\circ(-)\Sob\eta\Rrightarrow 1_{(-)\Sob}$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\rho_\mathcal{A}:m_\mathcal{A}\circ (-)\Sob\eta_{\mathcal{A}}\Rightarrow 1_{\mathcal{A}\Sob}$ which is also given by identities since for a simplicial object $A$
+        %%
+        \begin{equation*}
+            m_\mathcal{A}((-)\Sob\eta_{\mathcal{A}}(A))([n]) = (\eta_\mathcal{A}\circ A)([n])([n]) = \eta_\mathcal{A}(A([n]))([n]) = A([n])
+        \end{equation*}
+        %%
+        and for $\alpha:[m]\rightarrow [n]$,
+        %%
+        \begin{equation*}
+            m_\mathcal{A}((-)\Sob\eta_{\mathcal{A}}(A))(\alpha) = (\eta_{\mathcal{A}}\circ A)([n])(\alpha)\circ (\eta_{\mathcal{A}}\circ A)(\alpha)_{[m]} = 1_{A([n])}\circ \eta_\mathcal{A}(A(\alpha))_{[m]} = A(\alpha)
+        \end{equation*}
+        %%
+    \end{enumerate}
+\end{enumerate}
+
+Since all the higher comparison cells are identities, it follows that all coherence diagrams commute automatically, and in particular, the simplicial objects functor is a strict 2-monad on the (large) 2-category of abelian categories, $2\cat{Ab}$.
+
+\subsubsection{Simplicial Homotopies}\label{subsec:simpHomotop}
+
+Homotopies in categories $\mathcal{C}\Sob$ will be important in our analysis with the Dold-Kan Equivalence. This requires the consideration how to form products with simplicial sets in $\mathcal{C}\Sob$, which we can obtain from \cite[Defn 14.13.1]{StacksProject}.
+
+\begin{defn}
+    Let $\mathcal{C}$ be a category with finite coproducts and let $X \in \mathcal{C}\Sob$. If $U \in \cat{Set}\Sob$ is a finite, non-empty, simplicial set, we define the product $X \times U$ to be the simplicial object with $n$th component
+    %%
+    \begin{equation*}
+        (x\times U)_n := \coprod_{u \in U_n}X_n
+    \end{equation*}
+    %%
+    such that for any map $\varphi:[m]\rightarrow [n]$, $(X\times U)(\varphi):\coprod_{u \in U_n}X_n\rightarrow \coprod_{u' \in U_m}X_m$ is defined by
+    %%
+    \begin{equation*}
+        (X\times U)(\varphi)\circ \iota_u = \iota_{U(\varphi)(u)}\circ X(\varphi)
+    \end{equation*}
+    %%
+    Given maps $f:X\Rightarrow Y$ and $g:U\Rightarrow V$ of simplicial objects and simplicial sets, respectively, we obtain a map of simplicial objects $f\times g:X\times U\rightarrow Y\times V$ given on components by 
+    %%
+    \begin{equation*}
+        (f\times g)_n : \coprod_{u \in U_n}X_n\rightarrow \coprod_{v \in V_n}Y_n,\;\; (f\times g)_n\circ \iota_u = \iota_{g_n(u)}\circ f_n
+    \end{equation*}
+    %%
+\end{defn}
+
+We can now define simplicial homotopies. Let $\Delta^n := Hom_{\Delta}(-,[n])$ be the standard $n$-simplex as a simplicial set. Recall that $\Delta^0$ is a singleton in each component, while 
+%%
+\begin{equation*}
+    (\Delta^1)_n = \{\alpha_0^n,...,\alpha_{n+1}^n\},\;\;\alpha_i^n(j) = \left\{\begin{array}{cc} 0 & j < i \\ 1 & j \geq i \end{array}\right.
+\end{equation*}
+%%
+By Yoneda we can identify these maps with natural isomorphisms, so in particular we have $\alpha_0^0:\Delta^0\Rightarrow \Delta^1$ and $\alpha_1^0:\Delta^0\Rightarrow \Delta^1$ corresponding to sending $0$ to $1$ and sending $0$ to $0$, respectively (note the flip). We will write $e_0 := \alpha_1^0$ and $e_1 := \alpha_0^0$. Noting that for any simplicial object $U \in \mathcal{C}\Sob$ $U\times \Delta^0 \cong U$, we obtain $e_0,e_1:U\Rightarrow U\times \Delta^1$. This is sufficient to define simplicial homotopies \cite[Defn 14.26.1]{StacksProject}.
+
+\begin{defn}{}
+    Let $X, Y \in \mathcal{C}\Sob$ be simplicial objects in a category with finite coproducts, and let $f,g:X\Rightarrow Y$ be simplicial maps. Then a \textbf{simplicial homotopy} between $f$ and $g$ is a simplicial map $h:X\times \Delta^1\Rightarrow Y$ making the following diagram commute
+    %%
+    \[\begin{tikzcd}
+    	X \\
+    	{X\times \Delta^1} & Y \\
+    	X
+    	\arrow["h"{description}, from=2-1, to=2-2]
+    	\arrow["{e_0}"', from=1-1, to=2-1]
+    	\arrow["f", from=1-1, to=2-2]
+    	\arrow["{e_1}", from=3-1, to=2-1]
+    	\arrow["g"', from=3-1, to=2-2]
+    \end{tikzcd}\]
+    %%
+    When $\mathcal{C}$ is an abelian category this defines an additive equivalence relation on the simplicial maps $X\Rightarrow Y$ \cite{weibel_1994}. Otherwise, we say $f$ and $g$ are simplicially homotopic if there is a sequence $f = f_0,f_1,...,f_n = g$ of maps such that there is a simplicial homotopy from $f_i$ to $f_{i+1}$ or from $f_{i+1}$ to $f_i$ for each $i < n$.
+\end{defn}
+
+We can extend this definition to functors valued in simplicial objects.
+
+\begin{defn}{}
+    Let $F,G:\mathcal{B}\rightarrow \mathcal{A}\Sob$ be functors valued in simplicial objects. We say $F$ and $G$ are \textbf{pointwise homotopy equivalent} if for each $B \in \mathcal{B}$, we have a simplicial homotopy equivalence $(f_B:F(B)\rightarrow G(B), g_B:G(B)\rightarrow F(B), h_B:F(B)\times \Delta^1\rightarrow F(B), h'_B:G(B)\times \Delta^1\rightarrow G(B))$. We say $F$ and $G$ are \textbf{naturally homotopy equivalent} if we have natural transformations $(f:F\Rightarrow G,g:G\rightarrow F,h:F\times \Delta^1\Rightarrow F,h':G\times \Delta^1\Rightarrow G)$ which comprise homotopy equivalences at each $B \in \mathcal{B}$.
+\end{defn}
+
+We now show how these equivalences behave under composition.
+
+\begin{lem}[label=lem:postcompNat]
+    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be (naturally) simplicially homotopy equivalent. If $H:\mathcal{B}\rightarrow \mathcal{A}$ is any other functor into an abelian category, then $H_*\circ F$ and $H_*\circ G$ are (naturally) simplicially homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Let $(f,g,h,h')$ be a (natural) simplicial homotopy equivalence between $F$ and $G$. We define maps $(H_*f,H_*g,H_*h,H_*h')$. This definition evidently preserves naturality, so it is sufficient to show that it gives a simplicial homotopy. However this follows by functoriality of $H$.
+\end{proof}
+
+\begin{lem}[label=lem:precompNat]
+    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be (naturally) simplicially homotopy equivalent. If $H:\mathcal{D}\rightarrow \mathcal{C}$ is any other functor into an abelian category, then $F\circ H$ and $G\circ H$ are (naturally) simplicially homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Is immediate from restriction of maps.
+\end{proof}
+
+\begin{lem}[label=lem:diagHo]
+    Let $F,G: \mathcal{C}\rightarrow (\mathcal{B}\Sob)\Sob$ be (naturally) simplicially homotopy equivalent. Then $\Delta_\mathcal{B}\circ F$ and $\Delta_\mathcal{B}\circ G$ are (naturally) simplicially homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Let $(f,g,h,h')$ be the maps witnessing the (natural) simplicial homotopy equivalence between $F$ and $G$. Consider the collection of maps obtained by whiskering $(\Delta_\mathcal{B}f,\Delta_\mathcal{B}g,\Delta_\mathcal{B}h,\Delta_\mathcal{B}h')$. Again naturality is automatically preserved, so it is sufficient to show that this defines a pointwise simplicial homotopy between the functors. But this is simply restriction to the diagonal of the bicomplex, so the commutivity of the defining commutative triangles is preserved.
+\end{proof}
+
+
+\begin{lem}[label=lem:Precomp]
+    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be naturally simplicially homotopy equivalent. Then $\Delta^{op}(F),\Delta^{op}(G): \mathcal{C}\Sob\rightarrow (\mathcal{B}\Sob)\Sob$ are naturally simplicially homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Let $(f,g,h,h')$ be a (natural) simplicial homotopy equivalence between $F$ and $G$. If the equivalence is natural, we can define $(\Delta^{op}(f),\Delta^{op}(g),\Delta^{op}(h),\Delta^{op}(h'))$ which is again a (natural) simplicial homotopy equivalence since $\Delta^{op}$ is a strict 2-functor, and so preserves composition.
+\end{proof}
+
+
+
+\begin{lem}[label=lem:PrecompDiag]
+    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be naturally simplicially homotopy equivalent. Then $\Delta_\mathcal{B}F_*,\Delta_\mathcal{B}G_*: \mathcal{C}\Sob\rightarrow (\mathcal{B}\Sob)\Sob\rightarrow \mathcal{B}\Sob$ are naturally simplicially homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Since the homotopy equivalences are natural this follows from Lemmas \ref{lem:Precomp} and \ref{lem:diagHo}.
+\end{proof}
+
+\textbf{Can we show this result holds for pointwise simplicial homotopy equivalences?}
+
+
+%% Inducing Ch attempt
+% In order to convert this data into a pseudomonad $\cat{Ch}$ on $2\cat{Ab}$, we must show that the Dold-Kan equivalence constitutes a pseudonatural equivalence between $\cat{Ch}$ and $(-)\Sob$. We define $N:(-)\Sob\Rightarrow \cat{Ch}:\Gamma$ as pseudonatural transformations as follows:
+% %%
+% \begin{enumerate}
+%     \item For each $\mathcal{A} \in 2\cat{Ab}_0$, we define $N_\mathcal{A}$ and $\Gamma_\mathcal{A}$ as the Dold-Kan equivalences for $\mathcal{A}$ 
+%     \item For $F:\mathcal{A}\rightarrow \mathcal{B}$, we define $N_F:= (N_\mathcal{B}F_*\varepsilon_\mathcal{A})^{-1}$, where $\varepsilon$ is from Theorem \ref{thm:DoldKanEquiv}, and we define $\Gamma_F:=(\eta_{F_*\Gamma_\mathcal{A}})^{-1}$, where again $\eta$ is from Theorem \ref{thm:DoldKanEquiv}
+% \end{enumerate}
+% %%
+% It remains to show the coherence diagrams for these pseudonatural transformations, as well as modifications which witness that they are inverses of each other. We'll begin with providing the invertible modifications:
+% \begin{enumerate}
+%     \item We define a modification $\mathfrak{e}:\Gamma\circ N\Rrightarrow 1_{(-)\Sob}$ by setting $\mathfrak{e}_\mathcal{A}:= \varepsilon_\mathcal{A}$ \textbf{Need to check coherence diagram}
+%     \item We define a modification $\mathfrak{n}:1_{\cat{Ch}(-)}\Rrightarrow N\circ \Gamma$ by $\mathfrak{n}_\mathcal{A} := \eta_\mathcal{A}$ \textbf{Need to check coherence diagram}
+% \end{enumerate}

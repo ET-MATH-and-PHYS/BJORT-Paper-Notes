@@ -1,0 +1,128 @@
+\documentclass[12pt]{book}
+
+\input{packages}
+\input{TikzDiagrams}
+\usepackage{quiver}
+
+%%% Specific Macros %%%
+\newcommand\lcm{\text{lcm}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+
+%% Heading
+\pagestyle{fancy}
+\lhead{BJORT Paper Analysis}
+\rhead{Name: E/Ea}
+\chead{}
+%\lfoot{Author's Name}
+%\cfoot{}
+%\rfoot{Page \thepage}
+
+%%%%%% BEGIN %%%%%%%%%%
+
+
+\begin{document}
+
+%%%%%% TITLE PAGE %%%%%
+
+
+\title{BJORT Paper Analysis and Extension}
+\author{E/Ea}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+\tableofcontents
+
+% \chapter{Original Work}
+
+% \section{Project Proposal}
+
+% \input{Proposal}
+
+
+% \section{Definitions and Notation}
+
+% \input{MainWork/DefinitionsandNotation}
+
+% \section{Examples and Computations}
+
+% \input{MainWork/Examples}
+
+
+% \section{General Results}
+
+% \input{MainWork/Results}
+
+
+\chapter{BJORT}
+
+\newcommand{\crn}{\text{cr}}
+\newcommand{\invbn}{\text{!`}}
+
+In this chapter we carefully go through the paper Directional derivatives and higher order chain rules for abelian
+functor calculus \cite{BJORT}. Unless stated otherwise, compsition using juxtapoosition is done diagrammatically, while composition using $\circ$ follows function notation.
+
+\input{Reading/BJORT2}
+
+\clearpage
+
+\input{Reading/BJORT3}
+
+\clearpage
+
+\input{Reading/BJORT4}
+
+\clearpage
+
+\input{Reading/BJORT5}
+
+\clearpage
+
+\input{Reading/BJORTA}
+
+\clearpage
+
+\input{Reading/Appendix}
+
+
+
+\chapter{Project Notes and Future Directions}
+
+
+\section{Current Questions}
+
+\input{Questions}
+
+
+\section{Meeting Notes}
+
+
+\input{MeetingNotes}
+
+
+\section{To-do List}
+
+\input{ToDo}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% - Appendices
+% \begin{appendices}
+
+\bibliographystyle{amsalpha}
+\bibliography{Refs}
+\nocite{*}
+
+% \end{appendices}
+
+
+\end{document}
+
+
+%%%%%% END %%%%%%%%%%%%%

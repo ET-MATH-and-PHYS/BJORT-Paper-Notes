@@ -1,0 +1,181 @@
+\subsection{Pseudomonad (attempt)}
+
+Let $2\cat{Ab}$ denote the (large) 2-category of abelian categories, arbitrary functors between them, and natural transformations. We can consider $2\cat{Ab}$ as an object in the $\cat{Gray}$-category $\cat{Bicat}$ of bicategories, pseudofunctors, pseudonatural transformations, and modifications. Then $\cat{Ch}(-)$ is a pseudomonad on this 2-category. Explicitly, $\cat{Ch}(-)$ is a pseudofunctor in $\cat{Bicat}(2\cat{Ab},2\cat{Ab})$ defined as follows:
+%%
+\begin{enumerate}
+    \item On 0-cells, $\cat{Ch}(-)$ sends an abelian category $\mathcal{A}$ to the category $\cat{Ch}(\mathcal{A})$ of chain complexes in $\mathcal{A}$, concentrated in non-negative degree.
+    \item Given abelian categories $\mathcal{A},\mathcal{B}$, we have a functor $\cat{Ch}_{\mathcal{A},\mathcal{B}}:\mathcal{B}^\mathcal{A}\rightarrow \cat{Ch}(\mathcal{B})^{\cat{Ch}(\mathcal{A})}$ given as follows:
+    %% 
+    \begin{enumerate}
+        \item On 0-cells (1-cells of the underlying bicategory) $\cat{Ch}_{\mathcal{A},\mathcal{B}}$ sends a functor $F:\mathcal{A}\rightarrow \mathcal{B}$ to its prolongation $\cat{Ch}(F):\cat{Ch}(\mathcal{A})\rightarrow \cat{Ch}(\mathcal{B})$. The prolongation is defined in terms of the Dold-Kan equivalence \ref{thm:DoldKanEquiv} as follows
+        %%
+        \begin{equation*}
+            \cat{Ch}(F):\cat{Ch}(\mathcal{A})\xrightarrow{\Gamma}\mathcal{A}^{\Delta^{op}}\xrightarrow{F_*}\mathcal{B}^{\Delta^{op}}\xrightarrow{N}\cat{Ch}(\mathcal{A})
+        \end{equation*}
+        %%
+        \item On 1-cells (2-cells of the underlying bicategory), $\cat{Ch}_{\mathcal{A},\mathcal{B}}$ sends a natural transformation $\gamma:F\Rightarrow G$ to a natural transformation $\cat{Ch}(\gamma)$ such that for $A_\bullet \in \cat{Ch}(\mathcal{A})_0$,
+        %%
+        \begin{equation*}
+            \cat{Ch}(\gamma)_{A_\bullet}:\cat{Ch}(F)(A_\bullet)\rightarrow \cat{Ch}(G)(A_\bullet) := N(\gamma_{\Gamma(A_\bullet))}
+        \end{equation*}
+        %%
+    \end{enumerate}
+    %%
+    \item We define $m(F,G):= NG_*\eta_{F_*\Gamma}: \cat{Ch}(G)\circ \cat{Ch}(F)\Rightarrow \cat{Ch}(G\circ F)$
+    \begin{equation}\label{eq:compiso}\begin{tikzcd}
+    	&&& {\cat{Ch}(\mathcal{B})} \\
+    	{\cat{Ch}(\mathcal{A})} & {\mathcal{A}^{\Delta^{op}}} & {\mathcal{B}^{\Delta^{op}}} && {\mathcal{B}^{\Delta^{op}}} & {\mathcal{C}^{\Delta^{op}}} & {\cat{Ch}(\mathcal{C})}
+    	\arrow["{\Gamma}", from=2-1, to=2-2]
+    	\arrow["{F_*}", from=2-2, to=2-3]
+    	\arrow["{N}", from=2-3, to=1-4]
+    	\arrow["{\Gamma}", from=1-4, to=2-5]
+    	\arrow["{G_*}", from=2-5, to=2-6]
+    	\arrow["{N}", from=2-6, to=2-7]
+    	\arrow[""{name=0, anchor=center, inner sep=0}, curve={height=30pt}, Rightarrow, no head, from=2-3, to=2-5]
+    	\arrow["{\eta_\mathcal{B}}", shorten <=7pt, shorten >=7pt, Rightarrow, from=1-4, to=0]
+    \end{tikzcd}
+    \end{equation}
+    \item For each $\mathcal{A} \in 2\cat{Ab}$ an invertible 2-cell $i := \varepsilon :1_{\cat{Ch}(\mathcal{A})}\Rightarrow \cat{Ch}(1_{\mathcal{A}})$
+    \begin{equation}\label{eq:idiso}\begin{tikzcd}
+    	{\cat{Ch}(\mathcal{A})} && {\cat{Ch}(\mathcal{A})} \\
+    	& {\mathcal{A}^{\Delta^{op}}}
+    	\arrow[""{name=0, anchor=center, inner sep=0}, "{1_{\cat{Ch}(\mathcal{A})}}", from=1-1, to=1-3]
+    	\arrow["{\Gamma}"', from=1-1, to=2-2]
+    	\arrow["{N}"', from=2-2, to=1-3]
+    	\arrow["\varepsilon", shorten <=3pt, Rightarrow, from=0, to=2-2]
+    \end{tikzcd}
+    \end{equation}
+\end{enumerate}
+together with the following monad data
+\begin{enumerate}
+    \item A 2-cell (i.e. pseudonatural transformation) $\eta:1_{2\cat{Ab}}\Rightarrow\cat{Ch}$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian cat $\mathcal{A}$, a functor $\eta_\mathcal{A} := \deg_0^\mathcal{A}:\mathcal{A}\rightarrow \cat{Ch}(\mathcal{A})$ sending an object to the chain complex
+        %%
+        \begin{equation*}
+            \deg_0^\mathcal{A}(A)_n := \left\{\begin{array}{cc} A & n=0 \\ 0 & n \neq 0 \end{array}\right.
+        \end{equation*}
+        %%
+        and a map to its action on degree zero.
+        \item For each functor $F:\mathcal{A}\rightarrow \mathcal{B}$ a natural transformation $\eta_F=\deg_0^F:\deg_\mathcal{B}\circ F\Rightarrow \cat{Ch}(F)\circ \deg_\mathcal{A}$
+        \[\begin{tikzcd}
+        	{\mathcal{A}} & {\mathcal{B}} \\
+        	{\cat{Ch}(\mathcal{A})} & {\cat{Ch}(\mathcal{B})}
+        	\arrow["F", from=1-1, to=1-2]
+        	\arrow["{\deg_0^\mathcal{B}}", from=1-2, to=2-2]
+        	\arrow["{\deg_0^\mathcal{A}}"', from=1-1, to=2-1]
+        	\arrow["{\cat{Ch}(F)}"', from=2-1, to=2-2]
+        	\arrow["{\deg_0^F}"{description}, Rightarrow, from=1-2, to=2-1]
+        \end{tikzcd}\]
+        with components given by identities since $\cat{Ch}(F)(\deg_0^{\mathcal{A}}(A)) = \deg_0^\mathcal{A}F(A)$.
+    \end{enumerate}
+    \item A 2-cell $m:\cat{Ch}\circ\cat{Ch}\Rightarrow \cat{Ch}$ given by the following data:
+    \begin{enumerate}
+        \item For every abelian category $\mathcal{A}$ a functor $m_\mathcal{A}:=\text{Tot}_\mathcal{A}:\cat{Ch}\cat{Ch}(\mathcal{A})\rightarrow \cat{Ch}(\mathcal{A})$ given by the totalization. Explicitly, for $A_{\bullet,\bullet}\in\cat{Ch}\cat{Ch}(\mathcal{A})$, we set
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(A_{\bullet,\bullet})_n := \bigoplus_{i+j=n}A_{i,j}
+        \end{equation*}
+        %%
+        with differential given by the components:
+        %%
+        \begin{equation*}
+            (d_n)_{r,s} := (-1)^sd^h_{r+1,s}+(-1)^{s+1}d^v_{r,s+1}
+        \end{equation*}
+        For a map $F:A_{\bullet,\bullet}\rightarrow B_{\bullet,\bullet}$, we set 
+        %%
+        \begin{equation*}
+            m_\mathcal{A}(F):\text{Tot}_\mathcal{A}(A_{\bullet,\bullet})\rightarrow \text{Tot}_\mathcal{A}(B_{\bullet,\bullet})
+        \end{equation*}
+        %%
+        with $n$th component given by $\bigoplus_{i+j=n}F_{i,j}$
+        \item For each functor $F:\mathcal{A}\rightarrow \mathcal{B}$ between abelian categories, a natural transformation $m_F:m_\mathcal{B}\circ \cat{Ch}^2(F)\Rightarrow \cat{Ch}(F)\circ m_\mathcal{A}$
+        \[\begin{tikzcd}
+        	{\cat{Ch}^2(\mathcal{A})} & {\cat{Ch}^2(\mathcal{B})} \\
+        	{\cat{Ch}(\mathcal{A})} & {\cat{Ch}(\mathcal{B})}
+        	\arrow["{\cat{Ch}^2(F)}", from=1-1, to=1-2]
+        	\arrow["{m_\mathcal{B}}", from=1-2, to=2-2]
+        	\arrow["{m_\mathcal{A}}"', from=1-1, to=2-1]
+        	\arrow["{\cat{Ch}(F)}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+        given by \textbf{TBD}
+    \end{enumerate}
+    \item An invertible 3-cell (i.e. modification) $\mu:m\circ \cat{Ch}m\Rrightarrow m \circ m_{\cat{Ch}}$ given by the following data:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\mu_\mathcal{A}:m_\mathcal{A}\circ \cat{Ch}m_\mathcal{A}\Rightarrow m_\mathcal{A}\circ m_{\cat{Ch}(\mathcal{A})}$
+    \end{enumerate}
+    \item An invertible 3-cell $\lambda:m\circ \text{deg}_0^{\cat{Ch}}\Rrightarrow 1_{\cat{Ch}}$ given by:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\lambda_\mathcal{A}:m_\mathcal{A}\circ \text{deg}_0^{\cat{Ch}(\mathcal{A})}\Rightarrow 1_{\cat{Ch}(\mathcal{A})}$ with components given by identities.
+    \end{enumerate}
+    \item And an invertible 3-cell $\rho:1_{\cat{Ch}}\Rrightarrow m\circ \cat{Ch}\text{deg}_0$ given by:
+    \begin{enumerate}
+        \item For each abelian category $\mathcal{A}$, a natural transformation $\rho_\mathcal{A}:1_{\cat{Ch}(\mathcal{A})}\Rightarrow m_\mathcal{A}\circ \cat{Ch}(\text{deg}_0^{\mathcal{A}})$. First, we observe that the following diagram commutes up to a unique natural isomorphism specified by the universal property of the kernel
+        \[\begin{tikzcd}
+        	{\mathcal{A}\Sob} & {\cat{Ch}(\mathcal{A})\Sob} \\
+        	{\cat{Ch}(\mathcal{A})} & {\cat{Ch}^2(\mathcal{A})}
+        	\arrow["{(\deg_0^\mathcal{A})\Sob}", from=1-1, to=1-2]
+        	\arrow["{N_\mathcal{A}}"', from=1-1, to=2-1]
+        	\arrow["{N_{\cat{Ch}(\mathcal{A})}}", from=1-2, to=2-2]
+        	\arrow["{\deg_0^{\cat{Ch}(\mathcal{A})}}"', from=2-1, to=2-2]
+        	\arrow["\simeq"{description}, Rightarrow, from=1-2, to=2-1]
+        \end{tikzcd}\]
+        Additionally, from the previous 3-cell we have that $m_\mathcal{A}\circ  \deg_0^\mathcal{A}(N\Gamma(A_\bullet)) = N\Gamma(A_\bullet)$,  so the components of $\rho$ are given by the $\eta:1_{\cat{Ch}(\mathcal{A})}\Rightarrow N_\mathcal{A}\Gamma_\mathcal{A}$ from the Dold-Kan equivalence composed with the above natural isomorphism. \textbf{Need to make more explicit and show coherence diagram}
+    \end{enumerate}
+\end{enumerate}
+
+It remains to show that this data satisfies the necessary coherence diagrams. We shall show these in a sequences of lemmas.
+
+
+
+
+
+
+\subsection{Quotient Monad}
+
+Although we have yet to show that $\cat{Ch}(-)$ defines a pseudomonad on $2\cat{Ab}$, we claim that it does define a monad on the 1-category $\cat{AbCat}$ consisting of abelian categories and natural isomorphism classes of functors. Since horizontal composition of natural transformations is functorial, the partition given by natural isomorphism classes of functors is associated with a congruence relation, and hence $\cat{AbCat}$ is a well-defined 1-category. We will denote the isomorphism class of a functor $F$ by $[F]$ throughout.
+
+We show in a sequence of lemmas that $\cat{Ch}(-)$ is a well-defined monad on $\cat{AbCat}$, define on objects as before and defined on natural isomorphism classes of functors by $\cat{Ch}([F]) := [\cat{Ch}(F)]$. In order to show that this is well-defined we first demonstrate $\cat{Ch}$ is strictly functorial on isomorphism classes:
+
+\begin{lem}[label=lem:strictCh]
+    Let $F:\mathcal{A}\rightarrow \mathcal{B}$ and $G:\mathcal{B}\rightarrow \mathcal{C}$ be functors. Then $[\cat{Ch}(G)\circ \cat{Ch}(F)] = [\cat{Ch}(G\circ F)]$.
+\end{lem}
+\begin{proof}
+    Using $NG_*\eta_{F_*\Gamma}$, as in Equation \eqref{eq:compiso}, we have that $\cat{Ch}(G)\circ \cat{Ch}(F)$ and $\cat{Ch}(G\circ F)$ are naturally isomorphic.
+\end{proof}
+
+With this functoriality result we can show that $\cat{Ch}$ is a well-defined functor on the quotient category.
+
+\begin{lem}[label=lem:functCh]
+    $\cat{Ch}$ defines a functor on $\cat{AbCat}$.
+\end{lem}
+\begin{proof}
+    It remains to show that $\cat{Ch}$ is well-defined on arrows, and sends identities to identities, since Lemma \ref{lem:strictCh} provides functoriality. Let $\alpha:F\Rightarrow G:\mathcal{A}\rightarrow \mathcal{B}$ be a natural isomorphism. Then $\cat{Ch}(\alpha) = N\alpha_{\Gamma}:\cat{Ch}(F)\Rightarrow \cat{Ch}(G)$ is a natural transformation, and further, for any $A_\bullet \in \cat{Ch}(\mathcal{A})_0$,
+    %%
+    \begin{equation*}
+        N(\alpha_{\Gamma(A_\bullet)}) \circ N(\alpha^{-1}_{\Gamma(A_\bullet)}) = N(\alpha_{\Gamma(A_\bullet)})\circ \alpha^{-1}_{\Gamma(A_\bullet)} = N(1_{G(\Gamma(A_\bullet))}) = 1_{\cat{Ch}(G)(A_\bullet)} 
+    \end{equation*}
+    %%
+    using functoriality of $N$. The other composition is identical, so $\cat{Ch}(\alpha)$ is a natural isomorphism, implying $[\cat{Ch}(F)] = [\cat{Ch}(G)]$. 
+
+    Finally, consider an identity functor $1_\mathcal{A}$. Then using the invertible 2-cell $\varepsilon$ in Equation \eqref{eq:idiso} we witness that $[1_{\cat{Ch}(\mathcal{A})}] = [\cat{Ch}(1_{\mathcal{A}})]$, so $\cat{Ch}(-)$ is a well-defined functor on $\cat{AbCat}$.
+\end{proof}
+
+
+It remains to show that the functor $\cat{Ch}(-)$ has the structure of a monad. We take the unit and multiplication 2-cells to be defined as in our description of the possible 2-monad $\cat{Ch}(-)$ on $2\cat{Ab}$. As $\deg_0$ is already natural, we need only show that $m$ is natural in $\cat{AbCat}$, and that the appropriate monad laws hold.
+
+
+\begin{lem}[label=lem:mNat]
+    Viewed as a map in $\cat{AbCat}$, $m:\cat{Ch}^2\Rightarrow \cat{Ch}$ is a natural transformation.
+\end{lem}
+\begin{proof}
+    Explicitly, for each abelian category $\mathcal{A}$, $m_\mathcal{A} = [\text{Tot}_\mathcal{A}]$ is an isomorphism class of functors. Showing naturality is then equivalent to showing the following equation for any $F:\mathcal{A}\rightarrow\mathcal{B}$
+    %%
+    \begin{equation*}
+        [\text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)] = [\cat{Ch}(F)\circ\text{Tot}_\mathcal{A}]
+    \end{equation*}
+    %%
+    Recall $[\cat{Ch}(F)] = [N_\mathcal{B}\circ F_*\circ \Gamma_\mathcal{A}]$ and $[\cat{Ch}^2(F)] = [N_{\cat{Ch}(\mathcal{B})}\circ (N_\mathcal{B})_*\circ (F_*)_*\circ (\Gamma_\mathcal{A})_*\circ \Gamma_{\cat{Ch}(\mathcal{A})}]$. \textbf{TBD}
+\end{proof}
+
+

@@ -1,0 +1,14 @@
+\section{Linear Approximations}
+
+
+In this section we define the linear approximation of a functor $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ as a functor $D_1(F)$ in $\cat{AbCat}_{\cat{Ch}}$. All of the properties we will describe for $D_1(F)$ are developed only up to \rd{natural} chain homotopy equivalence.
+
+\begin{defn}[label=defn:linearization]
+    The \textbf{linearization} of $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ is the functor $D_1(F):\mathcal{B}\rightarrow \mathcal{A}$ given as the totalization of the explicit chain complex of chain complexes $(D_1(F)_\bullet,\partial_\bullet)$ where:
+    %%
+    \begin{equation*}
+        D_1(F)_k := \left\{\begin{array}{cc} C_2^{\times k}(F) & k \geq 1 \\ \text{cr}_1(F) & k = 0 \\ 0 & \text{else} \end{array}\right.
+    \end{equation*}
+    %%
+    and the differential $\partial_1:D_1(F)_1\rightarrow D_1(F)_0$ is given by $\rho_1$, while for $k \geq 2$, $\partial_k:D_1(F)_k\rightarrow D_1(F)_{k-1}$ is given by the alternating sum $\sum_{i=0}^{k-1}(-1)^iC_2^{\times i}\epsilon_{C_2^{\times (k-1-i)}}$. Note $\rho_1 = \epsilon$ since $C_2(F) \cong C_2(\text{cr}_1(F))$.
+\end{defn}

@@ -1,0 +1,136 @@
+\section{A General Bicomplex Retraction}
+
+In order to construct certain explicit chain homotopy equivalences in the text we require a criteria for when total complexes of certain bicomplexes are chain homotopy equivalent. Throughout we consider $A_{\bullet,\bullet}$ to be denote a first-quadrant bicomplex. This is sufficient for our case since all our bicomplexes are constructed from chain complexes concentrated in non-negative degrees. As in \cite{BJORT} we proceed with bicomplexes having anti-commuting squares. To apply this to the work elsewhere all that must be done is the replacement of $d_h:A_{p,q}\to A_{p,q-1}$ by $(-1)^pd_h$.
+
+\begin{defn}[label=defn:RowWiseStrngDefRetr]
+    We say a morphism $\iota:A_{\bullet,\bullet}\to B_{\bullet,\bullet}$ \textbf{admits a row-wise strong deformation retraction} if for all $p \geq 0$ there exists a map $f_{p,\bullet}:B_{p,\bullet}\to A_{p,\bullet}$ such that
+    %%
+    \begin{itemize}
+        \item[(i)] $f_{p,\bullet}\circ \iota_{p,\bullet} = 1_{A_{p,\bullet}}$
+        \item[(ii)] there exist morphisms $s_h:B_{p,q}\to B_{p,q+1}$ such that $d_hs+sd_h = 1-\iota_{p,q}f_{p,q}$ and $s_h\circ \iota_{p,q} = 0$ (i.e.\ we have a strong chain homotopy equivalence between $A_{p,\bullet}$ and $B_{p,\bullet}$)
+    \end{itemize}
+\end{defn}
+
+Throughout this section we will denote the horizontal differentials of a bicomplex by $d_h:A_{p,q}\to A_{p,q-1}$ and the vertical differentials by $d_v:B_{p,q}\to B_{p-1,q}$. Although our maps in definition \ref{defn:RowWiseStrngDefRetr} are given only for $p,q\geq 0$, they can easily be extended to all $p,q$ by setting ones with negative indices equal to zero. We record some commutativity equalities for use in the proofs to follow
+%%
+\begin{align*}
+    d_h^2 = 0 &\;\; d_v^2=0 \;\; d_hd_v+d_vd_h = 0\;\; d_hs_h+s_hd_h=1-\iota \circ f\;\; s_h\circ \iota = 0 \\
+    & f\circ \iota = 1\;\; f \circ d_h= d_h\circ f\;\; \iota \circ d_h= d_h\circ \iota \;\; \iota \circ d_v = d_v\circ \iota 
+\end{align*}
+
+We begin with the following lemma. (\textbf{Note:} Juxtaposition in the following lemma still denotes functional compositional ordering for the sake of preserving space).
+
+%%
+\begin{lem}[label=lem:A3]
+    For any $k \geq 0$ we have the following equalities:
+    %%
+    \begin{itemize}
+        \item[(i)] $d_v f(-d_vs_h)^k+d_hf (-d_vs_h)^{k+1}=f(-d_vs_h)^kd_v + f (-d_vs_h)^{k+1}d_h$
+        \item[(ii)] $d_vs_h(-d_vs_h)^k+d_hs_h(-d_vs_h)^{k+1} = -\iota f(-d_vs_h)^{k+1}-s_hd_h(-d_vs_h)^{k+1}$ 
+        \item[(iii)] $s_h(-d_vs_h)^{k+1}d_h+s_h(-d_vs_h)^kd_v = -(-s_hd_v)^{k+1}d_hs_h$ 
+        \item[(iv)] $s_hd_h(-d_vs_h)^{k+1} = -(-s_hd_v)^{k+1}d_hs_h$
+    \end{itemize}
+\end{lem}
+\begin{proof}
+    We will prove each formula by induction.
+    \begin{itemize}
+        \item[(i)] If $k = 0$ we want to show 
+        %%
+        \begin{equation*}
+            d_vf+d_hf(-d_vs_h) = fd_v + f(-d_vs_h)d_h
+        \end{equation*}
+        %%
+        Using our relations
+        \begin{align*}
+            d_vf+d_hf(-d_vs_h) &= d_vf - fd_hd_vs_h \\
+            &= d_vf+fd_vd_hs_h \\
+            &= d_vf+fd_v(1-\iota f-s_hd_h) \\
+            &= d_vf+fd_v-fd_v\iota f - fd_vs_hd_h \\
+            &= d_vf+fd_v-d_vf + f(-d_vs_h)d_h \\
+            &= fd_v+f(-d_vs_h)d_h
+        \end{align*}
+        as desired. Suppose now that the claim holds for some $k \geq 0$. Then
+        %%
+        \begin{align*}
+            d_vf(-d_vs_h)^{k+1}+d_hf(-d_vs_h)^{k+2} &= [f(-d_vs_h)^kd_v+f(-d_vs_h)^{k+1}d_h](-d_vs_h) \\
+            &= f(-d_vs_h)^kd_v(-d_vs_h)+f(-d_vs_h)^{k+1}d_h(-d_vs_h) \\
+            &= f(-d_vs_h)^{k+1}d_v(1-s_hd_h-\iota f) \\
+            &= f(-d_vs_h)^{k+1}d_v-f(-d_vs_h)^{k+1}d_vs_hd_h-f(-d_vs_h)^{k+1}d_v\iota f \\
+            &= f(-d_vs_h)^{k+1}d_v-f(-d_vs_h)^{k+2}d_h-f(-d_vs_h)^{k+1}\iota d_vf \\
+            &= f(-d_vs_h)^{k+1}d_v-f(-d_vs_h)^{k+2}d_h
+        \end{align*}
+        as desired.
+        \item[(ii)] We can immediately compute
+        %%
+        \begin{align*}
+            d_vs_h(-d_vs_h)^k + d_hs_h(-d_vs_h)^{k+1} &= [d_vs_h + d_hs_h(-d_vs_h)](-d_vs_h)^k \\
+            &= [d_vs_h + (1-s_hd_h-\iota f)(-d_vs_h)](-d_vs_h)^k \\
+            &= [-\iota f(-d_vs_h) - s_hd_h(-d_vs_h)](-d_vs_h)^k \\
+            &= -\iota f(-d_vs_h)^{k+1} - s_hd_h(-d_vs_h)^{k+1}
+        \end{align*}
+        %%
+        as desired.
+        \item[(iii)] If $k = 0$ we compute
+        %%
+        \begin{align*}
+            s_h(-d_vs_h)d_h+s_hd_v &= -s_hd_v(1-d_hs_h-\iota f)+s_hd_v \\
+            &= s_hd_vd_hs_h+s_hd_v\iota f \\
+            &= -(-s_hd_v)d_hs_h+s_h\iota d_vf \\
+            &= -(-s_hd_v)d_hs_h
+        \end{align*}
+        %%
+        Now if the claim holds for $k \geq 0$ we can compute
+        %%
+        \begin{align*}
+            -(-s_hd_v)^{k+2}d_hs_h &= (-s_hd_v)[s_h(-d_vs_h)^{k+1}d_h+s_h(-d_vs_h)^kd_v] \\
+            &= s_h(-d_vs_h)^{k+2}d_h+s_h(-d_vs_h)^{k+1}d_v
+        \end{align*}
+        %%
+        as desired.
+        \item[(iv)] If $k = 0$ we observe that
+        %%
+        \begin{align*}
+            s_hd_h(-d_vs_h) &= s_hd_vd_hs_h = -(-s_hd_v)d_hs_h
+        \end{align*}
+        %%
+        If the claim holds for some $k \geq 0$, then we can compute
+        %%
+        \begin{align*}
+            s_hd_h(-d_vs_h)^{k+2} &= -(-s_hd_v)^{k+1}d_hs_h(-d_vs_h) \\
+            &= (-s_hd_v)^{k+1}(1-s_hd_h-\iota f)d_vs_h \\
+            &= (-s_hd_v)^{k+1}d_vs_h-(-s_hd_v)^{k+1}s_hd_hd_vs_h-(-s_hd_v)^{k+1}\iota fd_vs_h \\
+            &= -(-s_hd_v)^{k+2}d_hs_h
+        \end{align*}
+        as desired since $d_v^2 = 0$, $d_v\iota = \iota d_v$, and $s_h\iota = 0$.
+    \end{itemize}
+\end{proof}
+
+We recall that for first-quadrant bicomplexes the totalization at each degree is a finite direct sum, so its differentials can be described by finite matrices. Explicitly the $n$th differential $\text{Tot}(A_{\bullet,\bullet})_n\to \text{Tot}(A_{\bullet,\bullet})_{n-1}$ is given by the matrix
+%%
+\begin{equation*}
+    \begin{pmatrix}
+        d_v & d_h & 0 & \cdots & \cdots & 0 \\
+        0 & d_v & d_h & 0 & \cdots & 0 \\
+        \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
+        0 & \cdots & 0 & d_v & d_h & 0 \\
+        0 & \cdots & \cdots & 0 & d_v & d_h
+    \end{pmatrix}
+\end{equation*}
+
+
+\begin{prop}[label=prop:A5]
+    Let $\iota:A_{\bullet,\bullet}\to B_{\bullet,\bullet}$ be a map of bicomplexes that admits a row-wise strong deformation retraction. Then the induced morphism of total complexes $\text{Tot}(\iota):\text{Tot}(A_{\bullet,\bullet})_\bullet\to\text{Tot}(B_{\bullet,\bullet})_{\bullet}$ admits a retraction $\rho:\text{Tot}(B_{\bullet,\bullet})_{\bullet}\to \text{Tot}(A_{\bullet,\bullet})_{\bullet}$ defined in degree $n$ by the $(n+1)\times (n+1)$ matrix
+    %%
+    \begin{equation*}
+        \begin{pmatrix}
+            f & 0 & \cdots & \cdots & 0 & 0 \\
+            f(-d_vs_h) & f & 0 & \ddots & \ddots & 0 \\
+            f(-d_vs_h)^2 & f(-d_vs_h) & f & 0 & \ddots & \vdots \\
+            \vdots & \vdots & \vdots &\vdots & \ddots & \ddots & \vdots \\
+            f(-d_vs_h)^n & f(-d_vs_h)^{n-1} & \cdots & \cdots & f(-d_vs_h) & f 
+        \end{pmatrix}
+    \end{equation*}
+\end{prop}
+\begin{proof}
+    First, to see that $\rho$ is a chain map \textbf{TBC}
+\end{proof}

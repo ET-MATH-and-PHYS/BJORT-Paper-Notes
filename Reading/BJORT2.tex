@@ -1,0 +1,1199 @@
+\section{Cross Effects for Functors}
+
+Throughout let $\mathcal{B}$ be a category with a basepoint (i.e. an initial and terminal object), and finite coproducts $\lor$. Let $\mathcal{A}$ denote an abelian category with zero object $0$ and biproducts $\oplus$.
+
+\begin{defn}[label=defn:crossEffect]{(Cross Effects)}
+    We define the \textbf{nth cross effect} of a functor $F:\mathcal{B}\rightarrow \mathcal{A}$ implicitly, and recursively, as the $n$-variable functor $\crn_n(F):\mathcal{B}^n\rightarrow \mathcal{A}$ such that:
+    %%
+    \begin{equation*}
+        F(X) \cong F(\star)\oplus \crn_1(F)(X)
+    \end{equation*}
+    %%
+    \begin{equation*}
+        \crn_1(F)(X_1\lor X_2) \cong \crn_1(F)(X_1)\oplus \crn_1(F)(X_2)\oplus \crn_2F(X_1,X_2)
+    \end{equation*}
+    %%
+    and in general
+    %%
+    \begin{align*}
+        \crn_{n-1}(F)(X_1\lor X_2,X_3,...,X_n)\cong \crn_{n-1}(F)(X_1,X_3,...,X_n)&\oplus \crn_{n-1}(F)(X_2,...,X_n) \\
+        &\oplus \crn_n(F)(X_1,...,X_n)
+    \end{align*}
+\end{defn}
+
+We prove that this defines a family of functors which are symmetric through a series of lemmas:
+
+\begin{lem}[label=lem:coprodMono]
+    For all $X,Y \in \mathcal{B}_0$, the inclusion $X\hookrightarrow X\lor Y$ is a split monomorphism.
+\end{lem}
+\begin{proof}
+    Let $\iota_X$ and $\iota_Y$ denote the coproduct inclusions. Let $\hat{!}:Y\xrightarrow{!} \star\xrightarrow{\text{!`}} X$ denote the unique map $\text{!`}\circ !$. Then by the unniversal property of the coproduct we obtain a map
+    %%
+    \begin{equation*}
+        X\lor Y\xrightarrow{\COIP{1_X}{\hat{!}}}X
+    \end{equation*}
+    %%
+    such that $\iota_X\COIP{1_X}{\hat{!}} = 1_X$, so $\iota_X$ is a split monomorphism, or in other words a section.
+\end{proof}
+
+Throughout these notes $\hat{!}$ will denote the unique map which factors through the basepoint (note that by the universal property this is independent of the choice of basepoint). Additionally, we let $\COIP{1_X}{\hat{!}}$ denote the splitting for the inclusion $\iota_X:X\hookrightarrow X\lor Y$ in $\mathcal{B}$.
+
+
+\begin{lem}[label=lem:biprod]
+    Let $A,B,C \in \mathcal{A}_0$. Then $A\oplus B\cong A\oplus C$ if and only if $B \cong C$.
+\end{lem}
+\begin{proof}
+    The reverse direction follows by functoriality of $A\oplus-$ in $\mathcal{A}$. For the forward direction suppose $A\oplus B\cong A\oplus C$ with isomorphism $\psi$. Then the claim is that the composite map $\iota_B\psi\pi_C$ is an isomorphism with inverse $\iota_C\psi^{-1}\pi_B$. Indeed, from the axioms of a biproduct we have 
+    %%
+    \begin{equation*}
+        \iota_B\psi\pi_C\iota_C\psi^{-1}\pi_B = 1_B,\;\;\iota_C\psi^{-1}\iota_B\iota_B\psi\pi_C = 1_C
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
+We now aim to make explicit this definition of the cross-effect functor, proceeding inductively. We can realize $\crn_1(F)(X)$ as the kernel of $F(!)$ in the following split short exact sequence.
+%%
+\[\begin{tikzcd}
+	{\text{cr}_1(F)(X)} & {F(X)} & {F(\star)}
+	\arrow["{F(!)}", from=1-2, to=1-3]
+	\arrow["ker", tail, from=1-1, to=1-2]
+	\arrow["{F(\text{!`})}", curve={height=-6pt}, from=1-3, to=1-2]
+\end{tikzcd}\]
+%%
+We choose a representative kernel for each such $X \in \mathcal{B}_0$. In particular, if $F(\star) = 0$ (i.e. $F$ is reduced), we choose $\text{cr}_1(F)(X) := F(X)$. Note that by $F(\text{!`})$ this map splits, with left splitting given by the universal property of the kernel in the diagram
+\[\begin{tikzcd}
+	{\text{cr}_1(F)(X)} & {F(X)} & {F(\star)} \\
+	{F(X)}
+	\arrow["ker", from=1-1, to=1-2]
+	\arrow["{F(!)}", curve={height=-6pt}, from=1-2, to=1-3]
+	\arrow["{F(\text{!`})}", curve={height=-6pt}, from=1-3, to=1-2]
+	\arrow["{1-F(\hat{!})}"', from=2-1, to=1-2]
+	\arrow["{r_{F,1}}", dashed, from=2-1, to=1-1]
+\end{tikzcd}\]
+where $1 = 1_{F(X)}$ in the diagram. For simplicity of notation we write $1$ for all identities moving forward, with the object of the identity given by context.
+
+
+Then, given $X\xrightarrow{f}Y \in \mathcal{B}_1$, we obtain a unique map $\crn_1(F)(f)$ making the following diagram commute:
+%%
+\[\begin{tikzcd}
+	{\text{cr}_1(F)(X)} & {F(X)} & {F(\star)} \\
+	{\text{cr}_1(F)(Y)} & {F(Y)} & {F(\star)}
+	\arrow["{F(!)}", from=1-2, to=1-3]
+	\arrow["ker", tail, from=1-1, to=1-2]
+	\arrow["{F(!)}", from=2-2, to=2-3]
+	\arrow["ker"', tail, from=2-1, to=2-2]
+	\arrow[Rightarrow, no head, from=1-3, to=2-3]
+	\arrow["{F(f)}"{description}, from=1-2, to=2-2]
+	\arrow["{\text{cr}_1(F)(f)}"', dashed, from=1-1, to=2-1]
+\end{tikzcd}\]
+%%
+by the universal property of the kernel, where uniqueness ensures that this defines a functor. Additionally, observe that
+%%
+\begin{equation*}
+    ker\circ r_{F,1}\circ F(f)\circ ker =(1-F(\hat{!}))\circ F(f)\circ ker = F(f)\circ ker 
+\end{equation*}
+%%
+using the definition of $\hat{!} = \text{!`}\circ !$ and the kernel. Uniqueness implies 
+%%
+\begin{equation}\label{eq:projFormula1}
+    \text{cr}_1(F)(f) = r_{F,1}\circ F(f)\circ s_{F,1}
+\end{equation}
+%%
+where we denote the kernel, which is also the inclusion into $F$ of its first cross-effect, by $s_{F,1}$.
+
+
+
+We show functoriality of the remaining $\crn_n(F)$ by induction. Suppose $\crn_{n-1}(F)$ is functorial and symmetric in each component, and we show that so is $\crn_n(F)$. We define $\crn_n(F)(X_1,...,X_n)$ for $X_1,...,X_n \in \mathcal{B}_0$ as the kernel
+%%
+\[\begin{tikzcd}
+	{\text{cr}_n(F)(X_1,...,X_n)} \\
+	{\text{cr}_{n-1}(F)(X_1\lor X_2,X_3,...,X_n)} \\
+	{\text{cr}_{n-1}(F)(X_1,X_3,...,X_n)\oplus\text{cr}_{n-1}(F)(X_2,X_3,...,X_n)}
+	\arrow["{\left\langle\text{cr}_{n-1}(F)(\langle1_{X_1}|\hat{!}\rangle,1_{X_3},...,1_{X_n}),\text{cr}_{n-1}(F)(\langle \hat{!}|1_{X_2}\rangle,1_{X_3},...,1_{X_n})\right\rangle}", curve={height=-12pt}, from=2-1, to=3-1]
+	\arrow["{\left\langle\text{cr}_{n-1}(F)(\iota_{X_1},1_{X_3},...,1_{X_n})|\text{cr}_{n-1}(F)(\iota_{X_2},1_{X_3},...,1_{X_n})\right\rangle}", curve={height=-12pt}, from=3-1, to=2-1]
+	\arrow["ker", tail, from=1-1, to=2-1]
+\end{tikzcd}\]
+%%
+Again we choose representatives for the kernel. Let $\iota_i = \text{cr}_{n-1}(F)(\iota_{X_i},1_{X_3},...,1_{X_n})$ and $\pi_i = \text{cr}_{n-1}(F)(\langle1_{X_1}|\hat{!}\rangle,1_{X_3},...,1_{X_n})$. This SES is split. It is sufficient to show that $\langle\iota_1|\iota_2\rangle\langle\pi_1,\pi_2\rangle = 1$. Using the universal property of the coproduct it is sufficient to show $\iota_L\langle\iota_1|\iota_2\rangle\langle\pi_1,\pi_2\rangle = \iota_L$ and $\iota_R\langle\iota_1|\iota_2\rangle\langle\pi_1,\pi_2\rangle = \iota_R$ for the left and right inclusions. By symmetry it is sufficient to show this for just the left inclusion. First, using the definition of a map out of a coproduct
+%%
+\begin{equation*}
+    \iota_L\langle\iota_1|\iota_2\rangle\langle\pi_1,\pi_2\rangle = \iota_1\langle\pi_1,\pi_2\rangle
+\end{equation*}
+%%
+In order to show that this is equal to $\iota_L$ it is sufficient to show that post-composition with $\pi_L$ yields the identity while post-composition with $\pi_R$ yields zero by uniqueness of the map into a product and the structure of a biproduct. Observe that 
+%%
+\begin{align*}
+    \iota_1\langle\pi_1,\pi_2\rangle\pi_L &= \iota_1\pi_1 = \text{cr}_{n-1}(F)(\iota_{X_1}\langle 1_{X_1}|!\rangle,1_{X_{3}},...,1_{X_n}) \\
+    &= \text{cr}_{n-1}(F)(1_{X_1},1_{X_{3}},...,1_{X_n}) = 1_{\text{cr}_{n-1}(F)(X_1,X_3,...,X_n)}
+\end{align*}
+%%
+and
+%%
+\begin{equation*}
+    \iota_1\langle\pi_1,\pi_2\rangle\pi_R = \iota_1\pi_2 = \text{cr}_{n-1}(F)(\iota_{X_1}\langle \hat{!}|1_{X_2}\rangle,1_{X_{3}},...,1_{X_n}) = \text{cr}_{n-1}(F)(\hat{!},1_{X_{3}},...,1_{X_n})
+\end{equation*}
+using functoriality of $\text{cr}_{n-1}(F)$ from the inductive hypothesis. To show this second map is zero, it is sufficient to show that $\text{cr}_{n-1}(F)(\star,X_3,...,X_n) \cong 0$ for all $n \geq 2$.
+
+\begin{lem}[label=lem:zeroCross]
+    Let $n \in \N$ and $X_2,...,X_n \in \mathcal{B}_0$. Then $\text{cr}_n(F)(\star,X_2,...,X_n) \cong 0$.
+\end{lem}
+\begin{proof}
+    We proceed by induction on $n$ using the implicit definition. If $n = 1$ then we have
+    %%
+    \begin{equation*}
+        F(\star) \cong F(\star)\oplus\text{cr}_1(F)(\star)
+    \end{equation*}
+    %%
+    By Lemma \ref{lem:biprod} $\text{cr}_1(F)(\star)\cong 0$.
+
+
+    Now, suppose the claim holds for some $n-1 \geq 1$. We have the direct sum decomposition:
+    %%
+    \begin{align*}
+        \text{cr}_{n-1}(F)(\star\lor X_2,X_3,...,X_n) &\cong \text{cr}_{n-1}(F)(\star,X_3,...,X_n)\oplus\text{cr}_{n-1}(F)(X_2,X_3,...,X_n) \\
+        &\oplus \text{cr}_n(F)(\star,X_2,...,X_n) \\
+        &\cong 
+        \text{cr}_{n-1}(F)(X_2,X_3,...,X_n) \oplus \text{cr}_n(F)(\star,X_2,...,X_n)
+    \end{align*}
+    where the last isomorphism follows by the induction hypothesis and the fact that the $0$ object is the monoidal unit for the biproduct. Then, since $\text{cr}_{n-1}(F)(\star\lor X_2,X_3,...,X_n) \cong \text{cr}_{n-1}(F)(X_2,X_3,...,X_n)$, we are reduced to the base case, so again by Lemma \ref{lem:biprod} $\text{cr}_n(F)(\star,X_2,...,X_n) \cong 0$.
+\end{proof}
+
+Using Lemma \ref{lem:zeroCross} we then obtain the desired $\iota_1\pi_2 = 0$, so by uniqueness $\iota_L\langle\iota_1|\iota_2\rangle\langle\pi_1,\pi_2\rangle = \iota_L$, and by a symmetric argument for $\iota_R$ we obtain by uniqueness that the composite of the maps is the identity, so the SES splits. Additionally, the left splitting is given by
+\[\begin{tikzcd}
+	{\text{cr}_n(F)(X_1,...,X_n)} & {\text{cr}_{n-1}(F)(X_1\lor X_2,\overline{X})} & {\text{cr}_{n-1}(F)(X_1,\overline{X})\oplus\text{cr}_{n-1}(F)(X_2,\overline{X})} \\
+	{\text{cr}_{n-1}(F)(X_1\lor X_2,\overline{X})}
+	\arrow["ker", from=1-1, to=1-2]
+	\arrow["{\langle\text{cr}_{n-1}(F)(\langle 1|\hat{!}\rangle,1),\text{cr}_{n-1}(F)(\langle \hat{!}| 1\rangle,1)\rangle}", curve={height=-18pt}, from=1-2, to=1-3]
+	\arrow["{\langle\text{cr}_{n-1}(F)(\iota_{X_1},1)|\text{cr}_{n-1}(F)(\iota_{X_2},1)\rangle}", curve={height=-12pt}, from=1-3, to=1-2]
+	\arrow["{1-\Delta(\text{cr}_{n-1}(F)(1\lor\hat{!},1)\oplus\text{cr}_{n-1}(F)(\hat{!}\lor 1,1))\nabla}"', from=2-1, to=1-2]
+	\arrow["{r_{F,n}}", dashed, from=2-1, to=1-1]
+\end{tikzcd}\]
+where $\Delta:B\rightarrow B\oplus B$ is the diagonal map, $\nabla:B\oplus B\rightarrow B$ is the codiagonal map, $\overline{X} = (X_3,...,X_n)$, and $\langle1|\hat{!}\rangle\iota_{X_1} = 1\lor \hat{!}$ while $\langle\hat{!}|1\rangle\iota_{X_2} = \hat{!}\lor 1$.
+
+It remains to show $\text{cr}_n(F)$ is functorial in each component. We define $\text{cr}_n(F)$ on a collection of $f_1,...,f_n:X_i\rightarrow Y_i$ maps as the unique map making the diagram commute:
+%%
+\[\begin{tikzcd}
+	{\text{cr}_n(F)(X_1,...,X_n)} & {\text{cr}_{n-1}(F)(X_1\lor X_2,\overline{X})} & {\text{cr}_{n-1}(F)(X_1,\overline{X})\oplus\text{cr}_{n-1}(F)(X_2,\overline{X})} \\
+	{\text{cr}_n(F)(Y_1,...,Y_n)} & {\text{cr}_{n-1}(F)(Y_1\lor Y_2,\overline{Y})} & {\text{cr}_{n-1}(F)(Y_1,\overline{Y})\oplus\text{cr}_{n-1}(F)(Y_2,\overline{Y})}
+	\arrow["ker", from=1-1, to=1-2]
+	\arrow["{\text{cr}_n(F)(f_1,...,f_n)}"', dashed, from=1-1, to=2-1]
+	\arrow["ker"', from=2-1, to=2-2]
+	\arrow["{\text{cr}_{n-1}(F)(f_1\lor f_2,\overline{f})}"', from=1-2, to=2-2]
+	\arrow["{\text{cr}_{n-1}(F)(f_1,\overline{f})\oplus\text{cr}_{n-1}(F)(f_2,\overline{f})}", from=1-3, to=2-3]
+	\arrow["{\langle\pi_1,\pi_2\rangle}", shift left, from=1-2, to=1-3]
+	\arrow["{\langle\iota_1|\iota_2\rangle}", shift left, from=1-3, to=1-2]
+	\arrow["{\langle\pi_1,\pi_2\rangle}", shift left, from=2-2, to=2-3]
+	\arrow["{\langle\iota_1|\iota_2\rangle}", shift left, from=2-3, to=2-2]
+\end{tikzcd}\]
+%%
+Functoriality follows from the inductive hypothesis and the uniqueness of the map between the kernels, which also implies identities are sent to identities. Additionally, as in the case of $n = 1$, by uniqueness the map is equal to
+%%
+\begin{equation}\label{eq:projFormulaN}
+    \text{cr}_n(F)(f_1,...,f_n) = r_{F,n}\circ \text{cr}_{n-1}(F)(f_1\lor f_2,f_3,...,f_n)\circ s_{F,n}
+\end{equation}
+%%
+
+
+To show that $\text{cr}_n(F)(X_1,...,X_n)$ is symmetric in each argument we proceed by induction. Let $\sigma \in \Sigma_n$ be a permutation on $n$ letters. By the inductive hypothesis and the implicit definition we obtain
+%%
+\begin{align*}
+    \text{cr}_n(F)(X_{\sigma(1)},...,X_{\sigma(n)})\oplus A \cong \text{cr}_n(F)(X_1,...,X_n)\oplus A
+\end{align*}
+%%
+for $A \cong \text{cr}_{n-1}(F)(X_1,X_3,...,X_n)\oplus\text{cr}_{n-1}(F)(X_2,...,X_n)$.  Thus 
+%%
+\begin{equation}
+    \text{cr}_n(F)(X_{\sigma(1)},...,X_{\sigma(n)})\cong \text{cr}_n(F)(X_1,...,X_n)
+\end{equation}
+%%
+by Lemma \ref{lem:biprod}. These isomorphisms can be realized as unique maps given by the universal property of kernels. In particular, as we will soon show, these maps are the components of the natural transformation $\alpha:F\circ \sigma\Rightarrow F$ under $\text{cr}_n$.
+
+
+\begin{defn}{}
+    We write $\text{Fun}_*(\mathcal{B}^n,\mathcal{A})$ for the category of \textbf{strictly multi-reduced} functors from $\mathcal{B}^n$ to $\mathcal{A}$, i.e. those $F$ such that for $F(X_1,...,X_n)\cong 0$ if $X_i \cong \star$ for some $i$.
+\end{defn}
+
+
+We have shown now that the cross-effect gives an object map $\text{cr}_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}_*(\mathcal{B}^n,\mathcal{A})$. It remains to show that this assignment is functorial. To this end let $\alpha:F\Rightarrow G$ be a natural transformation. We define $\text{cr}_n(\alpha)$ inductively. For the case of $n = 1$ we let $\text{cr}_1(\alpha)_X$ be the unique map making
+
+\[\begin{tikzcd}
+	{\text{cr}_1F(X)} & {F(X)} & {F(\star)} \\
+	{\text{cr}_1G(X)} & {G(X)} & {G(\star)}
+	\arrow["{F(!)}", from=1-2, to=1-3]
+	\arrow["{G(!)}"', from=2-2, to=2-3]
+	\arrow["{\alpha_\star}", from=1-3, to=2-3]
+	\arrow["{\alpha_X}"', from=1-2, to=2-2]
+	\arrow[tail, from=1-1, to=1-2]
+	\arrow[tail, from=2-1, to=2-2]
+	\arrow["{\text{cr}_1(\alpha)_X}"', dashed, from=1-1, to=2-1]
+\end{tikzcd}\]
+
+\noindent commute. As in the case of the maps themselves, we observe that by uniqueness we have the formula 
+%%
+\begin{equation}\label{eq:natProjFormula1}
+    \text{cr}_1(\alpha)_X = r_{G,1}\circ \alpha_X\circ s_{F,1}
+\end{equation}
+%%
+Hence, to show naturality of $\text{cr}_1(\alpha)$ it is sufficient to show naturality of $r_{G,1}$ and $s_{F,1}$. All of these naturalities follow from a general result on limits.
+%%
+\begin{lem}[label=lem:limFunctor]
+    Let $\mathcal{C}$ be a category with $J$ shaped limits. Then given a choice of limit for each diagram, there exists a functor $\lim\limits_{\leftarrow}:\mathcal{C}^J\rightarrow \mathcal{C}$
+\end{lem}
+\begin{proof}
+    Let $\lim\limits_{\leftarrow}$ be defined on objects based on the choice of limit for each diagram. Then, let $\alpha:F\Rightarrow G:J\rightarrow \mathcal{C}$ be a map of diagrams (i.e. a natural transformation) and let $\pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow F$ and $\pi_G:\Delta_{\lim\limits_{\leftarrow}(G)}\Rightarrow G$ be the limit cones. Then $\alpha\circ \pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow G$ witnesses $\lim\limits_{\leftarrow}(F)$ as a cone over $G$, so by the universal property there exists a unique map $\lim\limits_{\leftarrow}(\alpha):\lim\limits_{\leftarrow}(F)\rightarrow \lim\limits_{\leftarrow}(G)$ which commutes with the projections. By uniqueness this assignment is functorial, as desired.
+\end{proof}
+%%
+Since limits in a functor category are computed componentwise, it follows that the $s_{F,n}$ and $r_{F,n}$ bundle to form natural transformations. Additionally, $\text{cr}_1(\alpha)$ is precisely the map induced by the limit for the map of diagrams
+%%
+\[\begin{tikzcd}
+	F & {\text{ev}_\star\circ F} \\
+	G & {\text{ev}_\star\circ G}
+	\arrow[shift left, from=1-1, to=1-2]
+	\arrow[shift right, from=1-1, to=1-2]
+	\arrow["\alpha"', from=1-1, to=2-1]
+	\arrow[shift left, from=2-1, to=2-2]
+	\arrow[shift right, from=2-1, to=2-2]
+	\arrow["{\text{ev}_\star(\alpha)}", from=1-2, to=2-2]
+\end{tikzcd}\]
+
+
+
+% We may express naturality of this definition through the commutativity of all subdiagrams in the following extended rectangles:
+
+% %%
+% \[\begin{tikzcd}
+% 	{\text{cr}_1F(Y)} & {F(Y)} & {F(\star)} \\
+% 	{\text{cr}_1F(X)} & {F(X)} & {F(\star)} \\
+% 	{\text{cr}_1G(X)} & {G(X)} & {G(\star)} \\
+% 	{\text{cr}_1G(Y)} & {G(Y)} & {G(\star)}
+% 	\arrow["{F(!)}", from=2-2, to=2-3]
+% 	\arrow["{G(!)}"', from=3-2, to=3-3]
+% 	\arrow["{\alpha_\star}", from=2-3, to=3-3]
+% 	\arrow["{\alpha_X}"', from=2-2, to=3-2]
+% 	\arrow[tail, from=2-1, to=2-2]
+% 	\arrow[tail, from=3-1, to=3-2]
+% 	\arrow["{\text{cr}_1\alpha_X}"', dashed, from=2-1, to=3-1]
+% 	\arrow[Rightarrow, no head, from=1-3, to=2-3]
+% 	\arrow["{F(!)}", from=1-2, to=1-3]
+% 	\arrow["{F(f)}", from=2-2, to=1-2]
+% 	\arrow[tail, from=1-1, to=1-2]
+% 	\arrow["{\text{cr}_1F(f)}"{description}, dashed, from=2-1, to=1-1]
+% 	\arrow[Rightarrow, no head, from=3-3, to=4-3]
+% 	\arrow["{G(!)}"', from=4-2, to=4-3]
+% 	\arrow["{G(f)}"', from=3-2, to=4-2]
+% 	\arrow[tail, from=4-1, to=4-2]
+% 	\arrow["{\text{cr}_1G(f)}"{description}, dashed, from=3-1, to=4-1]
+% 	\arrow["{\alpha_Y}", curve={height=-25pt}, dashed, from=1-2, to=4-2]
+% 	\arrow["{\text{cr}_1\alpha_Y}"{description}, curve={height=50pt}, dashed, from=1-1, to=4-1]
+% \end{tikzcd}\]
+% %%
+
+% By the universal property of the kernel there is a unique arrow from $\text{cr}_1F(X)$ to $\text{cr}_1G(Y)$ such that composing with the kernel inclusion yields $G(f)\circ \alpha_X\circ ker$. We observe that 
+% %%
+% \begin{equation*}
+%     ker\circ \text{cr}_1(G)(f)\circ \text{cr}_1(\alpha_X)= G(f)\circ ker \circ \text{cr}_1(\alpha_X) = G(f)\circ \alpha_X\circ ker
+% \end{equation*}
+% %%
+% while
+% %%
+% \begin{equation*}
+%     ker\circ\text{cr}_1(\alpha_Y)\circ \text{cr}_1(F)(f)= \alpha_Y\circ ker \circ\text{cr}_1(F)(f)= \alpha_Y\circ F(f)\circ ker
+% \end{equation*}
+% %%
+% which are equal by naturality of $\alpha$. Thus $\text{cr}_1(\alpha)$ is a natural transformation. Further, by uniqueness of the construction, $\text{cr}_1$ is also functorial.
+
+
+Inductively, suppose $\text{cr}_{n-1}$ is functorial. Then by Lemma \ref{lem:limFunctor} and the inductive hypothesis, for $\alpha:F\Rightarrow G$, $\text{cr}_n(\alpha)$ is the limit map induced by the map of diagrams
+%%
+\[\begin{tikzcd}
+	{(\lor_{i=1}^2\times 1)\circ \text{cr}_{n-1}(F)} & {((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(F))\oplus((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(F))} \\
+	{(\lor_{i=1}^2\times 1)\circ \text{cr}_{n-1}(G)} & {((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(G))\oplus((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(G))}
+	\arrow[shift left, from=1-1, to=1-2]
+	\arrow[shift right, from=1-1, to=1-2]
+	\arrow["{(\lor_{i=1}^2\times 1)\circ\text{cr}_{n-1}(\alpha)}"', from=1-1, to=2-1]
+	\arrow[shift left, from=2-1, to=2-2]
+	\arrow[shift right, from=2-1, to=2-2]
+	\arrow["{((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(\alpha))\oplus((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(\alpha))}", from=1-2, to=2-2]
+\end{tikzcd}\]
+%%
+where $\hat{\pi}_i:\mathcal{B}^n\rightarrow \mathcal{B}^{n-1}$ is the functor which skips the $i$th argument, and $\lor_{i=1}^n$ is the functor given in Lemma \label{lem:lorFunc} below.
+%%
+\begin{lem}[label=lem:lorFunc]
+    We have a functor $\lor_{i=1}^n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B}^n,\mathcal{A})$ given by $\lor_{i=1}^n(G)(X_1,...,X_n) = G(\lor_{i=1}^nX_i)$ and $\lor_{i=1}^n(G)(f_1,...,f_n) = G(\lor_{i=1}^nf_i)$ on objects and by $\lor_{i=1}^n(\eta)_{X_1,...,X_n} = \eta_{\lor_{i=1}^nX_i}$ on arrows.
+\end{lem}
+\begin{proof}
+    To prove $\lor_{i=1}^n$ is a functor we first show it is well-defined. Let $\eta:F\Rightarrow G$ be a natural transformation between single variable functors, and let $(f_i)_{i=1}^n:(X_1,...,X_n)\rightarrow (Y_1,...,Y_n)$ and $(g_i)_{i=1}^n:(Y_1,...,Y_n)\rightarrow (Z_1,...,Z_n)$ be maps in $\mathcal{B}^n$. 
+
+    First, by uniqueness in the definition of $\lor_{i=1}^nf_i$ note that $\lor_{i=1}^ng_i\circ \lor_{i=1}^nf_i = \lor_{i=1}^n(g_i\circ f_i)$. Additionally, $\lor_{i=1}^n1_{X_i} = 1_{\lor_{i=1}^nX_i}$. Combined with functoriality of $F$, we have that $\lor_{i=1}^n(F)$ is indeed a functor.
+
+    Next, naturality of $\lor_{i=1}^n(\eta)$ equates to the following diagram commuting
+    %%
+    \[\begin{tikzcd}
+    	{F(\lor_{i=1}^nX_i)} & {F(\lor_{i=1}^nY_i)} \\
+    	{G(\lor_{i=1}^nX_i)} & {G(\lor_{i=1}^nY_i)}
+    	\arrow["{F(\lor_{i=1}^nf_i)}", from=1-1, to=1-2]
+    	\arrow[from=1-1, to=1-2]
+    	\arrow["{G(\lor_{i=1}^nf_i)}"', from=2-1, to=2-2]
+    	\arrow["{\eta_{\lor_{i=1}^nX_i}}"', from=1-1, to=2-1]
+    	\arrow["{\eta_{\lor_{i=1}^nY_i}}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    %%
+    which follows from the naturality of $\eta$. Finally, if $\gamma:G\Rightarrow H$ is another natural transformation,
+    %%
+    \begin{equation*}
+        \lor_{i=1}^n(\gamma)_{X_1,...,X_n}\circ \lor_{i=1}^n(\eta)_{X_1,...,X_n} = \gamma(\lor_{i=1}^nX_i)\circ \eta(\lor_{i=1}^nX_i) = (\gamma\circ\eta)(\lor_{i=1}^nX_i) = \lor_{i=1}^n(\gamma\circ \eta)_{X_1,...,X_n}
+    \end{equation*}
+    %%
+    by definition of composition of natural transformations, and
+    %%
+    \begin{equation*}
+        \lor_{i=1}^n(1_F)_{X_1,...,X_n} = 1_F(\lor_{i=1}^nX_i) = 1_{F(\lor_{i=1}^nX_i)} = 1_{\lor_{i=1}^n(F)(X_1,...,X_n)}
+    \end{equation*}
+    %%
+    This finishes the proof that $\lor_{i=1}^n$ is a functor.
+\end{proof}
+%%
+Additionally, as in the previous cases, using the uniqueness of the components of $\text{cr}_n(\alpha)$ we can give the formula
+%%
+\begin{equation}\label{eq:natProjFormulaN}
+    \text{cr}_n(\alpha) = r_{G,n}\circ ((\lor_{i=1}^2\times 1)(\text{cr}_{n-1}(\alpha)))\circ s_{F,n}
+\end{equation}
+%%
+
+% Then with restricted notation we aim to show that the following diagram commutes, where our maps are those unique ones making the inner rectangles commute:
+
+% \[\begin{tikzcd}
+% 	{\text{cr}_n(F)} & {\text{cr}_{n-1}(F)(Y_1\lor Y_2)} & {\text{cr}_{n-1}(F)(Y_1)\oplus\text{cr}_{n-1}(F)(Y_2)} \\
+% 	{\text{cr}_n(F)} & {\text{cr}_{n-1}(F)(X_1\lor X_2)} & {\text{cr}_{n-1}(F)(X_1)\oplus\text{cr}_{n-1}(F)(X_2)} \\
+% 	{\text{cr}_n(G)} & {\text{cr}_{n-1}(G)(X_1\lor X_2)} & {\text{cr}_{n-1}(G)(X_1)\oplus\text{cr}_{n-1}(G)(X_2)} \\
+% 	{\text{cr}_n(G)} & {\text{cr}_{n-1}(G)(Y_1\lor Y_2)} & {\text{cr}_{n-1}(G)(Y_1)\oplus\text{cr}_{n-1}(G)(Y_2)}
+% 	\arrow["{\text{cr}_{n-1}\alpha_{X_1\lor X_2}}"{description}, from=2-2, to=3-2]
+% 	\arrow["{\text{cr}_{n-1}\alpha_{X_1}\oplus \text{cr}_{n-1}\alpha_{X_2}}"{description}, from=2-3, to=3-3]
+% 	\arrow[tail, from=2-1, to=2-2]
+% 	\arrow[from=2-2, to=2-3]
+% 	\arrow[from=3-2, to=3-3]
+% 	\arrow[tail, from=3-1, to=3-2]
+% 	\arrow["{\text{cr}_{n-1}(F)(f_1)\oplus \text{cr}_{n-1}(F)(f_2)}"{description}, from=2-3, to=1-3]
+% 	\arrow[from=1-2, to=1-3]
+% 	\arrow[tail, from=1-1, to=1-2]
+% 	\arrow[tail, from=4-1, to=4-2]
+% 	\arrow[from=4-2, to=4-3]
+% 	\arrow["{\text{cr}_{n-1}(G)(f_1)\oplus \text{cr}_{n-1}(G)(f_2)}"{description}, from=3-3, to=4-3]
+% 	\arrow["{\text{cr}_{n-1}(F)(f_1\lor f_2)}"{description}, from=2-2, to=1-2]
+% 	\arrow[dashed, from=2-1, to=1-1]
+% 	\arrow["{\text{cr}_n\alpha}"{description}, dashed, from=2-1, to=3-1]
+% 	\arrow[dashed, from=3-1, to=4-1]
+% 	\arrow["{\text{cr}_{n-1}(G)(f_1\lor f_2)}"{description}, from=3-2, to=4-2]
+% 	\arrow["{\text{cr}_n\alpha}"{description}, curve={height=30pt}, from=1-1, to=4-1]
+% 	\arrow["{\text{cr}_{n-1}\alpha_{Y_1\lor Y_2}}"{description}, curve={height=-80pt}, from=1-2, to=4-2]
+% 	\arrow["{\text{cr}_{n-1}\alpha_{Y_1}\oplus\text{cr}_{n-1}\alpha_{Y_2}}", curve={height=-120pt}, from=1-3, to=4-3]
+% \end{tikzcd}\]
+
+% \noindent In particular, $\text{cr}_n\alpha$ above denotes $\text{cr}_n(\alpha)_{X_1,...,X_n}$, $\text{cr}_{n-1}\alpha_{X_1\lor X_2} := \text{cr}_{n-1}(\alpha)_{X_1\lor X_2,X_3,...,X_n}$, $\text{cr}_{n-1}\alpha_{X_1} := \text{cr}_{n-1}(\alpha)_{X_1,X_3,...,X_n}$, $\text{cr}_{n-1}\alpha_{X_2} := \text{cr}_{n-1}(\alpha)_{X_2,X_3,...,X_n}$, $\text{cr}_n(F)(f_i) := \text{cr}_n(F)(f_1,...,f_n)$, $\text{cr}_{n-1}(F)(f_1\lor f_2) := \text{cr}_{n-1}(F)(f_1\lor f_2,f_3,...,f_n)$, $\text{cr}_{n-1}(F)(f_1) := \text{cr}_{n-1}(F)(f_1,f_3,...,f_n)$, and finally $\text{cr}_{n-1}(F)(f_2) := \text{cr}_{n-1}(F)(f_2,f_3,...,f_n)$. Then we observe that:
+%%
+% \begin{equation*}
+%     ker \circ \text{cr}_n(G)(f_i)\circ \text{cr}_n\alpha = \text{cr}_{n-1}(G)(f_1\lor f_2)\circ ker \circ \text{cr}_n\alpha = \text{cr}_{n-1}(G)(f_1\lor f_2)\circ \text{cr}_{n-1}\alpha_{X_1\lor X_2}\circ ker
+% \end{equation*}
+% %%
+% while
+% %%
+% \begin{equation*}
+%     ker \circ \text{cr}_n\alpha \circ\text{cr}_n(F)(f_i) = \text{cr}_{n-1}\alpha_{Y_1\lor Y_2}\circ ker \circ \text{cr}_n(F)(f_i) =\text{cr}_{n-1}\alpha_{Y_1\lor Y_2}\circ \text{cr}_{n-1}(F)(f_1\lor f_2)\circ ker
+% \end{equation*}
+% %%
+% which are equal by naturally of $\text{cr}_{n-1}\alpha$ in the induction hypothesis. Once again, as the components are defined using the universal property of the kernel, $\text{cr}_n$ is functorial since the composite of two images makes the diagram commute as well, and identities are sent to identities. 
+Therefore
+%%
+\begin{equation}
+    \text{cr}_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}_*(\mathcal{B}^n,\mathcal{A})
+\end{equation}
+%%
+is indeed a functor between functor categories.
+
+
+\begin{rmk}
+    We can define the cross-effect functors for $\mathcal{A}$ non-abelian, requiring simply that $\mathcal{A}$ has pullbacks and equilizers. To do this let $\mathcal{A}$ be such a category, and let $F:\mathcal{B}\rightarrow \mathcal{A}$. We consider the diagram
+    %%
+    \[\begin{tikzcd}
+    	{F(X\lor Y)} & {F(X)} \\
+    	{F(Y)} & {F(\star)}
+    	\arrow["{F(!)}", from=1-2, to=2-2]
+    	\arrow["{F(1_X\lor!)}", from=1-1, to=1-2]
+    	\arrow["{F(!\lor1_Y)}"', from=1-1, to=2-1]
+    	\arrow["{F(!)}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    %%
+    We remove the first vertex and take a homotopy limit:
+    %%
+    \[\begin{tikzcd}
+    	{holim_{P_0(2)}F(\lor)} & {F(X\lor Y)} & {F(X)} \\
+    	& {F(Y)} & {F(\star)}
+    	\arrow["{F(!)}", from=1-3, to=2-3]
+    	\arrow["{F(!)}"', from=2-2, to=2-3]
+    	\arrow["{F(1_X\lor!)}", from=1-2, to=1-3]
+    	\arrow["{F(!\lor1_Y)}"', from=1-2, to=2-2]
+    	\arrow[curve={height=12pt}, from=1-1, to=2-2]
+    	\arrow[curve={height=-24pt}, from=1-1, to=1-3]
+    	\arrow["\gamma"', dashed, from=1-2, to=1-1]
+    \end{tikzcd}\]
+    %%
+    We define the second cross effect of $F$ to be
+    %%
+    \begin{equation*}
+        \text{cr}_2(F) := \text{hofib}\gamma
+    \end{equation*}
+    %%
+    In the case of $n = 3$ we obtain a cubical diagram:
+    %%
+    \[\begin{tikzcd}
+    	{F(X_1\lor X_2\lor X_3)} && {F(X_2\lor X_3)} \\
+    	& {F(X_1\lor X_3)} && {F(X_3)} \\
+    	{F(X_1\lor X_2)} && {F(X_2)} \\
+    	& {F(X_1)} && {F(\star)}
+    	\arrow[from=1-1, to=3-1]
+    	\arrow[from=1-1, to=2-2]
+    	\arrow[from=1-1, to=1-3]
+    	\arrow[from=1-3, to=2-4]
+    	\arrow[dashed, from=1-3, to=3-3]
+    	\arrow[from=2-2, to=2-4]
+    	\arrow[from=3-1, to=4-2]
+    	\arrow[dashed, from=3-1, to=3-3]
+    	\arrow[from=2-2, to=4-2]
+    	\arrow[from=4-2, to=4-4]
+    	\arrow[from=2-4, to=4-4]
+    	\arrow[from=3-3, to=4-4]
+    \end{tikzcd}\]
+    %%
+    The diagram can be labeled by $\mathcal{P}(\{1,2,3\})$, where the subset of $\{1,2,3\}$ corresponds to the complement of the indices on a particular node. Let $\chi(S)$ for $S \in \mathcal{P}(\{1,2,3\})$ denote the pullback for the subdiagram consisting on nodes labeled by subsets containing $S$. Then we define
+    %%
+    \begin{equation*}
+        \text{cr}_3F(X_1,X_2,X_3) := \text{hofib}\gamma
+    \end{equation*}
+    %%
+    where fiber indicates the pullback along zero.
+\end{rmk}
+
+
+\begin{lem}[label=lem:idempotCr1]
+    For any $n \geq 1$ and any $F:\mathcal{B}\rightarrow \mathcal{A}$, $\text{cr}_n(F)\cong \text{cr}_n(\text{cr}_1(F))$.
+\end{lem}
+\begin{proof}
+    The isomorphism $F(\star) \cong F(\star)\oplus \text{cr}_1(F)(\star)$ implies by Lemma \ref{lem:biprod} that $\text{cr}_1(F)(\star)\cong 0$. Then 
+    %%
+    \begin{equation*}
+        \text{cr}_1(F)(X) \cong \text{cr}_1(F)(\star)\oplus \text{cr}_1(\text{cr}_1(F))(X) \cong \text{cr}_1^2(F)(X)
+    \end{equation*}
+    %%
+    By induction we have that $\text{cr}_n(\text{cr}_1(F))(X_1,...,X_n) \cong \text{cr}_n(F)(X_1,...,X_n)$, using Lemma \ref{lem:biprod}. Since these are maps which result from the universal property of the biproduct they amalgamate to form natural isomorphisms between the desired functors by Lemma \ref{lem:limFunctor}.
+%     Naturality in the case of $n = 1$ follows from the commutivity of the following diagram for any $f:X\rightarrow Y$:
+%     \[\begin{tikzcd}
+% 	 && {\text{cr}_1(F)(\star)} \\
+% 	{\text{cr}_1^2(F)(X)} & {\text{cr}_1(F)(X)} & {F(X)} & {F(\star)} \\
+% 	{\text{cr}_1^2(F)(Y)} & {\text{cr}_1(F)(Y)} & {F(Y)} & {F(\star)} \\
+% 	&& {\text{cr}_1(F)(\star)}
+% 	\arrow["{F(!)}", from=2-3, to=2-4]
+% 	\arrow[tail, from=2-2, to=2-3]
+% 	\arrow["{F(!)}"', from=3-3, to=3-4]
+% 	\arrow[tail, from=3-2, to=3-3]
+% 	\arrow["{F(f)}"{description}, from=2-3, to=3-3]
+% 	\arrow[Rightarrow, no head, from=2-4, to=3-4]
+% 	\arrow[dashed, from=2-2, to=3-2]
+% 	\arrow["\cong", tail, from=2-1, to=2-2]
+% 	\arrow["{\text{cr}_1(F)(!)}", from=2-2, to=1-3]
+% 	\arrow["\cong"', tail, from=3-1, to=3-2]
+% 	\arrow["{\text{cr}_1(F)(!)}"', from=3-2, to=4-3]
+% 	\arrow[curve={height=-30pt}, Rightarrow, no head, from=1-3, to=4-3]
+% 	\arrow[dashed, from=2-1, to=3-1]
+% \end{tikzcd}\]
+%     which holds by the definition of $\text{cr}_1^2F$ on maps. The case of $n$ proceeds by induction.
+\end{proof}
+
+These properties demonstrate that the inclusion $\text{Fun}_*(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ admits a right adjoint, namely the first cross-effect functor $\text{cr}_1$. In other words, $\text{Fun}_*(\mathcal{B},\mathcal{A})$ is a coreflective subcategory of $\text{Fun}(\mathcal{B},\mathcal{A})$. Since the left adjoint is full and faithful (being the inclusion of a full subcategory), the unit of this adjunction is an isomorphism $\eta_F:F\Rightarrow \text{cr}_1\iota(F)$, which also re-affirms that $\text{cr}_1F\cong \text{cr}_1^2F$. In fact, by our choice of kernels, $\eta_F$ has identities as components.
+\begin{proof}
+    To demonstrate the adjunction we show the co-universal property where $\epsilon_F = s_{F,1}$ is the monic inclusion $\crn_1(F)(X)\rightarrowtail F(X)$. Since the $s_{F,1}$ are natural in $X$ and $F$ by Lemma \ref{lem:limFunctor} we need only show the co-universal property.
+
+    To show the co-universal property we take a natural transformation $\alpha:\iota F\rightarrow G$, for $F$ a strictly reduced functor. This generates a commutative diagram
+    \[\begin{tikzcd}
+	{\text{cr}_1G(X)} & {G(X)} & {G(\star)} \\
+	{F(X)} & {F(\star)\cong 0}
+	\arrow["{(\epsilon_F)_X}", tail, from=1-1, to=1-2]
+	\arrow["{G(!)}", from=1-2, to=1-3]
+	\arrow["{\alpha_X}"{description}, from=2-1, to=1-2]
+	\arrow["{F(!)}"', from=2-1, to=2-2]
+	\arrow["{\alpha_\star}"{description}, from=2-2, to=1-3]
+	\arrow["{\hat{\alpha}_X}", dashed, from=2-1, to=1-1]
+\end{tikzcd}\]
+    where $\hat{\alpha}_X$ is the unique map from the universal property of the kernel. Thus by Lemma \ref{lem:limFunctor} $\hat{\alpha}$ is natural.
+%     To show that the $\hat{\alpha}$ map is a natural transformation, let $f:X\rightarrow Y$ be a map in $\mathcal{B}$. We have the following diagram
+%     \[\begin{tikzcd}
+% 	{F(Y)} & {F(\star)\cong 0} \\
+% 	{\text{cr}_1G(Y)} & {G(Y)} & {G(\star)} \\
+% 	{\text{cr}_1G(X)} & {G(X)} & {G(\star)} \\
+% 	{F(X)} & {F(\star)\cong 0}
+% 	\arrow["{(\epsilon_G)_X}", tail, from=3-1, to=3-2]
+% 	\arrow["{G(!)}", from=3-2, to=3-3]
+% 	\arrow["{\alpha_X}"{description}, from=4-1, to=3-2]
+% 	\arrow["{F(!)}"', from=4-1, to=4-2]
+% 	\arrow["{\alpha_\star}"{description}, from=4-2, to=3-3]
+% 	\arrow["{\hat{\alpha}_X}", dashed, from=4-1, to=3-1]
+% 	\arrow["{G(f)}", from=3-2, to=2-2]
+% 	\arrow[Rightarrow, no head, from=3-3, to=2-3]
+% 	\arrow["{G(!)}", from=2-2, to=2-3]
+% 	\arrow["{(\epsilon_G)_Y}", tail, from=2-1, to=2-2]
+% 	\arrow["{\text{cr}_1G(f)}", dashed, from=3-1, to=2-1]
+% 	\arrow["{\hat{\alpha}_Y}"', dashed, from=1-1, to=2-1]
+% 	\arrow["{F(f)}", curve={height=-60pt}, from=4-1, to=1-1]
+% 	\arrow["{\alpha_\star}"{description}, from=1-2, to=2-3]
+% 	\arrow["{F(!)}", from=1-1, to=1-2]
+% 	\arrow["{\alpha_Y}"{description}, from=1-1, to=2-2]
+% \end{tikzcd}\]
+%     But, using naturality of $\alpha$ we observe:
+%     %%
+%     \begin{equation*}
+%         F(f)\hat{\alpha}_Y(\epsilon_G)_Y = F(f)\alpha_Y = \alpha_XG(f) = \hat{\alpha}_X\text{cr}_1G(f)(\epsilon_G)_Y
+%     \end{equation*}
+%     %%
+%     which implies $F(f)\hat{\alpha}_Y = \hat{\alpha}_X\text{cr}_1G(f)$ since $(\epsilon_G)_Y$ is monic. Hence, $\hat{\alpha}$ is natural, and from this diagram we obtain for free that $\epsilon_G$ is natural since $\text{cr}_1G$ is defined on maps in such a way to make the internal square in the diagram always commute.
+    If $\beta$ was another natural transformation making the first diagram commute, then $\beta_X = \hat{\alpha}_X$ for all $X$, by uniqueness of the map to the kernel. In other words we would have $\beta = \hat{\alpha}$, so that $\hat{\alpha}$ is unique, proving the co-universal property.
+    % Finally, to show $\epsilon$ is natural, let $\alpha:H\rightarrow K$ be a natural transformation between our functors. Then by definition of how $\text{cr}_1$ acts on natural transformations, $\text{cr}_1\alpha\epsilon_K=\epsilon_H\alpha$, as desired.
+\end{proof}
+
+
+The counit then is the natural inclusion $\epsilon_F:\iota\text{cr}_1(F)\Rightarrow F$.  We can extend this to an adjunction for $\text{cr}_n$. First, consider $G$, a reduced functor, and $X_1,...,X_n \in \mathcal{B}_0$. I claim that $\text{cr}_n(G)(X_1,...,X_n)$ is a direct summand of $G(\lor_{i=1}^nX_i)$. Indeed, we have the inclusion $\iota_G$ given by the composite
+%%
+\begin{equation*}
+    \text{cr}_n(G)(X_1,...,X_n)\xrightarrow{\lor_{i=1}^n(s_{G,1})\circ \cdots \circ s_{G,n}}G(\lor_{i=1}^nX_i)
+\end{equation*}
+%%
+and the projection $\pi_G$ given by the composite
+%%
+\begin{equation*}
+    G(\lor_{i=1}^nX_i)\xrightarrow{r_{G,n}\circ \cdots \circ \lor_{i=1}^n(r_{G,1})}\text{cr}_n(G)
+\end{equation*}
+%%
+In particular, from our previous work $\iota_G$ and $\pi_G$ are composites of natural transformations, and hence themselves are natural. In particular, we have the natural transformations
+\begin{lem}[label=lem:lorInj]
+    The components $\iota_G$ defined above constitute a natural transformation $\iota:\text{cr}_n\Rightarrow \lor_{i=1}^n$.
+\end{lem}
+\noindent and 
+\begin{lem}[label=lem:lorProj]
+    The components $\pi_G$ defined above constitute a natural transformation $\pi:\lor_{i=1}^n\Rightarrow \text{cr}_n$.
+\end{lem}
+Additionally, for $F \in {\text{Fun}_*(\mathcal{B}^n,\mathcal{A})}$ we will let $i$ denote the composite 
+%%
+\begin{equation*}
+    F(X_1,...,X_n)\xrightarrow{F(i_1,...,i_n)}\Delta^*(F)(\lor_{i=1}^nX_i)\xrightarrow{\pi_{\Delta^*(F)}}\text{cr}_n(\Delta^*(F))(X_1,...,X_n)
+\end{equation*}
+%%
+The map $F(i_1,...,i_n)$ is natural in both $F$ and the $X_i$, so that $i$ is also a natural transformation $1_{\text{Fun}_*(\mathcal{B}^n,\mathcal{A})}\Rightarrow \text{cr}_n\circ \Delta^*$.
+%%
+\begin{lem}[label=lem:compIncNat]
+    We have a natural transformation $\overline{i}:1_{\text{Fun}(\mathcal{B}^n,\mathcal{A})}\Rightarrow \lor_{i=1}^n\circ \Delta^*$ which restricts to a natural transformations between functors on $\text{Fun}_*(\mathcal{B}^n,\mathcal{A})$
+\end{lem}
+%%
+\begin{proof}
+    Let $\alpha:F\rightarrow G$ be a map of functors and let $f_1:X_1\rightarrow Y_1,...,f_n:X_n\rightarrow Y_n$ be a collection of maps in $\mathcal{B}$. Naturality of $\overline{i}_F$ in the $X_i$ is given by the commutative diagram
+    %%
+    \[\begin{tikzcd}
+    	{F(X_1,...,X_n)} & {\Delta^*(F)(\lor_{i=1}^nX_i)} \\
+    	{F(Y_1,...,Y_n)} & {\Delta^*(F)(\lor_{i=1}^nY_i)}
+    	\arrow["{F(i_1,...,i_n)}", from=1-1, to=1-2]
+    	\arrow["{\Delta^*(F)(\lor_{i=1}^nf_i)}", from=1-2, to=2-2]
+    	\arrow["{F(f_1,...,f_n)}"', from=1-1, to=2-1]
+    	\arrow["{F(i_1,...,i_n)}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    %%
+    which commutes by definition of $\lor_{i=1}^nf_i$ and the functoriality of $F$. On the other hand, naturality of $\overline{i}$ itself is given by the diagram
+    \[\begin{tikzcd}
+    	{F(X_1,...,X_n)} & {\Delta^*(F)(\lor_{i=1}^nX_i)} \\
+    	{G(X_1,...,X_n)} & {\Delta^*(G)(\lor_{i=1}^nX_i)}
+    	\arrow["{F(i_1,...,i_n)}", from=1-1, to=1-2]
+    	\arrow["{\Delta^*(\alpha)_{\lor_{i=1}^nX_i}}", from=1-2, to=2-2]
+    	\arrow["{\alpha_{X_1,...,X_n}}"', from=1-1, to=2-1]
+    	\arrow["{G(i_1,...,i_n)}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    which commutes by naturality of $\alpha$.
+\end{proof}
+%%
+Another important natural transformation we require is given by the $+$ operation on disjoint unions which gives the unique map sending a disjoint union of a single object to itself with all inclusions the identity.
+%%
+\begin{lem}[label=lem:plusNat]
+    We have a natural transformation $+:\lor_{i=1}^n\Rightarrow 1_{\mathcal{B}}$.
+\end{lem}
+\begin{proof}
+    Let $f:X\rightarrow Y$ be a map in $\mathcal{B}$. Then naturality equates to the commutivity of
+    %%
+    \[\begin{tikzcd}
+    	{\lor_{i=1}^nX} & {\lor_{i=1}^nY} \\
+    	X & Y
+    	\arrow["{\lor_{i=1}^nf}", from=1-1, to=1-2]
+    	\arrow["{+}"', from=1-1, to=2-1]
+    	\arrow["{+}", from=1-2, to=2-2]
+    	\arrow["f"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    %%
+    However, the lower composite is precisely the unique map for each inclusion into $Y$ given by $f$, while the upper composite has as inclusions the composite $X\xrightarrow{f}Y\rightarrowtail \lor_{i=1}^nY\xrightarrow{+}Y$ which by definition also equals $f$. Thus the diagram commutes by uniqueness of the map out of a coproduct.
+\end{proof}
+
+% \begin{lem}[label=lem:lorInj]
+%     The components $\iota_G$ defined above constitute a natural transformation $\iota:\text{cr}_n\Rightarrow \lor_{i=1}^n$.
+% \end{lem}
+% \begin{proof}
+%     Let $\alpha:F\Rightarrow G$ be a map of one-variable functors $\mathcal{B}\rightarrow \mathcal{A}$. Then naturality of $\iota$ is equivalent to showing that for any $X_1,...,X_n \in \mathcal{B}_0$, the following diagram commutes
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_n(F)(X_1,...,X_n)} & {\text{cr}_n(G)(X_1,...,X_n)} \\
+%     	{F(\lor_{i=1}^nX_i)} & {G(\lor_{i=1}^nX_i)}
+%     	\arrow["{\text{cr}_n(\alpha)_{X_1,...,X_n}}", from=1-1, to=1-2]
+%     	\arrow["{\alpha_{\lor_{i=1}^nX_i}}"', from=2-1, to=2-2]
+%     	\arrow["{\iota_G}", from=1-2, to=2-2]
+%     	\arrow["{\iota_F}"', from=1-1, to=2-1]
+%     \end{tikzcd}\]
+%     %%
+
+%     We proceed inductively. If $n = 1$, this diagram commutes by construction of $\text{cr}_1(\alpha)$, so suppose the claim holds for some $n$. Then the following diagram commutes by the inductive hypothesis for the right square, and construction of $\text{cr}_{n+1}(\alpha)$ for the left
+%     %%
+%         \[\begin{tikzcd}
+%     	{\text{cr}_{n+1}(F)(X_1,...,X_{n+1})} & {\text{cr}_n(F)(X_1\lor X_2,...,X_{n+1})} & {F(\lor_{i=1}^{n+1}X_i)} \\
+%     	{\text{cr}_{n+1}(G)(X_1,...,X_{n+1})} & {\text{cr}_n(G)(X_1\lor X_2,...,X_{n+1})} & {G(\lor_{i=1}^{n+1}X_i)}
+%     	\arrow["{\text{cr}_n(\alpha)_{X_1\lor X_2,...,X_{n+1}}}", from=1-2, to=2-2]
+%     	\arrow["{\alpha_{\lor_{i=1}^{n+1}X_i}}", from=1-3, to=2-3]
+%     	\arrow["{\iota_G}"', from=2-2, to=2-3]
+%     	\arrow["{\iota_F}", from=1-2, to=1-3]
+%     	\arrow[tail, from=2-1, to=2-2]
+%     	\arrow[tail, from=1-1, to=1-2]
+%     	\arrow["{\text{cr}_{n+1}(\alpha)_{X_1,...,X_{n+1}}}"', from=1-1, to=2-1]
+%     \end{tikzcd}\]
+%     %%
+%     However, the horizontal maps compose to equal $\iota_F$ and $\iota_G$, respectively, so this is precisely the naturality of $\iota$.
+
+%     A similar inductive argument shows that $\iota_F$ is a natural transformation for each $F$.
+% \end{proof}
+
+
+Next we argue that the isomorphisms in Definition \ref{defn:crossEffect} can be upgraded to natural isomorphisms.
+
+\begin{lem}[label=lem:implNatIso]
+    We have natural isomorphisms
+    %%
+    \begin{equation}\label{eq:nat1}
+        1_{\text{Fun}(\mathcal{B},\mathcal{A})} \cong \text{ev}_\star \oplus \text{cr}_1
+    \end{equation}
+    %%
+    \begin{equation}\label{eq:nat2}
+        \lor_{i=1}^2\circ\text{cr}_1\cong ((\pi_1)^*\circ\text{cr}_1)\oplus ((\pi_2)^*\circ \text{cr}_1)\oplus \text{cr}_2
+    \end{equation}
+    %%
+    and in general
+    %%
+    \begin{equation}\label{eq:natN}
+        (\lor_{i=1}^2\times1_{\mathcal{B}^{n-2}})\circ \text{cr}_{n-1} \cong ((\hat{\pi}_2)^*\circ\text{cr}_{n-1})\oplus ((\hat{\pi}_1)^*\circ \text{cr}_{n-1})\oplus \text{cr}_n
+    \end{equation}
+\end{lem}
+
+Indeed, these natural isomorphisms follow from the fact that the inclusion and retractions formed natural transformations, and hence the sequence of functors defining the cross-effect split.
+
+
+% \noindent We begin by constructing the natural isomorphism for Equation \eqref{eq:nat1}.
+
+% \begin{proof}[Proof of Equation \eqref{eq:nat1}]
+%     For the first natural isomorphisms, the components are given by $\langle G(\text{!`})|ker_{G(-)}\rangle$, which themselves are natural isomorphisms with components $\langle G(\text{!`})|ker_{G(X)}\rangle$ for each $X \in \mathcal{B}_0$. To show naturality, let $f : X \rightarrow Y$ be a map in $\mathcal{B}$. Then naturality is equivalent to the commutivity of the square
+%     %%
+%     \[\begin{tikzcd}
+%     	{G(\star)\oplus\text{cr}_1(G)(X)} & {G(\star)\oplus\text{cr}_1(G)(Y)} \\
+%     	{G(X)} & {G(Y)}
+%     	\arrow["{G(f)}"', from=2-1, to=2-2]
+%     	\arrow["{\langle G(\text{!`})|ker_{G(Y)}\rangle}"', tail reversed, no head, from=2-2, to=1-2]
+%     	\arrow["{\langle G(\text{!`})|ker_{G(X)}\rangle}", tail reversed, no head, from=2-1, to=1-1]
+%     	\arrow["{1_{G(\star)}\oplus \text{cr}_1(G)(f)}", from=1-1, to=1-2]
+%     \end{tikzcd}\]
+%     %%
+%     Showing this diagram commutes is equivalent to show that it commutes after including $G(\star)$ and $\text{cr}_1(G)(X)$ into the upper left node, respectively. However, commutivity for the inclusion of $G(\star)$ is just functoriality of $G$, while commutivity for the inclusion of $\text{cr}_1(G)(X)$ follows from the definition of $\text{cr}_1(G)(f)$. 
+
+%     Next, to show naturality of the full transformation let $\eta:G\Rightarrow F$ be natural a natural transformation in $\text{Fun}(\mathcal{B},\mathcal{A})$. Then for each $X \in \mathcal{B}_0$ we must show commutivity of the diagram
+%     %%
+%     \[\begin{tikzcd}
+%     	{G(\star)\oplus\text{cr}_1(G)(X)} & {F(\star)\oplus\text{cr}_1(F)(X)} \\
+%     	{G(X)} & {F(X)}
+%     	\arrow["{\eta_X}"', from=2-1, to=2-2]
+%     	\arrow["{\langle F(\text{!`})|ker_{F(X)}\rangle}"', tail reversed, no head, from=2-2, to=1-2]
+%     	\arrow["{\langle G(\text{!`})|ker_{G(X)}\rangle}", tail reversed, no head, from=2-1, to=1-1]
+%     	\arrow["{\eta_\star\oplus\text{cr}_1(\eta)_X}", from=1-1, to=1-2]
+%     \end{tikzcd}\]
+%     %%
+%     We can once again proceed using inclusions. The inclusion for $G(\star)$ provides commutivity through the naturality of $\eta$, while the inclusion for $\text{cr}_1(G)$ provides commutivity through the definition of $\text{cr}_1(\eta)$ and its components. This completes the proof.
+% \end{proof}
+
+
+% We now prove the general case in Equation \eqref{eq:natN} by induction using the base case in the preceding proof.
+
+% \begin{proof}[Proof of Equation \eqref{eq:natN}]
+%     Inductively suppose we have natural isomorphisms with components given by $$\langle \text{cr}_{n-1}(F)(\iota_{X_1},1_{X_3},...,1_{X_n})|\text{cr}_{n-1}(F)(\iota_{X_2},1_{X_3},...,1_{X_n})|ker_{X_1,...,X_n}\rangle$$ Inductively we consider natural isomorphisms with $$\langle \text{cr}_{n}(F)(\iota_{X_1},1_{X_3},...,1_{X_{n+1}})|\text{cr}_n(F)(\iota_{X_2},1_{X_3},...,1_{X_{n+1}})|ker_{X_1,...,X_{n+1}}\rangle$$ As in the base case, we must show that this definition is natural in the $X_i$ and in $F$. To show naturality in the $X_i$ let $(f_1,...,f_{n+1}):(X_1,...,X_{n+1})\rightarrow (Y_1,...,Y_{n+1})$ be a map in $\mathcal{B}$ and fix $F:\mathcal{B}\rightarrow \mathcal{A}$. With reduced notation, we wish to show commutivity of the following diagram
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_n(F)(\widehat{X_2})\oplus\text{cr}_n(F)(\widehat{X_1})\oplus\text{cr}_{n+1}(F)(X)} & {\text{cr}_n(F)(\widehat{Y_2})\oplus\text{cr}_n(F)(\widehat{Y_1})\oplus\text{cr}_{n+1}(F)(Y)} \\
+%     	{\text{cr}_n(F)(X_1\lor X_2)} & {\text{cr}_n(F)(Y_1\lor Y_2)}
+%     	\arrow["{\text{cr}_n(F)(\widehat{f_2})\oplus\text{cr}_n(F)(\widehat{f_1})\oplus\text{cr}_{n+1}(F)(f)}", shift left=3, from=1-1, to=1-2]
+%     	\arrow["{\text{cr}_n(F)(f_1\lor f_2,f_3,...,f_{n+1})}"', from=2-1, to=2-2]
+%     	\arrow["{\langle \iota_2,\iota_1,ker_{F,X}\rangle}"', from=1-1, to=2-1]
+%     	\arrow["{\langle \iota_2,\iota_1,ker_{F,Y}\rangle}", from=1-2, to=2-2]
+%     \end{tikzcd}\]
+%     Commutivity upon including $\text{cr}_n(F)(\widehat{X_i})$ follows from functoriality of $\text{cr}_n(F)$, while commutivity upon including $\text{cr}_{n+1}(F)(X_1,...,X_{n+1})$ follows from the definition of $\text{cr}_{n+1}(F)(f_1,...,f_{n+1})$.
+
+
+%     It remains to show naturality in $F$, so let $\eta : F\rightarrow G$ by a natural transformations of functors. We aim to show commutivity of 
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_n(F)(\widehat{X_2})\oplus\text{cr}_n(F)(\widehat{X_1})\oplus\text{cr}_{n+1}(F)(X)} & {\text{cr}_n(G)(\widehat{X_2})\oplus\text{cr}_n(G)(\widehat{X_1})\oplus\text{cr}_{n+1}(G)(X)} \\
+%     	{\text{cr}_n(F)(X_1\lor X_2)} & {\text{cr}_n(G)(X_1\lor X_2)}
+%     	\arrow["{\text{cr}_n(\eta)_{\widehat{X_2}}\oplus\text{cr}_n(\eta)_{\widehat{X_1}}\oplus\text{cr}_{n+1}(\eta)_{X}}", shift left, from=1-1, to=1-2]
+%     	\arrow["{\text{cr}_n(\eta)_{X_1\lor X_2}}"', from=2-1, to=2-2]
+%     	\arrow["{\langle \iota_2,\iota_1,ker_{F,X}\rangle}"', from=1-1, to=2-1]
+%     	\arrow["{\langle \iota_2,\iota_1,ker_{G,X}\rangle}", from=1-2, to=2-2]
+%     \end{tikzcd}\]
+%     %%
+%     Commutivity upon including $\text{cr}_n(F)(\widehat{X_i})$ follows from naturality of $\text{cr}_n(\eta)$, while commutivity upon including $\text{cr}_{n+1}(F)(X_1,...,X_{n+1})$ follows from the definition of $\text{cr}_{n+1}(\eta)$. This completes the proof.
+% \end{proof}
+
+We can apply these natural isomorphisms inductively to obtain the following isomorphism of functors given in \cite{Johnson2003DerivingCW}.
+
+\begin{thm}[label=thm:dirSumDecomp]
+    For any $n \in \N$, we have a natural isomorphism
+    %%
+    \begin{equation*}
+        \lor_{i=1}^n \cong \text{ev}_\star \oplus \left(\bigoplus_{m=1}^n\left(\bigoplus_{j_1<\cdots < j_m =: \overline{j}}\pi_{\overline{j}}^*\circ \text{cr}_m\right)\right)
+    \end{equation*}
+    %%
+    where $\pi_{\overline{j}}:\mathcal{B}^n\rightarrow \mathcal{B}^m$ projects onto the components $j_1 < \cdots < j_m=:\overline{j}$.
+\end{thm}
+\begin{proof}
+    If $n = 1$ this isomorphism is precisely Equation \eqref{eq:nat1}. Inductively suppose this isomorphism exists for some $n-1$, $n \geq 2$. Let $\varphi_{n-1}$ denote this isomorphism. Recall the functor $(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}):\text{Fun}(\mathcal{B}^{n-1},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B}^n,\mathcal{A})$, and observe that $\lor_{i=1}^n \cong (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-1}})\circ \lor_{i=1}^{n-1}$ by the universal property of the coproduct. Then applying $\varphi_{n-1}$, the isomorphisms in Lemma \ref{lem:implNatIso}, as well as isomorphisms associated with re-ordering the direct sum we obtain the desired natural isomorphism.
+\end{proof}
+
+To help with future computations we describe the composite $\iota_G\circ \pi_G$ for a functor $G$ a bit more explicitly. For this remark we emphasize the order of the projection and inclusion by writing $\iota_{G,n}$ and $\pi_{G,n}$.
+
+\begin{rmk}{Projection Formulas}
+    We construct a formula for the composite $\iota_{G,n}\circ \pi_{G,n}$ by induction on $n$. In the case of $n = 1$ $\iota_{G,1} = s_{G,1}$ and $\pi_{G,1} = r_{G,1}$, so by construction of the retraction
+    %%
+    \begin{equation}\label{eq:endoForm1}
+        \iota_{G,1}\circ \pi_{G,1} = 1-G(\hat{!})
+    \end{equation}
+    %%
+    In the case of $n = 2$, $\iota_{G,2} = \lor_{i=1}^2(s_{G,1})\circ s_{G,2}$ and $\pi_{G,2} = r_{G,2}\circ \lor_{i=1}^2(r_{G,1})$. Then using Equation \ref{eq:projFormula1} the composite is given by
+    %%
+    \begin{align*}
+        \iota_{G,2}\circ \pi_{G,2} &= \lor_{i=1}^2(s_{G,1})\circ s_{G,2}\circ r_{G,2}\circ \lor_{i=1}^2(r_{G,1}) \\
+        &= \lor_{i=1}^2(s_{G,1})\circ (1-(\text{cr}_1(G)(1\lor\hat{!})+\text{cr}_1(G)(\hat{!}\lor 1))) \circ \lor_{i=1}^2(r_{G,1}) \\
+        &= \lor_{i=1}^2(1-G(\hat{!}))-\lor_{i=1}^2(1-G(\hat{!}))\circ G(1\lor\hat{!})\circ \lor_{i=1}^2(1-G(\hat{!}))\\
+        &-\lor_{i=1}^2(1-G(\hat{!}))\circ G(\hat{!}\lor 1)\circ \lor_{i=1}^2(1-G(\hat{!})) \\
+        &= \lor_{i=1}^2(1-G(\hat{!}))-(G(1\lor\hat{!})-G(\hat{!}\lor \hat{!}))\circ \lor_{i=1}^2(1-G(\hat{!}))\\
+        &-(G(\hat{!}\lor 1)-G(\hat{!}\lor \hat{!}))\circ \lor_{i=1}^2(1-G(\hat{!})) \\
+        &= \lor_{i=1}^2(1-G(\hat{!}))-(G(1\lor\hat{!})-G(\hat{!}\lor \hat{!}))-(G(\hat{!}\lor 1)-G(\hat{!}\lor \hat{!})) \\
+        &= 1-G(1\lor \hat{!})-G(\hat{!}\lor 1)+G(\hat{!}\lor \hat{!})
+    \end{align*}
+    Therefore, our formula for $n = 2$ becomes
+    %%
+    \begin{equation}\label{eq:endoForm2}
+        \iota_{G,2}\circ \pi_{G,2} = 1-G(1\lor \hat{!})-G(\hat{!}\lor 1)+G(\hat{!}\lor \hat{!})
+    \end{equation}
+    %%
+    Now, suppose that for some $n \geq 2$ we have the formula
+    %%
+    \begin{equation*}
+        \iota_{G,n}\circ \pi_{G,n} = 1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}}\hat{!}) %%\sum_{k=1}^n\sum_{1 \leq i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{\overline{i}} \hat{!}) - general formula for later if useful
+    \end{equation*}
+    %%
+    where the sum is over sequences of distinct integers from $1$ to $n$ of lengths $\geq 1$, the $k_{\overline{i}}$ are integers, and where $\lor_{\overline{i}}\hat{!}$ has $\hat{!}$ in each entry $i_j$, and identities in all other entries. Then our formula for $\iota_{G,n+1}$ for the $n+1$ case can be written as $(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n})\circ s_{G,n+1}$, while $\pi_{G,n+1} = r_{G,n+1}\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}})(\pi_{G,n})$. Note by Equation \ref{eq:projFormulaN} applied inductively, $\text{cr}_n(G)(f_1,...,f_n) = \pi_{G,n}\circ G(\lor_{i=1}^nf_i)\circ \iota_{G,n}$. Then by our inductive hypothesis we can compute
+    %%
+    \begin{align*}
+        \iota_{G,n+1}\circ \pi_{G,n+1} &= (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n})\circ s_{G,n+1}\circ r_{G,n+1}\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}})(\pi_{G,n}) \\
+        &=(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n})\circ (1-(\text{cr}_{n+1}(G)(1\lor \hat{!},1)+\text{cr}_{n+1}(G)(\hat{!}\lor 1,1)))\\
+        &\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}})(\pi_{G,n}) \\
+        &= \left(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}\right)\left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}}\hat{!})\right) \\
+        &-(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n})\circ G(1\lor \hat{!}\lor 1_{n-1})\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+        &-(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n})\circ G(\hat{!}\lor 1\lor 1_{n-1})\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+        &= \left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}'}\hat{!})\right) \\
+        &-\left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}'}\hat{!})\right) \circ G(1\lor \hat{!}\lor 1_{n-1})\circ \left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}'}\hat{!})\right)  \\
+        &-\left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}'}\hat{!})\right) \circ G(\hat{!}\lor 1\lor 1_{n-1})\circ \left(1 + \sum_{\overline{i}} k_{\overline{i}}G(\lor_{\overline{i}'}\hat{!})\right)  \\
+        % &= (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}})\left(1 +\sum_{k=1}^n\sum_{1 \leq i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{\overline{i}} \hat{!})\right)\\
+        % &-(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n})\circ G(1\lor \hat{!}\lor 1_{n-1})\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+        % &-(\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n})\circ G(\hat{!}\lor 1\lor 1_{n-1})\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+        % &= 1 +\sum_{k=1}^n\left[\sum_{1 < i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{\overline{i}+1} \hat{!})+\sum_{1 = i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{(1<2<\overline{i}_{n-1}+1)} \hat{!})\right]\\
+        % &-\left(G(1\lor \hat{!}\lor 1_{n-1})+\sum_{k=1}^n\left[\sum_{1 < i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{(2,\overline{i}+1)} \hat{!})\right.\right.\\
+        % &\left.\left.+\sum_{1 = i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{(1<2<\overline{i}_{n-1}+1)} \hat{!})\right]\right)\\
+        % &\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+        % &-\left(G(\hat{!}\lor 1\lor 1_{n-1})+\sum_{k=1}^n\left[\sum_{1 < i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{(1,\overline{i}+1)} \hat{!})\right.\right. \\
+        % &\left.\left.+\sum_{1 = i_1 < \cdots < i_k\leq n=:\overline{i}}(-1)^kG(\lor_{(1<2<\overline{i}_{n-1}+1)} \hat{!})\right]\right)\\
+        % &\circ (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}}) (\iota_{G,n}\circ \pi_{G,n}) \\
+    \end{align*}
+    %%
+    where $\overline{i}'$ is obtained from $\overline{i}$ by either shifting up all degrees by $1$ if $1 \notin \overline{i}$, or by shifting up all degrees by $1$ and adding $1$ to $\overline{i}$ if it does contain $1$. Observe that the second composites will consist of integer combinations of maps of the form $G(\lor_{\overline{i}}\hat{!})$ where $\overline{i}$ is non-empty. Thus, $\iota_{G,n+1}\circ \pi_{G,n+1}$ is of the desired form.
+    % the projections $G(\lor_{i=1}^nX_i) \xrightarrow{\pi_G} \text{cr}_n(G)(X_1,...,X_n)$ explicitly through an inductive approach, as this will prove valuable for future computations. For $n = 1$ we observe that we have the diagram
+    % %%
+    % \[\begin{tikzcd}
+    % 	{\text{cr}_1(G)(X)} & {G(X)} & {G(\star)} \\
+    % 	{G(X)}
+    % 	\arrow[tail, from=1-1, to=1-2]
+    % 	\arrow["{G(!)}", from=1-2, to=1-3]
+    % 	\arrow["{1_{G(X)}-G(\hat{!})}"', from=2-1, to=1-2]
+    % 	\arrow[dashed, from=2-1, to=1-1]
+    % \end{tikzcd}\]
+    % %%
+    % with the unique map on the left given by the universal property of the kernel defining $\text{cr}_1(G)(X)$ (Note: this is the induced left-splitting for any abelian category, so corresponds to the projection). 
+    % % Observe that naturality of our isomorphism in Equation \ref{eq:nat1} gives the diagram
+    % % \[\begin{tikzcd}
+    % % 	{G(X)} & {G(X)} \\
+    % % 	{\text{cr}_1(G)(X)\oplus G(\star)} & {\text{cr}_1(G)(X)\oplus G(\star)}
+    % % 	\arrow["{1_{G(X)}-G(\hat{!})}", from=1-1, to=1-2]
+    % % 	\arrow["{1_{\text{cr}_1(G)(X)}\oplus 1_{G(\star)}-\text{cr}_1(G)(\hat{!})\oplus 1_{G(\star)}}"', outer sep=6pt, from=2-1, to=2-2]
+    % % 	\arrow["{\langle ker_{G(X)}|G(\text{!`})\rangle}", from=2-1, to=1-1]
+    % % 	\arrow["{\langle ker_{G(X)}|G(\text{!`})\rangle}"', from=2-2, to=1-2]
+    % % \end{tikzcd}\]
+    % % %%
+    % % where the bottom map equals $1_{\text{cr}_1(G)}\oplus 0$ since $\text{cr}_1(G)$ is reduced. This implies that the map induced by $1_{G(X)}-G(\hat{!})$ is in fact the projection, $\pi_G$ (so far this doesn't require $G$ to be reduced).
+
+    % \vspace{10pt}
+
+    % In the case of $n = 2$ we obtain the composite
+    % \[\begin{tikzcd}
+    % 	{\text{cr}_2(G)(X_1,X_2)} & {\text{cr}_1(G)(X_1\lor X_2)} & {\text{cr}_1(G)(X_1)\oplus \text{cr}_1(G)(X_2)} \\
+    % 	{\text{cr}_1(G)(X_1\lor X_2)} \\
+    % 	{G(X_1\lor X_2)}
+    % 	\arrow[tail, from=1-1, to=1-2]
+    % 	\arrow["{\langle\text{cr}_1(G)(\langle 1_{X_1}|\hat{!}\rangle),\text{cr}_1(G)(\langle\hat{!}|1_{X_2}\rangle)\rangle=p_1}"', curve={height=12pt}, from=1-2, to=1-3]
+    % 	\arrow["{1-\iota_1\circ p_1}"', from=2-1, to=1-2]
+    % 	\arrow["{\langle\text{cr}_1(G)(\iota_{X_1})|\text{cr}_1(G)(\iota_{X_2})\rangle=\iota_1}"', curve={height=12pt}, from=1-3, to=1-2]
+    % 	\arrow[dashed, from=2-1, to=1-1]
+    % 	\arrow["{\pi_{G,1}}", from=3-1, to=2-1]
+    % 	\arrow["{\pi_{G,2}}", curve={height=-30pt}, from=3-1, to=1-1]
+    % \end{tikzcd}\]
+    % via a similar construction. It follows that \textbf{NEED TO FIGURE OUT NOTATION HERE}
+    % %%
+    % \begin{align*}
+    %     \iota_{G,2}\circ \pi_{G,2} &= (\iota_{G,1}\circ i_2)\circ (p_2\circ \pi_{G,2}) \\
+    %     &= \iota_{G,1}\circ (1-\iota_1\circ p_1)\circ \pi_{G,2} \\
+    %     &= 1-G(\hat{!})-\iota_{G,1}\iota_1p_1\pi_{G,2} \\
+    %     &= 1-G(\hat{!})-G(1_{X_1}\lor\hat{!})-G(\hat{!}\lor 1_{X_2}) 
+    % \end{align*}
+    % where the last equality is due to Lemma \textbf{REF} (to be typed up shortly)
+    % % can consider the diagram
+    % % %%
+    % % \[\begin{tikzcd}
+    % % 	{G(X_1\lor X_2)} && {G(X_1\lor X_2)} & {G(X_1)\oplus G(X_2)} \\
+    % % 	{\text{cr}_2(G)(X_1,X_2)} && {\text{cr}_1(G)(X_1\lor X_2)} & {\text{cr}_1(G)(X_1)\oplus \text{cr}_1(G)(X_2)}
+    % % 	\arrow["{\langle G(\langle 1_{X_1}|\hat{!}\rangle),G(\langle \hat{!}|1_{X_2}\rangle)\rangle}", from=1-3, to=1-4]
+    % % 	\arrow["{1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})}", from=1-1, to=1-3]
+    % % 	\arrow["{\langle\text{cr}_1(G)(\langle 1_{X_1}|\hat{!}\rangle),\text{cr}_1(G)(\langle\hat{!}|1_{X_2}\rangle)\rangle}"', from=2-3, to=2-4]
+    % % 	\arrow[tail, from=2-1, to=2-3]
+    % % 	\arrow["{\pi_G}", curve={height=-6pt}, two heads, from=1-3, to=2-3]
+    % % 	\arrow["{\iota_G}", curve={height=-6pt}, from=2-3, to=1-3]
+    % % 	\arrow[dashed, from=1-1, to=2-1]
+    % % 	\arrow["{\pi_G\oplus\pi_G}", curve={height=-6pt}, two heads, from=1-4, to=2-4]
+    % % 	\arrow["{\iota_G\oplus \iota_G}", curve={height=-6pt}, from=2-4, to=1-4]
+    % % \end{tikzcd}\]
+    % % where the map induced on the left is due to the universal property of the kernel. To show such a map is induced we require that $\langle\text{cr}_1(G)(\langle 1_{X_1}|\hat{!}\rangle),\text{cr}_1(G)(\langle\hat{!}|1_{X_2}\rangle)\rangle\circ \pi_G\circ (1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})$ is the zero map. Because $\iota_G$ is monic, this is equivalent to showing that the post-composition with $\iota_G$ is zero. Using the commutivity of the right square, by naturality of the $\iota_G$, this is equivalent to showing $\langle G(\langle 1_{X_1}|\hat{!}\rangle),G(\langle \hat{!}|1_{X_2}\rangle)\rangle\circ \iota_G\circ \pi_G\circ (1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2}))$ is zero. Note that from $n = 1$ case $\iota_G\circ \pi_G = 1_{G(X_1\lor X_2)}-G(\hat{!})$. Then the first part of the composite becomes
+    % % %%
+    % % \begin{equation*}
+    % %     (1_{G(X_1\lor X_2)}-G(\hat{!}))\circ (1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})) = 1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})+G(\hat{!})
+    % % \end{equation*}
+    % % %%
+    % % Now, as this is a map to a biproduct, we can test it on its projections, which give the composites
+    % % %%
+    % % \begin{equation*}
+    % %     G(\langle 1_{X_1}|\hat{!}\rangle)\circ (1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})+G(\hat{!})) = G(\langle 1_{X_1}|\hat{!}\rangle)-G(\langle 1_{X_1}|\hat{!})-G(\langle\hat{!}|\hat{!}\rangle)+G(\hat{!}) = 0
+    % % \end{equation*}
+    % % %%
+    % % and similarly
+    % % %%
+    % % \begin{equation*}
+    % %     G(\langle \hat{!}|1_{X_2}\rangle)\circ (1_{G(X_1\lor X_2)}-G(1_{X_1}\lor \hat{!})-G(\hat{!}\lor 1_{X_2})+G(\hat{!})) = G(\langle \hat{!}|1_{X_2}\rangle)-G(\langle \hat{!}|\hat{!})-G(\langle\hat{!}|1_{X_2}\rangle)+G(\hat{!}) = 0
+    % % \end{equation*}
+    % % %%
+    % % which shows that the composite is indeed zero. It remains to show that the induced map is the projection, $\pi_G$, associated to the direct sum decomposition of $G(X_1\lor X_2)$. 
+
+
+    % \vspace{10pt}
+    
+    % The inductive step is identical to the case of $n = 2$ using the inductive hypothesis.
+\end{rmk} 
+
+
+% Next we prove that the projection components can be used to form another natural transformation.
+
+% \begin{lem}[label=lem:lorProj]
+%     The components $\pi_G$ defined above constitute a natural transformation $\pi:\lor_{i=1}^n\Rightarrow \text{cr}_n$.
+% \end{lem}
+% \begin{proof}
+%     We first show that for each $G$, $\pi_G:\lor_{i=1}^n(G)\Rightarrow \text{cr}_n(G)$ is a natural transformation. We proceed by induction on $n$. If $n = 1$, $(\pi_G)_X:G(X)\rightarrow \text{cr}_1(G)(X)$. Then for $f:X\rightarrow Y$, from Lemma \ref{lem:implNatIso}
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_1(G)(X)} & {G(X)} & {\text{cr}_1(G)(X)} & {\text{cr}_1(G)(X)\oplus G(\star)} & {G(X)} \\
+%     	{\text{cr}_1(G)(Y)} & {G(Y)} & {\text{cr}_1(G)(Y)} & {\text{cr}_1(G)(Y)\oplus G(\star)} & {G(Y)}
+%     	\arrow["{\text{cr}_1(G)(f)}"', from=1-1, to=2-1]
+%     	\arrow[two heads, from=1-2, to=1-1]
+%     	\arrow[two heads, from=2-2, to=2-1]
+%     	\arrow[""{name=0, anchor=center, inner sep=0}, "{G(f)}"{description}, from=1-2, to=2-2]
+%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{cr}_1(G)(f)}"{description}, from=1-3, to=2-3]
+%     	\arrow[two heads, from=1-4, to=1-3]
+%     	\arrow[two heads, from=2-4, to=2-3]
+%     	\arrow["{\text{cr}_1(G)(f)\oplus 1_{G(\star)}}"{description}, from=1-4, to=2-4]
+%     	\arrow["\cong"', from=1-5, to=1-4]
+%     	\arrow["\cong", from=2-5, to=2-4]
+%     	\arrow["{G(f)}", from=1-5, to=2-5]
+%     	\arrow[shorten <=17pt, shorten >=23pt, Rightarrow, no head, from=0, to=1]
+%     \end{tikzcd}\]
+%     %%
+%     where both squares on the right commute by naturality of the isomorphism, proving naturality of $\pi_G$. Next, to show naturality in $G$ let $\eta:G\Rightarrow F$ be a natural transformation between functors $G,F:\mathcal{B}\rightarrow \mathcal{A}$. This corresponds to the commutivity of the diagram
+%     \[\begin{tikzcd}
+%     	{\text{cr}_1(G)(X)} & {G(X)} & {\text{cr}_1(G)(X)} & {\text{cr}_1(G)(X)\oplus G(\star)} & {G(X)} \\
+%     	{\text{cr}_1(F)(X)} & {F(X)} & {\text{cr}_1(F)(X)} & {\text{cr}_1(F)(X)\oplus F(\star)} & {F(X)}
+%     	\arrow["{\pi_{G,X}}"', from=1-2, to=1-1]
+%     	\arrow[""{name=0, anchor=center, inner sep=0}, "{\eta_X}", from=1-2, to=2-2]
+%     	\arrow["{\pi_{F,X}}", from=2-2, to=2-1]
+%     	\arrow["{\text{cr}_1(\eta)_X}"', from=1-1, to=2-1]
+%     	\arrow["\cong"', from=1-5, to=1-4]
+%     	\arrow[two heads, from=1-4, to=1-3]
+%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{cr}_1(\eta)_X}"{description}, from=1-3, to=2-3]
+%     	\arrow["{\text{cr}_1(\eta)_X\oplus \eta_\star}"{description}, from=1-4, to=2-4]
+%     	\arrow[two heads, from=2-4, to=2-3]
+%     	\arrow["{\eta_X}", from=1-5, to=2-5]
+%     	\arrow["\cong", from=2-5, to=2-4]
+%     	\arrow[shorten <=17pt, shorten >=22pt, Rightarrow, no head, from=0, to=1]
+%     \end{tikzcd}\]
+%     where the squares in the rectangle on the right commute by naturality of the isomorphism and definition of the projections onto components.
+
+%     \vspace{10pt}
+
+%     Now, suppose the claim holds for some $n-1$. We aim to show naturality in $G$ and $X_i$. For $G$ fixed we have the following equality
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_n(G)(X)} & {G(\lor_{i=1}^nX_i)} &[-20pt] {\text{cr}_n(G)(X)} &[-20pt] {\text{cr}_{n-1}(G)(X_1\lor X_2)} & {G(\lor_{i=1}^nX_i)} \\
+%     	{\text{cr}_n(G)(Y)} & {G(\lor_{i=1}^nY_i)} &[-20pt] {\text{cr}_n(G)(Y)} &[-20pt] {\text{cr}_{n-1}(G)(Y_1\lor Y_2)} & {G(\lor_{i=1}^nY_i)}
+%     	\arrow["{\pi_{G,X}}"', from=1-2, to=1-1]
+%     	\arrow[""{name=0, anchor=center, inner sep=0}, "{G(\lor_{i=1}^nf_i)}"{description}, from=1-2, to=2-2]
+%     	\arrow["{\pi_{G,Y}}", from=2-2, to=2-1]
+%     	\arrow["{\text{cr}_n(G)(f_1,...,f_n)}"', from=1-1, to=2-1]
+%     	\arrow["{G(\lor_{i=1}^nf_i)}"{description}, from=1-5, to=2-5]
+%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{cr}_n(G)(f_1,...,f_n)}"{description}, from=1-3, to=2-3]
+%     	\arrow["{\pi_{G,(X_1\lor X_2,...)}}"', from=1-5, to=1-4]
+%     	\arrow["{\pi_{G,(X_1\lor X_2,...)}}", from=2-5, to=2-4]
+%     	\arrow[two heads, from=1-4, to=1-3]
+%     	\arrow[two heads, from=2-4, to=2-3]
+%     	\arrow["{\text{cr}_{n-1}(G)(f_1\lor f_2,...)}"{description}, from=1-4, to=2-4]
+%     	\arrow[shorten <=24pt, shorten >=32pt, Rightarrow, no head, from=0, to=1]
+%     \end{tikzcd}\]
+%     %%
+%     The rightmost square commutes by the inductive hypothesis. On the other hand, decomposing the left square on the right side using the natural isomorphism in Equation \eqref{eq:natN} produces naturality of that square, and hence the whole rectangle. Finally, to show naturality in $G$ let $\eta:G\Rightarrow F$ be natural. Then similarly to above,
+%     %%
+%     \[\begin{tikzcd}
+%     	{\text{cr}_n(G)(X)} & {G(\lor_{i=1}^nX_i)} & {\text{cr}_n(G)(X)} & {\text{cr}_{n-1}(G)(X_1\lor X_2)} & {G(\lor_{i=1}^nX_i)} \\
+%     	{\text{cr}_n(F)(X)} & {F(\lor_{i=1}^nX_i)} & {\text{cr}_n(F)(X)} & {\text{cr}_{n-1}(F)(X_1\lor X_2)} & {F(\lor_{i=1}^nX_i)}
+%     	\arrow["{\pi_{G,X}}"', from=1-2, to=1-1]
+%     	\arrow[""{name=0, anchor=center, inner sep=0}, "{\eta_{\lor_{i=1}^nf_i}}", from=1-2, to=2-2]
+%     	\arrow["{\pi_{F,X}}", from=2-2, to=2-1]
+%     	\arrow["{\text{cr}_n(\eta)_X}"', from=1-1, to=2-1]
+%     	\arrow["{\eta_{\lor_{i=1}^nX_i}}", from=1-5, to=2-5]
+%     	\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{cr}_n(\eta)_X}"{description}, from=1-3, to=2-3]
+%     	\arrow["{\pi_{G,(X_1\lor X_2,...)}}"', from=1-5, to=1-4]
+%     	\arrow["{\pi_{F,(X_1\lor X_2,...)}}", from=2-5, to=2-4]
+%     	\arrow[two heads, from=1-4, to=1-3]
+%     	\arrow[two heads, from=2-4, to=2-3]
+%     	\arrow["{\text{cr}_{n-1}(\eta)_{X_1\lor X_2,X_3,...,X_n}}"{description}, from=1-4, to=2-4]
+%     	\arrow[shorten <=35pt, shorten >=32pt, Rightarrow, no head, from=0, to=1]
+%     \end{tikzcd}\]
+%     %% 
+%     commutes by naturality of $\eta$ and expanding the left square on the right using the natural isomorphism in Equation \eqref{eq:natN}.
+% \end{proof}
+
+These natural isomorphisms will prove valuable for proving that $\text{cr}_n$ is the right adjoint in an adjunction between categories of reduced functors.
+
+\begin{prop}
+    The $n$-th cross effect is a right adjoint to the diagonal functor $\Delta^*:\text{Fun}_*(\mathcal{B}^n,\mathcal{A})\rightarrow \text{Fun}_*(\mathcal{B},\mathcal{A})$.
+\end{prop}
+\begin{proof}
+    We demonstrate the adjunction by showing the co-universal property. Pictorially this can be represented by:
+    %%
+    \[\begin{tikzcd}
+    	{\text{cr}_n(G)} & {\Delta^*(\text{cr}_n(G))} & G \\
+    	F & {\Delta^*(F)}
+    	\arrow["{\epsilon_G}", from=1-2, to=1-3]
+    	\arrow["\alpha"', from=2-2, to=1-3]
+    	\arrow[dashed, from=2-2, to=1-2]
+    	\arrow["{\hat{\alpha}}", dashed, from=2-1, to=1-1]
+    \end{tikzcd}\]
+    %%
+    Here $\epsilon_G = G(+)\circ \iota_G$. Given such an $\alpha$, we let $\hat{\alpha}$ be given by the composite 
+    \begin{equation*}
+        F(X_1,...,X_n)\xrightarrow{i}\text{cr}_n(\Delta^*(F))(X_1,...,X_n)\xrightarrow{\text{cr}_n(\alpha)_{X_1,...,X_n}}\text{cr}_n(G)(X_1,...,X_n)
+    \end{equation*}
+    First we show the components of this proposed map make the diagram commute. Using naturality of $\iota$ we can re-write this composite as
+    %%
+    \begin{align*}
+        F(X,...,X)&\xrightarrow{i}\text{cr}_n(\Delta^*(F))(X,...,X)\xrightarrow{\iota_{\Delta^*(F)}}\Delta^*(F)(\lor_{i=1}^nX) \xrightarrow{\alpha_{\lor_{i=1}^nX}}G(\lor_{i=1}^nX)\xrightarrow{G(+)}G(X)
+    \end{align*}
+    %%
+    Then using naturality of $\alpha$ we obtain
+    %%
+    \begin{align*}
+        F(X,...,X)&\xrightarrow{i}\text{cr}_n\Delta^*(F)(X,...,X)\xrightarrow{\iota_{\Delta^*(F)}}\Delta^*(F)(\lor_{i=1}^nX) \xrightarrow{\Delta^*(F)(+)}\Delta^*(F)(X)\xrightarrow{\alpha_X}G(X)
+    \end{align*}
+    %%
+    It remains to show $\Delta^*(F)(+)\circ \iota_{\Delta^*(F)}\circ i = 1_{\Delta^*(F)(X)}$. However, $i = \pi_{\Delta^*(F)}\circ F(i_1,...,i_n)$, and from our previous remark $\iota_{\Delta^*(F)}\circ \pi_{\Delta^*(F)}$ is equal to $1_{\Delta^*(F)(\lor_{i=1}^nX)}$ plus terms which involve at least one $\hat{!}$. Composing any term which involves $\hat{!}$ with $\Delta^*(F)(+)$ will result in the zero map since $F$ is reduced. Thus, the composite becomes
+    %%
+    \begin{align*}
+        \Delta^*(F)(+)\circ F(i_1,...,i_n) = 1_{\Delta^*(F)(X)}
+    \end{align*}
+    %%
+
+    \vspace{10pt}
+
+    Next we show that $\hat{\alpha}$ is natural. However, this follows immediately from Lemma \ref{lem:lorProj} and Lemma \ref{lem:compIncNat}, so $\hat{\alpha}$ is a composite of natural transformations.
+
+    \vspace{10pt}
+
+    Finally, it remains to show uniqueness of $\hat{\alpha}$. It is sufficient to show that if $\beta:F\Rightarrow \text{cr}_n(G)$, then $\widehat{\epsilon_G\circ \Delta^*(\beta)} = \beta$, or in other words the composite
+    %%
+    \begin{align*}
+        F(X_1,...,X_n)\xrightarrow{i}\text{cr}_n(\Delta^*(F))(X_1,...,X_n)&\xrightarrow{\text{cr}_n(\Delta^*(\beta))}\text{cr}_n(\Delta^*(\text{cr}_n(G)))(X_1,...,X_n)\\
+        %%
+        &\xrightarrow{\text{cr}_n(\Delta^*(\iota_G))}\text{cr}_n(\Delta^*(\lor_{i=1}^n(G)))(X_1,...,X_n)\\
+        %%
+        &\xrightarrow{\text{cr}_n(G(+))}\text{cr}_n(G)(X_1,...,X_n)
+    \end{align*}
+    %%
+    equals $\beta$. Using naturality of the projection and the inclusions into $\lor_{i=1}^nX_i$, this composite can be written as 
+    %%
+    \begin{align*}
+        F(X_1,...,X_n)\xrightarrow{\beta}\text{cr}_n(G)(X_1,...,X_n)&\xrightarrow{\text{cr}_n(G)(i_1,...,i_n)}\Delta^*(\text{cr}_n(G))(\lor_{i=1}^nX_i) \\
+        &\xrightarrow{\pi_{\Delta^*(\text{cr}_n(G))}}\text{cr}_n(\Delta^*(\text{cr}_n(G)))(X_1,...,X_n) \\
+        &\xrightarrow{\text{cr}_n(\Delta^*(\iota_G))}\text{cr}_n(\Delta^*(\lor_{i=1}^n(G)))(X_1,...,X_n) \\
+        &\xrightarrow{\text{cr}_n(G(+))}\text{cr}_n(G)(X_1,...,X_n)
+    \end{align*}
+    %%
+    It remains to show that the composite after $\beta$ is the identity. By naturality of the projection twice this composite becomes
+    %%
+    \begin{align*}
+        \text{cr}_n(G)(X_1,...,X_n)\xrightarrow{\text{cr}_n(G)(i_1,...,i_n)}\Delta^*(\text{cr}_n(G))(\lor_{i=1}^nX_i) &\xrightarrow{\Delta^*(\iota_G)}\Delta^*(\lor_{i=1}^n(G))(\lor_{i=1}^nX_i) \\
+        &\xrightarrow{G(+)}G(\lor_{i=1}^nX_i) \\
+        &\xrightarrow{\pi_G}\text{cr}_n(G)(X_1,...,X_n)
+    \end{align*}
+    %%
+    Next, using the naturality of $\iota$ we obtain
+    %%
+    \begin{align*}
+        \text{cr}_n(G)(X_1,...,X_n)\xrightarrow{\iota_G}\lor_{i=1}^n(G)(X_1,...,X_n)&\xrightarrow{\lor_{i=1}^n(G)(i_1,...,i_n)}\Delta^*(\lor_{i=1}^n(G))(\lor_{i=1}^nX_i) \\
+        &\xrightarrow{G(+)}G(\lor_{i=1}^nX_i) \\
+        &\xrightarrow{\pi_G}\text{cr}_n(G)(X_1,...,X_n)
+    \end{align*}
+    %%
+    Now, the middle two arrows compose to give the identity, while we also have that $\pi_G\circ \iota_G$ is the identity, completing the proof.
+    % We argue uniqueness by induction on $n$ using the decomposition in the proof of Lemma \ref{lem:lorInj}. First, if $n = 1$, for each $X$ we would obtain the diagram
+    % %%
+    % \[\begin{tikzcd}
+    % 	{\text{cr}_1(G)(X)} & {G(X)} & {G(X)} & {G(\star)} \\
+    % 	{F(X)} & {F(\star)\cong 0}
+    % 	\arrow["{\iota_G}", tail, from=1-1, to=1-2]
+    % 	\arrow["{G(+)=1_{G(X)}}", from=1-2, to=1-3]
+    % 	\arrow["{\alpha_X}"{description}, from=2-1, to=1-3]
+    % 	\arrow["{F(!)}"', from=2-1, to=2-2]
+    % 	\arrow["{\alpha_\star}"', from=2-2, to=1-4]
+    % 	\arrow["{G(!)}", from=1-3, to=1-4]
+    % 	\arrow[dashed, from=2-1, to=1-1]
+    % \end{tikzcd}\]
+    % %%
+    % where the component along the vertical is uniquely determined by the universal property of the kernel, and equals $\hat{\alpha}_X$, so $\hat{\alpha}$ is also uniquely determined. Note that $F(X) \cong 0$ since $F$ is reduced.
+
+    % Next, suppose uniqueness holds for some $n-1$, $n \geq 2$. The inductive hypothesis says we have a unique \textbf{TBC}
+\end{proof}
+
+Composing with the adjunction $\text{inc}\dashv \text{cr}_1$ and using Lemma \ref{lem:idempotCr1} we obtain an adjunction
+\[\begin{tikzcd}
+	{\text{Fun}(\mathcal{B},\mathcal{A})} & {\text{Fun}_*(\mathcal{B}^n,\mathcal{A})}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{cr}_n}"', shift right=2, from=1-1, to=1-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Delta^*}"', shift right=2, from=1-2, to=1-1]
+	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+\end{tikzcd}\]
+We use this adjunction to define a family of comonads.
+
+\begin{defn}[label=defn:crossEffectComonad]
+    For each $n \in \N$, we have a comonad $C_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ given by $C_n := \Delta^*\circ \text{cr}_n$. The counit of the comonad is given by the composite 
+    %%
+    \begin{equation*}
+        C_n(G)(X) \cong \Delta^*(\text{cr}_n(\text{cr}_1(G)))(X)\xrightarrow{\Delta^*(\iota_{\text{cr}_1(G)})}\text{cr}_1(G)(\lor_{i=1}^nX)\xrightarrow{\text{cr}_1(G)(+)}\text{cr}_1(G)(X)\xrightarrow{ker}G(X)
+    \end{equation*}
+    %%
+    while the comultiplication is given by the composite 
+    %%
+    \begin{equation*}
+        \Delta^*(\text{cr}_n(G))(X)\xrightarrow{\text{cr}_n(G)(i_1,...,i_n)}\Delta^*(\text{cr}_n(G))(\lor_{i=1}^nX)\xrightarrow{\pi_{\Delta^*(\text{cr}_n(G))}}\Delta^*(\text{cr}_n(\Delta^*(\text{cr}_n(G))))(X)
+    \end{equation*}
+    %%
+\end{defn}
+
+
+\subsubsection{Contracting Homotopies}
+
+
+In this section we aim to show that the contracting homotopy in the following lemma is natural in $A$.
+
+\begin{lem}[label=lem:contractHomotop]
+    Let $\begin{tikzcd}
+{\mathcal{A}} & {\mathcal{B}}
+\arrow[""{name=0, anchor=center, inner sep=0}, "R"', shift right=2, from=1-1, to=1-2]
+\arrow[""{name=1, anchor=center, inner sep=0}, "L"', shift right=2, from=1-2, to=1-1]
+\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+\end{tikzcd}$ define an adjunction between abelian categories inducing a comonad $C = LR$ on $\mathcal{A}$ with counit $\epsilon:LR\Rightarrow \text{id}$. Then for each $A \in \mathcal{A}_0$ the chain complex in $\mathcal{B}$ with differentials defined to be the alternating sums $\sum_{i\geq 0}^k(-1)^iR(LR)^i\epsilon$ admits a contracting homotopy.
+\end{lem}
+\begin{proof}[Contracting Homotopy Proof]
+    Define $s_k = \eta_{R(LR)^kA}$ using the unit $\eta:\text{id}\Rightarrow RL$ of the adjunction.
+
+    We first show that the described data defines a chain complex. Observe for $n \in \N\cup\{0\}$,
+    %%
+    \begin{align*}
+        &\left(\sum_{i\geq 0}^{n}(-1)^iR(LR)^i\epsilon_{(LR)^{n-i}A}\right)\circ\left(\sum_{i\geq 0}^{n+1}(-1)^iR(LR)^i\epsilon_{(LR)^{n+1-i}A}\right) \\
+        &= \sum_{i=0}^n\sum_{j=0}^{n+1}(-1)^{i+j}R(LR)^i\epsilon_{(LR)^{n-i}A}\circ R(LR)^j\epsilon_{(LR)^{n+1-j}A} \\
+        &= \sum_{i=0}^n\sum_{i < j}^{n+1}(-1)^{i+j}R(LR)^i\epsilon_{(LR)^{n-i}A}\circ R(LR)^j\epsilon_{(LR)^{n+1-j}A} \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^i\epsilon_{(LR)^{n-i}A}\circ R(LR)^j\epsilon_{(LR)^{n+1-j}A} \\
+        &= \sum_{i=0}^n\sum_{i < j}^{n+1}(-1)^{i+j}R(LR)^i(\epsilon_{(LR)^{n-i}A}\circ (LR)^{j-i}\epsilon_{(LR)^{n+1-j}A}) \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^j((LR)^{i-j}\epsilon_{(LR)^{n-i}A}\circ \epsilon_{(LR)^{n+1-j}A}) \\
+        &= \sum_{i=0}^n\sum_{i \leq k}^{n}(-1)^{i+k+1}R(LR)^i(\epsilon_{(LR)^{n-i}A}\circ (LR)^{k+1-i}\epsilon_{(LR)^{n-k}A}) \tag{substituting $k = j-1$} \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^j((LR)^{i-j}\epsilon_{(LR)^{n-i}A}\circ \epsilon_{(LR)^{n+1-j}A}) \\
+        &= \sum_{i=0}^n\sum_{i \leq k}^{n}(-1)^{i+k+1}R(LR)^i((LR)^{k-i}\epsilon_{(LR)^{n-k}A}\circ \epsilon_{(LR)^{n+1-i}A}) \tag{by naturality of $\epsilon$} \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^j((LR)^{i-j}\epsilon_{(LR)^{n-i}A}\circ \epsilon_{(LR)^{n+1-j}A}) \\
+        &= -\sum_{i=0}^n\sum_{i \leq k}^{n}(-1)^{i+k}R(LR)^i((LR)^{k-i}\epsilon_{(LR)^{n-k}A}\circ \epsilon_{(LR)^{n+1-i}A}) \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^j((LR)^{i-j}\epsilon_{(LR)^{n-i}A}\circ \epsilon_{(LR)^{n+1-j}A}) \\
+        &= -\sum_{k=0}^n\sum_{i \leq k}(-1)^{i+k}R(LR)^i((LR)^{k-i}\epsilon_{(LR)^{n-k}A}\circ \epsilon_{(LR)^{n+1-i}A}) \tag{switching the order of summation} \\
+        &+\sum_{i=0}^n\sum_{j \leq i}(-1)^{i+j}R(LR)^j((LR)^{i-j}\epsilon_{(LR)^{n-i}A}\circ \epsilon_{(LR)^{n+1-j}A}) \\
+        &= 0
+    \end{align*}
+    so the maps are differentials of a complex.
+
+    Next we show that $s_k$, as defined, is a contracting homotopy for our chain complex. This is equivalent to saying that $s_{k-1}\circ \partial_{k-1}+\partial_{k}\circ s_{k} = 1_{R(LR)^kA}$, where $\partial_k:R(LR)^{k+1}A\rightarrow R(LR)^kA$ is our differential defined above. Then observe that
+    %%
+    \begin{align*}
+        s_{k-1}\circ \partial_{k-1}+\partial_{k}\circ s_{k} &= \sum_{i=0}^{k-1}(-1)^i\eta_{R(LR)^{k-1}A}\circ R(LR)^i\epsilon_{(LR)^{k-1-i}A} \\
+        &+ \sum_{i=0}^k(-1)^iR(LR)^i\epsilon_{(LR)^{k-i}A}\circ \eta_{R(LR)^kA} \\
+        &= 1_{R(LR)^kA}+\sum_{i=0}^{k-1}(-1)^i\eta_{R(LR)^{k-1}A}\circ R(LR)^i\epsilon_{(LR)^{k-1-i}A} \\
+        &+ \sum_{i=1}^k(-1)^iR(LR)^i\epsilon_{(LR)^{k-i}A}\circ \eta_{R(LR)^kA} \tag{using the triangle identities} 
+    \end{align*}
+    %%
+    It remains to show the extra sum is zero. After re-indexing the first sum it becomes:
+    %%
+    \begin{equation*}
+        -\sum_{i=1}^{k}(-1)^i\eta_{R(LR)^{k-1}A}\circ R(LR)^{i-1}\epsilon_{(LR)^{k-i}A} + \sum_{i=1}^k(-1)^iR(LR)^i\epsilon_{(LR)^{k-i}A}\circ \eta_{R(LR)^kA}
+    \end{equation*}
+    %%
+    which is zero by naturality of $\eta$.
+\end{proof}
+
+Additional to the result of this lemma, we claim that the contracting chain homotopy yields a natural transformation $s_k:R(LR)^k\Rightarrow R(LR)^{k+1}$, as $\eta_{R(LR)^k}$ is natural.
+
+Finally, we have the following proposition.
+
+\begin{prop}[label=prop:exactCross]
+    For each $n \geq 1$, the functors $\text{cr}_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}_*(\mathcal{B}^n,\mathcal{A})$ and $C_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ are exact.
+\end{prop}
+\begin{proof}
+    Since the functor categories are abelian, showing exactness is equivalent to showing that the functors preserve short exact sequences. The proof for $\text{cr}_n$ follows by the $3\times 3$ lemma and induction on $n$. After the proof for $\text{cr}_n$ the result for $C_n$ follows immediately.
+\end{proof}

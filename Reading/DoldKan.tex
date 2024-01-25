@@ -1,0 +1,67 @@
+In this section we collect properties related to the Dold-Kan equivalence, and unify notation for use in the remainder of the notes. We first recall the statement of the general Dold-Kan equivalence from \cite[Thm 14.24.3]{StacksProject}.
+
+\begin{thm}[label=thm:DoldKanEquiv]{}
+    For $\mathcal{A}$ an abelian category, there is an equivalence of categories $N :\mathcal{A}^{\Delta^{op}}\simeq \cat{Ch}(\mathcal{A}): \Gamma$ \cite{StacksProject}. Let $\eta:1_{\cat{Ch}(\mathcal{A})}\Rightarrow N\circ \Gamma$ and $\varepsilon:\Gamma\circ N\Rightarrow 1_{\mathcal{A}^{\Delta^{op}}}$ be the unit and counit for the equivalence, which can be chosen to satisfy the triangle identities.
+
+    $N$ is given explicitly on a simplicial object $X$ by
+    %%
+    \begin{equation*}
+        N(X)_n := \left\{\begin{array}{cc} \bigcap_{i=0}^{n-1}\ker(d_n^i) & n \geq 1 \\ X_0 & n = 0 \\ 0 & n < 0 \end{array}\right.
+    \end{equation*}
+    %%
+    with differential given by $(-1)^nd_n^n:N(X)_n\rightarrow N(X)_{n-1}$. $N$ is given on arrows by restriction. On the other hand, for a chain complex $A_\bullet$, with boundary maps $d_{A,n}$, $\Gamma(A_\bullet)$ is given on objects by 
+    %%
+    \begin{equation*}
+        \Gamma(A_\bullet)_n = \bigoplus_{\alpha\in I_n}A_{k(\alpha)}
+    \end{equation*}
+    %%
+    where $I_n = \{\alpha:[n]\rightarrow \N\vert \ran(\alpha) = [k(\alpha)]\}$ where $k(\alpha)$ is the maximum element in the image. For a monotonic map $\varphi:[m]\rightarrow [n]$, we define $\Gamma$ using the universal property of the biproduct by
+    %%
+    \begin{equation*}
+        \pi_\beta\circ \Gamma(A_\bullet)(\varphi)\circ \iota_\alpha := \left\{\begin{array}{cc} 0 & \alpha\circ \varphi \notin I_m \\ 0 & \alpha\circ \varphi \in I_m, k(\alpha\circ \varphi) \neq k(\alpha),k(\alpha)-1 \\ 0 & k(\alpha\circ \varphi) \neq \beta \\ 1_{A_{k(\alpha)}} & \alpha\circ \varphi \in I_m, k(\alpha\circ \varphi) = k(\alpha) \\  (-1)^{k(\alpha)}d_{A,k(\alpha)} & \alpha\circ \varphi \in I_m, k(\alpha\circ \varphi) = k(\alpha)-1\end{array}\right.
+    \end{equation*}
+    %%
+\end{thm}
+
+Occasionally we will denote the Dold-Kan equivalence functors for a category $\mathcal{A}$ by $N_\mathcal{A}$ and $\Gamma_\mathcal{A}$ if multiple categories are involved, or if the category isn't clear from the context. We begin by reciting certain properties that the functors in the Dold-Kan equivalence satisfy \cite[Section 14.24]{StacksProject}.
+
+\begin{lem}[label=lem:refl]
+    The functor $N$ reflects isomorphisms, injections, and surjections.
+\end{lem}
+
+Recall since $N$ and $\Gamma$ are equivalences, in particular this means that they are full, faithful, and essentially surjective. They also satisfy a number of other properties.
+
+%%
+\begin{lem}[label=lem:doldKanProps]
+    For any abelian category $\mathcal{A}$, the Dold-Kan functors satisfy the following properties:
+    %%
+    \begin{itemize}
+        \item $N$ is exact
+        \item $N$ sends simplicial homotopies to chain homotopies, and hence sends simplicially homotopic maps to chain homotopic maps
+        \item $N$ reflects chain homotopies
+        \item $\Gamma$ sends chain homotopies to simplicial homotopies
+    \end{itemize}
+\end{lem}
+
+The majority of our results will involve the interaction of $N$ and $\Gamma$ with standard functors and natural transformations, which we collect the definitions of here for simplicity:
+
+\begin{defn}[label=defn:Diag]{}
+    Let $(-)\Sob:2\cat{Ab}\rightarrow 2\cat{Ab}$ denote the pseudomonad constructed in Section \ref{sec:simpMon} which sends an abelian category to its category of simplicial objects, a functor to its post composition, and natural transformation to its post composition through whiskering with simplicial objects.
+
+    From Section \ref{sec:simpMon} we also have a natural transformation, $\Delta_{(-)}:(-)\Sob\circ (-)\Sob\Rightarrow (-)\Sob$, which gives the multiplication of the pseudomonad, and on objects sends a bisimplicial complex to its diagonal.
+
+
+    Another important pseudonatural transformation is given by $\iota_{(-)}:1_{2\cat{Ab}}\rightarrow (-)\Sob$, which on an abelian category $\mathcal{A}$ has component $\iota_\mathcal{A}$ which sends objects to the constant simplicial object for them.
+\end{defn}
+
+The first result we give is used in Section \ref{sec:ptwiseNat} during the proof that $\lhd$ gives a well-defined composition on $\cat{AbCat}_{\cat{Ch}}$.
+
+\begin{lem}[label=lem:gammaDeg]
+    For any abelian category $\mathcal{A}$, $\Gamma_\mathcal{A}\circ \deg_0^\mathcal{A} = \iota_\mathcal{A}$.
+\end{lem}
+\begin{proof}
+    Let $A \in \mathcal{A}$. Then $\Gamma_\mathcal{A}(\deg_0^\mathcal{A}(A))([n]) = A$ for all $n$, since $\deg_0^\mathcal{A}(A)$ contains $A$ concentrated in degree $0$ and their is a unique $\alpha:[n]\rightarrow [0]$ for each $n$. Next, for each $\alpha:[m]\rightarrow [n]$, $\Gamma(\deg_0^\mathcal{A}(A))(\alpha) = 1_A$ from the piecewise definition of $\Gamma$ on arrows.
+
+    Next, let $f:A\rightarrow B$ be a map in $\mathcal{A}$. Then $\deg_0^\mathcal{A}(f)$ is the map concentrated in degree $0$. Then $\Gamma(\deg_0^\mathcal{A}(f))([n]) = f$ for each $n$. It follows that $\Gamma_\mathcal{A}\circ \deg_0^\mathcal{A} = \iota_\mathcal{A}$, as claimed.
+\end{proof}
+

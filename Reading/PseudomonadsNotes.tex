@@ -1,0 +1,385 @@
+We begin by defining a $\cat{Gray}$-category. This requires the intermediate definition of the category $2\text{-}\cat{Cat}$, which consists of strict $2\text{-}$categories as objects, strict $2$-functors as 1-cells, and natural transformations as 2-cells. A strict 2-category is a special case of a bicategory:
+%%
+\begin{defn}{}
+    A bicategory $\mathcal{C}$ consists of 
+    \begin{itemize}
+        \item a collection of $0$-cells, $\mathcal{C}_0$, 
+        \item for each pair of $0$-cells $a,b \in \mathcal{C}_0$ a category $\mathcal{C}(a,b)$ whose objects are $1$-cells and morphisms are $2$-cells. Compositions in these arrow categories will be denoted by $\circ$ in compositional notation.
+        \item a ``horizontal composition" functor
+        %%
+        \begin{equation*}
+            \odot:\mathcal{C}(a,b)\times \mathcal{C}(b,c)\rightarrow \mathcal{C}(a,c)
+        \end{equation*}
+        %%
+        for each triple of $0$-cells $a,b,c$
+        \item a dependent functor $I :\prod_{a:\mathcal{C}_0} \mathcal{C}(a,a)_0$
+        \item an associator natural isomorphism
+        \[\begin{tikzcd}
+        	{\mathcal{C}(a,b)\times\mathcal{C}(b,c)\times\mathcal{C}(c,d)} && {\mathcal{C}(a,d)}
+        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\odot\circ(\odot\times1_{\mathcal{C}(c,d)})}", curve={height=-12pt}, from=1-1, to=1-3]
+        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\odot\circ(1_{\mathcal{C}(a,b)}\times \odot)}"', curve={height=12pt}, from=1-1, to=1-3]
+        	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+        \end{tikzcd}\]
+        for a quadruple of $0$-cells $a,b,c,d$, which has components $\alpha(F,G,H):(F\odot G)\odot H\xrightarrow{\cong} F\odot (G\odot H)$ (natural transformations as component arrows moving forward for cleanliness of the diagrams involved)
+        \item left and right unitor natural isomorphisms
+        %%
+        \begin{equation*}
+            \lambda(X):I_a\odot X \xrightarrow{\cong}X,\;\rho(Y):Y\odot I_a\xrightarrow{\cong}Y
+        \end{equation*}
+        %%
+        for $X \in \mathcal{C}(a,b)$ and $Y \in \mathcal{C}(b,a)$, respectively, and $a,b \in \mathcal{C}_0$.
+    \end{itemize}
+    which satisfy the coherence conditions
+    \begin{itemize}
+        \item For each quituple of $0$-cells, $a,b,c,d,e \in \mathcal{C}_0$, and 1-cells $W \in \mathcal{C}(a,b), X \in \mathcal{C}(b,c), Y \in \mathcal{C}(c,d)$, and $Z \in \mathcal{C}(d,e)$, the following diagram of 2-cells commutes
+        \[\begin{tikzcd}[column sep = -40pt]
+        	&& {(W\odot (X\odot Y))\odot Z} \\
+        	{((W\odot X)\odot Y)\odot Z} &&&& {W\odot ((X\odot Y)\odot Z)} \\
+        	& {(W\odot X)\odot (Y\odot Z)} && {W\odot (X\odot (Y\odot Z))}
+        	\arrow["{\alpha_{W,X,Y}\odot1_Z}", from=2-1, to=1-3]
+        	\arrow["{\alpha_{W\odot X,Y,Z}}"', from=2-1, to=3-2]
+        	\arrow["{\alpha_{W,X,Y\odot Z}}"', from=3-2, to=3-4]
+        	\arrow["{\alpha_{W,X\odot Y,Z}}", from=1-3, to=2-5]
+        	\arrow["{1_W\odot \alpha_{X,Y,Z}}", from=2-5, to=3-4]
+        \end{tikzcd}\]
+        \item For each triple of 0-cells $a,b,c \in \mathcal{C}_0$, and each 1-cells $X \in \mathcal{C}(a,b)$ and $Y \in \mathcal{C}(b,c)$, the following triangle diagram of 2-cells commutes
+        \[\begin{tikzcd}
+        	{(X\odot I_a)\odot Y} && {X\odot (I_a\odot Y)} \\
+        	& {X\odot Y}
+        	\arrow["{\alpha_{X,I_a,Y}}", from=1-1, to=1-3]
+        	\arrow["{\rho_X\odot 1_Y}"', from=1-1, to=2-2]
+        	\arrow["{1_X\odot\lambda_Y}", from=1-3, to=2-2]
+        \end{tikzcd}\]
+    \end{itemize}
+    These conditions are equivalent to every diagram made from $\alpha, \lambda,\rho,$ and $\odot$, commutes.
+\end{defn}
+
+We will denote the composition functor between arrow categories as $\odot$ throughout, with order given diagrammatically as in the definition above. If in certain instances function composition makes more sense then $;$ will be used. Strict vertical composition in arrow categories will always be done in function compositional ordering using $\circ$.
+
+We recall that a strict $2$-functor $F:\mathcal{C}\rightarrow \mathcal{D}$ between strict $2$-categories is a map $F_0:\mathcal{C}_0\rightarrow \mathcal{D}_0$ together with a family of $1$-functors $F_{A,B}:\mathcal{C}_1(A,B)\rightarrow \mathcal{D}_1(F_0A,F_0B)$ for each $A,B \in \mathcal{C}_0$. In general 
+
+\begin{defn}{}
+    A \textbf{pseudofunctor} (or strong functor of bicategories) $F:\mathcal{C}\rightarrow \mathcal{D}$ between bicategories consists of the following data:
+    \begin{itemize}
+        \item a function of 0-cells $F:\mathcal{C}_0\rightarrow \mathcal{D}_0$
+        \item a functor $F:\mathcal{C}(a,b)\rightarrow \mathcal{D}(Fa,Fb)$ for each pair of $0$-cells $a,b \in \mathcal{C}_0$
+        \item a natural isomorphism with components $m(X,Y):F(X)\odot F(Y)\xrightarrow{\cong}F(X\odot Y)$ for 1-cells $X \in \mathcal{C}(a,b)$ and $Y \in \mathcal{C}(b,c)$, where $a,b,c \in \mathcal{C}_0$ are 0-cells
+        \item a dependent function $i:\prod_{a : \mathcal{C}_0}\mathcal{D}(Fa,Fa)_1$ with output in invertible two cells $i_a:I_{Fa}\xrightarrow{\cong}F(I_a)$
+    \end{itemize}
+    This data must satisfy the following coherence conditions:
+    \begin{itemize}
+        \item $m$ is associative in the sense that the following hexagon commutes:
+        \[\begin{tikzcd}
+        	{(F(X)\odot F(Y))\odot F(Z)} & {F(X\odot Y)\odot F(Z)} & {F((X\odot Y)\odot Z)} \\
+        	{F(X)\odot (F(Y)\odot F(Z))} & {F(X)\odot F(Y\odot Z)} & {F(X\odot (Y\odot Z))}
+        	\arrow["{m_{X,Y}\odot 1_{F(Z)}}", from=1-1, to=1-2]
+        	\arrow["{m_{X\odot Y,Z}}", from=1-2, to=1-3]
+        	\arrow["{F(\alpha_{X,Y,Z})}", from=1-3, to=2-3]
+        	\arrow["{\alpha_{F(X),F(Y),F(Z)}}"', from=1-1, to=2-1]
+        	\arrow["{1_{F(X)}\odot m_{Y,Z}}"', from=2-1, to=2-2]
+        	\arrow["{m_{X,Y\odot Z}}"', from=2-2, to=2-3]
+        \end{tikzcd}\]
+        \item $m$ respects units in the sense that for any 1-cells $X \in \mathcal{C}(a,b)$ and $Y \in \mathcal{C}(b,c)$, the following diagrams of 2-cells commute
+        \[\begin{tikzcd}
+        	{I_{Fb}\odot F(Y)} & {F(I_b)\odot F(Y)} & {F(X)\odot F(I_b)} & {F(X)\odot I_{Fb}} \\
+        	{F(Y)} & {F(I_b\odot Y)} & {F(X\odot I_b)} & {F(X)}
+        	\arrow["{\lambda_{F(Y)}}"', from=1-1, to=2-1]
+        	\arrow["{i_b\odot 1_Y}", from=1-1, to=1-2]
+        	\arrow["{m_{I_b,Y}}", from=1-2, to=2-2]
+        	\arrow["{F(\lambda_Y)}", from=2-2, to=2-1]
+        	\arrow["{\rho_{F(X)}}", from=1-4, to=2-4]
+        	\arrow["{1_X\odot i_b}"', from=1-4, to=1-3]
+        	\arrow["{m_{X,I_b}}"', from=1-3, to=2-3]
+        	\arrow["{F(\rho_b)}"', from=2-3, to=2-4]
+        \end{tikzcd}\]
+    \end{itemize}
+\end{defn}
+
+The composite of pseudofunctors $F:\mathcal{C}\rightarrow\mathcal{D},G:\mathcal{D}\rightarrow \mathcal{E}$, is defined on 0-cells and arrow categories by standard function and functor composition, and has natural isomorphisms given by the composites
+%%
+\begin{equation*}
+    m_{GF}(X,Y):GF(X)\odot GF(Y)\xrightarrow{m_G(F(X),F(Y))} G(F(X)\odot F(Y))\xrightarrow{G(m_F(X,Y))}GF(X\odot Y)
+\end{equation*}
+%%
+and
+%%
+\begin{equation*}
+    i_{GF}(a):I_{GFa}\xrightarrow{i_G(Fa)}G(I_{Fa})\xrightarrow{G(i_F(a))}GF(I_a)
+\end{equation*}
+%%
+
+We can now discuss the 2-categorical structure of the category of bifunctors.
+
+\begin{defn}{}
+    Given two pseudofunctors $F,G:\mathcal{A}\rightarrow \mathcal{B}$ between $2$-categories, a \textbf{pseudonatural transformation} $\eta:F\Rightarrow G$ consists of the following data:
+    \begin{itemize}
+        \item a dependent function $\eta:\prod_{a :\mathcal{A}_0}\mathcal{B}(Fa,Ga)$
+        \item a dependent function $\eta:\prod_{X : \mathcal{A}(a,b)}\mathcal{B}_2(F(X)\odot \eta(b),\eta(a)\odot G(X))$ with values invertible in $\mathcal{B}(Fa,Gb)$
+    \end{itemize}
+    which satisfy
+    \begin{itemize}
+        \item $\eta$ commutes with 2-cells in the sense that for each 2-cell $\omega:X\rightarrow Y$ of 1-cells from $a$ to $b$ in $\mathcal{A}_0$, the following square of 2-cells commutes
+        \[\begin{tikzcd}
+        	{F(X)\odot \eta(b)} & {F(Y)\odot \eta(b)} \\
+        	{\eta(a)\odot G(X)} & {\eta(a)\odot G(Y)}
+        	\arrow["{F(\omega)\odot1_{\eta(b)}}", from=1-1, to=1-2]
+        	\arrow["{\eta(Y)}", from=1-2, to=2-2]
+        	\arrow["{\eta(X)}"', from=1-1, to=2-1]
+        	\arrow["{1_{\eta(a)}\odot G(\omega)}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+        \item $\eta$ commutes with $m$ in the sense that for every triple of objects $a,b,c \in \mathcal{A}_0$ and 1-cells $X \in \mathcal{A}(a,b), Y \in \mathcal{A}(b,c)$, the following octagon in $\mathcal{D}(Fa,Gc)$ commutes
+        \adjustbox{scale=0.8,center}{%
+            \begin{tikzcd}
+        	{F(X)\odot (F(Y)\odot \eta(c))} && {(F(X)\odot F(Y))\odot \eta(c)} && {F(X\odot Y)\odot \eta(c)} \\
+        	{F(X)\odot (\eta(b)\odot G(Y))} \\
+        	{(F(X)\odot\eta(b))\odot G(Y)} \\
+        	{(\eta(a)\odot G(X))\odot G(Y)} && {\eta(a)\odot (G(X)\odot G(Y))} && {\eta(a)\odot G(X\odot Y)}
+        	\arrow["{m_F(X,Y)\odot 1_{\eta(c)}}", from=1-3, to=1-5]
+        	\arrow["{\alpha_{F(X),F(Y),\eta(c)}}"', from=1-3, to=1-1]
+        	\arrow["{1_{F(X)}\odot \eta(Y)}"', from=1-1, to=2-1]
+        	\arrow["{\eta(X)\odot1_{G(Y)}}"', from=3-1, to=4-1]
+        	\arrow["{\alpha_{\eta(a),G(X),G(Y)}}"', from=4-1, to=4-3]
+        	\arrow["{1_{\eta(a)}\odot m_G(X,Y)}"', from=4-3, to=4-5]
+        	\arrow["{\eta(X\odot Y)}", from=1-5, to=4-5]
+        	\arrow["{\alpha_{F(X),\eta(b),G(Y)}}", from=3-1, to=2-1]
+            \end{tikzcd}
+        }
+        \item $\eta$ commutes with $i$ in the sense that for each $a$ the following pentagon diagram in $\mathcal{B}(Fa,Ga)$ commutes
+        \[\begin{tikzcd}
+        	{I_{Fa}\odot \eta(a)} & {\eta(a)} & {\eta(a)\odot I_{Ga}} \\
+        	{F(I_a)\odot \eta(a)} && {\eta(a)\odot G(I_a)}
+        	\arrow["{\lambda_{\eta(a)}}", from=1-1, to=1-2]
+        	\arrow["{\rho_{\eta(a)}}"', from=1-3, to=1-2]
+        	\arrow["{i_F(a)\odot 1_{\eta(a)}}"', from=1-1, to=2-1]
+        	\arrow["{1_{\eta(a)}\odot i_G(a)}", from=1-3, to=2-3]
+        	\arrow["{\eta(I_a)}"', from=2-1, to=2-3]
+        \end{tikzcd}\]
+    \end{itemize}
+\end{defn}
+
+Finally, before discussing the category $\cat{Gray}$, we have a notion of a map between pseudonatural transformations.
+
+\begin{defn}{}
+    A \textbf{modification} $\Gamma$ from a pseudonatural transformation $\xi:F\rightarrow G$ to another pseudonatural transformation $\zeta:F\rightarrow G$ consists of the following data
+    \begin{itemize}
+        \item a rule assigning to each $a \in \mathcal{A}_0$ a 2-cell $\Gamma(a):\xi(a)\rightarrow \zeta(a)$
+    \end{itemize}
+    which satisfies the following condition:
+    \begin{itemize}
+        \item $\Gamma$ ``matches together" the actions of $\xi$ and $\zeta$ on 1-cells in the sense that for each 1-cell $X \in \mathcal{A}(a,b)$, the following square of 2-cells commutes:
+        \[\begin{tikzcd}
+        	{F(X)\odot \xi(b)} & {F(X)\odot \zeta(b)} \\
+        	{\xi(a)\odot G(X)} & {\zeta(a)\odot G(X)}
+        	\arrow["{1_{F(X)}\odot \Gamma(b)}", from=1-1, to=1-2]
+        	\arrow["{\zeta(X)}", from=1-2, to=2-2]
+        	\arrow["{\xi(X)}"', from=1-1, to=2-1]
+        	\arrow["{\Gamma(a)\odot 1_{G(X)}}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+    \end{itemize}
+\end{defn}
+
+A pseudonatural transformation is invertible if it has an inverse up to an invertible modification. If a pseudofunctor has an inverse up to an invertible pseudonatural transformation we say it is an equivalence of bicategories.
+
+
+We now have the required data to define the category $\cat{Gray}$ \cite{GordonRobert1995Cft}.
+
+\begin{defn}{}
+    $\cat{Gray}$ is the symmetric monoidal closed category with underlying category $2-\cat{Cat}$ and tensor product $\square$ which ascribes to a list of $2$-categories $A_1,...,A_n$ a $2$-category $A_1\square\cdots \square A_n$ for which cubical functors $A_1\times \cdots \times A_n\rightarrow B$ are in natural bijection with $2$-functors $A_1\square \cdots \square A_n\rightarrow B$.
+\end{defn}
+
+
+Here, for $A_1,...,A_n,B$ $2$-categories, a \textbf{cubical functor} $f:A_1\times \cdots \times A_n\rightarrow B$ is a homomorphism such that for all composable pairs of arrows
+%%
+\begin{equation*}
+    (a_1,...,a_n)\xrightarrow{(\alpha_1,...,\alpha_n)}(a_1',...,a_n')\xrightarrow{(\alpha_1',...,\alpha_n')}(a_1'',...,a_n'')
+\end{equation*}
+%%
+in $A_1\times \cdots \times A_n$ such that for $i > j$, either $\alpha_i$ or $\alpha_j'$ is an identity, the comparison $2$-cell
+%%
+\[\begin{tikzcd}
+	& {f(a_1',...,a_n')} \\
+	{f(a_1,...,a_n)} && {f(a_1'',...,a_n'')}
+	\arrow["{f(\alpha_1'\circ\alpha_1,...,\alpha_n'\circ\alpha_n)}"', from=2-1, to=2-3]
+	\arrow["{f(\alpha_1,...,\alpha_n)}", from=2-1, to=1-2]
+	\arrow["{f(\alpha_1',...,\alpha_n')}", from=1-2, to=2-3]
+\end{tikzcd}\]
+%%
+is an identity.
+
+For the current work the most important type of cubical functors are two variable cubical functors. We can describe an explicit cubical functor $f:\mathcal{A}\times \mathcal{B}\rightarrow \mathcal{C}$ of two variables using the following data:
+\begin{itemize}
+    \item for all $a \in \mathcal{A}_0, b \in \mathcal{B}_0$, we have 2-functors
+    \begin{equation*}
+        f(-,b):\mathcal{A}\rightarrow \mathcal{C},\;\;\;\;f(a,-):\mathcal{B}\rightarrow \mathcal{C}
+    \end{equation*}
+    with $f(-,b)a = f(a,-)b (=: f(a,b))$
+    \item for all 1-cells $\alpha:a\rightarrow a',\beta:b\rightarrow b'$ in $\mathcal{A},\mathcal{B}$, an invertible $2$-cell (the \textbf{structure $2$-cell})
+    \[\begin{tikzcd}
+    	{f(a,b)} && {f(a,b')} \\
+    	\\
+    	{f(a',b)} && {f(a',b')}
+    	\arrow["{f(a,\beta)}", from=1-1, to=1-3]
+    	\arrow["{f(\alpha,b')}", from=1-3, to=3-3]
+    	\arrow["{f(a',\beta)}"', from=3-1, to=3-3]
+    	\arrow["{f(\alpha,b)}"', from=1-1, to=3-1]
+    	\arrow["{f_{\alpha,\beta}}"{description}, Rightarrow, from=1-3, to=3-1]
+    \end{tikzcd}\]
+    which is an identity when either $\alpha$ or $\beta$ is
+\end{itemize}
+such that if $(s,t):(\alpha,\beta)\Rightarrow(\gamma,\delta):(a,b)\rightarrow (a',b')$ is a 2-cell in $\mathcal{A}\times \mathcal{B}$, and $(\alpha',\beta'):(a',b')\rightarrow (a'',b'')$ is another 1-cell, the following diagrams commute:
+\[\begin{tikzcd}
+	& {f(a,\delta)\odot f(\alpha,b')} \\
+	{f(a,\beta)\odot f(\alpha,b')} && {f(\alpha,b)\odot f(a',\delta)} \\
+	{f(a,\beta)\odot f(\gamma,b')} && {f(\gamma,b)\odot f(a',\delta)} \\
+	& {f(\gamma,b)\odot f(a',\beta)}
+	\arrow["{f(a,t)\odot1_{f(\alpha,b')}}"{pos=0.2}, from=2-1, to=1-2]
+	\arrow["{f_{\alpha,\delta}}", from=1-2, to=2-3]
+	\arrow["{f(s,b)\odot 1_{f(a',\delta)}}", from=2-3, to=3-3]
+	\arrow["{1_{f(a,\beta)}\odot f(s,b')}"', from=2-1, to=3-1]
+	\arrow["{f_{\alpha,\beta}}"', from=3-1, to=4-2]
+	\arrow["{1_{f(\gamma,b)}\odot f(a',t)}"'{pos=0.8}, from=4-2, to=3-3]
+\end{tikzcd}\]
+and
+\[\begin{tikzcd}
+	{f(a,\beta)\odot f(\alpha\odot \alpha',b')} & {f(\alpha,b)\odot f(a',\beta)\odot f(\alpha',b')} \\
+	& {f(\alpha\odot \alpha',b)\odot f(a'',\beta)}
+	\arrow["{f_{\alpha,\beta}\odot1_{f(\alpha',b')}}", from=1-1, to=1-2]
+	\arrow["{1_{f(\alpha,b)}\odot f_{\alpha',\beta}}", from=1-2, to=2-2]
+	\arrow["{f_{\alpha\odot\alpha',\beta}}"', from=1-1, to=2-2]
+\end{tikzcd}\]
+
+The internal hom of $\cat{Gray}$ is given by the full sub-$2$-category $\cat{Ps}(A,B)$ of $\cat{Bicat}(A,B)$ determined by the $2$-functors from $A$ to $B$. In particular, the $0$-cells are $2$-functors, the $1$-cells are pseudonatural transformations, and the $2$-cells are modifications.
+
+
+Now, with these objects in mind the monoidal tensor for the category $\cat{Gray}$ can be defined implicitly by 
+%%
+\begin{equation*}
+    2\text{-}\cat{Cat}(B\square C,D) \cong 2\text{-}\cat{Cat}(B,\cat{Ps}(C,D))
+\end{equation*}
+%%
+Then a $\cat{Gray}$-category is a category enriched in the category $\cat{Gray}$.
+
+
+We can now begin the formalization of pseudomonads \cite{DAY199799}.
+
+\begin{defn}{}
+    A $\cat{Gray}$ \textbf{monoid} is a 2-category $\mathcal{M}$ with an associative, unital multiplication $\otimes:\mathcal{M}\times \mathcal{M}\rightarrow \mathcal{M}$ which is a cubical functor. Precisely, a $\cat{Gray}$ monoid is a monoid in the monoidal category $\cat{Gray}$ of 2-categories and 2-functors with strong $\cat{Gray}$ tensor product. We can also define it as a $2$-category with the following data:
+    \begin{itemize}
+        \item a distinguished object $I \in \mathcal{M}_0$
+        \item dependent products $L,R:\prod_{A:\mathcal{M}_0}(\mathcal{M}\rightarrow \mathcal{M})$ of strict 2-functors satisfying
+        \begin{align*}
+            L_A(B) &= R_B(A) =:A\otimes B \\
+            L_I &= R_I = 1_{\mathcal{M}} \\
+            L_{A\otimes B} &= L_A;L_B,\;\;\;R_{A\otimes B} = R_B;R_A,\;\;\;R_B\odot L_A=L_A\odot R_B
+        \end{align*}
+        for all $A,B \in \mathcal{M}_0$
+        \item for all $f:A\rightarrow A',g:B\rightarrow B'\in \mathcal{M}_1$, an invertible 2-cell
+        %%
+        \begin{equation*}
+            c_{f,g}: R_B(f)\odot L_{A'}(g)\xrightarrow{\cong}  L_A(g)\odot R_{B'}(f)
+        \end{equation*}
+        %%
+    \end{itemize}
+    satisfying the following coherence conditions:
+    \begin{itemize}
+        \item $c_{1_A,1_B} = 1_{1_{A\otimes B}}$ (in particular $L_A(1_B)\odot R_B(1_A) = 1_{A\otimes B}\odot 1_{A\otimes B} = 1_{A\otimes B}$)
+        \item for all 1-cells $f:A\rightarrow A', g:B\rightarrow B', h:C\rightarrow C'$, we have the equalities
+        %%
+        \begin{equation*}
+            L_A(c_{g,h}) = c_{L_A(g),h},\;\;\; c_{f,L_B(h)} = c_{R_B(f),h},\;\;\;R_C(c_{f,g})=c_{f,R_C(g)}
+        \end{equation*}
+        \item for all 1-cells $f,h:A\rightarrow A'$, $g,k:B\rightarrow B'$, and 2-cells $\gamma:f\rightarrow h$ and $\delta:g\rightarrow k$ the following diagram of 2-cells commutes
+        \[\begin{tikzcd}
+        	{R_B(f)\odot L_{A'}(g)} & {L_A(g)\odot R_{B'}(f)} \\
+        	{R_B(h)\odot L_{A'}(k)} & {L_A(k)\odot R_{B'}(h)}
+        	\arrow["{c_{f,g}}", from=1-1, to=1-2]
+        	\arrow["{L_A(\delta)\odot R_{B'}(\gamma)}", from=1-2, to=2-2]
+        	\arrow["{R_B(\gamma)\odot L_{A'}(\delta)}"', from=1-1, to=2-1]
+        	\arrow["{c_{h,k}}"', from=2-1, to=2-2]
+        \end{tikzcd}\]
+        \item for all arrows $f:A\rightarrow A',g:B\rightarrow B', f':A'\rightarrow A'', g':B'\rightarrow B''$, the following equality holds:
+        \[\begin{tikzcd}
+        	{A\otimes B} & {A\otimes B'} & {A\otimes B''} \\
+        	&&& {A\otimes B} && {A\otimes B''} \\
+        	{A'\otimes B} & {A'\otimes B'} & {A'\otimes B''} \\
+        	&&& {A''\otimes B} && {A''\otimes B''} \\
+        	{A''\otimes B} & {A''\otimes B'} & {A''\otimes B''}
+        	\arrow["{L_A(g)}", from=1-1, to=1-2]
+        	\arrow["{L_A(g')}", from=1-2, to=1-3]
+        	\arrow["{L_{A'}(g)}", from=3-1, to=3-2]
+        	\arrow["{L_{A'}(g')}", from=3-2, to=3-3]
+        	\arrow["{L_{A''}(g)}"', from=5-1, to=5-2]
+        	\arrow["{L_{A''}(g')}"', from=5-2, to=5-3]
+        	\arrow[""{name=0, anchor=center, inner sep=0}, "{R_B(f)}"', from=1-1, to=3-1]
+        	\arrow[""{name=1, anchor=center, inner sep=0}, "{R_B(f')}"', from=3-1, to=5-1]
+        	\arrow[""{name=2, anchor=center, inner sep=0}, "{R_{B'}(f)}"{description}, from=1-2, to=3-2]
+        	\arrow[""{name=3, anchor=center, inner sep=0}, "{R_{B'}(f')}"{description}, from=3-2, to=5-2]
+        	\arrow[""{name=4, anchor=center, inner sep=0}, "{R_{B''}(f')}", from=3-3, to=5-3]
+        	\arrow[""{name=5, anchor=center, inner sep=0}, "{R_{B''}(f)}", from=1-3, to=3-3]
+        	\arrow["{L_{A''}(f'\circ f)}"', from=4-4, to=4-6]
+        	\arrow["{L_A(f'\circ f)}", from=2-4, to=2-6]
+        	\arrow[""{name=6, anchor=center, inner sep=0}, "{R_{B''}(g'\circ g)}", from=2-6, to=4-6]
+        	\arrow[""{name=7, anchor=center, inner sep=0}, "{R_B(g'\circ g)}"{description}, from=2-4, to=4-4]
+        	\arrow["{c_{f,g}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=0, to=2]
+        	\arrow["{c_{f,g'}}", shorten <=13pt, shorten >=13pt, Rightarrow, from=2, to=5]
+        	\arrow["{c_{f',g}}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1, to=3]
+        	\arrow["{c_{f',g'}}"', shorten <=13pt, shorten >=13pt, Rightarrow, from=3, to=4]
+        	\arrow[shorten <=3pt, shorten >=16pt, Rightarrow, no head, from=3-3, to=7]
+        	\arrow["{c_{f'\circ f,g'\circ g}}", shorten <=23pt, shorten >=23pt, Rightarrow, from=7, to=6]
+        \end{tikzcd}\]
+    \end{itemize}
+    We put $L_A(g) = A\otimes g, L_A(\delta) = A\otimes \beta, R_B(f) = f\otimes B,$ and $R_B(\gamma) = \gamma\otimes B$, as well as $f\otimes g = R_{B'}(f);L_A(g)$ and $\delta\otimes \gamma = R_{B'}(\gamma);L_A(\delta)$.
+\end{defn}
+
+\begin{defn}{}
+    Given a $\cat{Gray}$-category $\mathcal{A}$ with an object $A \in \mathcal{A}_0$, we define a \textbf{pseudomonad} $D$ on $A$ to be a pseudomonoid in the $\cat{Gray}$ monoid $\mathcal{A}(A,A)$.
+\end{defn}
+
+In our setting we can give a pseudomonad $D$ on $A$ explicitly \cite{MarmolejoF.1997Dwsf}. It consists of an object $D$ of $\mathcal{A}(A,A)$ together with $1$-cells $d:1_A\rightarrow D$ and $m:DD\rightarrow D$ and invertible $2$-cells $\mu:Dm\odot m \rightarrow mD\odot m$, $\beta:dD\odot m\rightarrow 1_D$, and $\eta:1_D\rightarrow Dd\odot m$ depicted below. 
+%%
+\[\begin{tikzcd}
+	D & DD & D \\
+	& D
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{1_D}"', from=1-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{1_D}", from=1-3, to=2-2]
+	\arrow["dD", from=1-1, to=1-2]
+	\arrow["Dd"', from=1-3, to=1-2]
+	\arrow["m"{description}, from=1-2, to=2-2]
+	\arrow["\beta"', shorten >=2pt, Rightarrow, from=1-2, to=0]
+	\arrow["\eta"', shorten <=2pt, Rightarrow, from=1, to=1-2]
+\end{tikzcd}
+\begin{tikzcd}
+	DDD & DD \\
+	DD & D
+	\arrow["Dm", from=1-1, to=1-2]
+	\arrow["mD"', from=1-1, to=2-1]
+	\arrow["m"', from=2-1, to=2-2]
+	\arrow["m", from=1-2, to=2-2]
+	\arrow["\mu"{description}, Rightarrow, from=1-2, to=2-1]
+\end{tikzcd}
+\]
+%%
+To make things more explicit, let $M:\mathcal{A}(A,A)\times \mathcal{A}(A,A)\rightarrow \mathcal{A}(A,A)$ be the cubical functor associated with composition. Then for example $DD = M(D,D)$, $Dm = M(m,D)$, etcetera. Then these morphisms satisfy the following coherence conditions, where again $M$ denotes the cubical composition in the $\cat{Gray}$ category, $\odot$ denotes horizontal composition in the arrow 2-category, and $\circ$ (or successive arrows) denotes composition in the arrow category in the arrow 2-category.
+
+\begin{itemize}
+    \item The following diagram of 2-cells in $\mathcal{A}(A,A)$ commutes
+    \[\begin{tikzcd}
+    	{ M(M(m,D),D)\odot M(m,D)\odot m} && {M(D,M(m,D))\odot M(m,D)\odot m} \\
+    	{M(M(m,D),D)\odot M(D,m)\odot m} && {M(D,M(m,D))\odot M(D,m)\odot m} \\
+    	{M(D,M(D,m))\odot M(m,D)\odot m} && {M(D,M(D,m))\odot M(D,m)\odot m}
+    	\arrow["{M(\mu,D)\odot 1_m}", from=1-1, to=1-3]
+    	\arrow["{1_{M(D,M(m,D))}\odot \mu}", from=1-3, to=2-3]
+    	\arrow["{M(D,\mu)\odot 1_m}", from=2-3, to=3-3]
+    	\arrow["{1_{M(M(m,D),D)}\odot \mu}"', from=1-1, to=2-1]
+    	\arrow["{M_{m,m}\odot 1_m}", from=3-1, to=2-1]
+    	\arrow["{1_{M(D,M(D,m))}\odot \mu}"', from=3-1, to=3-3]
+    \end{tikzcd}\]
+    \item The following diagram of 2-cells in $\mathcal{A}(A,A)$ commutes
+    \[\begin{tikzcd}
+    	{M(D,M(d,D))\odot M(m,D)\odot m} && {D\odot m} \\
+    	{M(D,M(d,D))\odot M(D,m)\odot m}
+    	\arrow["{1_{M(D,M(d,D))}\odot \mu}"', from=1-1, to=2-1]
+    	\arrow["{M(\beta,D)\odot 1_m}", from=1-1, to=1-3]
+    	\arrow["{M(D,\eta)\odot 1_m}", from=1-3, to=2-1]
+    \end{tikzcd}\]
+\end{itemize}
