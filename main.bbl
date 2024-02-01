@@ -1,0 +1,48 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{BJO{\etalchar{+}}18}
+
+\bibitem[BJO{\etalchar{+}}18]{BJORT}
+Kristine Bauer, Brenda Johnson, Christina Osborne, Emily Riehl, and Amelia
+  Tebbe, \emph{Directional derivatives and higher order chain rules for abelian
+  functor calculus}, Topology and its Applications \textbf{235} (2018),
+  375--427.
+
+\bibitem[dJ05]{StacksProject}
+Aise~Johan de~Jong, \emph{The stacks project}, 2005.
+
+\bibitem[DS97]{DAY199799}
+Brian Day and Ross Street, \emph{Monoidal bicategories and hopf algebroids},
+  Advances in Mathematics \textbf{129} (1997), no.~1, 99--157.
+
+\bibitem[GPS95]{GordonRobert1995Cft}
+Robert Gordon, A.~J Power, and Ross Street, \emph{Coherence for tricategories},
+  Memoirs of the American Mathematical Society, vol. 558, American Mathematical
+  Society, Providence, RI, 1995 (eng).
+
+\bibitem[JM03]{Johnson2003DerivingCW}
+Brenda Johnson and Randy McCarthy, \emph{Deriving calculus with cotriples},
+  Transactions of the American Mathematical Society \textbf{356} (2003),
+  757--803.
+
+\bibitem[JM04]{JohnsonB.2004Dcwc}
+B.~Johnson and R.~McCarthy, \emph{Deriving calculus with cotriples},
+  Transactions of the American Mathematical Society \textbf{356} (2004), no.~2,
+  757--803 (eng).
+
+\bibitem[Mar97]{MarmolejoF.1997Dwsf}
+F.~Marmolejo, \emph{Doctrines whose structure forms a fully faithful adjoint
+  string}, Theory and applications of categories \textbf{3} (1997), 23--24
+  (eng).
+
+\bibitem[Wei94]{weibel_1994}
+Charles~A. Weibel, \emph{An introduction to homological algebra}, Cambridge
+  Studies in Advanced Mathematics, Cambridge University Press, 1994.
+
+\end{thebibliography}
