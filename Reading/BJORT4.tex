@@ -225,6 +225,13 @@ We now prove a preliminary result on exactness of totalization.
     Let $0\rightarrow G_1\xrightarrow{\eta_1} G_2\xrightarrow{\eta_2} G_3\rightarrow 0$ be a short exact sequence of functors from $\mathcal{A}$ to $\mathcal{B}$. Since abelian categories are finitely complete and cocomplete, finite limits and colimits in $\text{Fun}(\mathcal{A},\mathcal{B})$ and $\text{Fun}(\mathcal{A},\mathcal{C})$ are computed pointwise, so it is sufficient to prove the lemma at a given $A \in \mathcal{A}$. This follows by exactness of $F$.
 \end{proof}
 
+\begin{lem}[label=lem:exactPresHomotop]
+    Let $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ be an exact functor. Then $F$ preserves chain homotopies.
+\end{lem}
+\begin{proof}
+    Let $f,g:A_\bullet\to A'_\bullet$ be chain maps and let $s_n:A_n\to A'_{n+1}$ be the components of a chain homotopy from $f$ to $g$, so $\partial_{n+1}^{A'}\circ s_n + s_{n-1}\circ \partial_n^A = f_n-g_n$ for each $n$. 
+\end{proof}
+
 Due to Proposition \ref{prop:exactCross} we obtain nice properties for the functors $P_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$.
 
 \begin{prop}[label=prop:exactPol]
@@ -411,7 +418,7 @@ Finally, one last result we will require that is used in the proof of (iii) is t
         \cdots \rightarrow\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}C_{n+1}^{\times2}(F_k)\xrightarrow{\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}(\epsilon_{C_{n+1}}-C_{n+1}\epsilon)}\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}C_{n+1}(F_k)\xrightarrow{\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}\epsilon}\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}(F_k)
     \end{equation*}
     %%
-    By Lemma \ref{lem:contractHomotop} we have a family of horizontal contractions for each row after applying $\text{cr}_{n+1}$, denoted $s^{k,h}$. Setting the vertical contractions, $s^v$, to be zero, we obtain a natural contraction for the bicomplex, so under the totalization we obtain a natural contraction for the chain complex $\text{cr}_{n+1}(P_n(F))$, as desired.
+    By Lemma \ref{lem:contractHomotop} we have a family of horizontal contractions for each row after applying $\text{cr}_{n+1}$, denoted $s^{k,h}$. Setting the vertical contractions, $s^v$, to be zero, we obtain a natural contraction for the bicomplex, so under the totalization we obtain a natural contraction for the chain complex $\text{cr}_{n+1}(P_n(F))$, as desired. 
 
     \vspace{10pt}
 

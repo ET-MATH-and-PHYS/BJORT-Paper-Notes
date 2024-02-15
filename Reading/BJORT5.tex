@@ -1,7 +1,7 @@
 \section{Linear Approximations}
 
 
-In this section we define the linear approximation of a functor $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ as a functor $D_1(F)$ in $\cat{AbCat}_{\cat{Ch}}$. This construction will coincie, up to homotopy, with the homotopy fiber ofthe map $q_1:P_1(F)\to P_0(F)$. All of the properties we will describe for $D_1(F)$ are developed only up to \rd{natural} chain homotopy equivalence.
+In this section we define the linear approximation of a functor $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ as a functor $D_1(F)$ in $\cat{AbCat}_{\cat{Ch}}$. This construction will coincie, up to homotopy, with the homotopy fiber of the map $q_1:P_1(F)\to P_0(F)$. All of the properties we will describe for $D_1(F)$ are developed only up to \rd{natural} chain homotopy equivalence.
 
 \begin{defn}[label=defn:linearization]
     The \textbf{linearization} of $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ is the functor $D_1(F):\mathcal{B}\rightarrow \mathcal{A}$ given as the totalization of the explicit chain complex of chain complexes $(D_1(F)_\bullet,\partial_\bullet)$ where:
@@ -13,25 +13,122 @@ In this section we define the linear approximation of a functor $F:\mathcal{B}\r
     and the differential $\partial_1:D_1(F)_1\rightarrow D_1(F)_0$ is given by $\rho_1$, while for $k \geq 2$, $\partial_k:D_1(F)_k\rightarrow D_1(F)_{k-1}$ is given by the alternating sum $\sum_{i=0}^{k-1}(-1)^iC_2^{\times i}\epsilon_{C_2^{\times (k-1-i)}}$. Note $\rho_1 = \epsilon$ since $C_2(F) \cong C_2(\text{cr}_1(F))$.
 \end{defn}
 
-Recall that $P_0(F)$ is naturally chain homotopy equivalent to $F(0)$. Using this model the induced map $q_0:P_1(F)\to P_0(F)\to F(0)$ is surjective.
+Recall that $P_0(F)$ is naturally chain homotopy equivalent to $F(0)$. Using this model the induced map $q_1:P_1(F)\to P_0(F)\to F(0)$ is a degree-wise epimorphism, and hence a fibration in the standard model structure on non-negatively graded chain complexes.
 
-\begin{proof}{Proof of Surjectivity}
-
+\begin{proof}[Proof of Epimorphism]
+    Note by our explicit construction of $q_1$, $q_1\circ p_1:F\to F(0)$ is exactly the projection for the isomorphism $F \cong F(0)\oplus \text{cr}_1(F)$. But this is epi as a map of chain complexes in each degree, so $q_1$ must also be epi.
 \end{proof}
 
-This implies that the kernel of $q_1$ is a model of the homotopy fiber (\textbf{WILL ADD SECTION ON HOMOTOPY FIBERS}). Note that our definition of $D_1(F)$ coincides with $P_1(\text{cr}_1(F))$ due to Lemma \ref{lem:idempotCr1}. 
+This implies that the kernel of $q_1$ is a model of the homotopy fiber. Note that our definition of $D_1(F)$ coincides with $P_1(\text{cr}_1(F))$ due to Lemma \ref{lem:idempotCr1}. 
 
 To start understanding the linear approximation we consider an example:
 
-\begin{eg}
-    We consider the affine functor $F(X) = A\oplus X$. Recall $\text{cr}_2(F) \cong 0$ and $\text{cr}_1(F) \cong \id$. This implies that $D_1(F)$ is chain homotopy equivalent to $\id$.
+\begin{eg}{}
+    We consider the affine functor $F(X) = A\oplus X$. Recall $\text{cr}_2(F) \cong 0$ and $\text{cr}_1(F) \cong \id$. This implies that $D_1(F)$ is chain homotopy equivalent to $\id$ in degree $0$.
 \end{eg}
 
 We begin by inspecting properties of $D_1$. First we obtain immediate results since $D_1\cong P_1\circ \text{cr}_1$.
 
 \begin{prop}[label=prop:D1Exact]
     \begin{itemize}
-        \item[(i)] $D_1:\text{Fun}(\mathcal{B},\mathcal{A})\to \text{Fun}(\mathcal{B},\mathcal{A})$ is exact
+        \item[(i)] $D_1:\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))\to \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$ is exact
         \item[(ii)] $D_1$ preserves (natural) chain homotopies, chain homotopy equivalences, and contractibility.
     \end{itemize}
 \end{prop}
+\begin{proof}
+    These results follow from Propositions~\ref{prop:exactPol} and~\ref{prop:exactCross} using the isomorphism $D_1\cong P_1\circ \text{cr}_1$.
+\end{proof}
+
+Relaxing some of our previous constraints to the level of \rd{natural} chain homotopy equivalence, we define what it means for a functor to be linear.
+
+\begin{defn}[label=defn:linear]
+    A functor $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ is said to be \textbf{linear} if it is degree one and weakly reduced, so $F(0)$ is naturally contractible.
+\end{defn}
+
+This definition is equivalent to a characterization in terms of finite direct sums. In order to establish this equivalence we must first prove results on how direct sums interact with natural chain homotopy equivalence. These results are a generalization of Lemma~\ref{lem:biprod}.
+
+\begin{lem}[label=lem:oplusPres]
+    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{B})$ be functors such that $F\simeq_{\cat{Ch}}G$. Then
+    %%
+    \begin{equation*}
+        F\oplus H\simeq_{\cat{Ch}}F\oplus G
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    \textbf{TBD}
+\end{proof}
+
+\begin{lem}[label=lem:homotopCancel]
+    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{B})$ be functors such that $F\oplus H\simeq_{\cat{Ch}}G\oplus H$. Then $F\simeq_{\cat{Ch}}G$.
+\end{lem}
+\begin{proof}
+    \textbf{TBD}
+\end{proof}
+
+We can now prove the previously asserted equivalence.
+
+\begin{prop}[label=prop:linearEquiv]
+    A functor $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ is linear if and only if the natural map
+    %%
+    \begin{equation*}
+        D_1(F)(X)\oplus D_1(F)(Y)\hookrightarrow D_1(F)(X\oplus Y)
+    \end{equation*}
+    %%
+    is a natural chain homotopy equivalence.
+\end{prop}
+\begin{proof}
+    First suppose $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ is linear. Then we have that $\text{cr}_2(F)\simeq_{\cat{Ch}}0$ and $F(0)\simeq_{\cat{Ch}}0$. Recall from the inductive definition of the cross effect that 
+    %%
+    \begin{equation*}
+        \text{cr}_1(F)(X\oplus Y) \cong \text{cr}_1(F)(X)\oplus \text{cr}_1(F)(Y)\oplus \text{cr}_2(F)(X,Y)
+    \end{equation*}
+    %%
+    naturally in $X$ and $Y$. Then by Lemma~\ref{lem:oplusPres} we have that \[\text{cr}_1(F)(X)\oplus \text{cr}_1(F)(Y)\oplus \text{cr}_2(F)(X,Y)\simeq_{\cat{Ch}}\text{cr}_1(F)(X)\oplus \text{cr}_1(F)(Y)\oplus 0 \cong \text{cr}_1(F)(X)\oplus \text{cr}_1(F)(Y)\] 
+    so $\text{cr}_1(F)$ preserves direct sums up to natural chain homotopy equivalence. Then since $F(0)\simeq_{\cat{Ch}}0$ and $F\cong \text{cr}_1(F)\oplus F(0)$, it follows that $F$ also preserves direct sums up to natural chain homotopy equivalence.
+
+    \vspace{10pt}
+
+    Conversely, if $F$ preserves direct sums up to natural chain homotopy equivalence we have the identity
+    %%
+    \begin{equation*}
+        F(0)\cong F(0\oplus 0)\simeq_{\cat{Ch}}F(0)\oplus F(0)
+    \end{equation*}
+    %%
+    so by Lemma~\ref{lem:homotopCancel} it follows that $F(0) \simeq_{\cat{Ch}} 0$. Similarly, using the inductive formula for $\text{cr}_2(F)$ and Lemma~\ref{lem:homotopCancel} we have that $\text{cr}_2(F)$ is naturally contractible, so $F$ is degree 1.
+\end{proof}
+
+Note that since $D_1$ is an exact functor it is linear in the sense that it preserves the zero object and direct sums of functors up to natural isomorphism.
+
+
+The next main result we wish to show is that $D_1$ preserves composition up to \rd{naturally} chain homotopy, upgrading the original pointwise chain homotopy results in~\cite{BJORT}. The primary work and lemmas for this result are contained in Section~\ref{sec:Lotswork}. In particular, we will prove the following result in Section~\ref{sec:Lotswork}.
+
+\begin{prop}[label=prop:5.7]
+    If $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ are composible functors in $\cat{AbCat}_{\cat{Ch}}$ such that $G$ is reduced, Then
+    %%
+    \begin{equation*}
+        D_1(F\lhd G) \simeq_{\cat{Ch}} D_1(F)\lhd D_1(G)
+    \end{equation*}
+    %%
+\end{prop}
+
+In this section we will extend this result to non-reduced $G$. First, by Lemma~\ref{lem:idempotCr1} we have that $\text{cr}_1(\text{cr}_1(F))\cong \text{cr}_1(F)$, so as $D_1(F) \cong P_1(\text{cr}_1(F))$ and post-composition preserves natural isomorphisms we obtain that $D_1(F) \cong D_1(\text{cr}_1(F))$. In order to extend the proposition we require one additional result.
+
+\begin{lem}[label=lem:compGen]
+    If $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ are composible functors, then 
+    %%
+    \begin{equation*}
+        \text{cr}_1(F\lhd G)(X) \cong (\text{cr}_1(F)\lhd \text{cr}_1(G))(X)\oplus \text{cr}_2(F)(G(0),\text{cr}_1(G)(X))
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    First, observe that $\text{cr}_1(F\lhd G)\oplus (F\lhd G)(0) \cong F\lhd G$ by construction of the cross-effect. Next, using the isomorphism again but now on $F$ and $G$ individually,
+    %%
+    \begin{equation*}
+        F\lhd G \cong F\lhd (G(0)\oplus \text{cr}_1(G)) \cong (F(0)\oplus \text{cr}_1(F))\lhd (G(0)\oplus \text{cr}_1(G))
+    \end{equation*}
+    %%
+    By Lemma \textbf{TBD} the direct sums commute with $\lhd$ up to natural isomorphism \textbf{What does this mean?}
+\end{proof}
+

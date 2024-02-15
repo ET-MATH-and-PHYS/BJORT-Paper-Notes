@@ -1,4 +1,4 @@
-\section{A General Bicomplex Retraction}
+\section{A General Bicomplex Retraction}\label{sec:bicomplexes}
 
 In order to construct certain explicit chain homotopy equivalences in the text we require a criteria for when total complexes of certain bicomplexes are chain homotopy equivalent. Throughout we consider $A_{\bullet,\bullet}$ to be denote a first-quadrant bicomplex. This is sufficient for our case since all our bicomplexes are constructed from chain complexes concentrated in non-negative degrees. As in \cite{BJORT} we proceed with bicomplexes having anti-commuting squares. To apply this to the work elsewhere all that must be done is the replacement of $d_h:A_{p,q}\to A_{p,q-1}$ by $(-1)^pd_h$.
 
@@ -132,5 +132,144 @@ We recall that for first-quadrant bicomplexes the totalization at each degree is
     \end{equation*}
 \end{prop}
 \begin{proof}
-    First, to see that $\rho$ is a chain map \textbf{TBC}
+    First, to see that $\rho$ is a chain map fix $n \geq 1$. Then $\partial_n\rho_n$ and $\rho_{n-1}\partial_n$ are $n\times (n+1)$ matrices with $i,j$ component given by 
+    %%
+    \begin{align*}
+        (\partial_n\rho_n)_{i,j} = \left\{\begin{array}{cc} 
+            0 & i+1 < j \\
+            d_hf & i+1 = j \\
+            d_hf(-d_vs_h)+d_vf & i = j \\
+            d_hf(-d_vs_h)^{i-j+1}+d_vf(-d_vs_h)^{i-j} & i > j 
+        \end{array}\right.
+    \end{align*} 
+    %%
+    while
+    %%
+    \begin{align*}
+        (\rho_{n-1}\partial_n)_{i,j} = \left\{\begin{array}{cc} 
+            0 & i+1 < j \\
+            fd_h & i+1 = j \\ 
+            fd_v & i = j = 1 \\
+            f(-d_vs_h)d_h+fd_v & i = j \neq 1 \\
+            f(-d_vs_h)^{i-j+1}d_v+f(-d_vs_h)^{i-j}d_h & i > j 
+        \end{array}\right.
+    \end{align*}
+    %%
+    We have equality for $i > j$ by equation (i) of Lemma \ref{lem:A3}, equality for $i+1 < j$ vacuously, equality for $i+1 = j$ since $f$ is a chain map with respect to the horizontal differentials, equality for $i = j \neq 1$ is also from equation (i) of Lemma \ref*{lem:A3}, and $i = j = 1$ is equation (i) and the fact that $A_{n+1,-1} = 0$ as the bicomplex is concentrated in non-negative degree.
+
+    \vspace{10pt}
+
+    To show $\rho$ is a retraction it remains to show $\rho_n\iota_n = 1$. Observe that for $i,j$,
+    %%
+    \begin{equation*}
+        (\rho_n\iota_n)_{i,j} = \left\{\begin{array}{cc} 
+            0 & i > j \\
+            f\circ \iota & i = j \\
+            f(-d_vs_h)^{j-i}\circ \iota & i < j \\
+        \end{array}\right.
+    \end{equation*}
+    %%
+    But since $f$ is part of a row-wise strong deformation retraction, $f\circ \iota = 1$, and $s_h \circ \iota = 0$, so the matrix is the identity.
+\end{proof}
+
+
+It remains to show that $\rho$ is associated with a deformation retraction for $\iota$. In other words, we want to show that $\iota\circ \rho$ is chain homotopic to the identity.
+
+\begin{prop}[label=prop:A6]
+    The composite map $\iota\circ \rho:\text{Tot}(B)_\bullet\to \text{Tot}(B)_\bullet$ is chain homotopic to the identity via the chain homotopy $\sigma:\text{Tot}(B)_\bullet\to \text{Tot}(B)_{\bullet+1}$ defined in degree $n$ by the $n+2\times n+1$ matrix
+    %%
+    \begin{equation*}
+        \begin{pmatrix}
+                0 & 0 & \cdots & \cdots & 0 & 0 \\
+                s_h & 0 & \ddots & \ddots & \ddots & 0 \\
+                s_h(-d_vs_h) & s_h & 0 & \ddots & \ddots & \vdots \\
+                s_h(-d_vs_h)^2 & s_h(-d_vs_h) & s_h & 0 & \ddots & \vdots \\
+                \vdots & \vdots & \vdots & \ddots & \ddots & \vdots \\
+                s_h(-d_vs_h)^{n-1} & \cdots & \cdots & s_h(-d_vs_h) & s_h & 0 \\
+                s_h(-d_vs_h)^n & s_h(-d_vs_h)^{n-1} & \cdots & \cdots & s_h(-d_vs_h) & s_h
+        \end{pmatrix}
+    \end{equation*}
+    %%
+\end{prop}
+\begin{proof}
+    Let $\partial_n:\text{Tot}(B)_n\to \text{Tot}(B)_{n-1}$ be the total complex differential. Observe that that $1-\iota\circ \rho$ is the matrix 
+    %%
+    \begin{equation*}
+            \begin{pmatrix} 
+                1-\iota f & 0 & \cdots & \cdots & 0 \\
+                -\iota f(-d_vs_h) & 1-\iota f & 0 & \cdots & 0 \\
+                -\iota f(-d_vs_h)^2 & -\iota f(-d_vs_h) & 1-\iota f & \cdots & 0 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                -\iota f(-d_vs_h)^n & \cdots & -\iota f(-d_vs_h)^2 & -\iota f(-d_vs_h) & 1-\iota f \\
+            \end{pmatrix}
+    \end{equation*}
+    %%
+    On the other hand, we can compute for $1 \leq i,j\leq n+1$
+    %%
+    \begin{equation*}
+        (\partial_{n+1}\sigma_n)_{i,j} = \left\{
+            \begin{array}{cc}
+                0 & i < j \\
+                d_hs_h & i = j \\
+                d_vs_h(-d_vs_h)^{i-j-1}+d_hs_h(-d_vs_h)^{i-j} & i > j 
+            \end{array}
+        \right.
+    \end{equation*}
+    %%
+    and 
+    %%
+    \begin{equation*}
+        (\sigma_{n-1}\partial_{n})_{i,j} = \left\{
+            \begin{array}{cc}
+                0 & i < j \\
+                s_hd_h & i = j \\
+                s_h(-d_vs_h)^{i-j}d_h + s_h(-d_vs_h)^{i-j-1}d_v & i > j 
+            \end{array}
+        \right.
+    \end{equation*}
+    %%
+    Adding these together we observe that the case of $i=j$ gives equality since $d_hs_h + s_hd_h = 1-\iota f$. On the other hand, for $i > j$ we can use the relations in Lemma \ref{lem:A3}
+    %%
+    \begin{align*}
+        d_vs_h(-d_vs_h)^{i-j-1}+d_hs_h(-d_vs_h)^{i-j}&+s_h(-d_vs_h)^{i-j}d_h + s_h(-d_vs_h)^{i-j-1}d_v \\
+        &= -\iota f(-d_vs_h)^{i-j}-s_hd_h(-d_vs_h)^{i-j}\\
+        &+s_h(-d_vs_h)^{i-j}d_h + s_h(-d_vs_h)^{i-j-1}d_v \tag{by (ii)} \\
+        &= -\iota f(-d_vs_h)^{i-j}-s_hd_h(-d_vs_h)^{i-j}-(-s_hd_v)^{i-j}d_hs_h \tag{by (iii)} \\
+        &= -\iota f(-d_vs_h)^{i-j}-s_hd_h(-d_vs_h)^{i-j}+s_hd_h(-d_vs_h)^{i-j} \tag{by (iv)} \\
+        &= -\iota f(-d_vs_h)^{i-j}
+    \end{align*}
+    %%
+    which is precisely the $i,j$ entry of $1-\iota \rho$, completing the proof.
+\end{proof}
+
+
+Together these lemmas prove the following result:
+
+\begin{thm}[label=thm:A2]
+    Let $\iota:A_{\bullet,\bullet}\to B_{\bullet,\bullet}$ be a morphism of first-quadrant bicomplexes that admit a row-wise strong deformation retraction. Then $\iota$ induces a chain homotopy equivalence of total complexes $\text{Tot}(A_{\bullet,\bullet})\to \text{Tot}(B_{\bullet,\bullet})$.  
+\end{thm}
+
+As a quick corollary we obtain the following sufficient condition for a chain homotopy equivalence between the degree $0$ inclusion of a chain complex into a first quadrant bicomplex with contractible rows and its totalization.
+
+\begin{cor}[label=cor:A7]
+    Let $A_{\bullet,\bullet}$ be a first-quadrant bicomplex so that every row except the zeroth row $A_{0,\bullet}$ is contractible. Then the natural inclusion $A_{0,\bullet}\hookrightarrow \text{Tot}(A)_\bullet$ is a chain homotopy equivalence.
+\end{cor}
+\begin{proof}
+    Let $\iota:\deg_0(A_{0,\bullet})\to A_{\bullet,\bullet}$ denote the inclusion in degree $0$. Let $f_{p,\bullet}:A_{p,\bullet} \to \deg_0(A_{0,\bullet})_{p,\bullet}$ denote the chain complex map for the contraction for $p > 0$ (which is the zero map), the identity for $p = 0$, and zero for $p < 0$. Let $s_h:A_{p,q} \to A_{p,q+1}$ denote the contraction for $p \geq 1$, and $0$ for $p \leq 0$, so $d_hs_h+s_hd_h = 1-\iota f$ and $s_h\iota = 0$ since $\iota$ is zero for $p > 0$ and $s_h$ is zero for $p \leq 0$. By Theorem \ref{thm:A2} there exists a chain homotopy equivalence $\iota:A_{0,\bullet}\hookrightarrow \text{Tot}(A)_\bullet$ where the retraction $\rho:\text{Tot}(A)_\bullet\to A_{0,\bullet}$ is the $1\times (n+1)$ is given By
+    %%
+    \begin{equation*}
+        \begin{pmatrix}
+            f(-d_vs_h)^n & f(-d_vs_h)^{n-1} & \cdots & f(-d_vs_h) & f
+        \end{pmatrix}
+    \end{equation*}
+    %%
+    or equivalently
+    %%
+    \begin{equation*}
+        \begin{pmatrix}
+            (-d_vs_h)^n & (-d_vs_h)^{n-1} & \cdots & (-d_vs_h) & 1
+        \end{pmatrix}
+    \end{equation*}
+    %%
+    since $f$ is the identity on $A_{0,\bullet}$.
 \end{proof}

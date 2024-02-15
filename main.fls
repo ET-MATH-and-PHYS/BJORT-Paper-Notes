@@ -1812,6 +1812,10 @@ INPUT Reading/BJORTA.tex
 INPUT ./Reading/BJORTA.tex
 INPUT ./Reading/BJORTA.tex
 INPUT Reading/BJORTA.tex
+INPUT ./Reading/BJORTB.tex
+INPUT Reading/BJORTB.tex
+INPUT ./Reading/BJORTB.tex
+INPUT Reading/BJORTB.tex
 INPUT ./Reading/Appendix.tex
 INPUT ./Reading/Appendix.tex
 INPUT ./Reading/Appendix.tex
@@ -1837,10 +1841,6 @@ INPUT ./SideWork/MonadAttempts.tex
 INPUT SideWork/MonadAttempts.tex
 INPUT ./SideWork/MonadAttempts.tex
 INPUT SideWork/MonadAttempts.tex
-INPUT ./SideWork/SimpMonad.tex
-INPUT SideWork/SimpMonad.tex
-INPUT ./SideWork/SimpMonad.tex
-INPUT SideWork/SimpMonad.tex
 INPUT ./Questions.tex
 INPUT ./Questions.tex
 INPUT ./Questions.tex
