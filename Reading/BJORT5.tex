@@ -129,13 +129,73 @@ The next main result we wish to show is that $D_1$ preserves composition up to \
     %%
 \end{prop}
 
-In this section we will extend this result to non-reduced $G$. First, by Lemma~\ref{lem:idempotCr1} we have that $\text{cr}_1(\text{cr}_1(F))\cong \text{cr}_1(F)$, so as $D_1(F) \cong P_1(\text{cr}_1(F))$ and post-composition preserves natural isomorphisms we obtain that $D_1(F) \cong D_1(\text{cr}_1(F))$. In order to extend the proposition we require one additional result.
+In this section we will extend this result to non-reduced $G$. First, by Lemma~\ref{lem:idempotCr1} we have that $\text{cr}_1(\text{cr}_1(F))\cong \text{cr}_1(F)$, so as $D_1(F) \cong P_1(\text{cr}_1(F))$ and post-composition preserves natural isomorphisms we obtain that $D_1(F) \cong D_1(\text{cr}_1(F))$. Before extending the proposition we first prove some preliminary results on the relationship between the direct sum operation on functors and our composition, $\lhd$, in $\cat{AbCat}_{\cat{Ch}}$. 
+
+\begin{lem}[label=lem:compDirSum]
+    Let $F,G:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H,K:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then there is a natural isomorphism
+    %%
+    \begin{equation*}
+        (F\oplus G)\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)\oplus (G\lhd H)\oplus (G\lhd K)
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    To prove the claim we proceed in steps. First, we show that
+    %%
+    \begin{equation*}
+        F\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)
+    \end{equation*}
+    %%
+    Observe that by definition 
+    %%
+    \begin{equation*}
+        F\lhd (H\oplus K) = N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}(H\oplus K)
+    \end{equation*}
+    %%
+    Since isomorphisms and $\Delta_\mathcal{A}$ preserve limits, and direct sums of functors in abelian categories are given pointwise, it follows that
+    %%
+    \begin{equation*}
+        N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}(H\oplus K) \cong (N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H)\oplus (N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}K)
+    \end{equation*}
+    %%
+    and so 
+    %%
+    \begin{equation*}
+        F\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)
+    \end{equation*}
+    %%
+
+    \vspace{10pt}
+
+    Next we show 
+    %%
+    \begin{equation*}
+        (F\oplus G)\lhd H \cong (F\lhd H)\oplus (G\lhd H)
+    \end{equation*}
+    %%
+    First, note that since $\Gamma$ preserves direct sums, $\Gamma_\mathcal{A}\circ (F\oplus G)\cong (\Gamma_\mathcal{A}\circ F)\oplus (\Gamma_\mathcal{A}\circ G)$. Then by definition of the direct sum of functors
+    %%
+    \begin{equation*}
+        ((\Gamma_\mathcal{A}\circ F)\oplus (\Gamma_\mathcal{A}\circ G))_*\Gamma_\mathcal{B}H = (\Gamma_\mathcal{A}\circ F)_*\Gamma_\mathcal{B}H\oplus (\Gamma_\mathcal{A}\circ G)_*\Gamma_\mathcal{B}H
+    \end{equation*}
+    %%
+    Since $\Delta_\mathcal{A}$ and $N_\mathcal{A}$ preserve limits, we have that 
+    %%
+    \begin{equation*}
+        (F\oplus G)\lhd H \cong (F\lhd H)\oplus (G\lhd H)
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
+
+In order to extend the proposition we require one additional result.
 
 \begin{lem}[label=lem:compGen]
     If $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ are composible functors, then 
     %%
     \begin{equation*}
-        \text{cr}_1(F\lhd G)(X) \cong (\text{cr}_1(F)\lhd \text{cr}_1(G))(X)\oplus \text{cr}_2(F)(G(0),\text{cr}_1(G)(X))
+        \text{cr}_1(F\lhd G)(X) \cong (\text{cr}_1(F)\lhd \text{cr}_1(G))(X)\oplus (\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)(X)))
     \end{equation*}
     %%
 \end{lem}
@@ -146,6 +206,6 @@ In this section we will extend this result to non-reduced $G$. First, by Lemma~\
         F\lhd G \cong F\lhd (G(0)\oplus \text{cr}_1(G)) \cong (F(0)\oplus \text{cr}_1(F))\lhd (G(0)\oplus \text{cr}_1(G))
     \end{equation*}
     %%
-    By Lemma \textbf{TBD} the direct sums commute with $\lhd$ up to natural isomorphism \textbf{What does this mean?}
+    
 \end{proof}
 

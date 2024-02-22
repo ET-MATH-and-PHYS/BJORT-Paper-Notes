@@ -12,5 +12,32 @@ In this section we will prove Proposition~\ref{prop:5.7} using the work in Secti
         F\lhd G \cong (F\lhd G)(0) \oplus \text{cr}_1(F\lhd G)
     \end{equation*}
     %%
-    and \textbf{TBC}
+    and by Lemma~\ref{lem:compDirSum}
+    %%
+    \begin{equation*}
+        F\lhd G\cong (\text{cr}_1(F)\oplus F(0))\lhd G \cong (\text{cr}_1(F)\lhd G)\oplus (F(0)\lhd G) \cong (\text{cr}_1(F)\lhd G)\cong F(0)
+    \end{equation*}
+    %%
+    by Lemma \textbf{LEMMA ON CONSTANT FUNC COMP}. Further, \textbf{NEED RESULT ON COMPOSITION EVALUATION}
 \end{proof}
+
+We can use this lemma to begin reducing our goal.
+
+\begin{cor}[label=cor:B.2]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ be composable functors with $G$ reduced. Then
+    %%
+    \begin{equation*}
+        D_1(F\lhd G)\cong D_1(\text{cr}_1(F)\lhd G)
+    \end{equation*}
+\end{cor}
+\begin{proof}
+    Recall that $D_1\cong D_1\circ \text{cr}_1$ since the first cross-effect is idempotent. Then by Lemma~\ref{lem:B.1}
+    %%
+    \begin{equation*}
+        D_1(F\lhd G) \cong D_1(\text{cr}_1(F\lhd G)) \cong D_1(\text{cr}_1(F)\lhd G)
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
+Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corollary~\ref{cor:B.2} implies that it is sufficient to prove Proposition~\ref{prop:5.7} when both functors are reduced. 
