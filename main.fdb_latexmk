@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1707985258 "main.aux" "main.bbl" "main" 1707985284
+["bibtex main"] 1708594965 "main.aux" "main.bbl" "main" 1708594993
   "/usr/share/texlive/texmf-dist/bibtex/bst/amscls/amsalpha.bst" 1513722769 28675 71ba1b1ee8387ac88670b0ea0eb2399a ""
   "Refs.bib" 1706205532 5491 2610d8e7ae8c3104572d73970fae4575 ""
-  "main.aux" 1707985283 12403 b1659f10e49e06c79c981d35d32b4d49 "pdflatex"
+  "main.aux" 1708594992 13460 e974b099d2f37b6e5700a0d5f99a4855 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1707985259 "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" "main.pdf" "main" 1707985284
+["pdflatex"] 1708594966 "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" "main.pdf" "main" 1708594993
   "/etc/texmf/web2c/texmf.cnf" 1652316073 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" 1707984115 1897 a4e2a8445ac2c398090d9e079ec64a5a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -61,6 +61,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1248133631 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb" 1248133631 10304 e98704f815e417bc375e9a880a38e542 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
@@ -302,20 +303,20 @@
   "Reading/Appendix.tex" 1706205533 280 364a2868e207df90f9e0ee724ae98b68 ""
   "Reading/BJORT2.tex" 1706205532 78671 03630e51dbcf6ba83a1e83e90e2ea85a ""
   "Reading/BJORT3.tex" 1706205533 17083 26c4e92b725e34a91222b83d5719a44b ""
-  "Reading/BJORT4.tex" 1707885848 37146 fbebf598c49818cb4fee7da8e48be30c ""
-  "Reading/BJORT5.tex" 1707985230 7933 2834214bc42fc2eca395fc19dfca310d ""
-  "Reading/BJORTA.tex" 1707980668 14194 2cf63e7c56af0d70b409cf2fc52266c1 ""
-  "Reading/BJORTB.tex" 1707984204 65 24bf6327621e9f2b3bdd5dd1203ee41d ""
+  "Reading/BJORT4.tex" 1708592018 42446 ad62a6a8d7f285831b5684423cda3227 ""
+  "Reading/BJORT5.tex" 1708594930 10050 0338fe92185b0388c383e3df44c7b916 ""
+  "Reading/BJORTA.tex" 1707986037 14217 2ccd52b39acfb85abb7bd96ac3bfe6a8 ""
+  "Reading/BJORTB.tex" 1707986357 895 cbdbbe94642f01102be0f619ced89be1 ""
   "Reading/DoldKan.tex" 1706205533 5234 bbe904fa9be6ec18d08f921147b90401 ""
   "SideWork/MonadAttempts.tex" 1706205534 12628 046c09b3b98a59ca9aab9f7c0f881582 ""
-  "SideWork/SimpMonad.tex" 1706205534 17810 59f49414efad362587e62c966b7fb2ee ""
+  "SideWork/SimpMonad.tex" 1708592546 23443 87ee6b023b6985e4bae9dc45960cfbf6 ""
   "TikzDiagrams.tex" 1706205532 126 23aefe860354023427651644c8b498f5 ""
   "ToDo.tex" 1706205532 2308 e4bd4f734fcfce0594c823415d6e2c87 ""
-  "main.aux" 1707985283 12403 b1659f10e49e06c79c981d35d32b4d49 "pdflatex"
-  "main.bbl" 1707985258 1954 381820d9bce253312122d0cec8a79cc0 "bibtex main"
-  "main.out" 1707985283 3980 4f3d7af68c75a5b2790697740f8e2760 "pdflatex"
+  "main.aux" 1708594992 13460 e974b099d2f37b6e5700a0d5f99a4855 "pdflatex"
+  "main.bbl" 1708594965 1954 381820d9bce253312122d0cec8a79cc0 "bibtex main"
+  "main.out" 1708594992 3980 4f3d7af68c75a5b2790697740f8e2760 "pdflatex"
   "main.tex" 1707984115 1897 a4e2a8445ac2c398090d9e079ec64a5a ""
-  "main.toc" 1707985283 2158 10c86e94fd56382397d86be4e7dd0ea1 "pdflatex"
+  "main.toc" 1708594992 2257 8c24dd5ace67991d9c754ef63787cbc3 "pdflatex"
   "packages.tex" 1706205532 11452 f3bbc218e413d97ae1642c7771daee53 ""
   "quiver.sty" 1706205532 1606 0a56787eafe2108d7ab3bda12c3165bc ""
   (generated)

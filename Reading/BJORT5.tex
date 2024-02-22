@@ -48,23 +48,40 @@ Relaxing some of our previous constraints to the level of \rd{natural} chain hom
 This definition is equivalent to a characterization in terms of finite direct sums. In order to establish this equivalence we must first prove results on how direct sums interact with natural chain homotopy equivalence. These results are a generalization of Lemma~\ref{lem:biprod}.
 
 \begin{lem}[label=lem:oplusPres]
-    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{B})$ be functors such that $F\simeq_{\cat{Ch}}G$. Then
+    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be functors and let $f,g:F\Rightarrow G$ be chain homotopic maps. Then $f\oplus 1_H$ is chain homotopic to $g\oplus 1_H$.
+\end{lem}
+\begin{proof}
+    Note that under the isomorphism $\text{Fun}^{\cat{Ch}}:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$, it is sufficient to show for $F_\bullet,G_\bullet,H_\bullet \in \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$, with $f,g:F_\bullet\Rightarrow G_\bullet$, and let for each $n \in \Z$, $s_n:F_n\Rightarrow G_{n+1}$ denote the component natural transformations for the homotopy. Note that $-\oplus H_\bullet:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ is a functor. We consider $s_n\oplus 0:F_n\oplus H_n\Rightarrow G_{n+1}\oplus H_{n+1}$. Then 
     %%
     \begin{equation*}
-        F\oplus H\simeq_{\cat{Ch}}F\oplus G
+        (\partial_{n+1}^G\oplus \partial_{n+1}^H)\circ (s_n\oplus 0)+(s_{n-1}\oplus 0)\circ (\partial_n^F\oplus \partial_n^H) = (\partial_{n+1}^G\circ s_n+s_{n-1}\circ \partial_n^F)\oplus 0  = (f_n-g_n)\oplus (1_{H_n}-1_{H_n}) = f_n\oplus 1_{H_n}-g_n\oplus 1_{H_n}
     \end{equation*}
     %%
-\end{lem}
-\begin{proof}
-    \textbf{TBD}
+    as desired.
 \end{proof}
 
+We also have the converse result.
+
 \begin{lem}[label=lem:homotopCancel]
-    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{B})$ be functors such that $F\oplus H\simeq_{\cat{Ch}}G\oplus H$. Then $F\simeq_{\cat{Ch}}G$.
+    Let $F,G,H:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be functors and let $f,g:F\Rightarrow G$ be maps such that $f\oplus 1_H$ and $g\oplus 1_H$ are chain homotopic maps. Then $f$ is chain homotopic to $g$.
 \end{lem}
 \begin{proof}
-    \textbf{TBD}
+    Once again we pass to $F_\bullet,G_\bullet,H_\bullet\in \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ with $f,g:F_\bullet\Rightarrow G_\bullet$. Let 
+    %%
+    \begin{equation*}
+        \begin{pmatrix} s_n^{1,1} & s_n^{1,2} \\ s_n^{2,1} & s_n^{2,2} \end{pmatrix}:F_n\oplus H_n\to G_{n+1}\oplus H_{n+1}
+    \end{equation*}
+    %%
+    be the homotopy witnessing $f\oplus 1_H$ homotopic to $g\oplus 1_H$. Then the homotopy condition takes the form
+    %%
+    \begin{equation*}
+        \begin{pmatrix} \partial_{n+1}^Gs_n^{1,1}+s_{n-1}^{1,1}\partial_n^G & \partial_{n+1}^Gs_n^{1,2}+s_{n-1}^{1,2}\partial_n^H \\ \partial_{n+1}^Hs_n^{2,1}+s_{n-1}^{2,1}\partial_n^G & \partial_{n+1}^Hs_n^{2,2}+s_{n-1}^{2,2}\partial_n^H \end{pmatrix} = \begin{pmatrix} f_n-g_n & 0 \\ 0 & 0 \end{pmatrix}
+    \end{equation*}
+    %%
+    It follows that $s_n^{1,1}:F_n\to G_{n+1}$ forms a homotopy from $f$ to $g$.
 \end{proof}
+
+As an immediate corollary of Lemma~\ref{lem:oplusPres} and Lemma~\ref{lem:homotopCancel} we have that chain homotopy equivalences are preserved by direct sum and satisfy the cancellative property.
 
 We can now prove the previously asserted equivalence.
 

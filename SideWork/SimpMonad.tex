@@ -158,7 +158,7 @@ Homotopies in categories $\mathcal{C}\Sob$ will be important in our analysis wit
     Let $\mathcal{C}$ be a category with finite coproducts and let $X \in \mathcal{C}\Sob$. If $U \in \cat{Set}\Sob$ is a finite, non-empty, simplicial set, we define the product $X \times U$ to be the simplicial object with $n$th component
     %%
     \begin{equation*}
-        (x\times U)_n := \coprod_{u \in U_n}X_n
+        (X\times U)_n := \coprod_{u \in U_n}X_n
     \end{equation*}
     %%
     such that for any map $\varphi:[m]\rightarrow [n]$, $(X\times U)(\varphi):\coprod_{u \in U_n}X_n\rightarrow \coprod_{u' \in U_m}X_m$ is defined by
@@ -238,27 +238,144 @@ We now show how these equivalences behave under composition.
 \end{proof}
 
 
-
 \begin{lem}[label=lem:PrecompDiag]
     Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be naturally simplicially homotopy equivalent. Then $\Delta_\mathcal{B}F_*,\Delta_\mathcal{B}G_*: \mathcal{C}\Sob\rightarrow (\mathcal{B}\Sob)\Sob\rightarrow \mathcal{B}\Sob$ are naturally simplicially homotopy equivalent.
 \end{lem}
 \begin{proof}
-    Since the homotopy equivalences are natural this follows from Lemmas \ref{lem:Precomp} and \ref{lem:diagHo}.
+    Since the homotopy equivalences are natural this follows from Lemmas~\ref{lem:Precomp} and~\ref{lem:diagHo}.
 \end{proof}
 
-\textbf{Can we show this result holds for pointwise simplicial homotopy equivalences?}
 
 
-%% Inducing Ch attempt
-% In order to convert this data into a pseudomonad $\cat{Ch}$ on $2\cat{Ab}$, we must show that the Dold-Kan equivalence constitutes a pseudonatural equivalence between $\cat{Ch}$ and $(-)\Sob$. We define $N:(-)\Sob\Rightarrow \cat{Ch}:\Gamma$ as pseudonatural transformations as follows:
-% %%
-% \begin{enumerate}
-%     \item For each $\mathcal{A} \in 2\cat{Ab}_0$, we define $N_\mathcal{A}$ and $\Gamma_\mathcal{A}$ as the Dold-Kan equivalences for $\mathcal{A}$ 
-%     \item For $F:\mathcal{A}\rightarrow \mathcal{B}$, we define $N_F:= (N_\mathcal{B}F_*\varepsilon_\mathcal{A})^{-1}$, where $\varepsilon$ is from Theorem \ref{thm:DoldKanEquiv}, and we define $\Gamma_F:=(\eta_{F_*\Gamma_\mathcal{A}})^{-1}$, where again $\eta$ is from Theorem \ref{thm:DoldKanEquiv}
-% \end{enumerate}
-% %%
-% It remains to show the coherence diagrams for these pseudonatural transformations, as well as modifications which witness that they are inverses of each other. We'll begin with providing the invertible modifications:
-% \begin{enumerate}
-%     \item We define a modification $\mathfrak{e}:\Gamma\circ N\Rrightarrow 1_{(-)\Sob}$ by setting $\mathfrak{e}_\mathcal{A}:= \varepsilon_\mathcal{A}$ \textbf{Need to check coherence diagram}
-%     \item We define a modification $\mathfrak{n}:1_{\cat{Ch}(-)}\Rrightarrow N\circ \Gamma$ by $\mathfrak{n}_\mathcal{A} := \eta_\mathcal{A}$ \textbf{Need to check coherence diagram}
-% \end{enumerate}
+\subsubsection{Chain Homotopies}\label{subsec:chainHomotop}
+
+
+In this section we expand on the behaviour of natural chain homotopies and the interaction between natural chain homotopies and direct sums. We begin by proving equivalent formulations of natural chain homotopies.
+
+\begin{lem}[label=lem:natHomotopIsChainFunctHomotop]
+    Chain homotopies correspond to natural chain homotopies of functors under the isomorphism $\text{Fun}^{\cat{Ch}}:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{B}))$.
+\end{lem}
+\begin{proof}
+    First, let $\alpha,\beta:F_\bullet\to G_\bullet$ be a map of chain complexes of functors in $\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$. Then a chain homotopy from $\alpha$ to $\beta$ is, for each $n \in \Z$, a natural transformation $s_n:F_n\Rightarrow G_{n+1}$ such that 
+    %%
+    \begin{equation*}
+        \partial_{n+1}^G\circ s_n + s_{n-1}\circ \partial_n^G = \alpha_n-\beta_n
+    \end{equation*}
+    %%
+    On the other hand, under $\text{Fun}^\cat{Ch}$ $\alpha$ and $\beta$ correspond to natural transformations between functors valued in chain complexes, $F,G$. By definition, a natural chain homotopy is then a family of natural transformations $s_n: (-)_n\circ F\to (-)_{n+1}\circ G$, where $(-)_n:\cat{Ch}(\mathcal{A})\to \mathcal{A}$. But this is precisely the same data as the chain homotopy in $\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$.
+\end{proof}
+
+Next, we also show an equivalent form of chain homotopies.
+
+\begin{lem}[label=lem:cylHomotop]
+    Chain homotopies between maps $f,g:A_\bullet\to B_\bullet$ in $\cat{Ch}(\mathcal{A})$ are equivalent to chain maps $H:\text{cyl}(-1_{A_\bullet})\to B_\bullet$ such that the triangle
+    %%
+    \[\begin{tikzcd}
+        {\text{cyl}(-1_{A_\bullet})} \\
+        {A_\bullet\oplus A_\bullet} & {B_\bullet}
+        \arrow["{f+g}"', from=2-1, to=2-2]
+        \arrow["H", from=1-1, to=2-2]
+        \arrow["{q_1+q_2}", from=2-1, to=1-1]
+    \end{tikzcd}\]
+    %%
+    commutes where $q_1$ is the inclusion in the top of the cylinder and $q_2$ is the inclusion in the bottom cylinder.
+\end{lem}
+\begin{proof}
+    We begin with a triangle as in the statement of the Lemma where $\text{cyl}(1_{A_\bullet})$ is the chain complex with $n$th degree term given by $A_{n-1}\oplus A_n\oplus A_n$ and chain map given by 
+    %%
+    \begin{equation*}
+        A_n\oplus A_{n+1}\oplus A_{n+1}\xrightarrow{\begin{pmatrix} \partial_n^A & 0 & 0 \\ (-1)^n1_{A_n} & \partial_{n+1}^A & 0 \\ (-1)^{n+1}1_{A_n} & 0 & \partial_{n+1}^A \end{pmatrix}}A_{n-1}\oplus A_n\oplus A_n
+    \end{equation*}
+    %%
+    Additionally, $q_1$ is given by 
+    %%
+    \begin{equation*}
+        A_n\xrightarrow{\begin{pmatrix} 0 \\ 1_{A_n} \\ 0 \end{pmatrix}} A_{n-1}\oplus A_n\oplus A_n
+    \end{equation*}
+    %%
+    and $q_2$ is given by 
+    %%
+    \begin{equation*}
+        A_n\xrightarrow{\begin{pmatrix} 0 \\ 0 \\ 1_{A_n} \end{pmatrix}} A_{n-1}\oplus A_n\oplus A_n
+    \end{equation*}
+    %%
+    Then a map $H:\text{cyl}(1_{A_\bullet})\to B_\bullet$ making the triangle commute is on each degree of the form
+    %%
+    \begin{equation*}
+        A_{n-1}\oplus A_n\oplus A_n\xrightarrow{\begin{pmatrix} (-1)^{n-1}s_{n-1} & f_n & g_n \end{pmatrix}} B_n
+    \end{equation*}
+    %%
+    where the chain map condition reduces to 
+    %%
+    \begin{equation*}
+        \partial_n^B\circ s_{n-1}+s_{n-2}\circ \partial_{n-1}^A = f_{n-1}-g_{n-1}
+    \end{equation*}
+    %%
+    which is exactly the condition for a chain homotopy.
+\end{proof}
+
+% \begin{lem}[label=lem:totAdd]
+%     Let $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ be an additive functor. By Lemma~\ref{lem:funcActChain} we have an additive functor $\cat{Ch}(F):\cat{Ch}^2(\mathcal{A})\to \cat{Ch}^2(\mathcal{B})$ given by $F$ acting component-wise. Then
+%     %%
+%     \begin{equation*}
+%         F\circ \text{Tot}_\mathcal{A} \cong \text{Tot}_\mathcal{B}\circ \cat{Ch}(F)
+%     \end{equation*}
+%     %%
+% \end{lem}
+% \begin{proof}
+%     Let $A_{\bullet,\bullet} \in \cat{Ch}^2(\mathcal{A})$
+% \end{proof}
+
+% \begin{cor}[label=cor:cylinderPres]
+%     If $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ is additive and $f:A_\bullet \to B_\bullet$ is a map of chain complexes, then $F(\text{cyl}(f)) \cong \text{cyl}(F(f))$.
+% \end{cor}
+% \begin{proof}
+%     By Lemma~\ref{lem:funcActChain} we have an additive functor $\cat{Ch}(F):\cat{Ch}^2(\mathcal{A})\to \cat{Ch}^2(\mathcal{B})$ given by $F$ acting component-wise. 
+% \end{proof}
+
+% Using these equivalent characterizations of chain homotopy we prove that exact functors of chain complexes preserve chain homotopies.
+
+% \begin{lem}[label=lem:exactChFunc]
+%     Let $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ be an exact functor. Then $F$ preserves chain homotopies.
+% \end{lem}
+% \begin{proof}
+%     \textbf{TBD}
+% \end{proof}
+
+We now show how additive functors acting componentwise preserve chain homotopies.
+
+\begin{lem}[label=lem:addFuncPres]
+    Let $F:\mathcal{A}\to \mathcal{B}$ be an additive functor. Then $\cat{Ch}(F):\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ preserves chain homotopies.
+\end{lem}
+\begin{proof}
+    Let $f,g:A_\bullet\to B_\bullet$ be chain maps with a homotopy $s_n:A_n\to B_{n+1}$ for $n \in \Z$ from $f$ to $g$. Since $F$ is additive we have that
+    %%
+    \begin{equation*}
+        F(\partial_{n+1}^B)\circ F(s_n)+F(s_{n-1})\circ F(\partial_n^A) = F(\partial_{n+1}^B\circ s_n+s_{n-1}\circ \partial_n^A) = F(f_n-g_n) = F(f_n)-F(g_n)
+    \end{equation*}
+    %%
+    Since $\cat{Ch}(F)(f)_n := F(f_n)$ and $\cat{Ch}(F)(g)_n := F(g_n)$, it follows that $F(f)$ and $F(g)$ are homotopic by $F(s_n):F(A_n)\to F(B_{n+1})$.
+\end{proof}
+
+We also have an analogous result for the chain construction from comonads.
+
+\begin{lem}[label=lem:ChConsPres]
+    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{A}$ which is also an additive functor. Then $C^{\cat{Ch}}:\mathcal{A}\to \cat{Ch}(\mathcal{A})$ is additive.
+\end{lem}
+\begin{proof}
+    Let $f,g:A\to B$ in $\mathcal{A}$. Then since $C$ is additive, so is all of its powers, so \[C^{\cat{Ch}}(f+g)_n := C^n(f+g)=C^n(f)+C^n(g) = C^\cat{Ch}(f)_n+C^\cat{Ch}(g)_n\]
+    Thus $C^{\cat{Ch}}$ is additive.
+\end{proof}
+
+By Lemma~\ref{lem:ChConsPtwise} and Lemma~\ref{ lem:addFuncPres} it follows that $\cat{Ch}(C)^\cat{Ch}$ preserves homotopies. Another important result for this construction is how it is affected by isomorphisms between comonads.
+
+\begin{lem}[label=lem:ChComIso]
+    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{A}$ and let $(C',\epsilon',\delta')$ be a comonad on $\mathcal{A}'$. Suppose $\gamma:\mathcal{A}\to \mathcal{A}'$ is an additive isomorphism of categories such that $C' = \gamma\circ C\circ \gamma^{-1}$, $\epsilon' = \gamma\epsilon_{\gamma^{-1}}$, and $\delta' = \gamma\delta'_{\gamma^{-1}}$. Then there is an equality
+    %%
+    \begin{equation*}
+        {C'}^{\cat{Ch}} = \cat{Ch}(\gamma)\circ C^{\cat{Ch}}\circ \gamma^{-1}
+    \end{equation*}
+\end{lem}
+\begin{proof}
+    This equality is an immediate consequence of the construction of $C^{\cat{Ch}}$ and the specified equalities for the comonad natural transformations.
+\end{proof}

@@ -185,7 +185,7 @@ We test the above computation, and the results to follow, using the example of $
     Note that this complex is contractible.
 \end{eg}
 
-We now prove a preliminary result on exactness of totalization.
+We now prove some preliminary results on exactness and preserving chain homotopies in order to show the exactness and preservation of limits for this construction.
 
 \begin{lem}[label=lem:TotExact]
     The totalization functor $\text{Tot}:\cat{Ch}^2(\mathcal{A})\rightarrow \cat{Ch}(\mathcal{A})$ is exact.
@@ -225,14 +225,148 @@ We now prove a preliminary result on exactness of totalization.
     Let $0\rightarrow G_1\xrightarrow{\eta_1} G_2\xrightarrow{\eta_2} G_3\rightarrow 0$ be a short exact sequence of functors from $\mathcal{A}$ to $\mathcal{B}$. Since abelian categories are finitely complete and cocomplete, finite limits and colimits in $\text{Fun}(\mathcal{A},\mathcal{B})$ and $\text{Fun}(\mathcal{A},\mathcal{C})$ are computed pointwise, so it is sufficient to prove the lemma at a given $A \in \mathcal{A}$. This follows by exactness of $F$.
 \end{proof}
 
-\begin{lem}[label=lem:exactPresHomotop]
-    Let $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ be an exact functor. Then $F$ preserves chain homotopies.
+In order to prove our desired exactness result we first introduce a naive notion chain complexes of functors for the subcategory of additive functors.
+
+\begin{lem}[label=lem:funcActChain]
+    Let $\text{Fun}_{Add}(\mathcal{A},\mathcal{C})$ be the category of additive functors between abelian categories with all natural transformations. Then we have a functor
+    %%
+    \begin{equation*}
+        \cat{Ch}:\text{Fun}_{Add}(\mathcal{A},\mathcal{C})\rightarrow \text{Fun}_{Add}(\cat{Ch}(\mathcal{A}),\cat{Ch}(\mathcal{C}))
+    \end{equation*}
+    given by sending functors to their action componentwise.
 \end{lem}
 \begin{proof}
-    Let $f,g:A_\bullet\to A'_\bullet$ be chain maps and let $s_n:A_n\to A'_{n+1}$ be the components of a chain homotopy from $f$ to $g$, so $\partial_{n+1}^{A'}\circ s_n + s_{n-1}\circ \partial_n^A = f_n-g_n$ for each $n$. 
+    Let $\mathcal{F} \in \text{Fun}_{Add}(\mathcal{A},\mathcal{C})$. Since $\mathcal{F}$ is additive it preserves $0$'s and hence sends chain complexes to chain complexes. Then let $f_\bullet:A_\bullet\rightarrow A_\bullet'$ be a map of chain complexes. Then $\cat{Ch}(\mathcal{F})(f_\bullet)_n := \mathcal{F}(f_n)$, and since $\mathcal{F}$ is additive
+    %%
+    \begin{equation*}
+        \mathcal{F}(f_n)\mathcal{F}(\partial_{n+1}^A)-\mathcal{F}(\partial_n^{A'})\mathcal{F}(f_{n+1}) = \mathcal{F}(f_n\partial_{n+1}^A-\partial_n^{A'}f_{n+1}) = \mathcal{F}(0) = 0
+    \end{equation*}
+    %%
+    so $\cat{Ch}(\mathcal{F})(f_\bullet)$ is a chain map. Further, since $\cat{Ch}(\mathcal{F})$ is defined componentwise and $\mathcal{F}$ is a functor and additive, $\cat{Ch}(\mathcal{F})$ is a functor and additive. 
+
+
+    Next, let $\eta:\mathcal{F}\rightarrow \mathcal{G}$ be a natural transformation between additive functors. Then define $\cat{Ch}(\eta)_{A_\bullet}:\cat{Ch}(\mathcal{F})(A_\bullet)\rightarrow \cat{Ch}(\mathcal{G})(A_\bullet)$ by $(\cat{Ch}(\eta)_{A_\bullet})_n := \eta_{A_n}$. Then $\cat{Ch}(\eta)_{A_\bullet}$ is a chain map by naturality of $\eta$. Further, $\cat{Ch}(\eta)$ is natural again by naturality of $\eta$, which makes the following diagram commute for $f_\bullet:A_\bullet\rightarrow A_\bullet$:
+    \[\begin{tikzcd}
+    	{\mathcal{F}(A_n)} & {\mathcal{F}(B_n)} \\
+    	{\mathcal{G}(A_n)} & {\mathcal{G}(B_n)}
+    	\arrow["{\eta_{A_n}}"', from=1-1, to=2-1]
+    	\arrow["{\mathcal{G}(f_n)}"', from=2-1, to=2-2]
+    	\arrow["{\eta_{B_n}}", from=1-2, to=2-2]
+    	\arrow["{\mathcal{F}(f_n)}", from=1-1, to=1-2]
+    \end{tikzcd}\]
+    Since $\cat{Ch}(\eta)$ is defined componentwise it preserves composites and identities.
 \end{proof}
 
-Due to Proposition \ref{prop:exactCross} we obtain nice properties for the functors $P_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$.
+\begin{lem}[label=lem:funcActChainHori]
+    Let $F,G:\mathcal{B}\to \mathcal{C}$, $H:\mathcal{C}\to \mathcal{D}$, and $K:\mathcal{A}\to \mathcal{B}$ be additive functors. If $\eta:F\Rightarrow G$ is a natural transformation, then
+    %%
+    \begin{equation*}
+        \cat{Ch}(H\eta_K) = \cat{Ch}(H)\cat{Ch}(\eta)_{\cat{Ch}(K)}
+    \end{equation*}
+\end{lem}
+\begin{proof}
+    From the proof of Lemma~\ref{lem:funcActChain} we have that for a chain complex $A_\bullet$, 
+    %%
+    \begin{equation*}
+        (\cat{Ch}(H\eta_K)_{A_\bullet})_n = H(\eta_{K(A_n)}) = H(\eta_{\cat{Ch}(K)(A_\bullet)_n}) = H((\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n) = \cat{Ch}(H)(\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n
+    \end{equation*}
+    %%
+\end{proof}
+
+Note that Lemma~\ref{lem:funcActChainHori} shows that $\cat{Ch}$ is a strict 2-functor on the category of abelian categories with addtive functors between them. Next we show compatibility of this functor with the isomorphism $\text{Fun}^\cat{Ch}$.
+
+\begin{lem}[label=lem:ChFuncCommute]
+    For any pointed category $\mathcal{B}$ and abelian category $\mathcal{A}$, we have a natural isomorphism
+    %%
+    \begin{equation*}
+        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Since the cross effect is additive we can apply $\cat{Ch}$, so the claim is well-posed. Let $F\in\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ be a chain complex of functors. Since finite limits in functor categories between abelian categories are computed pointwise, up to natural isomorphism, we have that 
+    %%
+    \begin{equation*}
+        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
+    \end{equation*}
+    %%
+    \textbf{NEED TO MAKE MORE EXPLICIT}
+\end{proof}
+
+Note that in addition $\Delta^*\circ \text{Fun}^{\cat{Ch}} = \text{Fun}^{\cat{Ch}}\circ \cat{Ch}(\Delta^*)$, so we also have 
+\begin{equation*}
+    C_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(C_n^{\mathcal{B},\mathcal{A}})
+\end{equation*}
+
+Finally, we show that the $C^{\cat{Ch}}$ construction also commutes with the chain complex functor when $C$ is additive.
+
+\begin{lem}[label=lem:ChConsPtwise]
+    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{A}$ which is also an additive functor. Then we have the equality
+    %%
+    \begin{equation*}
+        \cat{Ch}(C)^{\cat{Ch}} = \cat{Ch}(C^{\cat{Ch}})
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Let $A_\bullet \in \cat{Ch}(\mathcal{A})$. Then both $\cat{Ch}(C)^{\cat{Ch}}(A_\bullet)$ and $\cat{Ch}(C^{\cat{Ch}})(A_\bullet)$ give the same double complex
+    %%
+    \[\begin{tikzcd}
+        & \vdots && \vdots & \vdots \\
+        \cdots & {C^2(A_{n+1})} && {C(A_{n+1})} & {A_{n+1}} \\
+        \cdots & {C^2(A_n)} && {C(A_n)} & {A_n} \\
+        \cdots & {C^2(A_{n-1})} && {C(A_{n-1})} & {A_{n-1}} \\
+        & \vdots && \vdots & \vdots
+        \arrow["{C^2(\partial_{n+1}^A)}"', from=2-2, to=3-2]
+        \arrow["{C^2(\partial_n^A)}"', from=3-2, to=4-2]
+        \arrow["{C(\partial_{n+1}^A)}", from=2-4, to=3-4]
+        \arrow["{C(\partial_n^A)}", from=3-4, to=4-4]
+        \arrow["{\partial_{n+1}^A}", from=2-5, to=3-5]
+        \arrow["{\partial_n^A}", from=3-5, to=4-5]
+        \arrow["{C\epsilon_{A_n}-\epsilon_{CA_n}}", from=3-2, to=3-4]
+        \arrow["{\epsilon_{A_n}}", from=3-4, to=3-5]
+        \arrow["{\epsilon_{A_{n-1}}}"', from=4-4, to=4-5]
+        \arrow["{\epsilon_{A_{n+1}}}", from=2-4, to=2-5]
+        \arrow["{C\epsilon_{A_{n+1}}-\epsilon_{CA_{n+1}}}", from=2-2, to=2-4]
+        \arrow["{C\epsilon_{A_{n-1}}-\epsilon_{CA_{n-1}}}"', from=4-2, to=4-4]
+        \arrow[from=4-2, to=5-2]
+        \arrow[from=4-4, to=5-4]
+        \arrow[from=4-5, to=5-5]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=4-1, to=4-2]
+    \end{tikzcd}\]
+    %%
+\end{proof}
+
+\begin{lem}[label=lem:totFuncCh]
+    For abelian categories $\mathcal{A},\mathcal{B}$, we have a natural isomorphism
+    %%
+    \begin{equation*}
+        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \cong \text{Fun}^{\cat{Ch}}\circ \text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Let $F_{\bullet,\bullet} \in \cat{Ch}^2(\text{Fun}(\mathcal{B},\mathcal{A}))$. Let $F:\text{Fun}(\mathcal{B},\cat{Ch}^2(\mathcal{A}))$ be the associated functor under two applications of $\text{Fun}^{\cat{Ch}}$. For $B \in \mathcal{B}$, the left functor gives the complex
+    %%
+    \begin{equation*}
+        \text{Tot}_{\mathcal{A}}(F(B))_n := \bigoplus_{p+q=n}F_{p,q}(B)
+    \end{equation*}
+    %%
+    at $B$, while the right functor gives the complex
+    %%
+    \begin{equation*}
+        \text{Fun}^{\cat{Ch}}(\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}(F_{\bullet,\bullet}))(B)_n := \left(\bigoplus_{p+q=n}F_{p,q}\right)(B)
+    \end{equation*}
+    %%
+    with differentials with identical structure. Since finite limits in functor categories valued in abelian categories are computed componentwise, since finite limits exist in abelian categories, these objects are isomorphic with isomorphism preserving the differentials. Further, since the isomorphism are unique by the universal property of the biproduct, they constitute a natural isomorphism. \textbf{NEED TO SHOW MORE EXPLICITLY}
+\end{proof}
+
+These results and Lemma~\ref{lem:addFuncPres} allow us to formalize preservation of chain homotopies for our approximation functors. Due to Proposition~\ref{prop:exactCross} we also obtain nice properties for the functors $P_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$.
 
 \begin{prop}[label=prop:exactPol]
     For any $n \geq 0$,
@@ -242,7 +376,19 @@ Due to Proposition \ref{prop:exactCross} we obtain nice properties for the funct
     \end{itemize}
 \end{prop}
 \begin{proof}
-    It is sufficient to prove (i) for short exact sequences. Let $0 \rightarrow F\rightarrow G\rightarrow H\rightarrow 0$ be a SES of functors in $\cat{AbCat}_{\cat{Ch}}$. By Proposition \ref{prop:exactCross} we obtain a SES of bicomplexes in the definition of the $n$th polynomial approximation. Since totalization is exact we obtain a SES $0 \rightarrow P_n(F)\rightarrow P_n(G)\rightarrow P_n(H)\rightarrow 0$. (ii) follows from (i) since exact functors preserve chain homotopies and zero chain complexes.
+    It is sufficient to prove (i) for short exact sequences. Let $0 \rightarrow F\rightarrow G\rightarrow H\rightarrow 0$ be a SES of functors in $\cat{AbCat}_{\cat{Ch}}$. By Proposition~\ref{prop:exactCross} we obtain a SES of bicomplexes in the definition of the $n$th polynomial approximation. Since totalization is exact we obtain a SES $0 \rightarrow P_n(F)\rightarrow P_n(G)\rightarrow P_n(H)\rightarrow 0$. 
+    
+    \vspace{10pt}
+    
+    For (ii), observe that
+    %%
+    \begin{align*}
+        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ C_{n+1}^{\cat{Ch}} &= (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ C_{n+1}^{\cat{Ch}} \circ \text{Fun}^{\cat{Ch}} \circ (\text{Fun}^{\cat{Ch}})^{-1} \\
+        &\cong (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \circ \cat{Ch}(C_{n+1}^{\cat{Ch}})  \circ (\text{Fun}^{\cat{Ch}})^{-1} \tag{By Lemma \textbf{REF}} \\
+        &\cong \text{Fun}^{\cat{Ch}}\circ \text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}\circ \cat{Ch}(C_{n+1})^{\cat{Ch}}\circ (\text{Fun}^{\cat{Ch}})^{-1}
+    \end{align*}
+    %%
+    Then since $\cat{Ch}(C_{n+1})^{\cat{Ch}}=\cat{Ch}(C_{n+1}^{\cat{Ch}})$ preserves chain homotopies and by Lemma \textbf{REF} $\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}$ also preserves chain homotopies, it follows by Lemma~\ref{natHomotopIsChainFunctHomotop} that $P_n$ preserves \rd{natural} chain homotopies. 
 \end{proof}
 
 For each $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$, the functor $P_n(F)$ comes equipped with a natural transformation $p_n:F\rightarrow P_n(F)$ defined by inclusion into the degree zero part of the chain complex $P_n(F)$. Explicitly, can define $p_n:\mathbb{1}\Rightarrow P_n$ as done by Jason Parker:
@@ -349,55 +495,6 @@ The basic properties of this approximation are given in the following propositio
     \end{itemize}
 \end{prop}
 
-In order to prove part (i) of Proposition \ref{prop:4.5} we require a certain compatibility of $\text{cr}_n^{\mathcal{B},\cat{Ch}(\mathcal{A})}$ with $\text{Fun}^\cat{Ch}$. First we need to upgrade functors to functors on chains in a naive manner.
-
-\begin{lem}[label=lem:funcActChain]
-    Let $\text{Fun}_{Add}(\mathcal{A},\mathcal{C})$ be the category of additive functors between abelian categories with all natural transformations. Then we have a functor
-    %%
-    \begin{equation*}
-        \cat{Ch}:\text{Fun}_{Add}(\mathcal{A},\mathcal{C})\rightarrow \text{Fun}_{Add}(\cat{Ch}(\mathcal{A}),\cat{Ch}(\mathcal{C}))
-    \end{equation*}
-    given by sending functors to their action componentwise.
-\end{lem}
-\begin{proof}
-    Let $\mathcal{F} \in \text{Fun}_{Add}(\mathcal{A},\mathcal{C})$. Since $\mathcal{F}$ is additive it preserves $0$'s and hence sends chain complexes to chain complexes. Then let $f_\bullet:A_\bullet\rightarrow A_\bullet'$ be a map of chain complexes. Then $\cat{Ch}(\mathcal{F})(f_\bullet)_n := \mathcal{F}(f_n)$, and since $\mathcal{F}$ is additive
-    %%
-    \begin{equation*}
-        \mathcal{F}(f_n)\mathcal{F}(\partial_{n+1}^A)-\mathcal{F}(\partial_n^{A'})\mathcal{F}(f_{n+1}) = \mathcal{F}(f_n\partial_{n+1}^A-\partial_n^{A'}f_{n+1}) = \mathcal{F}(0) = 0
-    \end{equation*}
-    %%
-    so $\cat{Ch}(\mathcal{F})(f_\bullet)$ is a chain map. Further, since $\cat{Ch}(\mathcal{F})$ is defined componentwise and $\mathcal{F}$ is a functor and additive, $\cat{Ch}(\mathcal{F})$ is a functor and additive. 
-
-
-    Next, let $\eta:\mathcal{F}\rightarrow \mathcal{G}$ be a natural transformation between additive functors. Then define $\cat{Ch}(\eta)_{A_\bullet}:\cat{Ch}(\mathcal{F})(A_\bullet)\rightarrow \cat{Ch}(\mathcal{G})(A_\bullet)$ by $(\cat{Ch}(\eta)_{A_\bullet})_n := \eta_{A_n}$. Then $\cat{Ch}(\eta)_{A_\bullet}$ is a chain map by naturality of $\eta$. Further, $\cat{Ch}(\eta)$ is natural again by naturality of $\eta$, which makes the following diagram commute for $f_\bullet:A_\bullet\rightarrow A_\bullet$:
-    \[\begin{tikzcd}
-    	{\mathcal{F}(A_n)} & {\mathcal{F}(B_n)} \\
-    	{\mathcal{G}(A_n)} & {\mathcal{G}(B_n)}
-    	\arrow["{\eta_{A_n}}"', from=1-1, to=2-1]
-    	\arrow["{\mathcal{G}(f_n)}"', from=2-1, to=2-2]
-    	\arrow["{\eta_{B_n}}", from=1-2, to=2-2]
-    	\arrow["{\mathcal{F}(f_n)}", from=1-1, to=1-2]
-    \end{tikzcd}\]
-    Since $\cat{Ch}(\eta)$ is defined componentwise it preserves composites and identities.
-\end{proof}
-
-Next we show compatibility of this functor with the isomorphism $\text{Fun}^\cat{Ch}$.
-
-\begin{lem}[label=lem:ChFuncCommute]
-    For any pointed category $\mathcal{B}$ and abelian category $\mathcal{A}$, we have a natural isomorphism
-    %%
-    \begin{equation*}
-        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
-    \end{equation*}
-    %%
-\end{lem}
-\begin{proof}
-    Since the cross effect is additive we can apply $\cat{Ch}$, so the claim is well-posed. Let $F\in\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ be a chain complex of functors. Since finite limits in functor categories between abelian categories are computed pointwise, up to natural isomorphism, we have that 
-    %%
-    \begin{equation*}
-        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
-    \end{equation*}
-\end{proof}
 
 Finally, one last result we will require that is used in the proof of (iii) is the following computation for a functor $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$.
 
