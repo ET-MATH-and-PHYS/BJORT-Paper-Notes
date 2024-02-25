@@ -19,7 +19,7 @@ Recall that $P_0(F)$ is naturally chain homotopy equivalent to $F(0)$. Using thi
     Note by our explicit construction of $q_1$, $q_1\circ p_1:F\to F(0)$ is exactly the projection for the isomorphism $F \cong F(0)\oplus \text{cr}_1(F)$. But this is epi as a map of chain complexes in each degree, so $q_1$ must also be epi.
 \end{proof}
 
-This implies that the kernel of $q_1$ is a model of the homotopy fiber. Note that our definition of $D_1(F)$ coincides with $P_1(\text{cr}_1(F))$ due to Lemma \ref{lem:idempotCr1}. 
+This implies that the kernel of $q_1$ is a model of the homotopy fiber, when this structure makes sense. Note that our definition of $D_1(F)$ coincides with $P_1(\text{cr}_1(F))$ due to Lemma \ref{lem:idempotCr1}, which is exactly the kernel of $q_1:P_1(F)\to F(0)$. 
 
 To start understanding the linear approximation we consider an example:
 
@@ -53,9 +53,11 @@ This definition is equivalent to a characterization in terms of finite direct su
 \begin{proof}
     Note that under the isomorphism $\text{Fun}^{\cat{Ch}}:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$, it is sufficient to show for $F_\bullet,G_\bullet,H_\bullet \in \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$, with $f,g:F_\bullet\Rightarrow G_\bullet$, and let for each $n \in \Z$, $s_n:F_n\Rightarrow G_{n+1}$ denote the component natural transformations for the homotopy. Note that $-\oplus H_\bullet:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ is a functor. We consider $s_n\oplus 0:F_n\oplus H_n\Rightarrow G_{n+1}\oplus H_{n+1}$. Then 
     %%
-    \begin{equation*}
-        (\partial_{n+1}^G\oplus \partial_{n+1}^H)\circ (s_n\oplus 0)+(s_{n-1}\oplus 0)\circ (\partial_n^F\oplus \partial_n^H) = (\partial_{n+1}^G\circ s_n+s_{n-1}\circ \partial_n^F)\oplus 0  = (f_n-g_n)\oplus (1_{H_n}-1_{H_n}) = f_n\oplus 1_{H_n}-g_n\oplus 1_{H_n}
-    \end{equation*}
+    \begin{align*}
+        (\partial_{n+1}^G\oplus \partial_{n+1}^H)\circ (s_n\oplus 0)+(s_{n-1}\oplus 0)\circ (\partial_n^F\oplus \partial_n^H) &= (\partial_{n+1}^G\circ s_n+s_{n-1}\circ \partial_n^F)\oplus 0  \\
+        &= (f_n-g_n)\oplus (1_{H_n}-1_{H_n}) \\
+        &= f_n\oplus 1_{H_n}-g_n\oplus 1_{H_n}
+    \end{align*}
     %%
     as desired.
 \end{proof}

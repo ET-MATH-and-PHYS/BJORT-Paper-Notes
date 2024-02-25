@@ -181,7 +181,7 @@ We can now define simplicial homotopies. Let $\Delta^n := Hom_{\Delta}(-,[n])$ b
     (\Delta^1)_n = \{\alpha_0^n,...,\alpha_{n+1}^n\},\;\;\alpha_i^n(j) = \left\{\begin{array}{cc} 0 & j < i \\ 1 & j \geq i \end{array}\right.
 \end{equation*}
 %%
-By Yoneda we can identify these maps with natural isomorphisms, so in particular we have $\alpha_0^0:\Delta^0\Rightarrow \Delta^1$ and $\alpha_1^0:\Delta^0\Rightarrow \Delta^1$ corresponding to sending $0$ to $1$ and sending $0$ to $0$, respectively (note the flip). We will write $e_0 := \alpha_1^0$ and $e_1 := \alpha_0^0$. Noting that for any simplicial object $U \in \mathcal{C}\Sob$ $U\times \Delta^0 \cong U$, we obtain $e_0,e_1:U\Rightarrow U\times \Delta^1$. This is sufficient to define simplicial homotopies \cite[Defn 14.26.1]{StacksProject}.
+By Yoneda we can identify these maps with natural isomorphisms, so in particular we have $\alpha_0^0:\Delta^0\Rightarrow \Delta^1$ and $\alpha_1^0:\Delta^0\Rightarrow \Delta^1$ corresponding to sending $0$ to $1$ and sending $0$ to $0$, respectively (note the flip). We will write $e_0 := \alpha_1^0$ and $e_1 := \alpha_0^0$. Noting that for any simplicial object $U \in \mathcal{C}\Sob$ $U\times \Delta^0 \cong U$, we obtain $e_0,e_1:U\Rightarrow U\times \Delta^1$. This is sufficient to define simplicial homotopies~\cite[Defn 14.26.1]{StacksProject}.
 
 \begin{defn}{}
     Let $X, Y \in \mathcal{C}\Sob$ be simplicial objects in a category with finite coproducts, and let $f,g:X\Rightarrow Y$ be simplicial maps. Then a \textbf{simplicial homotopy} between $f$ and $g$ is a simplicial map $h:X\times \Delta^1\Rightarrow Y$ making the following diagram commute
@@ -206,44 +206,107 @@ We can extend this definition to functors valued in simplicial objects.
     Let $F,G:\mathcal{B}\rightarrow \mathcal{A}\Sob$ be functors valued in simplicial objects. We say $F$ and $G$ are \textbf{pointwise homotopy equivalent} if for each $B \in \mathcal{B}$, we have a simplicial homotopy equivalence $(f_B:F(B)\rightarrow G(B), g_B:G(B)\rightarrow F(B), h_B:F(B)\times \Delta^1\rightarrow F(B), h'_B:G(B)\times \Delta^1\rightarrow G(B))$. We say $F$ and $G$ are \textbf{naturally homotopy equivalent} if we have natural transformations $(f:F\Rightarrow G,g:G\rightarrow F,h:F\times \Delta^1\Rightarrow F,h':G\times \Delta^1\Rightarrow G)$ which comprise homotopy equivalences at each $B \in \mathcal{B}$.
 \end{defn}
 
-We now show how these equivalences behave under composition.
+We also have a completely combinatorial description of simplicial homotopies which is equivalent we working with simplicial objects in finitely cocomplete categories~\cite{weibel_1994}. In particular, a simplicial homotopy between $f,g:X\to Y$ is a family of maps $h_i^n:X_n\to Y_{n+1}$ for $n \in \N$ and $0\leq i \leq n$, such that $Y_{d_0^{n+1}}h^n_0 = f_n$, $Y_{d_{n+1}^{n+1}}h_n^n=g_n$, and 
+%%
+\begin{equation*}
+    Y(d_i^{n+1})h_j^n = \left\{\begin{array}{cc} h_{j-1}^{n-1}X(d_i^n) & i < j \\ Y(d_i^{n+1})h_{i-1}^n & i = j \neq 0 \\ h_j^{n-1}X(d_{i-1}^n) & i > j+1 \end{array}\right.
+\end{equation*}
+%%
+\begin{equation*}
+    Y(s_i^{n+1})h_j^n = \left\{\begin{array}{cc} h_{j+1}^{n+1}X(s_i^n) & i \leq j \\ h_j^{n+1}X(s_{i-1}^n) & i > j \end{array}\right.
+\end{equation*}
 
-\begin{lem}[label=lem:postcompNat]
-    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be (naturally) simplicially homotopy equivalent. If $H:\mathcal{B}\rightarrow \mathcal{A}$ is any other functor into an abelian category, then $H_*\circ F$ and $H_*\circ G$ are (naturally) simplicially homotopy equivalent.
+We now show how these equivalences behave under composition as well as some behaviour of the category of functors into simplicial objects.
+
+\begin{lem}[label=lem:isoOfSimpFuncs]
+    If $\mathcal{A},\mathcal{B}$ are categories, there exists an isomorphism of categories
+    %%
+    \begin{equation*}
+        \text{Fun}(\mathcal{A},\mathcal{B}\Sob) \cong \text{Fun}(\mathcal{A},\mathcal{B})\Sob
+    \end{equation*}
 \end{lem}
 \begin{proof}
-    Let $(f,g,h,h')$ be a (natural) simplicial homotopy equivalence between $F$ and $G$. We define maps $(H_*f,H_*g,H_*h,H_*h')$. This definition evidently preserves naturality, so it is sufficient to show that it gives a simplicial homotopy. However this follows by functoriality of $H$.
+    We define a natural isomorphism $\gamma:\text{Fun}(\mathcal{A},\mathcal{B}\Sob) \to \text{Fun}(\mathcal{A},\mathcal{B})\Sob$ on an object $F:\mathcal{A}\to \mathcal{B}\Sob$ by 
+    %%
+    \begin{equation*}
+        \gamma(F)_n(A) := F(A)_n,
+    \end{equation*}
+    %%
+    For each $n$ $\gamma(F)_n$ is a functor so for $\alpha:[m]\to [n]$ we need to show a natural transformation $\gamma(F)_\alpha:\gamma(F)_n\to \gamma(F)_m$ which we define to be
+    %%
+    \begin{equation*}
+        (\gamma(F)_\alpha)_A := F(A)_\alpha 
+    \end{equation*}
+    %%
+    This is functorial since each $F(A)$ is a functor. If $f:A\to B$, then since $F(f)$ is a natural transformation, we also have the commuting square
+    \[\begin{tikzcd}
+        {F(A)_n} & {F(B)_n} \\
+        {F(A)_m} & {F(B)_m}
+        \arrow["{F(A)_\alpha}"', from=1-1, to=2-1]
+        \arrow["{F(f)_n}", from=1-1, to=1-2]
+        \arrow["{F(f)_m}"', from=2-1, to=2-2]
+        \arrow["{F(B)_\alpha}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    It follows that $\gamma(F)_\alpha$ is natural. Thus $\gamma$ is a well-defined functor. Similarly, $\gamma$ has an inverse $\tau:\text{Fun}(\mathcal{A},\mathcal{B})\Sob\to \text{Fun}(\mathcal{A},\mathcal{B}\Sob)$ given by $\tau(F)(A)_n := F_n(A)$.
 \end{proof}
 
-\begin{lem}[label=lem:precompNat]
-    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be (naturally) simplicially homotopy equivalent. If $H:\mathcal{D}\rightarrow \mathcal{C}$ is any other functor into an abelian category, then $F\circ H$ and $G\circ H$ are (naturally) simplicially homotopy equivalent.
+Note that under this isomorphism, natural simplicial homotopy is simplicial homotopy in $\text{Fun}(\mathcal{A},\mathcal{B})\Sob$. 
+
+\begin{lem}[label=lem:simpFuncCat]
+    We have a functor $\text{Fun}(-,-)\Sob:\cat{Cat}^{op}\times \cat{Cat}\to \cat{Cat}$, and for any $\mathcal{A},\mathcal{B},\mathcal{C} \in \cat{Cat}$ where $\mathcal{C}$ has finite coproducts, and any functor $F:\mathcal{A}\to \mathcal{B}$, $\text{Fun}(F,\mathcal{C})\Sob:\text{Fun}(\mathcal{B},\mathcal{C})\Sob\to \text{Fun}(\mathcal{A},\mathcal{C})\Sob$ preserves simplicial homotopies. Similarly, if $\mathcal{B}$ and $\mathcal{C}$ both have finite colimits, and $F:\mathcal{B}\to \mathcal{C}$, then $\text{Fun}(\mathcal{A},F)$ preserves simplicial homotopies.
 \end{lem}
 \begin{proof}
-    Is immediate from restriction of maps.
+    The functor $\text{Fun}(-,-)\Sob$ is simply the composite of $\text{Fun}(-,-)$ with the 2-monad $\Sob$. Now let $\mathcal{A},\mathcal{B},\mathcal{C} \in \cat{Cat}$ and let $F:\mathcal{A}\to \mathcal{B}$ be a functor. Then suppose $G,H \in \text{Fun}(\mathcal{B},\mathcal{C})\Sob$ and suppose $g,h:G\to H$ are simplicially homotopic. Then there exists $f:G\times \Delta^1\to H$ such that $f\circ e_0 = g$ and $f\circ e_1 = h$. Then $\text{Fun}(F,\mathcal{C})\Sob$ is defined by sending $K \in \text{Fun}(\mathcal{B},\mathcal{C})\Sob$ $K_F$, where $(K_F)_n := K_n\circ F$. Observe that
+    %%
+    \begin{equation*}
+        ((G\times \Delta_1)_F)_n = (\coprod_{u \in \Delta^1_n}G_n)\circ F = \coprod_{u \in \Delta^1_n}(G_n\circ F) = ((G\circ F)\times \Delta^1)_n
+    \end{equation*}
+    %%
+    so $(G\times \Delta^1)_F = (G\circ F)\times \Delta^1$. Additionally, $((e_i)_F)_n= ((e_i)_n)_F$, which is exactly $(e_i)_n:(G\circ F)_n\to ((G\circ F)\times \Delta^1)_n$. Thus $\text{Fun}(F,\mathcal{C})\Sob$ preserves simplicial homotopies.
+
+    \vspace{10pt}
+
+    Conversely, if $\mathcal{B}$ and $\mathcal{C}$ are finitely cocomplete and $F:\mathcal{B}\to \mathcal{C}$, we can use the combinatorial description of homotopies. In this case, $\text{Fun}(\mathcal{A},F)$ is defined by ${_F}H_n := F\circ H_n$ on objects and ${_F}h_n := Fh_n$ on maps. Let $f,g:H\to K$ be simplicially homotopic maps in $\text{Fun}(\mathcal{A},\mathcal{B})\Sob$, by a simplicial homotopy $h_i^n:H_n\to K_{n+1}$. Then $Fh_i^n:F\circ H_n\to F\circ K_{n+1}$ defines a simplicial homotopy between ${_F}f$ and ${_F}g$, as desired.
 \end{proof}
+
+% Post-composition also preserves simplicial homotopies if we are post-composing by functors that preserve finite coproducts.
+
+% \begin{lem}[label=lem:postcompNat]
+%     If $\mathcal{A},\mathcal{B},\mathcal{C} \in \cat{Cat}$ where $\mathcal{B},\mathcal{C}$ have finite coproducts, and $F:\mathcal{B}\to \mathcal{C}$ is a functor that preserves finite coproducts, then $\text{Fun}(\mathcal{A},F)\Sob:\text{Fun}(\mathcal{A},\mathcal{B})\Sob\to \text{Fun}(\mathcal{A},\mathcal{C})\Sob$ preserves simplicial homotopies.
+% \end{lem}
+% \begin{proof}
+%     Let $H,K \in \text{Fun}(\mathcal{A},\mathcal{B})\Sob$ and let $h,k:H\to K$ be simplicially homotopic by a map $s:H\times \Delta^1\to K$. Note that $\text{Fun}(\mathcal{A},F)$ is defined by ${_F}H_n := F\circ H_n$ on objects and ${_F}h_n := Fh_n$ on maps. By Corollary~\ref{cor:presFunccoLim}, since $F$ preserves colimits we have that ${_F}(H\times \Delta^1) \cong {_F}H\times \Delta^1$, and under this isomorphism $e_i:H\times \Delta^0\to H\times \Delta^1$ corresponds to $e_i:{_F}H\times \Delta^0\to {_F}H\times \Delta^1$. Thus $\text{Fun}(\mathcal{A},F)$ produces the desired commuting triangles to make ${_F}s$ a simplicial homotopy from ${_F}h$ to ${_F}k$. 
+% \end{proof}
+
+
 
 \begin{lem}[label=lem:diagHo]
-    Let $F,G: \mathcal{C}\rightarrow (\mathcal{B}\Sob)\Sob$ be (naturally) simplicially homotopy equivalent. Then $\Delta_\mathcal{B}\circ F$ and $\Delta_\mathcal{B}\circ G$ are (naturally) simplicially homotopy equivalent.
+    Let $F,G: \mathcal{C}\rightarrow (\mathcal{B}\Sob)\Sob$ and let $f,g:F\to G$ be naturally simplicially homotopic. Then $\Delta_\mathcal{B}f,\Delta_\mathcal{B}g:\Delta_\mathcal{B}\circ F\to\Delta_\mathcal{B}\circ G$ are naturally simplicially homotopic.
 \end{lem}
 \begin{proof}
-    Let $(f,g,h,h')$ be the maps witnessing the (natural) simplicial homotopy equivalence between $F$ and $G$. Consider the collection of maps obtained by whiskering $(\Delta_\mathcal{B}f,\Delta_\mathcal{B}g,\Delta_\mathcal{B}h,\Delta_\mathcal{B}h')$. Again naturality is automatically preserved, so it is sufficient to show that this defines a pointwise simplicial homotopy between the functors. But this is simply restriction to the diagonal of the bicomplex, so the commutivity of the defining commutative triangles is preserved.
+    Let $h:F\times \Delta^1\to G$ be a simplicial homotopy between $f$ and $g$. Then 
+    %%
+    \begin{equation*}
+        \Delta_\mathcal{B}(F\times \Delta^1)(C)_n = \coprod_{u \in \Delta^1_n}F(C)_{n,n} = (\Delta_\mathcal{B}F\times \Delta^1)(C)_n
+    \end{equation*}
+    %%
+    In particular, $\Delta_\mathcal{B}h$ defines a simplicial homotopy from $\Delta_\mathcal{B}f$ to $\Delta_\mathcal{B}g$.
 \end{proof}
 
 
 \begin{lem}[label=lem:Precomp]
-    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be naturally simplicially homotopy equivalent. Then $\Delta^{op}(F),\Delta^{op}(G): \mathcal{C}\Sob\rightarrow (\mathcal{B}\Sob)\Sob$ are naturally simplicially homotopy equivalent.
+    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ and let $f,g:F\to G$ be naturally simplicially homotopic. Then $\Delta^{op}(f),\Delta^{op}(g):\Delta^{op}(F)\to\Delta^{op}(G)$ are naturally simplicially homotopic.
 \end{lem}
 \begin{proof}
-    Let $(f,g,h,h')$ be a (natural) simplicial homotopy equivalence between $F$ and $G$. If the equivalence is natural, we can define $(\Delta^{op}(f),\Delta^{op}(g),\Delta^{op}(h),\Delta^{op}(h'))$ which is again a (natural) simplicial homotopy equivalence since $\Delta^{op}$ is a strict 2-functor, and so preserves composition.
+    Let $h:F\times \Delta^1\to G$ be a simplicial homotopy between $f$ and $g$. Then observe that 
+    %%
+    \begin{equation*}
+        \Delta^{op}(F\times \Delta^1)(C)_n = F(C_n)\times \Delta^1 = \Delta^{op}(F)(C)_n\times \Delta^1
+    \end{equation*}
+    %%
+    Then $\Delta^{op}(h):\Delta^{op}(F)\times \Delta^1\to \Delta^{op}(G)$, and since $\Delta^{op}$ is a strict 2-functor it preserves composition so $\Delta^{op}(h)$ is a homotopy from $\Delta^{op}(f)$ to $\Delta^{op}(g)$.
 \end{proof}
 
-
-\begin{lem}[label=lem:PrecompDiag]
-    Let $F,G: \mathcal{C}\rightarrow \mathcal{B}\Sob$ be naturally simplicially homotopy equivalent. Then $\Delta_\mathcal{B}F_*,\Delta_\mathcal{B}G_*: \mathcal{C}\Sob\rightarrow (\mathcal{B}\Sob)\Sob\rightarrow \mathcal{B}\Sob$ are naturally simplicially homotopy equivalent.
-\end{lem}
-\begin{proof}
-    Since the homotopy equivalences are natural this follows from Lemmas~\ref{lem:Precomp} and~\ref{lem:diagHo}.
-\end{proof}
 
 
 
@@ -251,6 +314,92 @@ We now show how these equivalences behave under composition.
 
 
 In this section we expand on the behaviour of natural chain homotopies and the interaction between natural chain homotopies and direct sums. We begin by proving equivalent formulations of natural chain homotopies.
+
+\begin{lem}[label=lem:funcChain]
+    For $\mathcal{A}$ an abelian category, we have an isomorphism of categories
+    \begin{equation}\label{eq:ChainFunc}
+        \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\cong \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))
+    \end{equation}
+\end{lem}
+\begin{proof}
+    Define a functor $\gamma:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\rightarrow \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$ given on a chain complex of functors $F_\bullet$ by
+    %%
+    \begin{equation*}
+        \gamma(F_\bullet)(B)_n := F_n(B),\;\forall B \in \mathcal{B}
+    \end{equation*}
+    %%
+    where the differentials are given by the natural transformation differentials in $F_\bullet$ evaluated at $B$. Given a map of chain complexes $\alpha_\bullet:F_\bullet\rightarrow G_\bullet$ we set
+    %%
+    \begin{equation*}
+        (\gamma(\alpha_\bullet)_B)_n := (\alpha_n)_B
+    \end{equation*}
+    %%
+    This defines a chain map $\gamma(F_\bullet)(B)\rightarrow \gamma(G_\bullet)(B)$ since $\alpha_\bullet$ is a chain map of natural transformations, so all squares with differentials commute. Further, $\gamma(\alpha_\bullet)$ is natural in $B$ since if $f:B\rightarrow B'$ is a map in $\mathcal{B}$, then in
+    \[\begin{tikzcd}
+    	& {F_{n+1}(B')} &&& {F_n(B')} \\
+    	{F_{n+1}(B)} && {F_n(B)} \\
+    	& {G_{n+1}(B')} &&& {G_n(B')} \\
+    	{G_{n+1}(B)} && {G_n(B)}
+    	\arrow["{\partial_{n+1}}"{pos=0.7}, from=2-1, to=2-3]
+    	\arrow["{(\alpha_{n+1})_B}"', from=2-1, to=4-1]
+    	\arrow["{\partial_{n+1}}"', from=4-1, to=4-3]
+    	\arrow["{(\alpha_n)_B}"{pos=0.3}, from=2-3, to=4-3]
+    	\arrow["{F_{n+1}(f)}", from=2-1, to=1-2]
+    	\arrow["{F_n(f)}"', from=2-3, to=1-5]
+    	\arrow["{\partial_{n+1}}", from=1-2, to=1-5]
+    	\arrow["{(\alpha_n)_{B'}}", from=1-5, to=3-5]
+    	\arrow["{G_n(f)}"', from=4-3, to=3-5]
+    	\arrow["{G_{n+1}(f)}", from=4-1, to=3-2]
+    	\arrow["{(\alpha_{n+1})_{B'}}"'{pos=0.6}, from=1-2, to=3-2]
+    	\arrow["{\partial_{n+1}}"', from=3-2, to=3-5]
+    \end{tikzcd}\]
+    the front and back faces commute since $\alpha_\bullet$ is a chain map, the top and bottom faces commute by naturality of the boundary maps, and the side faces commute by naturality of the $\alpha_n$. Since this definition is in terms of the components of $\alpha_\bullet$ it is inherently functorial. 
+
+    Next we must witness an inverse $\rho:\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))\rightarrow \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ functor. Given $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ we set $\rho(F)$ to have $n$th component $(-)_n\circ F$ and differential $\partial_n$ given by components the $n$th differential of $F$ evaluated at $B  \in \mathcal{B}$. Naturality of the differential equates to the commutivity of 
+    \[\begin{tikzcd}
+    	{F(B)_n} & {F(B)_{n-1}} \\
+    	{F(B')_n} & {F(B')_{n-1}}
+    	\arrow["{F(f)_n}"', from=1-1, to=2-1]
+    	\arrow["{\partial_n(B)}", from=1-1, to=1-2]
+    	\arrow["{\partial_n(B')}"', from=2-1, to=2-2]
+    	\arrow["{F(f)_{n-1}}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    for any $f:B\rightarrow B'$, which follows since $F(f)$ is a chain map. Next, if $\alpha:F\rightarrow G$ is a natural transformation between two such functors we set $\rho(\alpha)$ such that $\rho(\alpha)_n$ is the natural transformation defined by $(\rho(\alpha)_n)_B := (\alpha_B)_n$. Naturality and the chain condition follow by the commutivity of 
+    \[\begin{tikzcd}
+    	& {F(B')_{n+1}} &&& {F(B')_n} \\
+    	{F(B)_{n+1}} && {F(B)_n} \\
+    	& {G(B')_{n+1}} &&& {G(B')_n} \\
+    	{G(B)_{n+1}} && {G(B)_n}
+    	\arrow["{\partial_{n+1}(B)}"{pos=0.7}, from=2-1, to=2-3]
+    	\arrow["{(\alpha_B)_{n+1}}"', from=2-1, to=4-1]
+    	\arrow["{\partial_{n+1}(B)}"', from=4-1, to=4-3]
+    	\arrow["{(\alpha_B)_n}"{pos=0.2}, from=2-3, to=4-3]
+    	\arrow["{F(f)_{n+1}}", from=2-1, to=1-2]
+    	\arrow["{F(f)_n}"', from=2-3, to=1-5]
+    	\arrow["{\partial_{n+1}(B')}", from=1-2, to=1-5]
+    	\arrow["{(\alpha_{B'})_n}", from=1-5, to=3-5]
+    	\arrow["{G(f)_n}"', from=4-3, to=3-5]
+    	\arrow["{G(f)_{n+1}}", from=4-1, to=3-2]
+    	\arrow["{(\alpha_{B'})_{n+1}}"'{pos=0.6}, from=1-2, to=3-2]
+    	\arrow["{\partial_{n+1}(B')}"', from=3-2, to=3-5]
+    \end{tikzcd}\]
+    where the bottom and top faces are the fact $G(f)$ and $F(f)$ are chain maps, the front and back faces are the fact $\alpha_B$ is a chain map, and finally the side faces are naturality of $\alpha$. Once again, since $\rho(\alpha)$ is defined in terms of the components of $\alpha$ the assignment is inherently functorial. Further, these operations are exactly inverse of each other as they correspond to swapping the element and natural number indices (in particular, on the other side of the Dold-Kan Equivalence this is simply the swap natural isomorphism on functors of two variables).
+\end{proof}
+
+Moving forward we write $\text{Fun}^\cat{Ch}$ for the isomorphism $\gamma$ in the proof. We also have another description of this category:
+
+\begin{lem}[label=lem:adjChFuncCat]
+    Let $\Z$ denote the category associated with the linear ordered set $(\Z,\geq)$. Let $\text{Fun}_{\cat{Ch}}(\mathcal{B}\times \Z,\mathcal{A})$ be the sub-category such that $F(-,n+2\leq n)$ is the zero map. Then under the adjunction $-\times \Z\dashv \text{Fun}(\Z,\mathcal{A})$ we have the isomorphism
+    %%
+    \begin{equation*}
+        \text{Fun}_{\cat{Ch}}(\mathcal{B}\times \Z,\mathcal{A})\cong \text{Fun}(\mathcal{B},\text{Fun}_{\cat{Ch}}(\Z,\mathcal{A}))
+    \end{equation*}
+    %%
+    and $\text{Fun}_{\cat{Ch}}(\Z,\mathcal{A})\cong \cat{Ch}(\mathcal{A})$.
+\end{lem}
+\begin{proof}
+    It is sufficient to show that the isomorphism in the adjunction restricts to the isomorphism above. But this follows immediately by definition, so all that there is to show is $\text{Fun}_{\cat{Ch}}(\Z,\mathcal{A})\cong \cat{Ch}$. But this is also immediate by sending $A:\Z\to \mathcal{A}$ to $A_\bullet$, where $A_n = A(n)$ and $\partial_n^A = A(n\geq n-1)$, and vice-versa.
+\end{proof}
 
 \begin{lem}[label=lem:natHomotopIsChainFunctHomotop]
     Chain homotopies correspond to natural chain homotopies of functors under the isomorphism $\text{Fun}^{\cat{Ch}}:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\to \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{B}))$.
@@ -342,7 +491,96 @@ Next, we also show an equivalent form of chain homotopies.
 %     \textbf{TBD}
 % \end{proof}
 
-We now show how additive functors acting componentwise preserve chain homotopies.
+
+We now prove some preliminary results on exactness and preserving chain homotopies in order to show the exactness and preservation of limits for this construction.
+
+\begin{lem}[label=lem:TotExact]
+    The totalization functor $\text{Tot}:\cat{Ch}^2(\mathcal{A})\rightarrow \cat{Ch}(\mathcal{A})$ is exact.
+\end{lem}
+\begin{proof}
+    Let 
+    %%
+    \begin{equation*}
+        0\rightarrow A_1\xrightarrow{f_1} A_2\xrightarrow{f_2} A_3\rightarrow 0
+    \end{equation*}
+    %%
+    be a short exact sequence of bicomplexes in $\mathcal{A}$. This becomes a sequence of complexes 
+    %%
+    \begin{equation*}
+        \text{Tot}(A_1)\xrightarrow{\text{Tot}(f_1)}\text{Tot}(A_2)\xrightarrow{\text{Tot}(f_2)}\text{Tot}(A_3)
+    \end{equation*}
+    %%
+    where at a given $n$,
+    %%
+    \begin{equation*}
+        \text{Tot}(A_i)_n = \bigoplus_{j=0}^n(A_i)_{j,n-j}
+    \end{equation*}
+    %%
+    and
+    %%
+    \begin{equation*}
+        \text{Tot}(f_i)_n = \bigoplus_{j=0}^n (f_i)_{j,n-j}
+    \end{equation*}
+    %%
+    Note that the sequence of bicomplexes being exact means that each component sequence in $\mathcal{A}$ is exact. Then the component sequence of the totalization at $n$ is a finite direct sum of exact sequences, and hence exact.
+\end{proof}
+
+\begin{lem}[label=pushForward]
+    Let $F:\mathcal{B}\rightarrow \mathcal{C}$ be an exact functor between abelian categories. Then for a category $\mathcal{A}$, $F_*:\text{Fun}(\mathcal{A},\mathcal{B})\rightarrow \text{Fun}(\mathcal{A},\mathcal{C})$ is exact.
+\end{lem}
+\begin{proof}
+    Let $0\rightarrow G_1\xrightarrow{\eta_1} G_2\xrightarrow{\eta_2} G_3\rightarrow 0$ be a short exact sequence of functors from $\mathcal{A}$ to $\mathcal{B}$. Since abelian categories are finitely complete and cocomplete, finite limits and colimits in $\text{Fun}(\mathcal{A},\mathcal{B})$ and $\text{Fun}(\mathcal{A},\mathcal{C})$ are computed pointwise, so it is sufficient to prove the lemma at a given $A \in \mathcal{A}$. This follows by exactness of $F$.
+\end{proof}
+
+In order to prove our desired exactness result we first introduce a naive notion chain complexes of functors for the subcategory of additive functors.
+
+\begin{lem}[label=lem:funcActChain]
+    Let $\text{Fun}_{Add}(\mathcal{A},\mathcal{C})$ be the category of additive functors between abelian categories with all natural transformations. Then we have a functor
+    %%
+    \begin{equation*}
+        \cat{Ch}:\text{Fun}_{Add}(\mathcal{A},\mathcal{C})\rightarrow \text{Fun}_{Add}(\cat{Ch}(\mathcal{A}),\cat{Ch}(\mathcal{C}))
+    \end{equation*}
+    given by sending functors to their action componentwise.
+\end{lem}
+\begin{proof}
+    Let $\mathcal{F} \in \text{Fun}_{Add}(\mathcal{A},\mathcal{C})$. Since $\mathcal{F}$ is additive it preserves $0$'s and hence sends chain complexes to chain complexes. Then let $f_\bullet:A_\bullet\rightarrow A_\bullet'$ be a map of chain complexes. Then $\cat{Ch}(\mathcal{F})(f_\bullet)_n := \mathcal{F}(f_n)$, and since $\mathcal{F}$ is additive
+    %%
+    \begin{equation*}
+        \mathcal{F}(f_n)\mathcal{F}(\partial_{n+1}^A)-\mathcal{F}(\partial_n^{A'})\mathcal{F}(f_{n+1}) = \mathcal{F}(f_n\partial_{n+1}^A-\partial_n^{A'}f_{n+1}) = \mathcal{F}(0) = 0
+    \end{equation*}
+    %%
+    so $\cat{Ch}(\mathcal{F})(f_\bullet)$ is a chain map. Further, since $\cat{Ch}(\mathcal{F})$ is defined componentwise and $\mathcal{F}$ is a functor and additive, $\cat{Ch}(\mathcal{F})$ is a functor and additive. 
+
+
+    Next, let $\eta:\mathcal{F}\rightarrow \mathcal{G}$ be a natural transformation between additive functors. Then define $\cat{Ch}(\eta)_{A_\bullet}:\cat{Ch}(\mathcal{F})(A_\bullet)\rightarrow \cat{Ch}(\mathcal{G})(A_\bullet)$ by $(\cat{Ch}(\eta)_{A_\bullet})_n := \eta_{A_n}$. Then $\cat{Ch}(\eta)_{A_\bullet}$ is a chain map by naturality of $\eta$. Further, $\cat{Ch}(\eta)$ is natural again by naturality of $\eta$, which makes the following diagram commute for $f_\bullet:A_\bullet\rightarrow A_\bullet$:
+    \[\begin{tikzcd}
+    	{\mathcal{F}(A_n)} & {\mathcal{F}(B_n)} \\
+    	{\mathcal{G}(A_n)} & {\mathcal{G}(B_n)}
+    	\arrow["{\eta_{A_n}}"', from=1-1, to=2-1]
+    	\arrow["{\mathcal{G}(f_n)}"', from=2-1, to=2-2]
+    	\arrow["{\eta_{B_n}}", from=1-2, to=2-2]
+    	\arrow["{\mathcal{F}(f_n)}", from=1-1, to=1-2]
+    \end{tikzcd}\]
+    Since $\cat{Ch}(\eta)$ is defined componentwise it preserves composites and identities.
+\end{proof}
+
+\begin{lem}[label=lem:funcActChainHori]
+    Let $F,G:\mathcal{B}\to \mathcal{C}$, $H:\mathcal{C}\to \mathcal{D}$, and $K:\mathcal{A}\to \mathcal{B}$ be additive functors. If $\eta:F\Rightarrow G$ is a natural transformation, then
+    %%
+    \begin{equation*}
+        \cat{Ch}(H\eta_K) = \cat{Ch}(H)\cat{Ch}(\eta)_{\cat{Ch}(K)}
+    \end{equation*}
+\end{lem}
+\begin{proof}
+    From the proof of Lemma~\ref{lem:funcActChain} we have that for a chain complex $A_\bullet$, 
+    %%
+    \begin{equation*}
+        (\cat{Ch}(H\eta_K)_{A_\bullet})_n = H(\eta_{K(A_n)}) = H(\eta_{\cat{Ch}(K)(A_\bullet)_n}) = H((\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n) = \cat{Ch}(H)(\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n
+    \end{equation*}
+    %%
+\end{proof}
+
+Note that Lemma~\ref{lem:funcActChainHori} shows that $\cat{Ch}$ is a strict 2-functor on the category of abelian categories with additive functors between them. We now show how additive functors acting componentwise preserve chain homotopies.
 
 \begin{lem}[label=lem:addFuncPres]
     Let $F:\mathcal{A}\to \mathcal{B}$ be an additive functor. Then $\cat{Ch}(F):\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{B})$ preserves chain homotopies.
@@ -377,5 +615,81 @@ By Lemma~\ref{lem:ChConsPtwise} and Lemma~\ref{ lem:addFuncPres} it follows that
     \end{equation*}
 \end{lem}
 \begin{proof}
-    This equality is an immediate consequence of the construction of $C^{\cat{Ch}}$ and the specified equalities for the comonad natural transformations.
+    This equality is an immediate consequence of the construction of $C^{\cat{Ch}}$ and the specified equalities for the comonad natural transformations. Indeed, observe that for $A' \in \mathcal{A}'$
+    %%
+    \begin{align*}
+        \cat{Ch}(\gamma)\circ C^{\cat{Ch}}\circ \gamma^{-1}(A') &= \cat{Ch}(\gamma)(\cdots \to C^2\gamma^{-1}(A')\xrightarrow{C\epsilon_{\gamma^{-1}(A')}-\epsilon_{C\gamma^{-1}(A')}}C\gamma^{-1}(A')\xrightarrow{\epsilon_{\gamma^{-1}(A')}}\gamma^{-1}(A')) \\
+        &= \cdots \to \gamma C^2\gamma^{-1}(A')\xrightarrow{\gamma C\epsilon_{\gamma^{-1}(A')}-\gamma \epsilon_{C\gamma^{-1}(A')}}\gamma C\gamma^{-1}(A')\xrightarrow{\gamma \epsilon_{\gamma^{-1}(A')}}\gamma \gamma^{-1}(A') \\
+        &= \cdots \to {C'}^2(A')\xrightarrow{C'\epsilon'_{A'}-\epsilon'_{C'(A')}}C'(A')\xrightarrow{\epsilon'_{A'}}A'
+    \end{align*}
+    %%
+\end{proof}
+
+
+Next, we have the following result on (co)limits in chain complex categories, which is a analoguous to the result for functor categories.
+
+\begin{lem}[label=lem:computecoLim]
+    Let $\mathcal{A}$ be an abelian category with $I$ shaped (co)limits for a small category $I$. Then $\cat{Ch}(\mathcal{A})$ has $I$ shaped (co)limits which are computed pointwise.
+\end{lem}
+\begin{proof}
+    We provide the proof in the case of colimits, while the case of limits is analoguous. Let $D:I\to \cat{Ch}(\mathcal{A})$ be an $I$ shaped diagram in $\cat{Ch}(\mathcal{A})$. 
+    
+    
+    For each $n \in \Z$ we have a functor $(-)_n:\cat{Ch}(\mathcal{A})\to \mathcal{A}$ given by projecting on the $n$th component. By assumption, for each $n \in \Z$ the colimit of $(-)_n\circ D:I\to \mathcal{A}$ exists. Denote this limit by $D_n$, and denote its injections by $\iota_{n,i}$, for $i \in I$. For each $i \in I$ we have an induced map $D(i)_{n+1}\to D(i)_n \to D_n$ obtained by composing with the the boundary map for $D(i)_\bullet \in \cat{Ch}(\mathcal{A})$ and the inclusion. By the universal property of the colimit we obtain a unique map making the square
+    \[\begin{tikzcd}
+    	{D_{n+1}} & {D_n} \\
+    	{D(i)_{n+1}} & {D(i)_n}
+    	\arrow["{\partial^{D(i)}_{n+1}}"', from=2-1, to=2-2]
+    	\arrow[dashed, from=1-1, to=1-2]
+    	\arrow["{\iota_{n+1,i}}", from=2-1, to=1-1]
+    	\arrow["{\iota_{n,i}}"', from=2-2, to=1-2]
+    \end{tikzcd}\]
+    commute. Let $\partial_{n+1}$ denote this map. Then by uniqueness of this map and the fact that pasting two such squares together gives a commuting rectangle
+    %%
+    \[\begin{tikzcd}
+    	{D_{n+1}} & {D_n} & {D_{n-1}} \\
+    	{D(i)_{n+1}} & {D(i)_n} & {D(i)_{n-1}}
+    	\arrow["{\partial^{D(i)}_{n+1}}"', from=2-1, to=2-2]
+    	\arrow[dashed, from=1-1, to=1-2]
+    	\arrow["{\iota_{n+1,i}}", from=2-1, to=1-1]
+    	\arrow["{\iota_{n,i}}"', from=2-2, to=1-2]
+    	\arrow["{\partial_n^{D(i)}}"', from=2-2, to=2-3]
+    	\arrow["{\iota_{n-1,i}}"', from=2-3, to=1-3]
+    	\arrow[dashed, from=1-2, to=1-3]
+    \end{tikzcd}\]
+    %%
+    we must have that $\partial_n\circ \partial_{n+1}$ is the zero map. This implies that $(D_\bullet,\partial_\bullet)$ defines a chain complex on $\mathcal{A}$. It remains to show that it is the colimit of $D$. But by construction any other such chain complex with maps out of each $D(i)$ induces maps unique pointwise maps which form commuting squares in a chain map by their uniqueness.
+\end{proof}
+
+
+This allows us to also describe how totalization behaves under the isomorphism from functors valued in chain complexes and chain complexes of functors.
+
+\begin{lem}[label=lem:totFuncCh]
+    For abelian categories $\mathcal{A},\mathcal{B}$, we have a natural isomorphism
+    %%
+    \begin{equation*}
+        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \cong \text{Fun}^{\cat{Ch}}\circ \text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Let $F_{\bullet,\bullet} \in \cat{Ch}^2(\text{Fun}(\mathcal{B},\mathcal{A}))$. Let $F:\text{Fun}(\mathcal{B},\cat{Ch}^2(\mathcal{A}))$ be the associated functor under two applications of $\text{Fun}^{\cat{Ch}}$. For $B \in \mathcal{B}$, the left functor gives the complex
+    %%
+    \begin{equation*}
+        \text{Tot}_{\mathcal{A}}(F(B))_n := \bigoplus_{p+q=n}F_{p,q}(B)
+    \end{equation*}
+    %%
+    at $B$, while the right functor gives the complex
+    %%
+    \begin{equation*}
+        \text{Fun}^{\cat{Ch}}(\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}(F_{\bullet,\bullet}))(B)_n := \left(\bigoplus_{p+q=n}F_{p,q}\right)(B) \cong \bigoplus_{p+q=n}F_{p,q}(B)
+    \end{equation*}
+    %%
+    Under the adjunction in Lemma~\ref{lem:adjChFuncCat}, these give functors $\text{Fun}_{\cat{Ch}}(\mathcal{B},\cat{Ch}(\mathcal{A}))\cong \text{Fun}_{\cat{Ch}}(\mathcal{B}\times \Z,\mathcal{A})$. Then we can use the results in Section~\ref{sec:colimFuncs} to conclude that 
+    %%
+    \begin{equation*}
+        \text{Fun}^{\cat{Ch}}(\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}(F_{\bullet,\bullet})) \cong  \text{Tot}_{\mathcal{A}}(F)
+    \end{equation*} 
+    %%
+    for all $F_{\bullet,\bullet}$, and further these isomorphisms are natural in $F_{\bullet,\bullet}$ \textbf{STILL NEED SOME CLARIFICATION}.
 \end{proof}

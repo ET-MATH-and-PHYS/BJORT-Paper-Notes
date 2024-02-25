@@ -1837,6 +1837,13 @@ INPUT Reading/DoldKan.tex
 INPUT ./Reading/DoldKan.tex
 INPUT ./Reading/DoldKan.tex
 INPUT Reading/DoldKan.tex
+INPUT ./SideWork/(co)LimCons.tex
+INPUT ./SideWork/(co)LimCons.tex
+INPUT ./SideWork/(co)LimCons.tex
+INPUT SideWork/(co)LimCons.tex
+INPUT ./SideWork/(co)LimCons.tex
+INPUT ./SideWork/(co)LimCons.tex
+INPUT SideWork/(co)LimCons.tex
 INPUT ./SideWork/MonadAttempts.tex
 INPUT SideWork/MonadAttempts.tex
 INPUT ./SideWork/MonadAttempts.tex

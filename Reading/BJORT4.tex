@@ -6,9 +6,10 @@ With the appropriate categorical language built up, we can begin constructing Ta
     A functor $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ is \textbf{degree $n$} if $\text{cr}_{n+1}(F):\mathcal{B}^{n+1}\rightarrow \cat{Ch}(\mathcal{A})$ is \textbf{contractible}, i.e., \rd{natural} chain homotopy equivalent to zero. 
 \end{defn}
 
-Note that $\cat{cr}_k(F) \simeq_{\cat{Ch}} 0$ implies $\cat{cr}_\ell(F) \simeq_\cat{Ch} 0$ for any $\ell > k$. Indeed, since $G \oplus F \simeq_{\cat{Ch}} 0$ implies $F \simeq_{\cat{Ch}} 0$, this follows from the inductive definition. Consequently, functors of degree $k$ are also of degree $\ell$ for $\ell > k$.
+Note that $\cat{cr}_k(F) \simeq_{\cat{Ch}} 0$ implies $\cat{cr}_\ell(F) \simeq_\cat{Ch} 0$ for any $\ell > k$. Indeed, since $G \oplus F \simeq_{\cat{Ch}} 0$ implies $F \simeq_{\cat{Ch}} 0$ from Section~\ref{subsec:chainHomotop}, this follows from the inductive definition. Consequently, functors of degree $k$ are also of degree $\ell$ for $\ell > k$.
 
 From \cite[Defn 2.4]{JohnsonB.2004Dcwc}, chain complexes can be constructed from a pair of a comonad and an object in the category on which the comonad acts.
+
 \begin{lem}[label=lem:comonadChain]
     Let $C:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ be a comonad on a functor category where $\mathcal{A}$ is an abelian category (so in particular $\text{Fun}(\mathcal{B},\mathcal{A})$ is abelian). Then $C$ induces a functor $$C^\cat{Ch}:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$$
 \end{lem}
@@ -48,81 +49,7 @@ From \cite[Defn 2.4]{JohnsonB.2004Dcwc}, chain complexes can be constructed from
     which commutes by naturality of $\epsilon$. Since composition is bilinear with respect to the group operation on hom sets in an abelian category we have that the $C^n(\alpha)$ form a chain map in $\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$. Further, since $C$ is a functor so is $C^\cat{Ch}$, completing the proof.
 \end{proof}
 
-Note that we can realize this functor as going to $\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$. Indeed, $\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\cong \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$, as we show in Lemma \ref{lem:funcChain}
-
-\begin{lem}[label=lem:funcChain]
-    For $\mathcal{A}$ an abelian category, we have an isomorphism of categories
-    \begin{equation}\label{eq:ChainFunc}
-        \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\cong \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))
-    \end{equation}
-\end{lem}
-\begin{proof}
-    Define a functor $\gamma:\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\rightarrow \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$ given on a chain complex of functors $F_\bullet$ by
-    %%
-    \begin{equation*}
-        \gamma(F_\bullet)(B)_n := F_n(B),\;\forall B \in \mathcal{B}
-    \end{equation*}
-    %%
-    where the differentials are given by the natural transformation differentials in $F_\bullet$ evaluated at $B$. Given a map of chain complexes $\alpha_\bullet:F_\bullet\rightarrow G_\bullet$ we set
-    %%
-    \begin{equation*}
-        (\gamma(\alpha_\bullet)_B)_n := (\alpha_n)_B
-    \end{equation*}
-    %%
-    This defines a chain map $\gamma(F_\bullet)(B)\rightarrow \gamma(G_\bullet)(B)$ since $\alpha_\bullet$ is a chain map of natural transformations, so all squares with differentials commute. Further, $\gamma(\alpha_\bullet)$ is natural in $B$ since if $f:B\rightarrow B'$ is a map in $\mathcal{B}$, then in
-    \[\begin{tikzcd}
-    	& {F_{n+1}(B')} &&& {F_n(B')} \\
-    	{F_{n+1}(B)} && {F_n(B)} \\
-    	& {G_{n+1}(B')} &&& {G_n(B')} \\
-    	{G_{n+1}(B)} && {G_n(B)}
-    	\arrow["{\partial_{n+1}}"{pos=0.7}, from=2-1, to=2-3]
-    	\arrow["{(\alpha_{n+1})_B}"', from=2-1, to=4-1]
-    	\arrow["{\partial_{n+1}}"', from=4-1, to=4-3]
-    	\arrow["{(\alpha_n)_B}"{pos=0.3}, from=2-3, to=4-3]
-    	\arrow["{F_{n+1}(f)}", from=2-1, to=1-2]
-    	\arrow["{F_n(f)}"', from=2-3, to=1-5]
-    	\arrow["{\partial_{n+1}}", from=1-2, to=1-5]
-    	\arrow["{(\alpha_n)_{B'}}", from=1-5, to=3-5]
-    	\arrow["{G_n(f)}"', from=4-3, to=3-5]
-    	\arrow["{G_{n+1}(f)}", from=4-1, to=3-2]
-    	\arrow["{(\alpha_{n+1})_{B'}}"'{pos=0.6}, from=1-2, to=3-2]
-    	\arrow["{\partial_{n+1}}"', from=3-2, to=3-5]
-    \end{tikzcd}\]
-    the front and back faces commute since $\alpha_\bullet$ is a chain map, the top and bottom faces commute by naturality of the boundary maps, and the side faces commute by naturality of the $\alpha_n$. Since this definition is in terms of the components of $\alpha_\bullet$ it is inherently functorial. 
-
-    Next we must witness an inverse $\rho:\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))\rightarrow \cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ functor. Given $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ we set $\rho(F)$ to have $n$th component $(-)_n\circ F$ and differential $\partial_n$ given by components the $n$th differential of $F$ evaluated at $B  \in \mathcal{B}$. Naturality of the differential equates to the commutivity of 
-    \[\begin{tikzcd}
-    	{F(B)_n} & {F(B)_{n-1}} \\
-    	{F(B')_n} & {F(B')_{n-1}}
-    	\arrow["{F(f)_n}"', from=1-1, to=2-1]
-    	\arrow["{\partial_n(B)}", from=1-1, to=1-2]
-    	\arrow["{\partial_n(B')}"', from=2-1, to=2-2]
-    	\arrow["{F(f)_{n-1}}", from=1-2, to=2-2]
-    \end{tikzcd}\]
-    for any $f:B\rightarrow B'$, which follows since $F(f)$ is a chain map. Next, if $\alpha:F\rightarrow G$ is a natural transformation between two such functors we set $\rho(\alpha)$ such that $\rho(\alpha)_n$ is the natural transformation defined by $(\rho(\alpha)_n)_B := (\alpha_B)_n$. Naturality and the chain condition follow by the commutivity of 
-    \[\begin{tikzcd}
-    	& {F(B')_{n+1}} &&& {F(B')_n} \\
-    	{F(B)_{n+1}} && {F(B)_n} \\
-    	& {G(B')_{n+1}} &&& {G(B')_n} \\
-    	{G(B)_{n+1}} && {G(B)_n}
-    	\arrow["{\partial_{n+1}(B)}"{pos=0.7}, from=2-1, to=2-3]
-    	\arrow["{(\alpha_B)_{n+1}}"', from=2-1, to=4-1]
-    	\arrow["{\partial_{n+1}(B)}"', from=4-1, to=4-3]
-    	\arrow["{(\alpha_B)_n}"{pos=0.2}, from=2-3, to=4-3]
-    	\arrow["{F(f)_{n+1}}", from=2-1, to=1-2]
-    	\arrow["{F(f)_n}"', from=2-3, to=1-5]
-    	\arrow["{\partial_{n+1}(B')}", from=1-2, to=1-5]
-    	\arrow["{(\alpha_{B'})_n}", from=1-5, to=3-5]
-    	\arrow["{G(f)_n}"', from=4-3, to=3-5]
-    	\arrow["{G(f)_{n+1}}", from=4-1, to=3-2]
-    	\arrow["{(\alpha_{B'})_{n+1}}"'{pos=0.6}, from=1-2, to=3-2]
-    	\arrow["{\partial_{n+1}(B')}"', from=3-2, to=3-5]
-    \end{tikzcd}\]
-    where the bottom and top faces are the fact $G(f)$ and $F(f)$ are chain maps, the front and back faces are the fact $\alpha_B$ is a chain map, and finally the side faces are naturality of $\alpha$. Once again, since $\rho(\alpha)$ is defined in terms of the components of $\alpha$ the assignment is inherently functorial. Further, these operations are exactly inverse of each other as they correspond to swapping the element and natural number indices (in particular, on the other side of the Dold-Kan Equivalence this is simply the swap natural isomorphism on functors of two variables).
-\end{proof}
-
-
-Moving forward we write $\text{Fun}^\cat{Ch}$ for the isomorphism $\gamma$ in the proof. We can use this technique to define the polynomial approximations in the Taylor tower for a functor.
+Note that we can realize this functor as going to $\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$. Indeed, $\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))\cong \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$, as we show in Lemma \ref{lem:funcChain}. We can use this technique to define the polynomial approximations in the Taylor tower for a functor.
 
 \begin{defn}[label=defn:4.2]{}
     The \textbf{$n$th polynomial approximation} is the composite functor $P_n := (\text{Tot}_\mathcal{A})_*\circ \text{Fun}^\cat{ch}\circ C_{n+1}^{\cat{Ch}}:\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))\rightarrow \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$. 
@@ -185,112 +112,23 @@ We test the above computation, and the results to follow, using the example of $
     Note that this complex is contractible.
 \end{eg}
 
-We now prove some preliminary results on exactness and preserving chain homotopies in order to show the exactness and preservation of limits for this construction.
-
-\begin{lem}[label=lem:TotExact]
-    The totalization functor $\text{Tot}:\cat{Ch}^2(\mathcal{A})\rightarrow \cat{Ch}(\mathcal{A})$ is exact.
-\end{lem}
-\begin{proof}
-    Let 
-    %%
-    \begin{equation*}
-        0\rightarrow A_1\xrightarrow{f_1} A_2\xrightarrow{f_2} A_3\rightarrow 0
-    \end{equation*}
-    %%
-    be a short exact sequence of bicomplexes in $\mathcal{A}$. This becomes a sequence of complexes 
-    %%
-    \begin{equation*}
-        \text{Tot}(A_1)\xrightarrow{\text{Tot}(f_1)}\text{Tot}(A_2)\xrightarrow{\text{Tot}(f_2)}\text{Tot}(A_3)
-    \end{equation*}
-    %%
-    where at a given $n$,
-    %%
-    \begin{equation*}
-        \text{Tot}(A_i)_n = \bigoplus_{j=0}^n(A_i)_{j,n-j}
-    \end{equation*}
-    %%
-    and
-    %%
-    \begin{equation*}
-        \text{Tot}(f_i)_n = \bigoplus_{j=0}^n (f_i)_{j,n-j}
-    \end{equation*}
-    %%
-    Note that the sequence of bicomplexes being exact means that each component sequence in $\mathcal{A}$ is exact. Then the component sequence of the totalization at $n$ is a finite direct sum of exact sequences, and hence exact.
-\end{proof}
-
-\begin{lem}[label=pushForward]
-    Let $F:\mathcal{B}\rightarrow \mathcal{C}$ be an exact functor between abelian categories. Then for a category $\mathcal{A}$, $F_*:\text{Fun}(\mathcal{A},\mathcal{B})\rightarrow \text{Fun}(\mathcal{A},\mathcal{C})$ is exact.
-\end{lem}
-\begin{proof}
-    Let $0\rightarrow G_1\xrightarrow{\eta_1} G_2\xrightarrow{\eta_2} G_3\rightarrow 0$ be a short exact sequence of functors from $\mathcal{A}$ to $\mathcal{B}$. Since abelian categories are finitely complete and cocomplete, finite limits and colimits in $\text{Fun}(\mathcal{A},\mathcal{B})$ and $\text{Fun}(\mathcal{A},\mathcal{C})$ are computed pointwise, so it is sufficient to prove the lemma at a given $A \in \mathcal{A}$. This follows by exactness of $F$.
-\end{proof}
-
-In order to prove our desired exactness result we first introduce a naive notion chain complexes of functors for the subcategory of additive functors.
-
-\begin{lem}[label=lem:funcActChain]
-    Let $\text{Fun}_{Add}(\mathcal{A},\mathcal{C})$ be the category of additive functors between abelian categories with all natural transformations. Then we have a functor
-    %%
-    \begin{equation*}
-        \cat{Ch}:\text{Fun}_{Add}(\mathcal{A},\mathcal{C})\rightarrow \text{Fun}_{Add}(\cat{Ch}(\mathcal{A}),\cat{Ch}(\mathcal{C}))
-    \end{equation*}
-    given by sending functors to their action componentwise.
-\end{lem}
-\begin{proof}
-    Let $\mathcal{F} \in \text{Fun}_{Add}(\mathcal{A},\mathcal{C})$. Since $\mathcal{F}$ is additive it preserves $0$'s and hence sends chain complexes to chain complexes. Then let $f_\bullet:A_\bullet\rightarrow A_\bullet'$ be a map of chain complexes. Then $\cat{Ch}(\mathcal{F})(f_\bullet)_n := \mathcal{F}(f_n)$, and since $\mathcal{F}$ is additive
-    %%
-    \begin{equation*}
-        \mathcal{F}(f_n)\mathcal{F}(\partial_{n+1}^A)-\mathcal{F}(\partial_n^{A'})\mathcal{F}(f_{n+1}) = \mathcal{F}(f_n\partial_{n+1}^A-\partial_n^{A'}f_{n+1}) = \mathcal{F}(0) = 0
-    \end{equation*}
-    %%
-    so $\cat{Ch}(\mathcal{F})(f_\bullet)$ is a chain map. Further, since $\cat{Ch}(\mathcal{F})$ is defined componentwise and $\mathcal{F}$ is a functor and additive, $\cat{Ch}(\mathcal{F})$ is a functor and additive. 
-
-
-    Next, let $\eta:\mathcal{F}\rightarrow \mathcal{G}$ be a natural transformation between additive functors. Then define $\cat{Ch}(\eta)_{A_\bullet}:\cat{Ch}(\mathcal{F})(A_\bullet)\rightarrow \cat{Ch}(\mathcal{G})(A_\bullet)$ by $(\cat{Ch}(\eta)_{A_\bullet})_n := \eta_{A_n}$. Then $\cat{Ch}(\eta)_{A_\bullet}$ is a chain map by naturality of $\eta$. Further, $\cat{Ch}(\eta)$ is natural again by naturality of $\eta$, which makes the following diagram commute for $f_\bullet:A_\bullet\rightarrow A_\bullet$:
-    \[\begin{tikzcd}
-    	{\mathcal{F}(A_n)} & {\mathcal{F}(B_n)} \\
-    	{\mathcal{G}(A_n)} & {\mathcal{G}(B_n)}
-    	\arrow["{\eta_{A_n}}"', from=1-1, to=2-1]
-    	\arrow["{\mathcal{G}(f_n)}"', from=2-1, to=2-2]
-    	\arrow["{\eta_{B_n}}", from=1-2, to=2-2]
-    	\arrow["{\mathcal{F}(f_n)}", from=1-1, to=1-2]
-    \end{tikzcd}\]
-    Since $\cat{Ch}(\eta)$ is defined componentwise it preserves composites and identities.
-\end{proof}
-
-\begin{lem}[label=lem:funcActChainHori]
-    Let $F,G:\mathcal{B}\to \mathcal{C}$, $H:\mathcal{C}\to \mathcal{D}$, and $K:\mathcal{A}\to \mathcal{B}$ be additive functors. If $\eta:F\Rightarrow G$ is a natural transformation, then
-    %%
-    \begin{equation*}
-        \cat{Ch}(H\eta_K) = \cat{Ch}(H)\cat{Ch}(\eta)_{\cat{Ch}(K)}
-    \end{equation*}
-\end{lem}
-\begin{proof}
-    From the proof of Lemma~\ref{lem:funcActChain} we have that for a chain complex $A_\bullet$, 
-    %%
-    \begin{equation*}
-        (\cat{Ch}(H\eta_K)_{A_\bullet})_n = H(\eta_{K(A_n)}) = H(\eta_{\cat{Ch}(K)(A_\bullet)_n}) = H((\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n) = \cat{Ch}(H)(\cat{Ch}(\eta)_{\cat{Ch}(K)(A_\bullet)})_n
-    \end{equation*}
-    %%
-\end{proof}
-
-Note that Lemma~\ref{lem:funcActChainHori} shows that $\cat{Ch}$ is a strict 2-functor on the category of abelian categories with addtive functors between them. Next we show compatibility of this functor with the isomorphism $\text{Fun}^\cat{Ch}$.
+Using the isomorphisms in Section~\ref{subsec:chainHomotop} we can now describe the cross-effect on functors into chain complexes explicitly. Next we show compatibility of this functor with the isomorphism $\text{Fun}^\cat{Ch}$.
 
 \begin{lem}[label=lem:ChFuncCommute]
     For any pointed category $\mathcal{B}$ and abelian category $\mathcal{A}$, we have a natural isomorphism
     %%
     \begin{equation*}
-        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
+        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})\circ (\text{Fun}^\cat{Ch})^{-1}
     \end{equation*}
     %%
 \end{lem}
 \begin{proof}
-    Since the cross effect is additive we can apply $\cat{Ch}$, so the claim is well-posed. Let $F\in\cat{Ch}(\text{Fun}(\mathcal{B},\mathcal{A}))$ be a chain complex of functors. Since finite limits in functor categories between abelian categories are computed pointwise, up to natural isomorphism, we have that 
+    Since the cross effect is additive we can apply $\cat{Ch}$, so the claim is well-posed. Note that finite limits in functor categories between abelian categories are computed pointwise, up to natural isomorphism, and the same holds for chain complexes, from Sections~\ref{sec:colimFuncs} and~\ref{subsec:chainHomotop}. It follows that 
     %%
     \begin{equation*}
-        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)}\circ \text{Fun}^\cat{Ch} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})
+        \text{cr}_n^{\mathcal{B},\cat{Ch}(A)} \cong \text{Fun}^\cat{Ch}\circ \cat{Ch}(\text{cr}_n^{\mathcal{B},\mathcal{A}})\circ (\text{Fun}^\cat{Ch})^{-1}
     \end{equation*}
     %%
-    \textbf{NEED TO MAKE MORE EXPLICIT}
 \end{proof}
 
 Note that in addition $\Delta^*\circ \text{Fun}^{\cat{Ch}} = \text{Fun}^{\cat{Ch}}\circ \cat{Ch}(\Delta^*)$, so we also have 
@@ -309,7 +147,7 @@ Finally, we show that the $C^{\cat{Ch}}$ construction also commutes with the cha
     %%
 \end{lem}
 \begin{proof}
-    Let $A_\bullet \in \cat{Ch}(\mathcal{A})$. Then both $\cat{Ch}(C)^{\cat{Ch}}(A_\bullet)$ and $\cat{Ch}(C^{\cat{Ch}})(A_\bullet)$ give the same double complex
+    Let $A_\bullet \in \cat{Ch}(\mathcal{A})$. Then both $\cat{Ch}(C)^{\cat{Ch}}(A_\bullet)$ and $\cat{Ch}(C^{\cat{Ch}})(A_\bullet)$ give the same double complex after the isomorphism $\cat{Ch}(\cat{Ch}(\mathcal{A}))\to \cat{Ch}(\cat{Ch}(\mathcal{A}))$ which swaps the rows and columns (i.e. transposition)
     %%
     \[\begin{tikzcd}
         & \vdots && \vdots & \vdots \\
@@ -342,37 +180,13 @@ Finally, we show that the $C^{\cat{Ch}}$ construction also commutes with the cha
     %%
 \end{proof}
 
-\begin{lem}[label=lem:totFuncCh]
-    For abelian categories $\mathcal{A},\mathcal{B}$, we have a natural isomorphism
-    %%
-    \begin{equation*}
-        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \cong \text{Fun}^{\cat{Ch}}\circ \text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}
-    \end{equation*}
-    %%
-\end{lem}
-\begin{proof}
-    Let $F_{\bullet,\bullet} \in \cat{Ch}^2(\text{Fun}(\mathcal{B},\mathcal{A}))$. Let $F:\text{Fun}(\mathcal{B},\cat{Ch}^2(\mathcal{A}))$ be the associated functor under two applications of $\text{Fun}^{\cat{Ch}}$. For $B \in \mathcal{B}$, the left functor gives the complex
-    %%
-    \begin{equation*}
-        \text{Tot}_{\mathcal{A}}(F(B))_n := \bigoplus_{p+q=n}F_{p,q}(B)
-    \end{equation*}
-    %%
-    at $B$, while the right functor gives the complex
-    %%
-    \begin{equation*}
-        \text{Fun}^{\cat{Ch}}(\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}(F_{\bullet,\bullet}))(B)_n := \left(\bigoplus_{p+q=n}F_{p,q}\right)(B)
-    \end{equation*}
-    %%
-    with differentials with identical structure. Since finite limits in functor categories valued in abelian categories are computed componentwise, since finite limits exist in abelian categories, these objects are isomorphic with isomorphism preserving the differentials. Further, since the isomorphism are unique by the universal property of the biproduct, they constitute a natural isomorphism. \textbf{NEED TO SHOW MORE EXPLICITLY}
-\end{proof}
-
 These results and Lemma~\ref{lem:addFuncPres} allow us to formalize preservation of chain homotopies for our approximation functors. Due to Proposition~\ref{prop:exactCross} we also obtain nice properties for the functors $P_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$.
 
 \begin{prop}[label=prop:exactPol]
     For any $n \geq 0$,
     \begin{itemize}
         \item[(i)] $P_n:\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))\rightarrow \text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A}))$ is exact
-        \item[(ii)] $P_n$ preserves chain homotopies, chain homotopy equivalences, and contractibility. \textbf{(only pointwise or also natural?)}
+        \item[(ii)] $P_n$ preserves \rd{natural} chain homotopies, chain homotopy equivalences, and contractibility. 
     \end{itemize}
 \end{prop}
 \begin{proof}
@@ -380,15 +194,14 @@ These results and Lemma~\ref{lem:addFuncPres} allow us to formalize preservation
     
     \vspace{10pt}
     
-    For (ii), observe that
+    For (ii), observe that from our work in Sections~\ref{subsec:chainHomotop} and~\ref{sec:colimFuncs}
     %%
     \begin{align*}
-        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ C_{n+1}^{\cat{Ch}} &= (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ C_{n+1}^{\cat{Ch}} \circ \text{Fun}^{\cat{Ch}} \circ (\text{Fun}^{\cat{Ch}})^{-1} \\
-        &\cong (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \circ \cat{Ch}(C_{n+1}^{\cat{Ch}})  \circ (\text{Fun}^{\cat{Ch}})^{-1} \tag{By Lemma \textbf{REF}} \\
+        (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ C_{n+1}^{\cat{Ch}} &\cong (\text{Tot}_{\mathcal{A}})_*\circ \text{Fun}^{\cat{Ch}}\circ \text{Fun}^{\cat{Ch}} \circ \cat{Ch}(C_{n+1}^{\cat{Ch}})  \circ (\text{Fun}^{\cat{Ch}})^{-1} \\
         &\cong \text{Fun}^{\cat{Ch}}\circ \text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}\circ \cat{Ch}(C_{n+1})^{\cat{Ch}}\circ (\text{Fun}^{\cat{Ch}})^{-1}
     \end{align*}
     %%
-    Then since $\cat{Ch}(C_{n+1})^{\cat{Ch}}=\cat{Ch}(C_{n+1}^{\cat{Ch}})$ preserves chain homotopies and by Lemma \textbf{REF} $\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}$ also preserves chain homotopies, it follows by Lemma~\ref{natHomotopIsChainFunctHomotop} that $P_n$ preserves \rd{natural} chain homotopies. 
+    Then since $\cat{Ch}(C_{n+1})^{\cat{Ch}}=\cat{Ch}(C_{n+1}^{\cat{Ch}})$ preserves chain homotopies and by~\cite[12.18]{StacksProject} $\text{Tot}_{\text{Fun}(\mathcal{B},\mathcal{A})}$ also preserves chain homotopies, it follows by Lemma~\ref{lem:natHomotopIsChainFunctHomotop} that $P_n$ preserves \rd{natural} chain homotopies. 
 \end{proof}
 
 For each $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$, the functor $P_n(F)$ comes equipped with a natural transformation $p_n:F\rightarrow P_n(F)$ defined by inclusion into the degree zero part of the chain complex $P_n(F)$. Explicitly, can define $p_n:\mathbb{1}\Rightarrow P_n$ as done by Jason Parker:
@@ -404,7 +217,13 @@ For each $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$, the functor $P_n(F)$ 
         1_{FB}:FB\rightarrow FB & m = 0 \end{array}\right.
     \end{equation*}
     %%
-    since $\text{Fun}^{\cat{Ch}}(C_{n+1}^\cat{Ch}(F)))(B)_0 = C_{n+1}^0(F)(B) = F(B)$. These form appropriate chain maps which are natural in $B$ and $F$ (\textbf{Maybe expand on this when have time?}). Then explicitly
+    since $\text{Fun}^{\cat{Ch}}(C_{n+1}^\cat{Ch}(F)))(B)_0 = C_{n+1}^0(F)(B) = F(B)$. These form appropriate chain maps which are natural in $B$ and $F$ as all components are either zero or identities. Then explicitly, 
+    %%
+    \begin{equation*}
+        (p_n)_{F,B,m} = F(B)_m\to \bigoplus_{p+q=m}C_{n+1}^{p}(F)(B)_q
+    \end{equation*}
+    %%
+    is the inclusion into the direct summand $F(B)_m$.
 \end{rmk}
 
 
@@ -509,17 +328,17 @@ Finally, one last result we will require that is used in the proof of (iii) is t
         \text{cr}_{n+1}^{\mathcal{B},\cat{Ch}(\mathcal{A})}\circ (\text{Tot}_\mathcal{A})_*\circ \text{Fun}^\cat{Ch}\circ C_{n+1}^\cat{Ch} \cong (\text{Tot}_\mathcal{A})_*\circ \text{cr}_{n+1}^{\mathcal{B},\cat{Ch}^2(\mathcal{A})}\circ \text{Fun}^\cat{Ch}\circ C_{n+1}^\cat{Ch}
     \end{equation*}
     %%
-    Since $\text{Tot}$ preserves natural homotopies it is sufficient to show that the cross effect for the bicomplex $\text{cr}_{n+1}^{\mathcal{B},\cat{Ch}^2(\mathcal{A})}\circ \text{Fun}^\cat{Ch}\circ C_{n+1}^\cat{Ch}(F)$ defining $P_n(F)$ is contractible. By Lemma \ref{lem:ChFuncCommute} this is equivalent to showing $\text{Fun}^\cat{Ch}\circ\cat{Ch}(\text{cr}_{n+1}^{\mathcal{B},\cat{Ch}(\mathcal{A})})\circ C_{n+1}^\cat{Ch}(F)$ is contractible. Then the $k$th row of this bicomplex is given by
+    Since $\text{Tot}$ preserves natural homotopies it is sufficient to show that the cross effect for the bicomplex $\text{cr}_{n+1}^{\mathcal{B},\cat{Ch}^2(\mathcal{A})}\circ \text{Fun}^\cat{Ch}\circ C_{n+1}^\cat{Ch}(F)$ defining $P_n(F)$ is contractible. By Lemma \ref{lem:ChFuncCommute} this is equivalent to showing $\text{Fun}^\cat{Ch}\circ\cat{Ch}(\text{cr}_{n+1}^{\mathcal{B},\cat{Ch}(\mathcal{A})})\circ C_{n+1}^\cat{Ch}(F)$ is contractible, or since the naturally homotopies on either side of the isomorphism agree, it is sufficient to show $\cat{Ch}(\text{cr}_{n+1}^{\mathcal{B},\cat{Ch}(\mathcal{A})})\circ C^{\cat{Ch}}_{n+1}(F) \in \cat{Ch}(\text{Fun}(\mathcal{B},\cat{Ch}(\mathcal{A})))$ is contractible. In particular, we can consider the corresponding double complex $\cat{Ch}^2(\text{Fun}(\mathcal{B},\mathcal{A}))$, so we can apply the results in Appendix~\ref{sec:bicomplexes}. Then the $k$th row of this bicomplex is given by
     %%
     \begin{equation*}
         \cdots \rightarrow\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}C_{n+1}^{\times2}(F_k)\xrightarrow{\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}(\epsilon_{C_{n+1}}-C_{n+1}\epsilon)}\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}C_{n+1}(F_k)\xrightarrow{\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}\epsilon}\text{cr}_{n+1}^{\mathcal{B},\mathcal{A}}(F_k)
     \end{equation*}
     %%
-    By Lemma \ref{lem:contractHomotop} we have a family of horizontal contractions for each row after applying $\text{cr}_{n+1}$, denoted $s^{k,h}$. Setting the vertical contractions, $s^v$, to be zero, we obtain a natural contraction for the bicomplex, so under the totalization we obtain a natural contraction for the chain complex $\text{cr}_{n+1}(P_n(F))$, as desired. 
+    By Lemma~\ref{lem:contractHomotop} we have a family of horizontal contractions for each row after applying $\text{cr}_{n+1}$, denoted $s^{k,h}$. Setting the vertical contractions, $s^v$, to be zero, we obtain a natural contraction for the bicomplex, so under the totalization we obtain a natural contraction for the chain complex $\text{cr}_{n+1}(P_n(F))$, as desired. 
 
     \vspace{10pt}
 
-    For (ii) let $F$ be of degree $n$, so $\text{cr}_{n+1}(F)$ is naturally contractible. Recall the $k$th column of the bicomplex defining $P_n(F)$ is $C_{n+1}^{\times k}(F) = (\Delta^*\text{cr}_{n+1})^k(F)$. The map $p_n:F\rightarrow P_n(F)$ is the natural inclusion of the $0$th column into the totalization. Note that $C_{n+1}^{\times k}(F)$ is contractible for each $k$ since $C_{n+1}$ is exact and $F$ is of degree $n$. Then by Corollary A.7 in \cite{BJORT} the map $p_n$ is a \rd{natural} chain homotopy equivalence. (\textbf{DETAILS TO BE ADDED IN SEPARATE SECTION})
+    For (ii) let $F$ be of degree $n$, so $\text{cr}_{n+1}(F)$ is naturally contractible. Recall the $k$th column of the bicomplex defining $P_n(F)$ is $C_{n+1}^{\times k}(F) = (\Delta^*\text{cr}_{n+1})^k(F)$. The map $p_n:F\rightarrow P_n(F)$ is the natural inclusion of the $0$th column into the totalization. Note that $C_{n+1}^{\times k}(F)$ is contractible for each $k\geq 1$ since $C_{n+1}\cong \text{Fun}^{\cat{Ch}}\circ \cat{Ch}(C_n)\circ (\text{Fun}^\cat{Ch})^{-1}$ preserves chain homotopies and $F$ is of degree $n$. Under the isomorphisms in Section~\ref{subsec:chainHomotop}, $p_n$ becomes the inclusion of $F_\bullet$ into $\text{Tot}_{\cat{Fun}(\mathcal{B},\mathcal{A})}(C_{n+1}^{\cat{Ch}}(F))$, so by Corollary~\ref{cor:A7} we obtain a chain homotopy equivalence, which becomes a natural chain homotopy equivalence under the desired isomorphisms.
 
     \vspace{10pt}
 
@@ -537,7 +356,7 @@ Finally, one last result we will require that is used in the proof of (iii) is t
     where the right hand $p_{n,G}$ is a natural chain homotopy equivalence by (ii). Let $s_{n,G}$ denote a natural chain homotopy inverse of $p_{n,G}$. Setting $\tau^\# = s_{n,G}\circ P_n(\tau)$ we have that
     %%
     \begin{equation*}
-        \tau^\#\circ p_{n,F} = s_{n,G}\circ P_n(\tau)\circ p_{n,F} = s_{n,G}\circ p_{n,G}\circ \tau \simeq_{\cat{Ch},Nat} \tau
+        \tau^\#\circ p_{n,F} = s_{n,G}\circ P_n(\tau)\circ p_{n,F} = s_{n,G}\circ p_{n,G}\circ \tau \simeq_{\cat{Ch}} \tau
     \end{equation*}
     %%
     This shows $\tau$ factors through $p_n:F\rightarrow P_n(F)$ up to \rd{natural} chain homotopy equivalence. 
@@ -557,9 +376,53 @@ Finally, one last result we will require that is used in the proof of (iii) is t
     	\arrow["{P_n(\sigma)}"', from=2-2, to=2-3]
     \end{tikzcd}\]
     %%
+    where $p_{n,P_n(F)}$ and $p_{n,G}$ are natural chain homotopy equivalences by (ii). 
+    % Further, observe that $P_n(p_{n,F})$ is the totalization of the map of bicomplexes
+    % %%
+    % \[\begin{tikzcd}
+    %     \cdots & {C_{n+1}(F)} & F \\
+    %     \cdots & {C_{n+1}(P_n(F))} & {P_n(F)}
+    %     \arrow[from=1-1, to=1-2]
+    %     \arrow["{\epsilon_F}", from=1-2, to=1-3]
+    %     \arrow["{p_{n,F}}", from=1-3, to=2-3]
+    %     \arrow["{C_{n+1}(p_{n,F})}"', from=1-2, to=2-2]
+    %     \arrow["{\epsilon_{P_n(F)}}"', from=2-2, to=2-3]
+    %     \arrow[from=2-1, to=2-2]
+    % \end{tikzcd}\]
+    % %%
+    % Further, from Lemma~\ref{lem:crossNatTrans} we have that $C_{n+1}^k(P_n(F))\cong P_n(C_{n+1}^k(F))$ for all $k \geq 1$, and under this isomorphism $C_{n+1}^k(p_{n,F})$ corresponds to $p_{n,C_{n+1}^k(F)}$. Thus, $P_n(p_{n,F})$ is homotopy equivalent to the totalization of 
+    % \[\begin{tikzcd}
+    %     \cdots & {C_{n+1}(F)} & F \\
+    %     \cdots & {P_n(C_{n+1}(F))} & {P_n(F)}
+    %     \arrow[from=1-1, to=1-2]
+    %     \arrow["{\epsilon_F}", from=1-2, to=1-3]
+    %     \arrow["{p_{n,F}}", from=1-3, to=2-3]
+    %     \arrow["{p_{n,C_{n+1}(F)}}"', from=1-2, to=2-2]
+    %     \arrow["{P_n\epsilon_F}"', from=2-2, to=2-3]
+    %     \arrow[from=2-1, to=2-2]
+    % \end{tikzcd}\]
+    % where by part (ii) each $p_{n,C_{n+1}^k(F)}$ is a chain homotopy equivalence for $k \geq 1$. 
     
-    
-    The above factorization applied to $p_n$ and $\sigma$ give factorizations $P_n((p_n)_F)\circ (p_n)_F = (p_n)_F\circ (p_n)_{P_n(F)}$ and $P_n(\sigma)\circ (p_n)_{P_n(F)}=(p_n)_G\circ \sigma$, where $(p_n)_{P_n(F)}$ and $(p_n)_G$ are natural chain homotopy equivalences. 
+    By Lemma \textbf{REF} we have that $P_n(p_{n,F})$ is a natural chain homotopy equivalence with inverse $S_{n,F}$. Observe that
+    %%
+    \begin{align*}
+        \sigma &\simeq_{\cat{Ch}} s_{n,G}\circ p_{n,G} \circ \sigma  \\
+        &= s_{n,G}\circ P_n(\sigma)\circ p_{n,P_n(F)}
+    \end{align*}
+    %%
+    and 
+    %%
+    \begin{equation*}
+        P_n(\sigma) \simeq_{\cat{Ch}} P_n(\sigma)\circ P_n(p_{n,F})\circ S_{n,F} \simeq_{\cat{Ch}} P_n(\tau)\circ S_{n,F}
+    \end{equation*}
+    %%
+    It follows that
+    %%
+    \begin{equation*}
+        \sigma \simeq_{\cat{Ch}} s_{n,G}\circ P_n(\tau)\circ S_{n,F}\circ p_{n,P_n(F)}
+    \end{equation*}
+    %%
+    Since this is independent of $\sigma$, in particular we have that $\sigma \simeq_{\cat{Ch}} \tau^\#$.
 \end{proof}
 
 Note that the universal property in bullet (iii) of Proposition \ref{prop:4.5}, along with the fact that degrees of a functor are characterized by their minimal value, we obtain a factorization (up to homotopy in general)

@@ -18,7 +18,7 @@ We denote the category of chain complexes of an abelian category $\mathcal{A}$ c
 Since the polynomial and linearization functors of \cite{JohnsonB.2004Dcwc} are only defined up to quasi-isomorphism in certain viewpoints, in order for them to be well-defined we must pass to the homotopy category $\cat{HoAbCat}_{\cat{Ch}}$. First, in this section we let composition in $\cat{AbCat}_{\cat{Ch}}$ be defined for $G:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{C})$ and $F:\mathcal{A}\rightarrow \cat{Ch}(\mathcal{B})$ by
 %%
 \begin{equation*}
-    G\lhd F := N_\mathcal{C}\Delta_\mathcal{C}\Gamma_* G_*\Gamma_\mathcal{B} F
+    G\lhd F := N_\mathcal{C}\Delta_\mathcal{C}(\Gamma_\mathcal{C})_* G_*\Gamma_\mathcal{B} F
 \end{equation*}
 %%
 where $\Delta_\mathcal{C}:(\mathcal{C}\Sob)\Sob\rightarrow \mathcal{C}\Sob$ is the diagonal functor. It remains to show that this does define a categorical structure on $\cat{AbCat}_{\cat{Ch}}$, which we check through the following list of conditions:
@@ -27,22 +27,22 @@ where $\Delta_\mathcal{C}:(\mathcal{C}\Sob)\Sob\rightarrow \mathcal{C}\Sob$ is t
     \item Let $F:\mathcal{A}\rightarrow \cat{Ch}(\mathcal{B})$ be a functor. The identity is given by $\deg_0$. Indeed observe that
     %%
     \begin{equation*}
-        [\deg_0^\mathcal{B}\lhd F] = [N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*(\deg_0^\mathcal{B})_*\Gamma_\mathcal{B} F]
+        [\deg_0^\mathcal{B}\lhd F] = [N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*(\deg_0^\mathcal{B})_*\Gamma_\mathcal{B} F]
     \end{equation*}
     %%
-    However, by Lemma \ref{lem:gammaDeg} $\Gamma_\mathcal{B}\circ \deg_0^\mathcal{B} = \iota_\mathcal{B}:\mathcal{B}\rightarrow \mathcal{B}\Sob$ is the constant functor. It follows that $\Delta_\mathcal{B}(\Gamma\circ \deg_0^\mathcal{B}\circ \Gamma_\mathcal{B}F) = \Gamma_\mathcal{B}F$, so
+    However, by Lemma \ref{lem:gammaDeg} $\Gamma_\mathcal{B}\circ \deg_0^\mathcal{B} \cong \iota_\mathcal{B}:\mathcal{B}\rightarrow \mathcal{B}\Sob$ is the constant functor. It follows that $\Delta_\mathcal{B}(\Gamma_{\mathcal{B}}\circ \deg_0^\mathcal{B}\circ \Gamma_\mathcal{B}F) = \Gamma_\mathcal{B}F$, so
     %%
     \begin{equation*}
-        [\deg_0^\mathcal{B}\lhd F] = [N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*(\deg_0^\mathcal{B})_*\Gamma_\mathcal{B} F] = [N_\mathcal{B}\Gamma_\mathcal{B}F] = [F]
+        [\deg_0^\mathcal{B}\lhd F] = [N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*(\deg_0^\mathcal{B})_*\Gamma_\mathcal{B} F] = [N_\mathcal{B}\Gamma_\mathcal{B}F] = [F]
     \end{equation*}
     %%
     On the other hand,
     %%
     \begin{equation*}
-        [F\lhd \deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*F_*\Gamma_\mathcal{A}\deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*F_*\iota_\mathcal{A}]
+        [F\lhd \deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*F_*\Gamma_\mathcal{A}\deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*F_*\iota_\mathcal{A}]
     \end{equation*}
     %%
-    Observe that $F_*\iota_\mathcal{A} = \iota_{\cat{Ch}(\mathcal{B})}\circ F$. Similarly, $\Gamma_*\iota_{\cat{Ch}(\mathcal{B})} = \iota_{\mathcal{B}\Sob}\circ\Gamma_\mathcal{B}$. Finally,
+    Observe that $F_*\iota_\mathcal{A} = \iota_{\cat{Ch}(\mathcal{B})}\circ F$. Similarly, $(\Gamma_\mathcal{B})_*\iota_{\cat{Ch}(\mathcal{B})} = \iota_{\mathcal{B}\Sob}\circ\Gamma_\mathcal{B}$. Finally,
     %%
     \begin{equation*}
         \Delta_\mathcal{B}(\iota_{\mathcal{B}\Sob}\circ\Gamma_\mathcal{B}\circ F) = \Gamma_\mathcal{B}\circ F
@@ -51,35 +51,36 @@ where $\Delta_\mathcal{C}:(\mathcal{C}\Sob)\Sob\rightarrow \mathcal{C}\Sob$ is t
     so
     %%
     \begin{equation*}
-        [F\lhd \deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*F_*\Gamma_\mathcal{A}\deg_0^\mathcal{A}] = [N_\mathcal{B}\Gamma_\mathcal{B}F] = [F]
+        [F\lhd \deg_0^\mathcal{A}] = [N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*F_*\Gamma_\mathcal{A}\deg_0^\mathcal{A}] = [N_\mathcal{B}\Gamma_\mathcal{B}F] = [F]
     \end{equation*}
     %%
     \item It remains to show composition is associative, so consider $F:\mathcal{A}\rightarrow \cat{Ch}(\mathcal{B}),H:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{C}),G:\mathcal{C}\rightarrow \cat{Ch}(\mathcal{D})$. Then we compute:
     %%
     \begin{align*}
-        [(G\lhd H)\lhd F] &= [N_\mathcal{D}\Delta_\mathcal{D}\Gamma_*(G\lhd H)_*\Gamma_\mathcal{B}F] \\
-        &= [N_\mathcal{D}\Delta_\mathcal{D}\Gamma_*(N_\mathcal{D}\Delta_\mathcal{D}\Gamma_*G_*\Gamma_\mathcal{C}H)_*\Gamma_\mathcal{B}F] \\
-        &= [N_\mathcal{D}\Delta_\mathcal{D}(\Delta_\mathcal{D}\Gamma_*G_*)_*\Gamma_*H_*\Gamma_\mathcal{B}F] \\
+        [(G\lhd H)\lhd F] &= [N_\mathcal{D}\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*(G\lhd H)_*\Gamma_\mathcal{B}F] \\
+        &= [N_\mathcal{D}\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*(N_\mathcal{D}\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*G_*\Gamma_\mathcal{C}H)_*\Gamma_\mathcal{B}F] \\
+        &= [N_\mathcal{D}\Delta_\mathcal{D}(\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*G_*)_*(\Gamma_\mathcal{C})_*H_*\Gamma_\mathcal{B}F] \\
     \end{align*}
     %%
     while
     %%
     \begin{align*}
-        [G\lhd(H\lhd F)] &= [G\lhd(N_\mathcal{C}\Delta_\mathcal{C}\Gamma_*H_*\Gamma_\mathcal{B}F)] \\
-        &= [N_\mathcal{D}\Delta_\mathcal{D}\Gamma_*G_*\Gamma_\mathcal{C}(N_\mathcal{C}\Delta_\mathcal{C}\Gamma_*H_*\Gamma_\mathcal{B}F)] \\
-        &= [N_\mathcal{D}\Delta_\mathcal{D}\Gamma_*G_*\Delta_\mathcal{C}\Gamma_*H_*\Gamma_\mathcal{B}F] \\
+        [G\lhd(H\lhd F)] &= [G\lhd(N_\mathcal{C}\Delta_\mathcal{C}(\Gamma_\mathcal{C})_*H_*\Gamma_\mathcal{B}F)] \\
+        &= [N_\mathcal{D}\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*G_*\Gamma_\mathcal{C}(N_\mathcal{C}\Delta_\mathcal{C}(\Gamma_\mathcal{C})_*H_*\Gamma_\mathcal{B}F)] \\
+        &= [N_\mathcal{D}\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*G_*\Delta_\mathcal{C}(\Gamma_\mathcal{C})_*H_*\Gamma_\mathcal{B}F] \\
     \end{align*}
-    Hence, it is sufficient to show that $[\Gamma_*G_*\Delta_\mathcal{C}] = [(\Delta_\mathcal{D}\Gamma_*G_*)_*]$. Recall that $\Gamma_*G_* : \mathcal{C}\Sob \rightarrow \cat{Ch}(\mathcal{D})\Sob\rightarrow (\mathcal{D}\Sob)\Sob$ and $(\Gamma_*G_*)_* : (\mathcal{C}\Sob)\Sob\rightarrow ((\mathcal{D}\Sob)\Sob)\Sob$. Additionally, $(\Delta_\mathcal{D})_* = (-)\Sob\Delta_\mathcal{D} = \Delta_{\mathcal{D}\Sob}$, so this equality is exactly naturality of $\Delta_{(-)}$, which is shown in Section \ref{sec:simpMon}.
+    Hence, it is sufficient to show that $[(\Gamma_\mathcal{D})_*G_*\Delta_\mathcal{C}] = [(\Delta_\mathcal{D}(\Gamma_\mathcal{D})_*G_*)_*]$. Recall that $(\Gamma_\mathcal{D})_*G_* : \mathcal{C}\Sob \rightarrow \cat{Ch}(\mathcal{D})\Sob\rightarrow (\mathcal{D}\Sob)\Sob$ and $((\Gamma_\mathcal{D})_*G_*)_* : (\mathcal{C}\Sob)\Sob\rightarrow ((\mathcal{D}\Sob)\Sob)\Sob$. Additionally, $(\Delta_\mathcal{D})_* = (-)\Sob\Delta_\mathcal{D} = \Delta_{\mathcal{D}\Sob}$, so this equality is exactly naturality of $\Delta_{(-)}$, which is shown in Section \ref{sec:simpMon}.
 \end{enumerate}
 Therefore, this composition provides the structure of a 1-category for $\cat{AbCat}_{\cat{Ch}}$.
 
 
+
+Next we start describing the homotopy structure on this category. 
 \begin{defn}[label=defn:ChEquiv]{}
     Two functors $H,G:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ are said to be \textbf{pointwise chain homotopy equivalent} if the chain complexes $H(X)$ and $G(X)$ are chain homotopy equivalent in $\cat{Ch}(\mathcal{A})$ for each $X \in \mathcal{B}_0$, and \textbf{naturally chain homotopy equivalent} if the chain homotopies are natural in $X$.
 
     Explicitly, naturally chain homotopy equivalent means that for each $X \in \mathcal{B}_0$ we have natural transformations $h:H\Rightarrow G, g:G\Rightarrow H$, together with homotopies $s_X:h_X\circ g_X\simeq 1_{G(X)}$ and $r_X:g_X\circ h_X\simeq 1_{H(X)}$ which are natural in the sense that for each $n$, $s_n:(-)_n\circ G\Rightarrow (-)_{n+1}\circ G$ and $r_n:(-)_n\circ H\Rightarrow (-)_{n+1}\circ H$ are natural transformations.
 \end{defn}
-
 
 Both of these notions define equivalence relations on the category $\cat{AbCat}_{\cat{Ch}}$. Indeed, any functor is naturally chain homotopy equivalent to itself through identity natural transformations and zero homotopies, and a natural chain homotopy equivalence from $H$ to $G$ is precisely the same as a natural chain homotopy equivalence from $G$ to $H$. It remains to show that if $H\simeq_{ChN}G\simeq_{ChN}F$, then $H\simeq_{ChN}F$. Let $(h,g,s,r)$ and $(g',f,s',r')$ be the quadruples witnessing the natural chain homotopy equivalence. Then we define a new quadruple by $(g'\circ h, g\circ f, g'\circ s\circ f+s', g\circ r'\circ h+r)$ which has all natural components since the composition of natural transformations is natural, and $+$ is functorial in an abelian category. To see that this does indeed define a chain homotopy equivalence observe that denoting the chain maps by $\partial$, and suppressing subscripts, we compute
 %%
@@ -112,92 +113,93 @@ while for a given $n$ (to make the computation more tractable)
     &= (\alpha_X)_n(g_X)_n(h_X)_n(\alpha_X^{-1})_n-(1_{H(X)})_n
 \end{align*}
 %%
-so that the homotopies indeed hold. Note that these proofs thus far are independent of the composition we have chosen for $\cat{AbCat}_{\cat{Ch}}$. In order to define a homotopy category from these equivalence relations we must now show that they are in fact congruence relations. We begin by following \cite{BJORT} in showing this for the original definition of composition on $\cat{AbCat}_{\cat{Ch}}$.
+so that the homotopies indeed hold. Note that these proofs thus far are independent of the composition we have chosen for $\cat{AbCat}_{\cat{Ch}}$. In particular, in the case of natural chain homotopies the results follow from the fact that they correspond to chain homotopies in a category of chain complexes by the work in Section~\ref{subsec:chainHomotop}. In order to define a homotopy category from these equivalence relations we must now show that they are in fact congruence relations. We proceed only for the natural chain homotopies.
 
-\begin{lem}[label=lem:3.4]{(Lemma 3.4 \cite{BJORT})}
-    If $G,H:\mathcal{C}\rightarrow \cat{Ch}(\mathcal{B})$ are (naturally) chain homotopy equivalent functors, then for any pair of functors $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ and $K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{C})$, the composites
-    %%
-    \begin{equation*}
-        F\circ G\circ K,F\circ H\circ K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{A})
-    \end{equation*}
-    %%
-    are (naturally) chain homotopy equivalent.
-\end{lem}
-\begin{proof}
-    Let $G,H$ be (naturally) chain homotopy equivalent, and let $F$ and $K$ be functors as in the question. We begin by showing that $G\circ K$ is (naturally) chain homotopy equivalent to $H\circ K$, where composition is in the ``Kleisli" category. 
+% We begin by following \cite{BJORT} in showing this for the original definition of composition on $\cat{AbCat}_{\cat{Ch}}$.
 
-    \vspace{10pt}
+% \begin{lem}[label=lem:3.4]{(Lemma 3.4 \cite{BJORT})}
+%     If $G,H:\mathcal{C}\rightarrow \cat{Ch}(\mathcal{B})$ are (naturally) chain homotopy equivalent functors, then for any pair of functors $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ and $K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{C})$, the composites
+%     %%
+%     \begin{equation*}
+%         F\circ G\circ K,F\circ H\circ K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{A})
+%     \end{equation*}
+%     %%
+%     are (naturally) chain homotopy equivalent.
+% \end{lem}
+% \begin{proof}
+%     Let $G,H$ be (naturally) chain homotopy equivalent, and let $F$ and $K$ be functors as in the question. We begin by showing that $G\circ K$ is (naturally) chain homotopy equivalent to $H\circ K$, where composition is in the ``Kleisli" category. 
 
-    % Observe that $[G\circ K] = [\text{Tot}_\mathcal{B}N_{\cat{Ch}(\mathcal{B})}G_*\Gamma_\mathcal{C}K]$. Since $N_{\cat{Ch}}$ preserves homotopy equivalences, it is sufficient to show that $[G_*\Gamma_\mathcal{C}K]$ is (naturally) homotopy equivalent to $[H_*\Gamma_\mathcal{C}K]$, in terms of simplicial homotopies. Finally, it is sufficient to show $[G_*\Gamma_\mathcal{C}]:\cat{Ch}(\mathcal{C})\rightarrow \mathcal{C}\Sob\rightarrow \cat{Ch}(\mathcal{B})\Sob$ and $[H_*\Gamma_\mathcal{C}]:\cat{Ch}(\mathcal{C})\rightarrow \mathcal{C}\Sob\rightarrow \cat{Ch}(\mathcal{B})\Sob$ are (naturally) homotopy equivalent.
+%     \vspace{10pt}
 
-
-    Let $(h,g,s,r):H\cong_{\cat{Ch}}G$ be a (natural) chain homotopy between our original functors. We prove preservation under pre-composition and post-composition separately
-    %%
-    \begin{itemize}
-        \setlength{\itemindent}{2em}
-        \item[[$-\circ K$]] We recall the compositions $G\circ K$ and $H\circ K$ in $\cat{AbCat}_{\cat{Ch}}$ are given by
-        %%
-        \begin{equation*}
-            G\circ K = \text{Tot}_{\mathcal{B}}N_{\cat{Ch}(\mathcal{B})}G_*\Gamma_\mathcal{C}K\;\;\;H\circ K = \text{Tot}_{\mathcal{B}}N_{\cat{Ch}(\mathcal{B})}H_*\Gamma_\mathcal{C}K
-        \end{equation*}
-        %%
-        \textbf{NOT DONE}
-        \item[[$F\circ -$]] The compositions $F\circ G$ and $F \circ H$ in $\cat{AbCat}_{\cat{ch}}$ are given by
-        %%
-        \begin{equation*}
-            F\circ G = \text{Tot}_{\mathcal{A}}N_{\cat{Ch}(\mathcal{A})}F_*\Gamma_\mathcal{B}G\;\;\;F\circ H = \text{Tot}_{\mathcal{A}}N_{\cat{Ch}(\mathcal{A})}F_*\Gamma_\mathcal{B}H
-        \end{equation*}
-        %%
-        Using the fact that $\text{Tot}_{\cat{Ch}}$ preserves chain homotopy equivalences \cite[Remark 12.18.6]{StacksProject} and the results in Sections \ref{subsec:simpHomotop} and \ref{sec:doldKan} we obtain the following chain of equivalences:
-        %%
-        \begin{align*}
-            H\simeq_{\cat{Ch}}G &\implies \Gamma_\mathcal{B}H\simeq_{Ho}\Gamma_\mathcal{B}G \\
-            &\implies F_*\Gamma_\mathcal{B}H\simeq_{Ho}F_*\Gamma_\mathcal{B}G \\
-            &\implies N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}H\simeq_{\cat{Ch}}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}G \\
-            &\implies \text{Tot}_\mathcal{A}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}H\simeq_{\cat{Ch}}\text{Tot}_\mathcal{A}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}G 
-        \end{align*}
-        %%
-        where each implication preserves naturality as well.
-    \end{itemize}
-\end{proof}
+%     % Observe that $[G\circ K] = [\text{Tot}_\mathcal{B}N_{\cat{Ch}(\mathcal{B})}G_*\Gamma_\mathcal{C}K]$. Since $N_{\cat{Ch}}$ preserves homotopy equivalences, it is sufficient to show that $[G_*\Gamma_\mathcal{C}K]$ is (naturally) homotopy equivalent to $[H_*\Gamma_\mathcal{C}K]$, in terms of simplicial homotopies. Finally, it is sufficient to show $[G_*\Gamma_\mathcal{C}]:\cat{Ch}(\mathcal{C})\rightarrow \mathcal{C}\Sob\rightarrow \cat{Ch}(\mathcal{B})\Sob$ and $[H_*\Gamma_\mathcal{C}]:\cat{Ch}(\mathcal{C})\rightarrow \mathcal{C}\Sob\rightarrow \cat{Ch}(\mathcal{B})\Sob$ are (naturally) homotopy equivalent.
 
 
-Next we will show the equivalent result for our new composition, $\lhd$.
+%     Let $(h,g,s,r):H\cong_{\cat{Ch}}G$ be a (natural) chain homotopy between our original functors. We prove preservation under pre-composition and post-composition separately
+%     %%
+%     \begin{itemize}
+%         \setlength{\itemindent}{2em}
+%         \item[[$-\circ K$]] We recall the compositions $G\circ K$ and $H\circ K$ in $\cat{AbCat}_{\cat{Ch}}$ are given by
+%         %%
+%         \begin{equation*}
+%             G\circ K = \text{Tot}_{\mathcal{B}}N_{\cat{Ch}(\mathcal{B})}G_*\Gamma_\mathcal{C}K\;\;\;H\circ K = \text{Tot}_{\mathcal{B}}N_{\cat{Ch}(\mathcal{B})}H_*\Gamma_\mathcal{C}K
+%         \end{equation*}
+%         %%
+%         \textbf{NOT DONE}
+%         \item[[$F\circ -$]] The compositions $F\circ G$ and $F \circ H$ in $\cat{AbCat}_{\cat{ch}}$ are given by
+%         %%
+%         \begin{equation*}
+%             F\circ G = \text{Tot}_{\mathcal{A}}N_{\cat{Ch}(\mathcal{A})}F_*\Gamma_\mathcal{B}G\;\;\;F\circ H = \text{Tot}_{\mathcal{A}}N_{\cat{Ch}(\mathcal{A})}F_*\Gamma_\mathcal{B}H
+%         \end{equation*}
+%         %%
+%         Using the fact that $\text{Tot}_{\cat{Ch}}$ preserves chain homotopy equivalences \cite[Remark 12.18.6]{StacksProject} and the results in Sections \ref{subsec:simpHomotop} and \ref{sec:doldKan} we obtain the following chain of equivalences:
+%         %%
+%         \begin{align*}
+%             H\simeq_{\cat{Ch}}G &\implies \Gamma_\mathcal{B}H\simeq_{Ho}\Gamma_\mathcal{B}G \\
+%             &\implies F_*\Gamma_\mathcal{B}H\simeq_{Ho}F_*\Gamma_\mathcal{B}G \\
+%             &\implies N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}H\simeq_{\cat{Ch}}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}G \\
+%             &\implies \text{Tot}_\mathcal{A}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}H\simeq_{\cat{Ch}}\text{Tot}_\mathcal{A}N_\cat{Ch}(\mathcal{A})F_*\Gamma_\mathcal{B}G 
+%         \end{align*}
+%         %%
+%         where each implication preserves naturality as well.
+%     \end{itemize}
+% \end{proof}
+
 
 \begin{lem}[label=lem:3.4NewComp]
-    If $G,H:\mathcal{C}\rightarrow \cat{Ch}(\mathcal{B})$ are (naturally) chain homotopy equivalent functors, then for any pair of functors $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ and $K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{C})$, the composites
+    If $G,H:\mathcal{C}\rightarrow \cat{Ch}(\mathcal{B})$ are naturally chain homotopy equivalent functors, then for any pair of functors $F:\mathcal{B}\rightarrow \cat{Ch}(\mathcal{A})$ and $K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{C})$, the composites
     %%
     \begin{equation*}
         F\lhd G\lhd K,F\lhd H\lhd K:\mathcal{D}\rightarrow \cat{Ch}(\mathcal{A})
     \end{equation*}
     %%
-    are (naturally) chain homotopy equivalent.
+    are naturally chain homotopy equivalent.
 \end{lem}
 \begin{proof}
-    As in the previous proof we separate this proof into two parts. Let $G,H$ be (naturally) chain homotopy equivalent, and let $F$ and $K$ be functors as in the question. Let $(h,g,s,r):H\simeq_{\cat{Ch}}G$ be a (natural) chain homotopy between our original functors. We begin the construction in the case of pre-composition by $K$:
+    We separate this proof into two parts. Let $G,H$ be naturally chain homotopy equivalent, and let $F$ and $K$ be functors as in the question. Let $(h,g,s,r):H\simeq_{\cat{Ch}}G$ be a natural chain homotopy between our original functors. We begin the construction in the case of pre-composition by $K$:
     \begin{itemize}
         \setlength{\itemindent}{2em}
         \item[[$-\lhd K$]] From the definition of $\lhd$, the composites $H\lhd K$ and $G\lhd K$ are given by
         %%
         \begin{equation*}
-            H\lhd K = N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*H_*\Gamma_\mathcal{C}K\;\;\text{ and }\;\;G\lhd K = N_\mathcal{B}\Delta_\mathcal{B}\Gamma_*G_*\Gamma_\mathcal{C}K
+            H\lhd K = N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*H_*\Gamma_\mathcal{C}K\;\;\text{ and }\;\;G\lhd K = N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B})_*G_*\Gamma_\mathcal{C}K
         \end{equation*}
         %%
-        First, note that if the homotopy is natural $H\lhd K\simeq G\lhd K$ by the results in Sections \ref{subsec:simpHomotop} and \ref{sec:doldKan}. Otherwise, if the homotopy is pointwise, showing $H\lhd K\simeq_{\cat{Ch}}G\lhd K$ for $K$ arbitrary is equivalent to showing $N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B}H)_* \simeq_{\cat{Ch}}N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B}G)_*$. Additionally, since $N_\mathcal{B}$ both reflects and preserves homotopies, this is equivalent to showing $\Delta_\mathcal{B}(\Gamma_\mathcal{B}H)*\simeq_{Ho}\Delta_\mathcal{B}(\Gamma_\mathcal{B}G)*$. Since $\Gamma$ also preserves homotopies, it is sufficient to prove Lemma \ref{lem:PrecompDiag} \textbf{YET TO BE SHOWN FOR POINTWISE}.
+        First, note that since the homotopy is natural $H\lhd K\simeq G\lhd K$ by the results in Sections~\ref{subsec:simpHomotop} and~\ref{sec:doldKan}. 
+        % Otherwise, if the homotopy is pointwise, showing $H\lhd K\simeq_{\cat{Ch}}G\lhd K$ for $K$ arbitrary is equivalent to showing $N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B}H)_* \simeq_{\cat{Ch}}N_\mathcal{B}\Delta_\mathcal{B}(\Gamma_\mathcal{B}G)_*$. Additionally, since $N_\mathcal{B}$ both reflects and preserves homotopies, this is equivalent to showing $\Delta_\mathcal{B}(\Gamma_\mathcal{B}H)*\simeq_{Ho}\Delta_\mathcal{B}(\Gamma_\mathcal{B}G)*$. Since $\Gamma$ also preserves homotopies, it is sufficient to prove Lemma \ref{lem:PrecompDiag} \textbf{YET TO BE SHOWN FOR POINTWISE}.
         \item[[$F\lhd -$]] The composites $F \lhd H$ and $F\lhd G$ are given by
         %%
         \begin{equation*}
-            F\lhd H = N_\mathcal{A}\Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}H\;\;\text{ and }\;\;F\lhd G = N_\mathcal{A}\Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}G
+            F\lhd H = N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H\;\;\text{ and }\;\;F\lhd G = N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}G
         \end{equation*}
         %%
-        Using the results in Sections \ref{sec:doldKan} and \ref{subsec:simpHomotop} we have the chain of implications
+        Using the results in Sections~\ref{sec:doldKan} and~\ref{subsec:simpHomotop} we have the chain of implications
         %%
         \begin{align*}
             H \simeq_{\cat{Ch}}G &\implies \Gamma_\mathcal{B}H \simeq_{Ho} \Gamma_\mathcal{B}G \\
             &\implies F_*\Gamma_\mathcal{B}H \simeq_{Ho} F_*\Gamma_\mathcal{B}G \\
-            &\implies \Gamma_*F_*\Gamma_\mathcal{B}H \simeq_{Ho} \Gamma_*F_*\Gamma_\mathcal{B}G \\
-            &\implies \Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}H \simeq_{Ho} \Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}G \\
-            &\implies N_\mathcal{A}\Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}H \simeq_{\cat{Ch}} N_\mathcal{A}\Delta_\mathcal{A}\Gamma_*F_*\Gamma_\mathcal{B}G \\
+            &\implies (\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H \simeq_{Ho} (\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}G \\
+            &\implies \Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H \simeq_{Ho} \Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}G \\
+            &\implies N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H \simeq_{\cat{Ch}} N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}G \\
         \end{align*}
         where each implication preserves naturality as well.
     \end{itemize}

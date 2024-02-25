@@ -33,7 +33,7 @@ We prove that this defines a family of functors which are symmetric through a se
         X\lor Y\xrightarrow{\COIP{1_X}{\hat{!}}}X
     \end{equation*}
     %%
-    such that $\iota_X\COIP{1_X}{\hat{!}} = 1_X$, so $\iota_X$ is a split monomorphism, or in other words a section.
+    such that $\COIP{1_X}{\hat{!}} \circ \iota_X= 1_X$, so $\iota_X$ is a split monomorphism, or in other words a section.
 \end{proof}
 
 Throughout these notes $\hat{!}$ will denote the unique map which factors through the basepoint (note that by the universal property this is independent of the choice of basepoint). Additionally, we let $\COIP{1_X}{\hat{!}}$ denote the splitting for the inclusion $\iota_X:X\hookrightarrow X\lor Y$ in $\mathcal{B}$.
@@ -43,10 +43,10 @@ Throughout these notes $\hat{!}$ will denote the unique map which factors throug
     Let $A,B,C \in \mathcal{A}_0$. Then $A\oplus B\cong A\oplus C$ if and only if $B \cong C$.
 \end{lem}
 \begin{proof}
-    The reverse direction follows by functoriality of $A\oplus-$ in $\mathcal{A}$. For the forward direction suppose $A\oplus B\cong A\oplus C$ with isomorphism $\psi$. Then the claim is that the composite map $\iota_B\psi\pi_C$ is an isomorphism with inverse $\iota_C\psi^{-1}\pi_B$. Indeed, from the axioms of a biproduct we have 
+    The reverse direction follows by functoriality of $A\oplus-$ in $\mathcal{A}$. For the forward direction suppose $A\oplus B\cong A\oplus C$ with isomorphism $\psi$. Then the claim is that the composite map $\pi_C\circ \psi\circ \iota_B$ is an isomorphism with inverse $\pi_B\circ \psi^{-1}\circ \iota_C$. Indeed, from the axioms of a biproduct we have 
     %%
     \begin{equation*}
-        \iota_B\psi\pi_C\iota_C\psi^{-1}\pi_B = 1_B,\;\;\iota_C\psi^{-1}\iota_B\iota_B\psi\pi_C = 1_C
+        \pi_B\circ \psi^{-1}\circ \iota_C\circ \pi_C\circ \psi\circ \iota_B = 1_B,\;\;\pi_C\circ \psi\circ \iota_B\circ \pi_B\circ \psi^{-1}\circ \iota_C = 1_C
     \end{equation*}
     %%
     as desired.
@@ -235,16 +235,7 @@ We have shown now that the cross-effect gives an object map $\text{cr}_n:\text{F
     \text{cr}_1(\alpha)_X = r_{G,1}\circ \alpha_X\circ s_{F,1}
 \end{equation}
 %%
-Hence, to show naturality of $\text{cr}_1(\alpha)$ it is sufficient to show naturality of $r_{G,1}$ and $s_{F,1}$. All of these naturalities follow from a general result on limits.
-%%
-\begin{lem}[label=lem:limFunctor]
-    Let $\mathcal{C}$ be a category with $J$ shaped limits. Then given a choice of limit for each diagram, there exists a functor $\lim\limits_{\leftarrow}:\mathcal{C}^J\rightarrow \mathcal{C}$
-\end{lem}
-\begin{proof}
-    Let $\lim\limits_{\leftarrow}$ be defined on objects based on the choice of limit for each diagram. Then, let $\alpha:F\Rightarrow G:J\rightarrow \mathcal{C}$ be a map of diagrams (i.e. a natural transformation) and let $\pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow F$ and $\pi_G:\Delta_{\lim\limits_{\leftarrow}(G)}\Rightarrow G$ be the limit cones. Then $\alpha\circ \pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow G$ witnesses $\lim\limits_{\leftarrow}(F)$ as a cone over $G$, so by the universal property there exists a unique map $\lim\limits_{\leftarrow}(\alpha):\lim\limits_{\leftarrow}(F)\rightarrow \lim\limits_{\leftarrow}(G)$ which commutes with the projections. By uniqueness this assignment is functorial, as desired.
-\end{proof}
-%%
-Since limits in a functor category are computed componentwise, it follows that the $s_{F,n}$ and $r_{F,n}$ bundle to form natural transformations. Additionally, $\text{cr}_1(\alpha)$ is precisely the map induced by the limit for the map of diagrams
+Hence, to show naturality of $\text{cr}_1(\alpha)$ it is sufficient to show naturality of $r_{G,1}$ and $s_{F,1}$. All of these naturalities follow from a general result on limits in Section~\ref{sec:colimFuncs}. Since limits in a functor category are computed componentwise, it follows that the $s_{F,n}$ and $r_{F,n}$ bundle to form natural transformations. Additionally, $\text{cr}_1(\alpha)$ is precisely the map induced by the limit for the map of diagrams
 %%
 \[\begin{tikzcd}
 	F & {\text{ev}_\star\circ F} \\
@@ -485,7 +476,7 @@ is indeed a functor between functor categories.
         \text{cr}_1(F)(X) \cong \text{cr}_1(F)(\star)\oplus \text{cr}_1(\text{cr}_1(F))(X) \cong \text{cr}_1^2(F)(X)
     \end{equation*}
     %%
-    By induction we have that $\text{cr}_n(\text{cr}_1(F))(X_1,...,X_n) \cong \text{cr}_n(F)(X_1,...,X_n)$, using Lemma \ref{lem:biprod}. Since these are maps which result from the universal property of the biproduct they amalgamate to form natural isomorphisms between the desired functors by Lemma \ref{lem:limFunctor}.
+    By induction we have that $\text{cr}_n(\text{cr}_1(F))(X_1,...,X_n) \cong \text{cr}_n(F)(X_1,...,X_n)$, using Lemma \ref{lem:biprod}. Since these are maps which result from the universal property of the biproduct they amalgamate to form natural isomorphisms between the desired functors by Lemma \ref{lem:limFuncIsLim}.
 %     Naturality in the case of $n = 1$ follows from the commutivity of the following diagram for any $f:X\rightarrow Y$:
 %     \[\begin{tikzcd}
 % 	 && {\text{cr}_1(F)(\star)} \\
@@ -511,7 +502,7 @@ is indeed a functor between functor categories.
 
 These properties demonstrate that the inclusion $\text{Fun}_*(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ admits a right adjoint, namely the first cross-effect functor $\text{cr}_1$. In other words, $\text{Fun}_*(\mathcal{B},\mathcal{A})$ is a coreflective subcategory of $\text{Fun}(\mathcal{B},\mathcal{A})$. Since the left adjoint is full and faithful (being the inclusion of a full subcategory), the unit of this adjunction is an isomorphism $\eta_F:F\Rightarrow \text{cr}_1\iota(F)$, which also re-affirms that $\text{cr}_1F\cong \text{cr}_1^2F$. In fact, by our choice of kernels, $\eta_F$ has identities as components.
 \begin{proof}
-    To demonstrate the adjunction we show the co-universal property where $\epsilon_F = s_{F,1}$ is the monic inclusion $\crn_1(F)(X)\rightarrowtail F(X)$. Since the $s_{F,1}$ are natural in $X$ and $F$ by Lemma \ref{lem:limFunctor} we need only show the co-universal property.
+    To demonstrate the adjunction we show the co-universal property where $\epsilon_F = s_{F,1}$ is the monic inclusion $\crn_1(F)(X)\rightarrowtail F(X)$. Since the $s_{F,1}$ are natural in $X$ and $F$ by Lemma \ref{lem:limFuncIsLim} we need only show the co-universal property.
 
     To show the co-universal property we take a natural transformation $\alpha:\iota F\rightarrow G$, for $F$ a strictly reduced functor. This generates a commutative diagram
     \[\begin{tikzcd}
@@ -524,7 +515,7 @@ These properties demonstrate that the inclusion $\text{Fun}_*(\mathcal{B},\mathc
 	\arrow["{\alpha_\star}"{description}, from=2-2, to=1-3]
 	\arrow["{\hat{\alpha}_X}", dashed, from=2-1, to=1-1]
 \end{tikzcd}\]
-    where $\hat{\alpha}_X$ is the unique map from the universal property of the kernel. Thus by Lemma \ref{lem:limFunctor} $\hat{\alpha}$ is natural.
+    where $\hat{\alpha}_X$ is the unique map from the universal property of the kernel. Thus by Lemma \ref{lem:limFuncIsLim} $\hat{\alpha}$ is natural.
 %     To show that the $\hat{\alpha}$ map is a natural transformation, let $f:X\rightarrow Y$ be a map in $\mathcal{B}$. We have the following diagram
 %     \[\begin{tikzcd}
 % 	{F(Y)} & {F(\star)\cong 0} \\

@@ -1,0 +1,125 @@
+In this section we prove some general results on naturality of (co)limit constructions.
+
+%%
+\begin{lem}[label=lem:limFunctor]
+    Let $\mathcal{C}$ be a category with $J$ shaped limits. Then given a choice of (co)limit for each diagram, there exists a functor $\lim\limits_{\leftarrow}:\mathcal{C}^J\rightarrow \mathcal{C}$ which is unique up to unique natural isomorphism (resp. $\text{colim}$).
+\end{lem}
+\begin{proof}
+    Let $\lim\limits_{\leftarrow}$ be defined on objects based on a choice of limit for each diagram. Then, let $\alpha:F\Rightarrow G:J\rightarrow \mathcal{C}$ be a map of diagrams (i.e. a natural transformation) and let $\pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow F$ and $\pi_G:\Delta_{\lim\limits_{\leftarrow}(G)}\Rightarrow G$ be the limit cones. Then $\alpha\circ \pi_F:\Delta_{\lim\limits_{\leftarrow}(F)}\Rightarrow G$ witnesses $\lim\limits_{\leftarrow}(F)$ as a cone over $G$, so by the universal property there exists a unique map $\lim\limits_{\leftarrow}(\alpha):\lim\limits_{\leftarrow}(F)\rightarrow \lim\limits_{\leftarrow}(G)$ which commutes with the projections. By uniqueness this assignment is functorial, as desired. The colimit case follows by duality. The second claim follows from a more general result which we show next.
+\end{proof}
+%%
+
+Before proving the next result note that for each $D \in \mathcal{C}^J$ we have the cone map $\omega_D:\Delta_{\lim\limits_{\leftarrow}(D)}\to D$. Further, if $\alpha:D\to E$ is a map of diagrams, $\alpha\circ \omega_D = \omega_E\circ \Delta_{\lim\limits_{\leftarrow}(\alpha)}$, so $\omega$ defines a functor $\mathcal{C}^J\to \mathcal{C}^J$.
+
+\begin{lem}[label=lem:limFuncIsLim]
+    Let $\mathcal{C}$ be a category with $J$-shaped limits. Let $\gamma:\mathcal{C}^J\to \mathcal{C}$ be a functor such that each $\gamma(D)$ is a cone with cone map $\Gamma_D:\Delta_{\gamma(D)}\to D$, and for $\alpha:D\to E$ a map of diagrams, $\gamma(\alpha):\gamma(D)\to \gamma(E)$ is a map of cones, that is to say $\Gamma_E\circ \Delta_{\gamma(\alpha)} = \alpha \circ \Gamma_D$. Then there exists a unique natural transformation $\tau:\gamma\to \lim\limits_{\leftarrow}$ such that $\omega\circ \Delta_{\tau} = \Gamma$.
+\end{lem}
+\begin{proof}
+    Let $\gamma:\mathcal{C}^J\to \mathcal{C}$ be as in the statement of the Lemma. Let $\omega:\mathcal{C}^J\to \mathcal{C}^J$ be as above. Then for each $D \in \mathcal{C}^J$ we have a unique map $\tau_D:\gamma(D)\to \lim\limits_{\leftarrow}(D)$ such that $\omega_D\circ \Delta_{\tau_D} = \Gamma_D$. All that remains is to show that this is natural. Let $\alpha:D\to E$ be a map of diagrams. Then observe that $\gamma(D)$ becomes a cone over $E$ via $\alpha\circ \Gamma_D = \Gamma_E\circ \Delta_{\gamma(\alpha)}$. Then we have a unique map $\gamma(D)\to \lim\limits_{\leftarrow}(E)$ commuting with these projections. Since $\alpha\circ \Gamma_D = \Gamma_E\circ \Delta_{\gamma(\alpha)} = \omega_E\circ \Delta_{\tau_E\circ \gamma(\alpha)}$, it follows that the unique map is $\tau_E\circ \gamma(\alpha)$. On the other hand
+    %%
+    \begin{equation*}
+        \alpha\circ \Gamma_D = \alpha\circ \omega_D\circ \Delta_{\tau_D} = \omega_E\circ \Delta_{\lim\limits_{\leftarrow}(\alpha)}\circ \Delta_{\tau_D}
+    \end{equation*}
+    %%
+    so by uniqueness we obtain the commuting square
+    \[\begin{tikzcd}
+        {\gamma(D)} & {\gamma(E)} \\
+        {\lim\limits_{\leftarrow}(D)} & {\lim\limits_{\leftarrow}(E)}
+        \arrow["{\gamma(\alpha)}", from=1-1, to=1-2]
+        \arrow["{\tau_D}"', from=1-1, to=2-1]
+        \arrow["{\lim\limits_{\leftarrow}(\alpha)}"', from=2-1, to=2-2]
+        \arrow["{\tau_E}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    which completes the proof that $\tau$ is natural.
+\end{proof}
+
+We can use this result to now describe limits in Functor categories.
+
+\begin{lem}[label=lem:limsinFuncCat]
+    Let $\mathcal{C}$ be a category with $J$-shaped (co)limits. Then $\text{Fun}(\mathcal{A},\mathcal{C})$ has $J$-shaped (co)limits and the functor $\lim\limits_{\leftarrow}^{Fun}:\text{Fun}(\mathcal{A},\mathcal{B})^J\to \text{Fun}(\mathcal{A},\mathcal{B})$ (resp. $\text{colim}$) then for any $X \in \mathcal{A}_0$
+    %%
+    \begin{equation*}
+        \text{ev}_X\circ \lim\limits_{\leftarrow}^{Fun} \cong \lim\limits_{\leftarrow}\circ (\text{ev}_X)_*
+    \end{equation*}
+\end{lem}
+\begin{proof}
+    Let $D:J\to \text{Fun}(\mathcal{A},\mathcal{C})$ be a $J$-shaped diagram. Then for any $X \in \mathcal{A}_0$ we have that $\text{ev}_X\circ D$ is a $J$-shaped diagram in $\mathcal{C}$. Define $F:\mathcal{A}\to \mathcal{C}$ by $F(X) = \lim_{\leftarrow}(\text{ev}_X\circ D)$ on objects. If $f:X\to Y$, then we have a natural transformation $\text{ev}_f:\text{ev}_X\to \text{ev}_Y$ such that for any natural $\alpha:G\to H$ we have the commutative diagram
+    \[\begin{tikzcd}
+        {G(X)} & {G(Y)} \\
+        {H(X)} & {H(Y)}
+        \arrow["{(\text{ev}_f)_G}", from=1-1, to=1-2]
+        \arrow["{\alpha_X}"', from=1-1, to=2-1]
+        \arrow["{(\text{ev}_f)_H}"', from=2-1, to=2-2]
+        \arrow["{\alpha_Y}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    by the naturaly of $\alpha$. Explicitly, $\text{ev}$ is a functor $\mathcal{A}\to \text{Fun}(\text{Fun}(\mathcal{A},\mathcal{C}),\mathcal{C})$. This gives a natural transformation $\lim\limits_{\leftarrow}(\text{ev}_f)_*:\lim\limits_{\leftarrow}\circ (\text{ev}_X)_*\to \lim\limits_{\leftarrow}\circ (\text{ev}_Y)_*$ which at $D$ gives a map $\lim_{\leftarrow}(\text{ev}_f)_*(D):\lim_{\leftarrow}(\text{ev}_X\circ D) \to \lim_{\leftarrow}(\text{ev}_Y\circ D)$ which we define to be $F(f)$ and is functorial in $f$ since $\text{ev}$ is. This defines a functor $F:\mathcal{A}\to \mathcal{C}$.
+
+    \vspace{10pt}
+
+    Next, note that for each $j \in J$ and each $X \in \mathcal{A}_0$ we have a unique map $\pi_{j,X}:F(X)\to D_j(X)$ by the universal property. If $f:X\to Y$ in $\mathcal{A}$, then we have the commutative diagram
+    \[\begin{tikzcd}
+        {F(X)} & {F(Y)} \\
+        {D_j(X)} & {D_j(Y)}
+        \arrow["{F(f)}", from=1-1, to=1-2]
+        \arrow["{\pi_{j,X}}"', from=1-1, to=2-1]
+        \arrow["{D_j(f)}"', from=2-1, to=2-2]
+        \arrow["{\pi_{j,Y}}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    by definition of $f$ in terms of $\lim_{\leftarrow}$. This implies that we have a natural transformation $\pi_j:F\to D_j$. Further, for each $X$ the $\pi_{j,X}$ witness $F(X)$ as a limit cone, so $\pi_J$ commutes with all triangles for $D$.
+
+    \vspace{10pt}
+
+    If $G:\mathcal{A}\to \mathcal{C}$ with $p_j:G\to D_j$ is another cone over $D$, for each $X \in \mathcal{A}_0$ we have a unique map $\alpha_X:G(X)\to F(X)$ by the universal property of the limit. Further, by the uniqueness of the map into a limit which commutes with the associated triangles we have a commuting square
+    \[\begin{tikzcd}
+        {G(X)} & {G(Y)} \\
+        {F(X)} & {F(Y)}
+        \arrow["{G(f)}", from=1-1, to=1-2]
+        \arrow["{\alpha_X}"', from=1-1, to=2-1]
+        \arrow["{F(f)}"', from=2-1, to=2-2]
+        \arrow["{\alpha_Y}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    so $\alpha:G\to F$ is a natural transformation. Further, $\alpha$ is unique since each it is unique at each component.
+
+    \vspace{10pt}
+
+    Finally, by our choice we have that 
+    %%
+    \begin{equation*}
+        \text{ev}_X\circ \lim\limits_{\leftarrow}^{Fun}(D) = \lim\limits_{\leftarrow}(\text{ev}_X\circ D) 
+    \end{equation*}
+    %%
+    so we have equality. By Lemma~\ref{lem:limFunctor} we have uniqueness up to unique natural isomorphism for the limit functor, so in general we have the isomorphism described in the question.
+\end{proof}
+
+
+\begin{cor}[label=cor:presFunccoLim]
+    Let $I:\mathcal{A}\to \cat{Cat}//\mathcal{B}$ be a functor into the lax-slice $2$-category viewed as a $1$-category. Suppose $\mathcal{B}$ has all colimits of shape $I(A)_0$ for each $A \in \mathcal{A}_0$. Then we have a functor $H_I:\mathcal{A}\to \mathcal{B}$ given by $H_I(A) = \lim\limits_{\to}(I(A))$ and for $f:A\to A'$, $I(f)_0:I(A)_0\to I(A')_0$ and $I(f)_1:I(A)_1\to I(A')_1\circ I(f)_0$, $H_I(f)$ is the unique map making the diagram 
+    \[\begin{tikzcd}
+        {H_I(A)} & {H_I(A')} \\
+        {I(A)_j} & {I(A')_{I(f)_0(j)}}
+        \arrow[dashed, from=1-1, to=1-2]
+        \arrow["{(I(f)_1)_j}"', from=2-1, to=2-2]
+        \arrow[from=2-1, to=1-1]
+        \arrow[from=2-2, to=1-2]
+    \end{tikzcd}\]
+    commute. Then if $F:\mathcal{B}\to \mathcal{C}$ preserves all colimits of shape $I(A)_0$, $F\circ H_I\cong H_{F_*\circ I}$ where $F_*:\cat{Cat}//\mathcal{B}\to \cat{Cat}//\mathcal{C}$ is pushforward of lax-slice $2$-categories.
+\end{cor}
+\begin{proof}
+    $H_I$ as defined is a functor. Then for all $A \in \mathcal{A}_0$ we have that $F\circ H_I(A) = F(\lim\limits_{\to}(I(A))) \cong \lim\limits_{\to}(F\circ I(A))$. Further, for $f:A\to A'$ in $\mathcal{A}$, and all $j \in \text{Ob}(I(A)_0)$, we have that the outer rectangle
+    \[\begin{tikzcd}
+        {F(H_I(A))} & {F(H_I(A'))} \\
+        {H_{F_*\circ I}(A)} & {H_{F_*\circ I}(A')} \\
+        {F(I(A)_j)} & {F(I(A')_{I(f)_0(j)}}
+        \arrow["{F(H_I(f))}", from=1-1, to=1-2]
+        \arrow["{H_{F_*\circ I}(f)}"', from=2-1, to=2-2]
+        \arrow["{F((I(f)_1)_j)}"', from=3-1, to=3-2]
+        \arrow[from=3-1, to=2-1]
+        \arrow["\cong", from=2-1, to=1-1]
+        \arrow[from=3-2, to=2-2]
+        \arrow["\cong"', from=2-2, to=1-2]
+        \arrow[curve={height=24pt}, from=3-2, to=1-2]
+        \arrow[curve={height=-24pt}, from=3-1, to=1-1]
+    \end{tikzcd}\]
+    commutes by functoriality of $F$. Then by the uniqueness of the map out of a colimit we have that the upper square commutes, so we obtain the desired natural isomorphism.
+\end{proof}
+
