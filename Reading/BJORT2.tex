@@ -467,16 +467,36 @@ is indeed a functor between functor categories.
 
 
 \begin{lem}[label=lem:idempotCr1]
-    For any $n \geq 1$ and any $F:\mathcal{B}\rightarrow \mathcal{A}$, $\text{cr}_n(F)\cong \text{cr}_n(\text{cr}_1(F))$.
+    For any $n \geq 1$ and any $F:\mathcal{B}\rightarrow \mathcal{A}$, $\text{cr}_n(s_{F,1}):\text{cr}_n(\text{cr}_1(F))\to \text{cr}_n(F)$ is an isomorphism.
 \end{lem}
 \begin{proof}
-    The isomorphism $F(\star) \cong F(\star)\oplus \text{cr}_1(F)(\star)$ implies by Lemma \ref{lem:biprod} that $\text{cr}_1(F)(\star)\cong 0$. Then 
-    %%
-    \begin{equation*}
-        \text{cr}_1(F)(X) \cong \text{cr}_1(F)(\star)\oplus \text{cr}_1(\text{cr}_1(F))(X) \cong \text{cr}_1^2(F)(X)
-    \end{equation*}
-    %%
-    By induction we have that $\text{cr}_n(\text{cr}_1(F))(X_1,...,X_n) \cong \text{cr}_n(F)(X_1,...,X_n)$, using Lemma \ref{lem:biprod}. Since these are maps which result from the universal property of the biproduct they amalgamate to form natural isomorphisms between the desired functors by Lemma \ref{lem:limFuncIsLim}.
+    Note that $s_{F,1,\star}:\text{cr}_1(F)(\star)\to F(\star)$ is the kernel of $F(!):F(\star)\to F(\star)$, which is the identity. Thus, by the characterization of limits of Functors in Section~\ref{sec:colimFuncs} we have a natural isomorphism $0_1$ with components $0_{1,F}:\text{cr}_1(F)(\star)\to 0$. Next, we also have $s_{\text{cr}_1(F),1}:\text{cr}_1(\text{cr}_1(F))\to \text{cr}_1(F)$ which is the kernel of $\text{cr}_1(F)(!):\text{cr}_1(F)\to \text{cr}_1(F)(\star)$. Composing with the isomorphism $0_{1,F}$ shows that $s_{\text{cr}_1(F),1}:\text{cr}_1(\text{cr}_1(F))\to \text{cr}_1(F)$ is an isomorphism.
+    
+
+    \vspace{10pt}
+
+    We now proceed by induction on $n$. Suppose $\text{cr}_n(s_{F,1}):\text{cr}_n(\text{cr}_1(F))\to \text{cr}_n(F)$ for some $n \geq 1$. Then by definition of the cross-effect we have the commutative diagram of a map between equalizers
+    \[\begin{tikzcd}
+        {\text{cr}_n(\text{cr}_1(F))} & {(\lor_{i=1}^2\times 1)\circ \text{cr}_{n-1}(\text{cr}_1(F))} & {((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(\text{cr}_1(F))\oplus ((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(\text{cr}_1(F)))} \\
+        {\text{cr}_n(F)} & {(\lor_{i=1}^2\times 1)\circ \text{cr}_{n-1}(F)} & {((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(F)\oplus ((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(F))}
+        \arrow["{\text{cr}_n(s_{F,1})}"', from=1-1, to=2-1]
+        \arrow[from=1-1, to=1-2]
+        \arrow[shift left, from=1-2, to=1-3]
+        \arrow[from=2-1, to=2-2]
+        \arrow[shift left, from=2-2, to=2-3]
+        \arrow[shift right, from=2-2, to=2-3]
+        \arrow[shift right, from=1-2, to=1-3]
+        \arrow["{(\lor_{i=1}^2\times 1)\circ \text{cr}_{n-1}(s_{F,1})}"', from=1-2, to=2-2]
+        \arrow["{((\hat{\pi}_2)^*\circ \text{cr}_{n-1}(s_{F,1}))\oplus ((\hat{\pi}_1)^*\circ \text{cr}_{n-1}(s_{F,1}))}"', from=1-3, to=2-3]
+    \end{tikzcd}\]
+    By the inductive hypothesis the middle and right vertical map are isomorphisms. Since each of the rows are exact and the left maps are monomorphisms, being kernel maps, we can add zeros to the left and use the 5-lemma to conclude that $\text{cr}_n(s_{F,1})$ is an isomorphism, as desired.
+    % The isomorphism $F(\star) \cong F(\star)\oplus \text{cr}_1(F)(\star)$ implies by Lemma \ref{lem:biprod} that $\text{cr}_1(F)(\star)\cong 0$. Then 
+    % %%
+    % \begin{equation*}
+    %     \text{cr}_1(F)(X) \cong \text{cr}_1(F)(\star)\oplus \text{cr}_1(\text{cr}_1(F))(X) \cong \text{cr}_1^2(F)(X)
+    % \end{equation*}
+    % %%
+    % By induction we have that $\text{cr}_n(\text{cr}_1(F))(X_1,...,X_n) \cong \text{cr}_n(F)(X_1,...,X_n)$, using Lemma \ref{lem:biprod}. Since these are maps which result from the universal property of the biproduct they amalgamate to form natural isomorphisms between the desired functors by Lemma \ref{lem:limFuncIsLim}.
 %     Naturality in the case of $n = 1$ follows from the commutivity of the following diagram for any $f:X\rightarrow Y$:
 %     \[\begin{tikzcd}
 % 	 && {\text{cr}_1(F)(\star)} \\
@@ -560,7 +580,7 @@ The counit then is the natural inclusion $\epsilon_F:\iota\text{cr}_1(F)\Rightar
 and the projection $\pi_G$ given by the composite
 %%
 \begin{equation*}
-    G(\lor_{i=1}^nX_i)\xrightarrow{r_{G,n}\circ \cdots \circ \lor_{i=1}^n(r_{G,1})}\text{cr}_n(G)
+    G(\lor_{i=1}^nX_i)\xrightarrow{r_{G,n}\circ \cdots \circ \lor_{i=1}^n(r_{G,1})}\text{cr}_n(G)(X_1,...,X_n)
 \end{equation*}
 %%
 In particular, from our previous work $\iota_G$ and $\pi_G$ are composites of natural transformations, and hence themselves are natural. In particular, we have the natural transformations
@@ -1101,23 +1121,23 @@ These natural isomorphisms will prove valuable for proving that $\text{cr}_n$ is
 Composing with the adjunction $\text{inc}\dashv \text{cr}_1$ and using Lemma \ref{lem:idempotCr1} we obtain an adjunction
 \[\begin{tikzcd}
 	{\text{Fun}(\mathcal{B},\mathcal{A})} & {\text{Fun}_*(\mathcal{B}^n,\mathcal{A})}
-	\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{cr}_n}"', shift right=2, from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{cr}_n\circ \text{cr}_1}"', shift right=2, from=1-1, to=1-2]
 	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Delta^*}"', shift right=2, from=1-2, to=1-1]
 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
 \end{tikzcd}\]
 We use this adjunction to define a family of comonads.
 
 \begin{defn}[label=defn:crossEffectComonad]
-    For each $n \in \N$, we have a comonad $C_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ given by $C_n := \Delta^*\circ \text{cr}_n$. The counit of the comonad is given by the composite 
+    For each $n \in \N$, we have a comonad $C_n:\text{Fun}(\mathcal{B},\mathcal{A})\rightarrow \text{Fun}(\mathcal{B},\mathcal{A})$ given by $C_n := \Delta^*\circ \text{cr}_n\circ \text{cr}_1$. The counit of the comonad is given by the composite 
     %%
     \begin{equation*}
-        C_n(G)(X) \cong \Delta^*(\text{cr}_n(\text{cr}_1(G)))(X)\xrightarrow{\Delta^*(\iota_{\text{cr}_1(G)})}\text{cr}_1(G)(\lor_{i=1}^nX)\xrightarrow{\text{cr}_1(G)(+)}\text{cr}_1(G)(X)\xrightarrow{ker}G(X)
+        C_n(G)(X) = \Delta^*(\text{cr}_n(\text{cr}_1(G)))(X)\xrightarrow{\Delta^*(\iota_{\text{cr}_1(G)})}\text{cr}_1(G)(\lor_{i=1}^nX)\xrightarrow{\text{cr}_1(G)(+)}\text{cr}_1(G)(X)\xrightarrow{s_{G,1,X}}G(X)
     \end{equation*}
     %%
     while the comultiplication is given by the composite 
     %%
     \begin{equation*}
-        \Delta^*(\text{cr}_n(G))(X)\xrightarrow{\text{cr}_n(G)(i_1,...,i_n)}\Delta^*(\text{cr}_n(G))(\lor_{i=1}^nX)\xrightarrow{\pi_{\Delta^*(\text{cr}_n(G))}}\Delta^*(\text{cr}_n(\Delta^*(\text{cr}_n(G))))(X)
+        \Delta^*(\text{cr}_n(\text{cr}_1(G)))(X)\xrightarrow{\text{cr}_n(\text{cr}_1(G))(i_1,...,i_n)}\Delta^*(\text{cr}_n(\text{cr}_1(G)))(\lor_{i=1}^nX)\xrightarrow{\pi_{\Delta^*(\text{cr}_n(\text{cr}_1(G)))}}C_n(C_n(G))(X)
     \end{equation*}
     %%
 \end{defn}
@@ -1188,3 +1208,8 @@ Finally, we have the following proposition.
 \begin{proof}
     Since the functor categories are abelian, showing exactness is equivalent to showing that the functors preserve short exact sequences. The proof for $\text{cr}_n$ follows by the $3\times 3$ lemma and induction on $n$. After the proof for $\text{cr}_n$ the result for $C_n$ follows immediately.
 \end{proof}
+
+
+
+\subsubsection{Properties of the Cross-Effect}
+

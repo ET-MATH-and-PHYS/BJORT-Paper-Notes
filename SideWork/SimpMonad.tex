@@ -206,7 +206,7 @@ We can extend this definition to functors valued in simplicial objects.
     Let $F,G:\mathcal{B}\rightarrow \mathcal{A}\Sob$ be functors valued in simplicial objects. We say $F$ and $G$ are \textbf{pointwise homotopy equivalent} if for each $B \in \mathcal{B}$, we have a simplicial homotopy equivalence $(f_B:F(B)\rightarrow G(B), g_B:G(B)\rightarrow F(B), h_B:F(B)\times \Delta^1\rightarrow F(B), h'_B:G(B)\times \Delta^1\rightarrow G(B))$. We say $F$ and $G$ are \textbf{naturally homotopy equivalent} if we have natural transformations $(f:F\Rightarrow G,g:G\rightarrow F,h:F\times \Delta^1\Rightarrow F,h':G\times \Delta^1\Rightarrow G)$ which comprise homotopy equivalences at each $B \in \mathcal{B}$.
 \end{defn}
 
-We also have a completely combinatorial description of simplicial homotopies which is equivalent we working with simplicial objects in finitely cocomplete categories~\cite{weibel_1994}. In particular, a simplicial homotopy between $f,g:X\to Y$ is a family of maps $h_i^n:X_n\to Y_{n+1}$ for $n \in \N$ and $0\leq i \leq n$, such that $Y_{d_0^{n+1}}h^n_0 = f_n$, $Y_{d_{n+1}^{n+1}}h_n^n=g_n$, and 
+We also have a completely combinatorial description of simplicial homotopies which is equivalent when working with simplicial objects in finitely cocomplete categories~\cite{weibel_1994}. In particular, a simplicial homotopy between $f,g:X\to Y$ is a family of maps $h_i^n:X_n\to Y_{n+1}$ for $n \in \N$ and $0\leq i \leq n$, such that $Y_{d_0^{n+1}}h^n_0 = f_n$, $Y_{d_{n+1}^{n+1}}h_n^n=g_n$, and 
 %%
 \begin{equation*}
     Y(d_i^{n+1})h_j^n = \left\{\begin{array}{cc} h_{j-1}^{n-1}X(d_i^n) & i < j \\ Y(d_i^{n+1})h_{i-1}^n & i = j \neq 0 \\ h_j^{n-1}X(d_{i-1}^n) & i > j+1 \end{array}\right.
@@ -215,6 +215,50 @@ We also have a completely combinatorial description of simplicial homotopies whi
 \begin{equation*}
     Y(s_i^{n+1})h_j^n = \left\{\begin{array}{cc} h_{j+1}^{n+1}X(s_i^n) & i \leq j \\ h_j^{n+1}X(s_{i-1}^n) & i > j \end{array}\right.
 \end{equation*}
+
+
+First we show that these homotopies are preserved by biproducts in abelian categories.
+
+
+\begin{lem}[label=lem:coprodPresSimpHomotop]
+    Let $A,B,C,D \in \mathcal{C}\Sob$ for $\mathcal{C}$ an abelian category, and let $f,g:A\to B$ and $h:C\to D$ be simplicial maps. Then $f$ and $g$ are simplicially homotopic if and only if $f\oplus h$ is simplicially homotopic to $g\oplus h$.
+\end{lem}
+\begin{proof}
+    First, suppose that $f$ and $g$ are simplicially homotopic by maps $h_i^n:A_n\to B_{n+1}$ for $n \in \N$ and $0 \leq i \leq n$. Then I claim $h_i^n\oplus 0:A_n\oplus C_n\to B_{n+1}\oplus D_{n+1}$ gives a homotopy from $f\oplus h$ to $g\oplus h$. Indeed since $\oplus$ is functorial the simplicial identities still hold in the first variable, and they also hold in the second variable vacuously since the composite with zero by any map is zero.
+    
+    \vspace{10pt}
+
+    Conversely, suppose we have a homotopy 
+    %%
+    \begin{equation*}
+        A_n\oplus C_n\xrightarrow{\begin{pmatrix} h_{n,i}^{1,1} & h_{n,i}^{1,2} \\ h_{n,i}^{2,1} & h_{n,i}^{2,2} \end{pmatrix}} B_{n+1}\oplus D_{n+1}
+    \end{equation*}
+    %%
+    from $f\oplus h$ to $g \oplus h$. The homotopy conditions then become the equalities
+    %%
+    \begin{align*}
+        \begin{pmatrix} B(d_i^{n+1})h_{n,j}^{1,1} & B(d_i^{n+1})h_{n,j}^{1,2} \\
+        D(d_i^{n+1})h_{n,j}^{2,1} & D(d_i^{n+1})h_{n,j}^{2,2} \end{pmatrix} &= \begin{pmatrix} h_{n-1,j-1}^{1,1}A(d_i^{n}) & h_{n-1,j-1}^{1,2}C(d_i^{n}) \\
+        h_{n-1,j-1}^{2,1}A(d_i^{n}) & h_{n-1,j-1}^{2,2}C(d_i^{n}) \end{pmatrix} \tag{$i < j$} \\
+        %%
+        \begin{pmatrix} B(d_i^{n+1})h_{n,j}^{1,1} & B(d_i^{n+1})h_{n,j}^{1,2} \\
+        D(d_i^{n+1})h_{n,j}^{2,1} & D(d_i^{n+1})h_{n,j}^{2,2} \end{pmatrix} &= \begin{pmatrix} B(d_i^{n+1})h_{n,i-1}^{1,1} & B(d_i^{n+1})h_{n,i-1}^{1,2} \\
+        D(d_i^{n+1})h_{n,i-1}^{2,1} & D(d_i^{n+1})h_{n,i-1}^{2,2} \end{pmatrix} \tag{$i = j \neq 0$} \\
+        %%
+        \begin{pmatrix} B(d_i^{n+1})h_{n,j}^{1,1} & B(d_i^{n+1})h_{n,j}^{1,2} \\
+        D(d_i^{n+1})h_{n,j}^{2,1} & D(d_i^{n+1})h_{n,j}^{2,2} \end{pmatrix} &= \begin{pmatrix} h_{n-1,j}^{1,1}A(d_{i-1}^{n}) & h_{n-1,j}^{1,2}C(d_{i-1}^{n}) \\
+        h_{n-1,j}^{2,1}A(d_{i-1}^{n}) & h_{n-1,j}^{2,2}C(d_{i-1}^{n}) \end{pmatrix} \tag{$i > j+1$} \\
+        %%
+        \begin{pmatrix} B(s_i^{n+1})h_{n,j}^{1,1} & B(s_i^{n+1})h_{n,j}^{1,2} \\
+        D(s_i^{n+1})h_{n,j}^{2,1} & D(s_i^{n+1})h_{n,j}^{2,2} \end{pmatrix} &= \begin{pmatrix} h_{n+1,j+1}^{1,1}A(s_i^{n}) & h_{n+1,j+1}^{1,2}C(s_i^{n}) \\
+        h_{n+1,j+1}^{2,1}A(s_i^{n}) & h_{n+1,j+1}^{2,2}C(s_i^{n}) \end{pmatrix} \tag{$i \leq j$} \\
+        %%
+        \begin{pmatrix} B(s_i^{n+1})h_{n,j}^{1,1} & B(s_i^{n+1})h_{n,j}^{1,2} \\
+        D(s_i^{n+1})h_{n,j}^{2,1} & D(s_i^{n+1})h_{n,j}^{2,2} \end{pmatrix} &= \begin{pmatrix} h_{n+1,j}^{1,1}A(s_{i-1}^{n}) & h_{n+1,j}^{1,2}C(s_{i-1}^{n}) \\
+        h_{n+1,j}^{2,1}A(s_{i-1}^{n}) & h_{n+1,j}^{2,2}C(s_{i-1}^{n}) \end{pmatrix} \tag{$i > j$} \\
+    \end{align*}
+    It follows that $h_{n,i}^{1,1}$ give a simplicial homotopy from $f$ to $g$, as desired.
+\end{proof}
 
 We now show how these equivalences behave under composition as well as some behaviour of the category of functors into simplicial objects.
 
@@ -307,6 +351,124 @@ Note that under this isomorphism, natural simplicial homotopy is simplicial homo
     Then $\Delta^{op}(h):\Delta^{op}(F)\times \Delta^1\to \Delta^{op}(G)$, and since $\Delta^{op}$ is a strict 2-functor it preserves composition so $\Delta^{op}(h)$ is a homotopy from $\Delta^{op}(f)$ to $\Delta^{op}(g)$.
 \end{proof}
 
+Next, we construct simplicial objects out comonads on a category.
+
+\begin{prop}[label=prop:comonadSimp]
+    Let $(C,\epsilon,\delta)$ be a comonad on a category $\mathcal{C}$. Then there exists a functor
+    %%
+    \begin{equation*}
+        C^{\bullet+1}:\mathcal{C}\to \mathcal{C}\Sob
+    \end{equation*}
+\end{prop}
+\begin{proof}
+    Let $A \in \mathcal{C}_0$. Then we define the simplicial object $C^{\bullet+1}(A)$ by 
+    %%
+    \begin{equation*}
+        C^{\bullet+1}(A)_n := C^{n+1}(A)
+    \end{equation*}
+    %%
+    while for the face operators $d_i^n:[n-1]\to [n]$ and degeneracy operators $s_i^n:[n+1]\to [n]$ we define 
+    %%
+    \begin{equation*}
+        C^{\bullet+1}(A)_{d_i^n} := C^i\epsilon_{C^{n-i}(A)}:C^{n+1}(A)\to C^n(A),\;\; C^{\bullet+1}(A)_{s_i^n} := C^i\delta_{C^{n-i}(A)}:C^n(A)\to C^{n+1}(A)
+    \end{equation*}
+    %%
+    It remains to show the simplicial identities for these maps:
+    \begin{align*}
+        C^i\epsilon_{C^{n-i}(A)}\circ C^j\epsilon_{C^{n+1-j}(A)} &= C^i(\epsilon_{C^{n-i}(A)}\circ C^{j-i}\epsilon_{C^{n+1-j}(A)}) \\
+        &= C^i(C^{j-1-i}\epsilon_{C^{n+1-j}(A)}\circ \epsilon_{C^{n+1-i}(A)}) = C^{j-1}\epsilon_{C^{n-(j-1)}(A)}\circ C^{i}\epsilon_{C^{n+1-i}(A)} \tag{$i < j$} \\
+        C^i\delta_{C^{n+1-i}(A)}\circ C^j\delta_{C^{n-j}(A)} &= C^j(C^{i-j}\delta_{C^{n+1-i}(A)}\circ \delta_{C^{n-j}(A)}) \\
+        &= C^j(\delta_{C^{n+1-j}(A)}\circ C^{i-1-j}\delta_{C^{n+1-i}(A)}) = C^j\delta_{C^{n+1-j}(A)}\circ C^{i-1}\delta_{C^{n-(i-1)}(A)} \tag{$i > j$} \\
+        %%
+        C^i\epsilon_{C^{n+1-i}(A)}\circ C^j\delta_{C^{n-j}(A)} &= 1_{A_n} \tag{$i \in \{j,j+1\}$} \\
+        C^i\epsilon_{C^{n+1-i}(A)}\circ C^j\delta_{C^{n-j}(A)} &= C^i(\epsilon_{C^{n+1-i}(A)}\circ C^{j-i}\delta_{C^{n-j}(A)}) \\
+        &= C^i(C^{j-i-1}\delta_{C^{n-j}(A)}\circ \epsilon_{C^{n-i}(A)}) = C^{j-1}\delta_{C^{n-1-(j-1)}(A)}\circ C^i\epsilon_{C^{n-i}(A)} \tag{$i < j$} \\
+        %%
+        C^i\epsilon_{C^{n+1-i}(A)}\circ C^j\delta_{C^{n-j}(A)} &= C^j(C^{i-j}\epsilon_{C^{n+1-i}(A)}\circ \delta_{C^{n-j}(A)}) \\
+        &= C^j(\delta_{C^{C^{n-1-j}(A)}}\circ C^{i-1-j}\epsilon_{C^{n+1-i}(A)}) = C^{j}\delta_{C^{n-1-j}(A)}\circ C^{i-1}\epsilon_{C^{n-(i-1)}(A)} \tag{$i > j$}
+    \end{align*}
+    where we have used the naturality of $\epsilon$ and $\delta$, as well as the monad identities. Finally, if $f:A\to A'$ in $\mathcal{C}$ we define $C^{\bullet+1}(f)_n := C^{n+1}(f)$. This gives a map of simplicial sets since the face and degeneracy operators are natural. Since $C$ is a functor this assignment is functorial.
+\end{proof}
+
+
+For any category we have the trivial comonad given by identities. All comonads then given simplicial objects which are augmented over the simplicial object for this comonad.
+
+\begin{prop}[label=prop:simpMonMapToId]
+    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{C}$. Then there exists a natural transformation $C^{\bullet+1}\to 1_{\mathcal{C}}^{\bullet+1}$
+\end{prop}
+\begin{proof}
+    We define $\rho:C^{\bullet+1}\to 1_{\mathcal{C}}^{\bullet+1}$ at $A \in \mathcal{C}_0$ and $n \in \N$ by
+    %%
+    \begin{equation*}
+        C^{n+1}(A)\xrightarrow{\epsilon_A\circ \epsilon_{C(A)}\circ \cdots \circ \epsilon_{C^n(A)}}A
+    \end{equation*}
+    %%
+    Then for the image of the face operators we obtain the commuting rectangle
+    %%
+    \[\begin{tikzcd}
+        {C^{n+1}(A)} & {C^n(A)} & \cdots & {C(A)} & A \\
+        {C^n(A)} & {C^{n-1}(A)} & \cdots & {C(A)} & A
+        \arrow["{\epsilon_{C^n(A)}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow["{\epsilon_A}", from=1-4, to=1-5]
+        \arrow[Rightarrow, no head, from=1-5, to=2-5]
+        \arrow["{C^i\epsilon_{C^{n-i}(A)}}"', from=1-1, to=2-1]
+        \arrow["{\epsilon_{C^{n-1}(A)}}"', from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow["{C^{i-1}\epsilon_{C^{n-i}(A)}}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    by applying naturality $i$ times. Similarly, applying naturality of $\epsilon$ $i$ times to 
+    \[\begin{tikzcd}
+        {C^{n+1}(A)} & {C^n(A)} & \cdots & {C(A)} & A \\
+        {C^{n+2}(A)} & {C^{n+1}(A)} & \cdots & {C(A)} & A
+        \arrow["{\epsilon_{C^n(A)}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow["{\epsilon_A}", from=1-4, to=1-5]
+        \arrow[Rightarrow, no head, from=1-5, to=2-5]
+        \arrow["{C^i\delta_{C^{n-i}(A)}}"', from=1-1, to=2-1]
+        \arrow["{\epsilon_{C^{n+1}(A)}}"', from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+        \arrow["{C^{i-1}\delta_{C^{n-i}(A)}}", from=1-2, to=2-2]
+    \end{tikzcd}\]
+    we obtain the diagram 
+    \[\begin{tikzcd}
+        {C^{n-i+1}(A)} & {C^{n-i}(A)} & \cdots & A \\
+        {C^{n-i+2}(A)} & {C^{n-i+1}(A)} & \cdots & A
+        \arrow["{\delta_{C^{n-i}(A)}}"', from=1-1, to=2-1]
+        \arrow["{\epsilon_{C^{n-i+1}(A)}}"', from=2-1, to=2-2]
+        \arrow["{\epsilon_{C^{n-i}(A)}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=1-3, to=1-4]
+        \arrow[Rightarrow, no head, from=1-4, to=2-4]
+        \arrow[Rightarrow, no head, from=1-1, to=2-2]
+    \end{tikzcd}\]
+    which commutes. Thus $\rho_A$ is a map of simplicial sets. For $f:A\to A'$, we have the commuting diagram
+    \[\begin{tikzcd}
+        {C^{n+1}(A)} & {C^n(A)} & \cdots & {C(A)} & A \\
+        {C^{n+1}(A')} & {C^n(A')} & \cdots & {C(A')} & {A'}
+        \arrow["{\epsilon_{C^n(A)}}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow["{\epsilon_A}", from=1-4, to=1-5]
+        \arrow["{\epsilon_{A'}}"', from=2-4, to=2-5]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-2, to=2-3]
+        \arrow["{\epsilon_{C^n(A')}}"', from=2-1, to=2-2]
+        \arrow["{C^{n+1}(f)}"', from=1-1, to=2-1]
+        \arrow["{C^n(f)}", from=1-2, to=2-2]
+        \arrow["{C(f)}", from=1-4, to=2-4]
+        \arrow["f", from=1-5, to=2-5]
+    \end{tikzcd}\]
+    so $\rho$ is natural.
+\end{proof}
 
 
 

@@ -1,27 +1,29 @@
 \contentsline {chapter}{\numberline {1}BJORT}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Cross Effects for Functors}{3}{section.1.1}%
 \contentsline {subsubsection}{\numberline {1.1.0.1}Contracting Homotopies}{16}{subsubsection.1.1.0.1}%
-\contentsline {section}{\numberline {1.2}A categorical context for abelian functor calculus}{19}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Pointwise versus Natural Equivalences}{19}{subsection.1.2.1}%
-\contentsline {section}{\numberline {1.3}The Taylor tower in abelian functor calculus}{24}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Linear Approximations}{34}{section.1.4}%
-\contentsline {section}{\numberline {1.5}A General Bicomplex Retraction}{39}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Quasi-isomorphism for Composition}{45}{section.1.6}%
-\contentsline {section}{\numberline {1.A}Appendices}{46}{section.1.1.A}%
-\contentsline {subsection}{\numberline {1.A.1}Simplicial Object 2-Monad}{46}{subsection.1.1.A.1}%
-\contentsline {subsubsection}{\numberline {1.A.1.1}Simplicial Homotopies}{49}{subsubsection.1.1.A.1.1}%
-\contentsline {subsubsection}{\numberline {1.A.1.2}Chain Homotopies}{52}{subsubsection.1.1.A.1.2}%
-\contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{59}{subsection.1.1.A.2}%
-\contentsline {subsection}{\numberline {1.A.3}(co)Limit Constructions on Functors}{61}{subsection.1.1.A.3}%
-\contentsline {chapter}{\numberline {2}Side Work}{65}{appendix.2}%
-\contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{65}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{65}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Quotient Monad}{68}{subsection.2.1.2}%
-\contentsline {chapter}{\numberline {3}Project Notes and Future Directions}{71}{appendix.3}%
-\contentsline {section}{\numberline {3.1}Current Questions}{71}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Meeting Notes}{71}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}September 27 Notes}{71}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}October 4 Notes}{71}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}October 18 Notes}{72}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}To-do List}{72}{section.3.3}%
+\contentsline {subsubsection}{\numberline {1.1.0.2}Properties of the Cross-Effect}{19}{subsubsection.1.1.0.2}%
+\contentsline {section}{\numberline {1.2}A categorical context for abelian functor calculus}{20}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Pointwise versus Natural Equivalences}{20}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}The Taylor tower in abelian functor calculus}{25}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Linear Approximations}{35}{section.1.4}%
+\contentsline {section}{\numberline {1.5}A General Bicomplex Retraction}{40}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Quasi-isomorphism for Composition}{46}{section.1.6}%
+\contentsline {section}{\numberline {1.A}Appendices}{47}{section.1.1.A}%
+\contentsline {subsection}{\numberline {1.A.1}Simplicial Object 2-Monad}{47}{subsection.1.1.A.1}%
+\contentsline {subsubsection}{\numberline {1.A.1.1}Simplicial Homotopies}{50}{subsubsection.1.1.A.1.1}%
+\contentsline {subsubsection}{\numberline {1.A.1.2}Chain Homotopies}{56}{subsubsection.1.1.A.1.2}%
+\contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{63}{subsection.1.1.A.2}%
+\contentsline {subsection}{\numberline {1.A.3}General Polynomial Approximations from Cotriples}{69}{subsection.1.1.A.3}%
+\contentsline {subsection}{\numberline {1.A.4}(co)Limit Constructions on Functors}{74}{subsection.1.1.A.4}%
+\contentsline {chapter}{\numberline {2}Side Work}{79}{appendix.2}%
+\contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{79}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{79}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Quotient Monad}{82}{subsection.2.1.2}%
+\contentsline {chapter}{\numberline {3}Project Notes and Future Directions}{85}{appendix.3}%
+\contentsline {section}{\numberline {3.1}Current Questions}{85}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Meeting Notes}{85}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}September 27 Notes}{85}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}October 4 Notes}{85}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}October 18 Notes}{86}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}To-do List}{86}{section.3.3}%
 \contentsfinish 
