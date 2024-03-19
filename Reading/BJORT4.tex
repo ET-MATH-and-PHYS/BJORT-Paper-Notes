@@ -8,6 +8,23 @@ With the appropriate categorical language built up, we can begin constructing Ta
 
 Note that $\cat{cr}_k(F) \simeq_{\cat{Ch}} 0$ implies $\cat{cr}_\ell(F) \simeq_\cat{Ch} 0$ for any $\ell > k$. Indeed, since $G \oplus F \simeq_{\cat{Ch}} 0$ implies $F \simeq_{\cat{Ch}} 0$ from Section~\ref{subsec:chainHomotop}, this follows from the inductive definition. Consequently, functors of degree $k$ are also of degree $\ell$ for $\ell > k$.
 
+\begin{proof}
+    Let $F$ be degree $n$, so $\text{cr}_{n+1}(F)\simeq_{\cat{Ch}}0$. We show $\text{cr}_{n+k}(F)\simeq_{\cat{Ch}}0$ for all $k \geq 1$ by induction. The base case is by assumption, so suppose $\text{cr}_{n+k}(F)\simeq_{\cat{Ch}} 0$ for some $k \geq 1$. Then we have the isomorphism
+    %%
+    \begin{align*}
+        \text{cr}_{n+k}(F)(X_1\lor X_2,X_3,\cdots, X_n) &\cong \text{cr}_{n+k}(F)(X_1,X_3,...,X_n)\oplus \text{cr}_{n+k}(F)(X_2,...,X_n) \\
+        &\oplus \text{cr}_{n+k+1}(F)(X_1,...,X_n)
+    \end{align*}
+    %%
+    which is natural in the $X_i$ and $F$. Since all $\text{cr}_{n+k}$ terms are naturally contractible, Lemmas~\ref{lem:oplusPres} and~\ref{lem:homotopCancel} imply that 
+    %%
+    \begin{equation*}
+        \text{cr}_{n+k+1}(F)\simeq_{\cat{Ch}}0
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
 From \cite[Defn 2.4]{JohnsonB.2004Dcwc}, chain complexes can be constructed from a pair of a comonad and an object in the category on which the comonad acts.
 
 \begin{lem}[label=lem:comonadChain]
@@ -139,10 +156,10 @@ Note that in addition $\Delta^*\circ \text{Fun}^{\cat{Ch}} = \text{Fun}^{\cat{Ch
 Finally, we show that the $C^{\cat{Ch}}$ construction also commutes with the chain complex functor when $C$ is additive.
 
 \begin{lem}[label=lem:ChConsPtwise]
-    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{A}$ which is also an additive functor. Then we have the equality
+    Let $(C,\epsilon,\delta)$ be a comonad on $\mathcal{A}$ which is also an additive functor. Then we have the isomorphism
     %%
     \begin{equation*}
-        \cat{Ch}(C)^{\cat{Ch}} = \cat{Ch}(C^{\cat{Ch}})
+        \cat{Ch}(C)^{\cat{Ch}} \cong \cat{Ch}(C^{\cat{Ch}})
     \end{equation*}
     %%
 \end{lem}

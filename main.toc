@@ -6,24 +6,24 @@
 \contentsline {subsection}{\numberline {1.2.1}Pointwise versus Natural Equivalences}{20}{subsection.1.2.1}%
 \contentsline {section}{\numberline {1.3}The Taylor tower in abelian functor calculus}{25}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Linear Approximations}{35}{section.1.4}%
-\contentsline {section}{\numberline {1.5}A General Bicomplex Retraction}{40}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Quasi-isomorphism for Composition}{46}{section.1.6}%
-\contentsline {section}{\numberline {1.A}Appendices}{47}{section.1.1.A}%
-\contentsline {subsection}{\numberline {1.A.1}Simplicial Object 2-Monad}{47}{subsection.1.1.A.1}%
-\contentsline {subsubsection}{\numberline {1.A.1.1}Simplicial Homotopies}{50}{subsubsection.1.1.A.1.1}%
-\contentsline {subsubsection}{\numberline {1.A.1.2}Chain Homotopies}{56}{subsubsection.1.1.A.1.2}%
-\contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{63}{subsection.1.1.A.2}%
-\contentsline {subsection}{\numberline {1.A.3}General Polynomial Approximations from Cotriples}{69}{subsection.1.1.A.3}%
-\contentsline {subsection}{\numberline {1.A.4}(co)Limit Constructions on Functors}{74}{subsection.1.1.A.4}%
-\contentsline {chapter}{\numberline {2}Side Work}{79}{appendix.2}%
-\contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{79}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{79}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Quotient Monad}{82}{subsection.2.1.2}%
-\contentsline {chapter}{\numberline {3}Project Notes and Future Directions}{85}{appendix.3}%
-\contentsline {section}{\numberline {3.1}Current Questions}{85}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Meeting Notes}{85}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}September 27 Notes}{85}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}October 4 Notes}{85}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}October 18 Notes}{86}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}To-do List}{86}{section.3.3}%
+\contentsline {section}{\numberline {1.5}A General Bicomplex Retraction}{41}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Quasi-isomorphism for Composition}{47}{section.1.6}%
+\contentsline {section}{\numberline {1.A}Appendices}{49}{section.1.1.A}%
+\contentsline {subsection}{\numberline {1.A.1}Simplicial Object 2-Monad}{49}{subsection.1.1.A.1}%
+\contentsline {subsubsection}{\numberline {1.A.1.1}Simplicial Homotopies}{52}{subsubsection.1.1.A.1.1}%
+\contentsline {subsubsection}{\numberline {1.A.1.2}Chain Homotopies}{58}{subsubsection.1.1.A.1.2}%
+\contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{65}{subsection.1.1.A.2}%
+\contentsline {subsection}{\numberline {1.A.3}General Polynomial Approximations from Cotriples}{71}{subsection.1.1.A.3}%
+\contentsline {subsection}{\numberline {1.A.4}(co)Limit Constructions on Functors}{79}{subsection.1.1.A.4}%
+\contentsline {chapter}{\numberline {2}Side Work}{83}{appendix.2}%
+\contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{83}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{83}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Quotient Monad}{86}{subsection.2.1.2}%
+\contentsline {chapter}{\numberline {3}Project Notes and Future Directions}{89}{appendix.3}%
+\contentsline {section}{\numberline {3.1}Current Questions}{89}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Meeting Notes}{89}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}September 27 Notes}{89}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}October 4 Notes}{89}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}October 18 Notes}{90}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}To-do List}{90}{section.3.3}%
 \contentsfinish 

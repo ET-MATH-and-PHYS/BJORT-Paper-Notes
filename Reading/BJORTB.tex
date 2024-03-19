@@ -12,13 +12,13 @@ In this section we will prove Proposition~\ref{prop:5.7} using the work in Secti
         F\lhd G \cong (F\lhd G)(0) \oplus \text{cr}_1(F\lhd G)
     \end{equation*}
     %%
-    and by Lemma~\ref{lem:compDirSum}
+    and by Lemma~\ref{lem:compDirSum} and Lemma~\ref{lem:constComp}
     %%
     \begin{equation*}
-        F\lhd G\cong (\text{cr}_1(F)\oplus F(0))\lhd G \cong (\text{cr}_1(F)\lhd G)\oplus (F(0)\lhd G) \cong (\text{cr}_1(F)\lhd G)\cong F(0)
+        F\lhd G\cong (\text{cr}_1(F)\oplus F(0))\lhd G \cong (\text{cr}_1(F)\lhd G)\oplus (F(0)\lhd G) \cong (\text{cr}_1(F)\lhd G)\oplus F(0)
     \end{equation*}
     %%
-    by Lemma \textbf{LEMMA ON CONSTANT FUNC COMP}. Further, \textbf{NEED RESULT ON COMPOSITION EVALUATION}
+    Further, $(F\lhd G)(0) \cong F(0)$ since $G$ is reduced and $\Gamma_\mathcal{B}$ preserves zero objects. Thus taking direct sum complements we obtain the desired isomorphism.
 \end{proof}
 
 We can use this lemma to begin reducing our goal.
@@ -40,4 +40,51 @@ We can use this lemma to begin reducing our goal.
     as desired.
 \end{proof}
 
-Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corollary~\ref{cor:B.2} implies that it is sufficient to prove Proposition~\ref{prop:5.7} when both functors are reduced. 
+Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corollary~\ref{cor:B.2} implies that it is sufficient to prove Proposition~\ref{prop:5.7} when both functors are reduced. Note that Lemma~\ref{lem:funcActChain} restricts to a functor $\cat{Ch}:\text{Fun}_*(\mathcal{A},\mathcal{C})\to \text{Fun}_*(\cat{Ch}(\mathcal{A}),\cat{Ch}(\mathcal{C}))$. 
+
+
+\begin{rmk}
+    Let $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ be a strictly reduced functor. We define a comparison map $\text{sw}_F:\Gamma_{\cat{Ch}(\mathcal{B})}\circ \cat{Ch}(F)\to F_*\circ \Gamma_\mathcal{A}$ at $A_\bullet \in \cat{Ch}(\mathcal{A})$ and $n \in \N$,
+    %%
+    \begin{equation*}
+        \text{sw}_{F,A_\bullet,n}:\bigoplus_{[n]\twoheadrightarrow [k]}F(A_k)\to F\left(\bigoplus_{[n]\twoheadrightarrow [k]}A_k\right)
+    \end{equation*}
+    %%
+    given by the universal coproduct property of the biproduct. This is evidently natural in $n$, $A_\bullet$, and $F$. Next, observe that
+    %%
+    \begin{equation*}
+        (\Gamma_\mathcal{B})_*\gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)(A_\bullet)
+    \end{equation*}
+    Then we have that $(\Gamma_{\mathcal{B}})_*\text{sw}_F$ is given by 
+    %%
+    \begin{equation*}
+        (\Gamma_{\mathcal{B}})_*\text{sw}_{F,A_\bullet,n}:\Gamma_\mathcal{B}\left(\bigoplus_{[n]\twoheadrightarrow [k]}F(A_k)\right)\to \Gamma_\mathcal{B}\circ F\left(\bigoplus_{[n]\twoheadrightarrow [k]}A_k\right)
+    \end{equation*} 
+    %%
+    which at $m$ is
+    %%
+    \begin{equation*}
+        ((\Gamma_{\mathcal{B}})_*\text{sw}_{F,A_\bullet,n})_m:\bigoplus_{[m]\twoheadrightarrow[\ell]}\left(\bigoplus_{[n]\twoheadrightarrow [k]}F(A_k)_\ell\right)\to \bigoplus_{[m]\twoheadrightarrow[\ell]}F\left(\bigoplus_{[n]\twoheadrightarrow [k]}A_k\right)_\ell
+    \end{equation*}
+    Taking the diagonal we obtain at $A_\bullet$ and $n$ the map
+    %%
+    \begin{equation*}
+        \bigoplus_{[n]\twoheadrightarrow[\ell]}\left(\bigoplus_{[n]\twoheadrightarrow[k]}F(A_k)_\ell\right) \to \bigoplus_{[n]\twoheadrightarrow[\ell]}F\left(\bigoplus_{[n]\twoheadrightarrow[k]}A_k\right)_\ell
+    \end{equation*}
+    %%
+\end{rmk}
+
+We now show that under $N_\mathcal{B}$ this map becomes a chain homotopy equivalence when the functor $F$ is reduced and degree $1$.
+
+\begin{lem}[label=lem:equivDef]
+    Let $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ be linear. Then $F_*\Gamma_\mathcal{A}$ and $\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$ are \rd{naturally} chain homotopy equivalent.
+\end{lem}
+\begin{proof}
+    Note that by assumption $F$ is linear and strictly reduced. Then by Proposition~\ref{prop:linearEquiv}, for each $A_\bullet \in \cat{Ch}(\mathcal{A})$ and each $n$ we have a natural chain homotopy equivalence
+    %%
+    \begin{equation*}
+        F\left(\bigoplus_{[n]\twoheadrightarrow[k]}A_k\right) \simeq_{\cat{Ch}} \bigoplus_{[n]\twoheadrightarrow[k]}F(A_k)
+    \end{equation*}
+    %%
+    which is natural in the $A_k$. We want to enhance these to a natural chain homotopy $F_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}}\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$. To this end let $\alpha_n,\beta_n,s^n,r^n$ denote such a natural chain homotopy for each $n$. 
+\end{proof}

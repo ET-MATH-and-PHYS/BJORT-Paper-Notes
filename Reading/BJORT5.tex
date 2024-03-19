@@ -91,7 +91,7 @@ We can now prove the previously asserted equivalence.
     A functor $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ is linear if and only if the natural map
     %%
     \begin{equation*}
-        D_1(F)(X)\oplus D_1(F)(Y)\hookrightarrow D_1(F)(X\oplus Y)
+        F(X)\oplus F(Y)\hookrightarrow F(X\oplus Y)
     \end{equation*}
     %%
     is a natural chain homotopy equivalence.
@@ -134,54 +134,21 @@ The next main result we wish to show is that $D_1$ preserves composition up to \
 In this section we will extend this result to non-reduced $G$. First, by Lemma~\ref{lem:idempotCr1} we have that $\text{cr}_1(\text{cr}_1(F))\cong \text{cr}_1(F)$, so as $D_1(F) \cong P_1(\text{cr}_1(F))$ and post-composition preserves natural isomorphisms we obtain that $D_1(F) \cong D_1(\text{cr}_1(F))$. Before extending the proposition we first prove some preliminary results on the relationship between the direct sum operation on functors and our composition, $\lhd$, in $\cat{AbCat}_{\cat{Ch}}$. 
 
 \begin{lem}[label=lem:compDirSum]
-    Let $F,G:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H,K:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then there is a natural isomorphism
+    Let $F,G:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then there is a natural isomorphism
     %%
     \begin{equation*}
-        (F\oplus G)\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)\oplus (G\lhd H)\oplus (G\lhd K)
+        (F\oplus G)\lhd H\cong (F\oplus H)\lhd (G\oplus H)
     \end{equation*}
     %%
 \end{lem}
 \begin{proof}
-    To prove the claim we proceed in steps. First, we show that
-    %%
-    \begin{equation*}
-        F\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)
-    \end{equation*}
-    %%
-    Observe that by definition 
-    %%
-    \begin{equation*}
-        F\lhd (H\oplus K) = N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}(H\oplus K)
-    \end{equation*}
-    %%
-    Since isomorphisms and $\Delta_\mathcal{A}$ preserve limits, and direct sums of functors in abelian categories are given pointwise, it follows that
-    %%
-    \begin{equation*}
-        N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}(H\oplus K) \cong (N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H)\oplus (N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}K)
-    \end{equation*}
-    %%
-    and so 
-    %%
-    \begin{equation*}
-        F\lhd (H\oplus K) \cong (F\lhd H)\oplus (F\lhd K)
-    \end{equation*}
-    %%
-
-    \vspace{10pt}
-
-    Next we show 
-    %%
-    \begin{equation*}
-        (F\oplus G)\lhd H \cong (F\lhd H)\oplus (G\lhd H)
-    \end{equation*}
-    %%
     First, note that since $\Gamma$ preserves direct sums, $\Gamma_\mathcal{A}\circ (F\oplus G)\cong (\Gamma_\mathcal{A}\circ F)\oplus (\Gamma_\mathcal{A}\circ G)$. Then by definition of the direct sum of functors
     %%
     \begin{equation*}
         ((\Gamma_\mathcal{A}\circ F)\oplus (\Gamma_\mathcal{A}\circ G))_*\Gamma_\mathcal{B}H = (\Gamma_\mathcal{A}\circ F)_*\Gamma_\mathcal{B}H\oplus (\Gamma_\mathcal{A}\circ G)_*\Gamma_\mathcal{B}H
     \end{equation*}
     %%
-    Since $\Delta_\mathcal{A}$ and $N_\mathcal{A}$ preserve limits, we have that 
+    Finally, since $\Delta_\mathcal{A}$ and $N_\mathcal{A}$ also preserve finite limits, we have that 
     %%
     \begin{equation*}
         (F\oplus G)\lhd H \cong (F\lhd H)\oplus (G\lhd H)
@@ -190,6 +157,56 @@ In this section we will extend this result to non-reduced $G$. First, by Lemma~\
     as desired.
 \end{proof}
 
+\begin{lem}[label=lem:constComp]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. If $F$ or $H$ are constant functors, then so is $F\lhd H$.
+\end{lem}
+\begin{proof}
+    First, suppose $H$ is a constant functor associated to $B_\bullet \in \cat{Ch}(\mathcal{B})$. Then for any $C \in \mathcal{C}_0$ we have that 
+    %%
+    \begin{equation*}
+        (F\lhd H)(C) = N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B} H(C) = N_\mathcal{A}(\Delta_\mathcal{A}((\Gamma_\mathcal{A})_*\circ F_*\circ \Gamma_\mathcal{B}(B_\bullet))) 
+    \end{equation*}
+    %%
+    with maps sent to identities. Similarly, if $F$ is constant determined by $A_\bullet \in \cat{Ch}(\mathcal{B})$, then 
+    %%
+    \begin{align*}
+        (F\lhd H)(C) &= N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B} H(C) \\
+        &= N_\mathcal{A}(\Delta_\mathcal{A}((\Gamma_\mathcal{A})_*\circ F_*\circ \Gamma_\mathcal{B}(B_\bullet)))  \\
+        &= N_\mathcal{A}(\Delta_\mathcal{A}((\Gamma_\mathcal{A})_*\circ \Delta_{A_\bullet})) \\
+        &= N_\mathcal{A}\Gamma_\mathcal{A}(A_\bullet) \\
+        &\cong A_\bullet
+    \end{align*}
+    %%
+    using the Dold-Kan equivalence, where $\Delta_{A_\bullet}:\Delta^{op}\to \cat{Ch}(\mathcal{A})$ is the constant simplicial object at $A_\bullet$.
+\end{proof}
+
+\begin{lem}[label=lem:dirComp]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H_1,...,H_n:\mathcal{C}\to \mathcal{B}$. Then 
+    %%
+    \begin{align*}
+        \text{cr}_{n-1}(F)(H_1\oplus H_2,H_3,...,H_n) \cong \text{cr}_{n-1}(F)(H_1,H_3,...,H_n)&\oplus \text{cr}_{n-1}(F)(H_2,...,H_n) \\
+        &\oplus \text{cr}_n(F)(H_1,...,H_n) 
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Note that we have functors $H_1\times \cdots \times H_n:\mathcal{C}^n\to \mathcal{B}^n$. Then the desired isomorphism is obtained from the isomorphism in Equation~\eqref{eq:natN} by whiskering by $H_1\times \cdots \times H_n$.
+\end{proof}
+
+\begin{lem}[label=lem:dirCompLhd]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H_1,...,H_n:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then 
+    %%
+    \begin{align*}
+        \text{cr}_{n-1}(F)\lhd (H_1\oplus H_2,H_3,...,H_n) \cong \text{cr}_{n-1}(F)\lhd (H_1,H_3,...,H_n)&\oplus \text{cr}_{n-1}(F)\lhd (H_2,...,H_n) \\
+        &\oplus \text{cr}_n(F)\lhd (H_1,...,H_n) 
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Since $\Gamma_\mathcal{B}$ preserves finite limits and colimits, we have that \textbf{TBD}
+    %%
+    \begin{align*}
+        \text{cr}_{n-1}(F)_*\Gamma_{\mathcal{B}^{n-1}}(H_1\oplus H_2,H_3,...,H_n) &\cong 
+    \end{align*}
+\end{proof}
 
 In order to extend the proposition we require one additional result.
 
@@ -208,6 +225,59 @@ In order to extend the proposition we require one additional result.
         F\lhd G \cong F\lhd (G(0)\oplus \text{cr}_1(G)) \cong (F(0)\oplus \text{cr}_1(F))\lhd (G(0)\oplus \text{cr}_1(G))
     \end{equation*}
     %%
-    
+    From our Lemmas~\ref{lem:compDirSum} and~\ref{lem:constComp} we have that 
+    %%
+    \begin{equation*}
+        (F(0)\oplus \text{cr}_1(F))\lhd (G(0)\oplus \text{cr}_1(G)) \cong F(0)\oplus (\text{cr}_1(F)\lhd (G(0)\oplus \text{cr}_1(G)))
+    \end{equation*}
+    %%
+    Next applying Lemma~\ref{lem:dirCompLhd} we obtain that 
+    %%
+    \begin{equation*}
+        \text{cr}_1(F\lhd G)\oplus (F\lhd G)(0) \cong F(0)\oplus (\text{cr}_1(F)\lhd G(0))\oplus (\text{cr}_1(F)\lhd \text{cr}_1(G))\oplus (\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)))
+    \end{equation*}
+    %%
+    Expanding $(F\lhd G)(0) \cong F(0)\oplus \text{cr}_1(F)\lhd G(0)$ and using the cancellative property of the direct sum, we obtain the desired isomorphism. 
 \end{proof}
+
+We now extend Proposition~\ref{prop:5.7}.
+
+\begin{prop}[label=prop:5.10]
+    If $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$, then there is a \rd{natural} chain homotopy equivalence
+    %%
+    \begin{equation*}
+        D_1(F\lhd G)\simeq_{\cat{Ch}}(D_1(F)\lhd D_1(G))\oplus D_1((\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G))))
+    \end{equation*}
+    %%
+\end{prop}
+\begin{proof}
+    Using Lemma~\ref{lem:compGen} we have that 
+    %%
+    \begin{equation*}
+        D_1(F\lhd G) \cong D_1(\text{cr}_1(F\lhd G)) \cong D_1((\text{cr}_1(F)\lhd \text{cr}_1(G))\oplus (\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G))))
+    \end{equation*}
+    %%
+    Using the linearity of $D_1$ we have that 
+    %%
+    \begin{align*}
+        &D_1((\text{cr}_1(F)\lhd \text{cr}_1(G))\oplus (\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)))) \\
+        &\cong D_1(\text{cr}_1(F)\lhd \text{cr}_1(G))\oplus D_1(\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)))
+    \end{align*}
+    %%
+    Since $\text{cr}_1(G)$ is reduced, we can apply Proposition~\ref{prop:5.7} and Lemma~\ref{lem:oplusPres} we have a \rd{natural} chain homotopy equivalence
+    %%
+    \begin{align*}
+        &D_1(\text{cr}_1(F)\lhd \text{cr}_1(G))\oplus D_1(\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G))) \\
+        &\simeq_{\cat{Ch}} (D_1(\text{cr}_1(F))\lhd D_1(\text{cr}_1(G)))\oplus D_1(\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)))
+    \end{align*}
+    %%
+    Applying the isomorphism $D_1\circ \text{cr}_1 \cong D_1$ we have that 
+    %%
+    \begin{equation*}
+        D_1(F\lhd G) \cong D_1(\text{cr}_1(F\lhd G)) \simeq_{\cat{Ch}} (D_1(F)\lhd D_1(G))\oplus D_1(\text{cr}_2(F)\lhd (G(0)\oplus \text{cr}_1(G)))
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
 

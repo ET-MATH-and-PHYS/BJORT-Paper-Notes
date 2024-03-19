@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1709495676 "main.aux" "main.bbl" "main" 1709514511
+["bibtex main"] 1710461819 "main.aux" "main.bbl" "main" 1710461852
   "/usr/share/texlive/texmf-dist/bibtex/bst/amscls/amsalpha.bst" 1513722769 28675 71ba1b1ee8387ac88670b0ea0eb2399a ""
   "Refs.bib" 1709411649 5701 6e17b33709af5babbb99a3b7640f37e4 ""
-  "main.aux" 1709514510 15841 afa606168b750b0dfec8bc5bf0752148 "pdflatex"
+  "main.aux" 1710461850 16499 a04316a609efa35789b8a0a912a2793c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1709514493 "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" "main.pdf" "main" 1709514511
+["pdflatex"] 1710461820 "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" "main.pdf" "main" 1710461852
   "/etc/texmf/web2c/texmf.cnf" 1652316073 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/mnt/c/MathAndPhysics/UofC/Math 518/BJORT_Theory_and_Paper_Notes/main.tex" 1708807130 1856 279ca85039213ee2b6532f4aae62ee46 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -307,21 +307,21 @@
   "Reading/Appendix.tex" 1708813854 391 34cc4a071b54f00bfe0287c2c883a29b ""
   "Reading/BJORT2.tex" 1709166820 80093 2f9e0fa009cc13fa684161f3a6ce6a35 ""
   "Reading/BJORT3.tex" 1708838354 17858 4c067a03242c67475c28c185b446c5ff ""
-  "Reading/BJORT4.tex" 1709329425 33761 d8ddc8aa45672ffeb533c38bf317fb8e ""
-  "Reading/BJORT5.tex" 1708917329 12425 b7d3b6897de66f1e36b06433605f30bb ""
+  "Reading/BJORT4.tex" 1710439927 34609 d92e4af29590e89494069c52ca4d3952 ""
+  "Reading/BJORT5.tex" 1709848012 16388 8065710fe721eb603404d7ab74235827 ""
   "Reading/BJORTA.tex" 1707986037 14217 2ccd52b39acfb85abb7bd96ac3bfe6a8 ""
-  "Reading/BJORTB.tex" 1708624886 2046 65e27085020b15756db4faf4a1100008 ""
-  "Reading/DoldKan.tex" 1709514490 40016 c9590bf2adac5a0b91f5e0e69b7a8711 ""
+  "Reading/BJORTB.tex" 1709966884 5120 9b8365559370ba2abde470db4936dac2 ""
+  "Reading/DoldKan.tex" 1710461788 45919 31e026cf6cff8c75499b07cc2734bde2 ""
   "SideWork/(co)LimCons.tex" 1708838400 9687 b95f6b1635d1652e7e10d175ac856dd6 ""
   "SideWork/MonadAttempts.tex" 1706205534 12628 046c09b3b98a59ca9aab9f7c0f881582 ""
   "SideWork/SimpMonad.tex" 1709333076 53606 7f341227f0d73a7b4d896d1dfa5a8e06 ""
   "TikzDiagrams.tex" 1706205532 126 23aefe860354023427651644c8b498f5 ""
   "ToDo.tex" 1706205532 2308 e4bd4f734fcfce0594c823415d6e2c87 ""
-  "main.aux" 1709514510 15841 afa606168b750b0dfec8bc5bf0752148 "pdflatex"
-  "main.bbl" 1709495676 2081 b4459fe0a716a1a2f9d91912b9ec4ece "bibtex main"
-  "main.out" 1709514510 4554 7a28e092d1b8b1a2777604830832df01 "pdflatex"
+  "main.aux" 1710461850 16499 a04316a609efa35789b8a0a912a2793c "pdflatex"
+  "main.bbl" 1710461819 2081 b4459fe0a716a1a2f9d91912b9ec4ece "bibtex main"
+  "main.out" 1710461850 4554 7a28e092d1b8b1a2777604830832df01 "pdflatex"
   "main.tex" 1708807130 1856 279ca85039213ee2b6532f4aae62ee46 ""
-  "main.toc" 1709514510 2597 52748b3fa424dccedfe372455c19543f "pdflatex"
+  "main.toc" 1710461850 2597 671396fc31d55f0211254a932c0b1958 "pdflatex"
   "packages.tex" 1706205532 11452 f3bbc218e413d97ae1642c7771daee53 ""
   "quiver.sty" 1706205532 1606 0a56787eafe2108d7ab3bda12c3165bc ""
   (generated)

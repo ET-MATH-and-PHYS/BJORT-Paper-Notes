@@ -337,7 +337,144 @@ Next we can define the polynomial approximation associated with the comonad $C$.
     %%
 \end{defn}
 
-By Lemmas~\ref{lem:addFuncPres}~\ref{lem:ChConsPres} $P_C$ is additive, and further preserves chain homotopies. Note that we have a natural transformation $I_C:\deg_0^\mathcal{A}\to C^{\cat{Ch}}$ such that at $A \in \mathcal{A}_0$, $I_{C,A}$ is 
+By Lemmas~\ref{lem:addFuncPres}~\ref{lem:ChConsPres} $P_C$ is additive (exact if $C$ is exact), and further preserves chain homotopies. We now prove some commutation type relations.
+
+\begin{lem}[label=lem:totComm]
+    Let $F:\mathcal{A}\to \mathcal{B}$ be an additive functor. Then 
+    %%
+    \begin{equation*}
+        \cat{Ch}(F)\circ \text{Tot}_\mathcal{A} \cong \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Let $A_{\bullet,\bullet} \in \cat{Ch}(\mathcal{A})$. Then since $F$ is additive it preserves finite direct sums, so 
+    %%
+    \begin{equation*}
+        \cat{Ch}(F)(\text{Tot}_\mathcal{A}(A_{\bullet,\bullet}))_n = F\left(\bigoplus_{p+q=n}A_{p,q}\right) \cong \bigoplus_{p+q=n}F(A_{p,q}) = \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)(A_{\bullet,\bullet})_n
+    \end{equation*}
+    %%
+    and since $\cat{Ch}(F)$ and $\cat{Ch}^2(F)$ act term-wise on differentials, it follows that
+    %%
+    \begin{equation*}
+        \cat{Ch}(F)(\text{Tot}_\mathcal{A}(A_{\bullet,\bullet})) \cong \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)(A_{\bullet,\bullet})
+    \end{equation*}
+    %%
+    Further, since this isomorphism is induced by the unique map between biproducts it follows that we have the desired natural isomorphism.
+\end{proof}
+
+\begin{lem}[label=commWithComonad]
+	Suppose $F:\cat{Ch}(\mathcal{A})\to \cat{Ch}(\mathcal{A})$ such that $F$ is additive, $F\circ \cat{Ch}(C)\cong \cat{Ch}(C)\circ F$ under this isomorphism $F\cat{Ch}(\epsilon)_{A_\bullet}$ becomes $\cat{Ch}(\epsilon)_{F(A_\bullet)}$. Then $\cat{Ch}(F)\circ \cat{Ch}(C^{\cat{Ch}}) \cong \cat{Ch}(C^{\cat{Ch}})\circ F$.
+\end{lem}
+\begin{proof}
+	Let $A_\bullet \in \cat{Ch}(\mathcal{A})$. Recall by Lemma~\ref{lem:ChConsPtwise} we have $\cat{Ch}(C^{\cat{Ch}})\cong \cat{Ch}(C)^{\cat{Ch}}$. Then we have that $\cat{Ch}(F)\circ \cat{Ch}(C)^{\cat{Ch}}(A_\bullet)$ gives the bicomplex 
+	%%
+	\[\begin{tikzcd}
+		\cdots & {F(\cat{Ch}(C)^2(A_\bullet))} & {F(\cat{Ch}(C)(A_\bullet))} & {F(A_\bullet)}
+		\arrow["{F(\cat{Ch}(C)\epsilon_{A_{\bullet}})-F(\epsilon_{\cat{Ch}(C)(A_\bullet)})}", from=1-2, to=1-3]
+		\arrow["{F(\epsilon_{A_\bullet})}", from=1-3, to=1-4]
+		\arrow[from=1-1, to=1-2]
+	\end{tikzcd}\]
+	%%
+	The under the isomorphism $F\circ \cat{Ch}(C)\cong \cat{Ch}(C)\circ F$ this bicomplex becomes 
+	%%
+	\[\begin{tikzcd}
+		\cdots & {\cat{Ch}(C)^2(F(A_\bullet))} & {F(\cat{Ch}(C)(A_\bullet))} & {F(A_\bullet)}
+		\arrow["{\cat{Ch}(C)\epsilon_{F(A_{\bullet})}-\epsilon_{\cat{Ch}(C)(F(A_\bullet))}}", from=1-2, to=1-3]
+		\arrow["{\epsilon_{F(A_\bullet)}}", from=1-3, to=1-4]
+		\arrow[from=1-1, to=1-2]
+	\end{tikzcd}\]
+	%%
+	which is exactly $\cat{Ch}(C)^{\cat{Ch}}\circ F \cong \cat{Ch}(C^{\cat{Ch}})\circ F$.
+\end{proof}
+
+\begin{lem}[label=lem:TotAssoc]
+	We have a natural isomorphism $\text{Tot}_\mathcal{A}\circ \text{Tot}_{\cat{Ch}(\mathcal{A})}\cong \text{Tot}_\mathcal{A}\circ \cat{Ch}(\text{Tot}_\mathcal{A})$
+\end{lem}
+\begin{proof}
+	The proof is primarily a bookeeping of indices. Let $A_{\bullet,\bullet,\bullet} \in \cat{Ch}^3(\mathcal{A})$ denote $((A_\bullet)_\bullet)_\bullet$. First note that 
+	%%
+	\begin{equation*}
+		\text{Tot}_{\cat{Ch}(\mathcal{A})}(A_{\bullet,\bullet,\bullet})_n = \bigoplus_{p,q=n}A_{\bullet,p,q}
+	\end{equation*}
+	%%
+	with differentials
+	%%
+	\begin{equation*}
+		\partial^{(0,-1,-1)}_{\bullet,n} = (\partial_{\bullet,p,q}^{(0,-1,0)}+(-1)^{p-1}\partial_{\bullet,p-1,q+1}^{(0,0,-1)})_{p+q=n}
+	\end{equation*}
+	%%
+	and 
+	%%
+	\begin{equation*}
+		\partial^{(-1,0,0)}_{m,n} = \bigoplus_{p+q=n}\partial_{m,p,q}^{(-1,0,0)}
+	\end{equation*}
+	%%
+	Next, we have that 
+	%%
+	\begin{align*}
+		\text{Tot}_\mathcal{A}\circ \text{Tot}_{\cat{Ch}(\mathcal{A})}(A_{\bullet,\bullet,\bullet})_n &= \bigoplus_{p+q=n}\text{Tot}_{\cat{Ch}(\mathcal{A})}(A_{\bullet,\bullet,\bullet})_{p,q} \\
+		&= \bigoplus_{p+q=n}\left(\bigoplus_{r+s=p}A_{\bullet,r,s}\right)_q \\
+		&= \bigoplus_{p+q=n}\bigoplus_{r+s=p}A_{q,r,s} \\
+		&\cong \bigoplus_{r+s+q=n}A_{q,r,s}
+	\end{align*}
+	%%
+	with maps 
+	%%
+	\begin{align*}
+		\partial^{tottot}_n &= (\partial_{p,q}^{(-1,0,0)}+(-1)^{p-1}\partial^{(0,-1,-1)}_{p-1,q+1})_{p+q=n} \\
+		&= \left(\bigoplus_{r+s=q}\partial_{p,r,s}^{(-1,0,0)}+(-1)^{p-1}(\partial_{p-1,r,s}^{(0,-1,0)}+(-1)^{r-1}\partial_{p-1,r-1,s+1}^{(0,0,-1)})_{r+s=q+1}\right)_{p+q=n} \\
+		&= \left(\partial_{p,r,s}^{(-1,0,0)}+(-1)^{p-1}\partial_{p-1,r+1,s}^{(0,-1,0)}+(-1)^{p+r-1}\partial_{p-1,r,s+1}^{(0,0,-1)}\right)_{p+r+s=n}
+	\end{align*}
+	%%
+	after re-ordering. On the other hand,
+	%%
+	\begin{equation*}
+		\cat{Ch}(\text{Tot}_\mathcal{A})(A_{\bullet,\bullet,\bullet})_{p,q} = \text{Tot}_\mathcal{A}(A_{\bullet,\bullet,q})_p = \bigoplus_{r+s=p}A_{r,s,q}
+	\end{equation*}
+	%%
+	with differentials
+	%%
+	\begin{equation*}
+		\text{Tot}_\mathcal{A}(\partial_{\bullet,\bullet,q}^{(0,0,-1)})_p = \bigoplus_{r+s=p}\partial_{r,s,q}^{(0,0,-1)}
+	\end{equation*}
+	%%
+	and 
+	%%
+	\begin{equation*}
+		\partial^{(-1,-1,0)}_{p,q} = (\partial_{r,s,q}^{(-1,0,0)}+(-1)^{r-1}\partial_{r-1,s+1,q}^{(0,-1,0)})_{r+s=p}
+	\end{equation*}
+	%%
+	It follows that 
+	%%
+	\begin{align*}
+		\text{Tot}_\mathcal{A}\circ \cat{Ch}(\text{Tot}_\mathcal{A})(A_{\bullet,\bullet,\bullet})_n &= \bigoplus_{p+q=n}\text{Tot}_\mathcal{A}(A_{\bullet,\bullet,q})_p \\
+		&= \bigoplus_{p+q=n}\left(\bigoplus_{r+s=p}A_{r,s,q}\right)
+	\end{align*}
+	%%
+	with maps 
+	%%
+	\begin{align*}
+		\partial^{Chtot}_n &= (\partial^{(-1,-1,0)}_{p,q}+(-1)^{p-1}\partial^{(0,0,-1)}_{p-1,q+1})_{p+q=n} \\
+		&= \left((\partial_{r,s,q}^{(-1,0,0)}+(-1)^{r-1}\partial_{r-1,s+1,q}^{(0,-1,0)})_{r+s=p}+(-1)^{p-1}\bigoplus_{r+s=p-1}\partial_{r,s,q+1}^{(0,0,-1)}\right)_{p+q=n} \\
+		&= \left(\partial_{r,s,q}^{(-1,0,0)}+(-1)^{r-1}\partial_{r-1,s+1,q}^{(0,-1,0)}+(-1)^{r+s-1}\partial_{r-1,s,q+1}^{(0,0,-1)}\right)_{r+s+q=n} 
+	\end{align*}
+	%%
+	which agrees with our previous result. Thus up to a natural isomorphism corresponding to re-ordering the direct sums involved in the totalization, the two procedures yield identical results.
+\end{proof}
+
+These results imply that when their hypotheses (in particular $P_C\circ \cat{Ch}(C)\cong \cat{Ch}(C)\circ P_C$) hold we have a sequence of natural isomorphisms 
+%%
+\begin{align*}
+	P_C\circ P_C &= \text{Tot}_\mathcal{A}\circ \cat{Ch}(C^{\cat{Ch}})\circ \text{Tot}_\mathcal{A}\circ \cat{Ch}(C^{\cat{Ch}}) \\
+	&\cong \text{Tot}_\mathcal{A}\circ \text{Tot}_{\cat{Ch}(\mathcal{A})}\circ \cat{Ch}(\cat{Ch}(C^{\cat{Ch}}))\circ \cat{Ch}(C^{\cat{Ch}}) \\
+	&\cong \text{Tot}_\mathcal{A}\circ \cat{Ch}(\text{Tot}_{\mathcal{A}})\circ \cat{Ch}(\cat{Ch}(C^{\cat{Ch}}))\circ \cat{Ch}(C^{\cat{Ch}}) \\
+	&\cong \text{Tot}_\mathcal{A}\circ \cat{Ch}(P_C)\circ \cat{Ch}(C^{\cat{Ch}}) \\
+	&\cong \text{Tot}_\mathcal{A}\circ \cat{Ch}(C^{\cat{Ch}})\circ P_C \\
+	&= P_C\circ P_C
+\end{align*}
+
+Note that we have a natural transformation $I_C:\deg_0^\mathcal{A}\to C^{\cat{Ch}}$ such that at $A \in \mathcal{A}_0$, $I_{C,A}$ is 
 %%
 \[\begin{tikzcd}
 	\cdots & 0 & 0 & A \\
@@ -362,6 +499,10 @@ Observe that
 	P_C(p_C):P_C\to P_C^2,\;\; P_C(p_C) &= \text{Tot}_\mathcal{A}\cat{Ch}(C^{\cat{Ch}})\text{Tot}_\mathcal{A}\cat{Ch}(I_C)
 \end{align*}
 %%
+I claim that applying our sequence of isomorphisms which give an automorphism of $P_C^2$ we transform $P_C(p_C)$ into $p_{C,P_C}$. 
+
+
+
 First applying $\cat{Ch}(I_C)$ to $A_\bullet$ we obtain the map of bicomplexes
 \[\begin{tikzcd}
 	& 0 && 0 && {A_2} \\
@@ -540,7 +681,12 @@ Note that the complex
 	\arrow[from=1-1, to=1-2]
 \end{tikzcd}\]
 %%
-is precisely $\text{Tot}_\mathcal{A}\cat{Ch}(C^{\cat{Ch}})(A_\bullet) = P_C(A_\bullet)$.
+is precisely $\text{Tot}_\mathcal{A}\cat{Ch}(C^{\cat{Ch}})(A_\bullet) = P_C(A_\bullet)$. In the case that $A_\bullet = \deg_0^\mathcal{A}(A)$, $P_C(\deg_0^\mathcal{A}(A))$ simplifies to $C^{\cat{Ch}}(A)$
+%%
+\begin{equation*}
+	\cdots \xrightarrow{\epsilon_{C^2(A)}-C\epsilon_{C(A)}+C^2\epsilon_{A}} C^2(A)\xrightarrow{\epsilon_{C(A)}-C\epsilon_A}C(A)\xrightarrow{\epsilon_A}A
+\end{equation*}
+%%
 
 \vspace{10pt}
 
@@ -610,50 +756,9 @@ Finally, taking totalization this map becomes the following map of complexes:
 	\arrow["{i_3\oplus i_2\oplus 1_{A_2}}", from=1-1, to=2-1]
 \end{tikzcd}\]
 %%
-Therefore, we have that $P_C(p_C)$ and $p_{C,P_C}$ are equal up to a natural isomorphism given by \textbf{TBC} 
-% %%
-% \[\hspace{-50pt}\begin{tikzcd}
-% 	\cdots & {C^2(A_0)\oplus (C^2(A_0)\oplus C(A_1))\oplus (C^2(A_0)\oplus C(A_1)\oplus A_2)} & {C(A_0)\oplus (C(A_0)\oplus A_1)} & {A_0} \\
-% 	\cdots & {C^2(A_0)\oplus (C^2(A_0)\oplus C(A_1))\oplus (C^2(A_0)\oplus C(A_1)\oplus A_2)} & {C(A_0)\oplus (C(A_0)\oplus A_1)} & {A_0}
-% 	\arrow["{\omega_1}", from=1-3, to=1-4]
-% 	\arrow[from=1-1, to=1-2]
-% 	\arrow["{\omega_2}"', from=2-2, to=2-3]
-% 	\arrow["{\omega_1}"', from=2-3, to=2-4]
-% 	\arrow[Rightarrow, no head, from=1-4, to=2-4]
-% 	\arrow["{i_{1,2}\oplus 1_{A_1}}", from=1-3, to=2-3]
-% 	\arrow[from=2-1, to=2-2]
-% 	\arrow["{i_{1,3}\oplus i_{1,2}\oplus 1_{A_2}}"', from=1-2, to=2-2]
-% 	\arrow["{\omega_2}", from=1-2, to=1-3]
-% \end{tikzcd}\]
-% %%	
+Now we try to understand our automorphism of $P_C^2$ and how it helps with this picture
+%%
 
-
-
-Before proving the main result we give a preliminary result on totalization.
-
-\begin{lem}[label=lem:totComm]
-    Let $F:\mathcal{A}\to \mathcal{B}$ be an additive functor. Then 
-    %%
-    \begin{equation*}
-        \cat{Ch}(F)\circ \text{Tot}_\mathcal{A} \cong \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)
-    \end{equation*}
-    %%
-\end{lem}
-\begin{proof}
-    Let $A_{\bullet,\bullet} \in \cat{Ch}(\mathcal{A})$. Then since $F$ is additive it preserves finite direct sums, so 
-    %%
-    \begin{equation*}
-        \cat{Ch}(F)(\text{Tot}_\mathcal{A}(A_{\bullet,\bullet}))_n = F\left(\bigoplus_{p+q=n}A_{p,q}\right) \cong \bigoplus_{p+q=n}F(A_{p,q}) = \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)(A_{\bullet,\bullet})_n
-    \end{equation*}
-    %%
-    and since $\cat{Ch}(F)$ and $\cat{Ch}^2(F)$ act term-wise on differentials, it follows that
-    %%
-    \begin{equation*}
-        \cat{Ch}(F)(\text{Tot}_\mathcal{A}(A_{\bullet,\bullet})) \cong \text{Tot}_\mathcal{B}\circ \cat{Ch}^2(F)(A_{\bullet,\bullet})
-    \end{equation*}
-    %%
-    Further, since this isomorphism is induced by the unique map between biproducts it follows that we have the desired natural isomorphism.
-\end{proof}
 
 
 We now prove a general proposition in analogy with~\cite[Prop 4.5]{BJORT}.
