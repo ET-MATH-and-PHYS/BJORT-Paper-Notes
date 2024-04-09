@@ -3,46 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: amsalpha.bst
 Database file #1: Refs.bib
+Warning--I didn't find a database entry for "good"
 Warning--missing publisher in StacksProject
-You've used 9 entries,
+You've used 12 entries,
             2624 wiz_defined-function locations,
-            617 strings with 5599 characters,
-and the built_in function-call counts, 3280 in all, are:
-= -- 277
-> -- 160
-< -- 4
-+ -- 54
-- -- 52
-* -- 284
-:= -- 552
-add.period$ -- 9
-call.type$ -- 9
-change.case$ -- 55
-chr.to.int$ -- 9
-cite$ -- 10
-duplicate$ -- 134
-empty$ -- 261
-format.name$ -- 62
-if$ -- 654
+            638 strings with 5886 characters,
+and the built_in function-call counts, 4322 in all, are:
+= -- 383
+> -- 178
+< -- 7
++ -- 58
+- -- 56
+* -- 383
+:= -- 701
+add.period$ -- 12
+call.type$ -- 12
+change.case$ -- 70
+chr.to.int$ -- 12
+cite$ -- 13
+duplicate$ -- 179
+empty$ -- 357
+format.name$ -- 72
+if$ -- 869
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 22
-newline$ -- 38
-num.names$ -- 27
-pop$ -- 66
+missing$ -- 28
+newline$ -- 47
+num.names$ -- 34
+pop$ -- 81
 preamble$ -- 1
-purify$ -- 64
+purify$ -- 82
 quote$ -- 0
-skip$ -- 93
+skip$ -- 120
 stack$ -- 0
-substring$ -- 161
-swap$ -- 12
-text.length$ -- 4
-text.prefix$ -- 2
+substring$ -- 266
+swap$ -- 15
+text.length$ -- 7
+text.prefix$ -- 5
 top$ -- 0
-type$ -- 56
+type$ -- 80
 warning$ -- 1
-while$ -- 29
-width$ -- 13
-write$ -- 104
-(There was 1 warning)
+while$ -- 39
+width$ -- 16
+write$ -- 137
+(There were 2 warnings)

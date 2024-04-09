@@ -1851,6 +1851,10 @@ INPUT SideWork/(co)LimCons.tex
 INPUT ./SideWork/(co)LimCons.tex
 INPUT ./SideWork/(co)LimCons.tex
 INPUT SideWork/(co)LimCons.tex
+INPUT ./Reading/TranslatingGoodwillie.tex
+INPUT Reading/TranslatingGoodwillie.tex
+INPUT ./Reading/TranslatingGoodwillie.tex
+INPUT Reading/TranslatingGoodwillie.tex
 INPUT ./SideWork/MonadAttempts.tex
 INPUT SideWork/MonadAttempts.tex
 INPUT ./SideWork/MonadAttempts.tex

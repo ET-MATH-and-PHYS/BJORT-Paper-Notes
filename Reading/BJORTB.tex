@@ -50,12 +50,7 @@ Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corolla
         \text{sw}_{F,A_\bullet,n}:\bigoplus_{[n]\twoheadrightarrow [k]}F(A_k)\to F\left(\bigoplus_{[n]\twoheadrightarrow [k]}A_k\right)
     \end{equation*}
     %%
-    given by the universal coproduct property of the biproduct. This is evidently natural in $n$, $A_\bullet$, and $F$. Next, observe that
-    %%
-    \begin{equation*}
-        (\Gamma_\mathcal{B})_*\gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)(A_\bullet)
-    \end{equation*}
-    Then we have that $(\Gamma_{\mathcal{B}})_*\text{sw}_F$ is given by 
+    given by the universal coproduct property of the biproduct. This is evidently natural in $n$, $A_\bullet$, and $F$. Then we have that $(\Gamma_{\mathcal{B}})_*\text{sw}_F$ is given by 
     %%
     \begin{equation*}
         (\Gamma_{\mathcal{B}})_*\text{sw}_{F,A_\bullet,n}:\Gamma_\mathcal{B}\left(\bigoplus_{[n]\twoheadrightarrow [k]}F(A_k)\right)\to \Gamma_\mathcal{B}\circ F\left(\bigoplus_{[n]\twoheadrightarrow [k]}A_k\right)
@@ -74,7 +69,25 @@ Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corolla
     %%
 \end{rmk}
 
-We now show that under $N_\mathcal{B}$ this map becomes a chain homotopy equivalence when the functor $F$ is reduced and degree $1$.
+We now show some chain homotopy equivalence results for linear functors. First we investigate how linear functors act on sums of maps.
+
+\begin{rmk}
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be a linear functor, so by Proposition~\ref{prop:linearEquiv} we have a natural chain homotopy equivalence
+    %%
+    \begin{equation*}
+        F\oplus F\simeq_{\cat{Ch}}F(-\oplus -)
+    \end{equation*}
+    %%
+    induced by the natural inclusion $F\oplus F\hookrightarrow F(-\oplus -)$. Now consider maps $f,g:B\to B'$ in $\mathcal{B}$. Then the sum $f+g$ can be represented as the composite
+    %%
+    \begin{equation*}
+        B\xrightarrow{\langle 1_B,1_B\rangle}B\oplus B\xrightarrow{f\oplus g}B'\oplus B'\xrightarrow{\langle 1_{B'}|1_{B'}\rangle}B'
+    \end{equation*}
+    %%
+    Now we can apply $F$ to this  \textbf{TBC}
+\end{rmk}
+
+
 
 \begin{lem}[label=lem:equivDef]
     Let $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ be linear. Then $F_*\Gamma_\mathcal{A}$ and $\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$ are \rd{naturally} chain homotopy equivalent.
@@ -86,5 +99,5 @@ We now show that under $N_\mathcal{B}$ this map becomes a chain homotopy equival
         F\left(\bigoplus_{[n]\twoheadrightarrow[k]}A_k\right) \simeq_{\cat{Ch}} \bigoplus_{[n]\twoheadrightarrow[k]}F(A_k)
     \end{equation*}
     %%
-    which is natural in the $A_k$. We want to enhance these to a natural chain homotopy $F_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}}\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$. To this end let $\alpha_n,\beta_n,s^n,r^n$ denote such a natural chain homotopy for each $n$. 
+    which is natural in the $A_k$, and hence in $A_{\bullet}$. We want to enhance these to a natural chain homotopy $F_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}}\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$. To this end let $\alpha_n,\beta_n,s^n,r^n$ denote such a natural chain homotopy for each $n$. 
 \end{proof}

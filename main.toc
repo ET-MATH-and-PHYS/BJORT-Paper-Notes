@@ -15,6 +15,7 @@
 \contentsline {subsection}{\numberline {1.A.2}Properties of Dold-Kan and Simplicial Homotopies}{65}{subsection.1.1.A.2}%
 \contentsline {subsection}{\numberline {1.A.3}General Polynomial Approximations from Cotriples}{71}{subsection.1.1.A.3}%
 \contentsline {subsection}{\numberline {1.A.4}(co)Limit Constructions on Functors}{79}{subsection.1.1.A.4}%
+\contentsline {subsection}{\numberline {1.A.5}Translating Constructions in Goodwillie Calculus III}{82}{subsection.1.1.A.5}%
 \contentsline {chapter}{\numberline {2}Side Work}{83}{appendix.2}%
 \contentsline {section}{\numberline {2.1}Pseudo-monad Attempts}{83}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Pseudomonad (attempt)}{83}{subsection.2.1.1}%
