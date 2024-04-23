@@ -1,1 +1,114 @@
 \section{The first directional derivative}
+
+With the linearization results in the previous section we can now introduce directional differentiation for functors. We follow the procedure used to define the directional derivative in~\cite{BJORT}, and then proceed to show that we obtain a cartesian differential structure on our homotopy category $\cat{HoAbCat}_{\cat{Ch}}$ before extending results to include $2$-categorical structure.
+
+\begin{defn}[label=defn:DirectionalDeriv]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{B})$ and let $B,V \in \mathcal{B}$, where we consider $V$ to act analogously to a direction vector in a Banach space. We define a functor $\nabla F:\mathcal{B}\times \mathcal{B}\to \cat{Ch}(\mathcal{A})$ by 
+    %%
+    \begin{equation*}
+        \nabla F(V;X) := D_1(F(X\oplus -))(V)
+    \end{equation*}
+    %%
+\end{defn}
+
+We can also define the directional derivative of $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ using the limit formulation of the directional derivative. These two constructions are equivalent.
+
+\begin{lem}[label=DirDerivEquiv]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$. Then there is an isomorphism 
+    %%
+    \begin{equation*}
+        D_1^V(\ker(F(X\oplus V)\xrightarrow{F(\pi_X)}F(X)))\cong D_1(F(X\oplus -))(V)
+    \end{equation*}
+    %%
+    as well as an isomorphism 
+    %%
+    \begin{equation*}
+        D_1^V(\ker(F(X\oplus V)\xrightarrow{F(\pi_X)}F(X))) \cong D_1(F)(V)\oplus D_1^V(\text{cr}_2(F))(X,V)
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    First, note that the kernel described in the Lemma is exactly our definition of the first cross-effect of $F(X\oplus -)$, so we obtain an isomorphism 
+    %%
+    \begin{equation*}
+        D_1^V(\ker(F(X\oplus V)\xrightarrow{\pi_X}F(X))) \cong D_1^V(\text{cr}_1(F(X\oplus -)))(V)
+    \end{equation*}
+    %%
+    An alternate perspective on $\ker(F(X\oplus V)\xrightarrow{F(\pi_X)} F(X))$ uses the fact that $F(X)\xrightarrow{F(\iota_X)}F(X\oplus V)$ is a section for the projection. Now, from the isomorphisms
+    %%
+    \begin{align*}
+        F(X\oplus V) &\cong F(0)\oplus \text{cr}_1(F)(X\oplus V) \\
+        &\cong F(0)\oplus \text{cr}_1(F)(X)\oplus \text{cr}_1(F)(V)\oplus \text{cr}_2(F)(X,V) \\
+        &\cong F(X)\oplus \text{cr}_1(F)(V)\oplus \text{cr}_2(F)(X,V)
+    \end{align*}
+    %%
+    it follows that $\text{ker}(F(X\oplus V)\xrightarrow F(X))$ is isomorphic to $\text{cr}_1(F)(V)\oplus \text{cr}_2(F)(X,V)$. Then, since $D_1$ is strictly linear with respect to functors by Proposition~\ref{prop:D1Exact}, we obtain an isomorphism 
+    %%
+    \begin{align*}
+        D_1^V(\ker(F(X\oplus V)\xrightarrow{\pi_X}F(X))) &\cong D_1^V(\text{cr}_1(F)(V)\oplus \text{cr}_2(F)(X,V)) \\
+        &\cong D_1^V(\text{cr}_1(F))(V)\oplus D_1^V(\text{cr}_2(F))(X,V) \\
+        &\cong D_1^V(F)(V)\oplus D_1^V(\text{cr}_2(F))(X,V)
+    \end{align*}
+    %%
+    as desired.
+\end{proof}
+
+\textbf{CHECK THIS WITH KRISTINE AND FLORIAN}
+
+
+Note that since $D_1$ preserves natural chain homotopy equivalences, so does $\nabla$, so for $F\simeq_{\cat{Ch}}G$, $\nabla F\simeq_{\cat{Ch}}\nabla G$.
+
+We now will state the theorem that with this operation $\cat{HoAbCat}_{\cat{Ch}}$ becomes a cartesian differential category before proving each piece of the theorem through a sequence of lemmas.
+
+
+\begin{thm}[label=thm:6.5]
+    The category $\cat{AbCat}_{\cat{Ch}}$ together with $\nabla$ satosfies the following properties for functors $F,G:\mathcal{B}\to \cat{Ch}(\mathcal{A})$, $H:\mathcal{C}\to \cat{Ch}(\mathcal{B})$, and $K:\mathcal{B}\to \cat{Ch}(\mathcal{D})$:
+    \begin{itemize}
+        \item[(i)] $\nabla$ is linear in the sense that 
+            %%
+            \begin{equation*}
+                \nabla(F\oplus G)\cong \nabla(F)\oplus \nabla(G)
+            \end{equation*}
+            %%
+        \item[(ii)] $\nabla F$ is linear in the direction variable, which is to say $\nabla F$ is strictly reduced and degree 1, so 
+            %%
+            \begin{equation*}
+                \nabla F(V\oplus W;X)\simeq_{\cat{Ch}}\nabla F(V;X)\oplus \nabla F(W;X)
+            \end{equation*}
+            %%
+        and $\nabla F(0;X)\cong 0$.
+        \item[(iii)] The directional derivative of the degree zero functor $\deg_0^\mathcal{A}:\mathcal{A}\to \cat{Ch}(\mathcal{A})$ is the projection onto the direction, which is to say 
+            %%
+            \begin{equation*}
+                \nabla \deg_0^\mathcal{A}(V;X)\cong V
+            \end{equation*}
+            %%
+        \item[(iv)] We have an isomorphism
+            %%
+            \begin{equation*}
+                \nabla \langle F,K\rangle (V;X)\cong \langle \nabla F(V;X),\nabla G(V;X)\rangle
+            \end{equation*}
+            %%
+        \item[(v)] There is a natural chain homotopy equivalence 
+            %%
+            \begin{equation*}
+                \nabla (F\lhd H)(V;X)\simeq_{\cat{Ch}}\nabla F \lhd (\nabla G(V;X);G(X))
+            \end{equation*}
+            %%
+        \item[(vi)] There is an isomorphism 
+            %%
+            \begin{equation*}
+                \nabla (\nabla F)((Z;0);(0;X)) \cong \nabla F(Z;X)
+            \end{equation*}
+            %%
+        \item[(vii)] There is a natural chain homotopy equivalence 
+            %%
+            \begin{equation*}
+                \nabla (\nabla F)((Z;W);(V;X)) \simeq_{\cat{Ch}} \nabla (\nabla F)((Z;V);(W;X))
+            \end{equation*}
+            %%
+    \end{itemize}
+\end{thm}
+
+As a result of Theorem~\ref{thm:6.5} we conclude that the homotopy category $\cat{HoAbCat}_{\cat{Ch}}$ is a cartesian differential category. We now proceed to the proof of Theorem~\ref{thm:6.5} in segments.
+

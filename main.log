@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.23)  21 MAR 2024 02:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.29)  17 APR 2024 16:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1362,7 +1362,7 @@ Overfull \hbox (0.74403pt too wide) detected at line 337
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
-Overfull \hbox (54.2228pt too wide) detected at line 491
+Overfull \hbox (54.2228pt too wide) detected at line 500
 []
  []
 
@@ -1373,36 +1373,33 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
-Overfull \hbox (15.33018pt too wide) detected at line 840
+Overfull \hbox (15.33018pt too wide) detected at line 849
 []
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
+ [13] [14]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Overfull \hbox (33.38155pt too wide) detected at line 1135
+Overfull \hbox (33.38155pt too wide) detected at line 1144
 \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) = ^^A[]([][]([][](\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )))(\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) [] [][](\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )(\OMS/cmsy/m/n/12 _[]\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) [] [][](\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 G\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 )
  []
 
 
-Overfull \hbox (25.1462pt too wide) detected at line 1141
+Overfull \hbox (25.1462pt too wide) detected at line 1150
 \OT1/cmr/m/n/12 ^^A[]([][]([][](\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )))(\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) [] ^^A[]([][]([][](\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )))(\OMS/cmsy/m/n/12 _[]\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 ))(\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 )
  []
 
-[16]
+
+Underfull \vbox (badness 1515) has occurred while \output is active []
+
+ [16] [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17])
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [18] [19] (./Reading/BJORT3.tex [20
+ [18]) [19] (./Reading/BJORT3.tex [20
 
 ]
 Overfull \hbox (4.45811pt too wide) in paragraph at lines 71--73
@@ -1458,55 +1455,76 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [38]
-Overfull \hbox (16.93019pt too wide) detected at line 201
+Overfull \hbox (16.93019pt too wide) detected at line 221
 []
  []
 
 
-Overfull \hbox (1.97318pt too wide) detected at line 238
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39]
+Overfull \hbox (1.97318pt too wide) detected at line 258
 [][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 F \U/lasy/m/n/12 ^^A \OML/cmm/m/it/12 G\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^H \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 F \U/lasy/m/n/12 ^^A \OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )(0) [] \OML/cmm/m/it/12 F\OT1/cmr/m/n/12 (0) \OMS/cmsy/m/n/12 ^^H \OT1/cmr/m/n/12 ([][](\OML/cmm/m/it/12 F\OT1/cmr/m/n/12 ) \U/lasy/m/n/12 ^^A \OML/cmm/m/it/12 G\OT1/cmr/m/n/12 (0)) \OMS/cmsy/m/n/12 ^^H \OT1/cmr/m/n/12 ([][](\OML/cmm/m/it/12 F\OT1/cmr/m/n/12 ) \U/lasy/m/n/12 ^^A [][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )) \OMS/cmsy/m/n/12 ^^H \OT1/cmr/m/n/12 ([][](\OML/cmm/m/it/12 F\OT1/cmr/m/n/12 ) \U/lasy/m/n/12 ^^A \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 (0) \OMS/cmsy/m/n/12 ^^H [][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 G\OT1/cmr/m/n/12 )))
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]) [40] (./Reading/BJORTA.tex
+ [40]
+Overfull \hbox (54.69719pt too wide) detected at line 329
+\OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 F\OT1/cmr/m/n/12 )((\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 )[]) := \OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^S[]\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; F\OT1/cmr/m/n/12 ))[] \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^S[]\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 B[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; F\OT1/cmr/m/n/12 ))((\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 )[])
+ []
+
+
+Overfull \hbox (161.60458pt too wide) detected at line 364
+\OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^S[]\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 B[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; H\OT1/cmr/m/n/12 ))((\OML/cmm/m/it/12 B[] \OMS/cmsy/m/n/12 ^^H \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 )[]) \OMS/cmsy/m/n/12 '[] \OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^S[]\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 B[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; H\OT1/cmr/m/n/12 ))((\OML/cmm/m/it/12 B[]\OT1/cmr/m/n/12 )[]) \OMS/cmsy/m/n/12 ^^H \OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^S[]\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 B[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; H\OT1/cmr/m/n/12 ))((\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 )[])
+ []
+
+[41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [42]) [43] (./Reading/BJORT6.tex [44
+
+]) [45] (./Reading/BJORTA.tex
 Overfull \hbox (29.59511pt too wide) detected at line 61
 []
  []
 
-[41
+[46
 
-] [42] [43]
+] [47] [48]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [44]
+ [49]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]) [46] (./Reading/BJORTB.tex [47
+ [50]) [51] (./Reading/BJORTB.tex [52
 
-]) [48] (./Reading/Appendix.tex (./SideWork/SimpMonad.tex [49
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [53]) [54] (./Reading/Appendix.tex (./SideWork/SimpMonad.tex [55
 
 ]
 Overfull \hbox (1.74847pt too wide) detected at line 49
 \OML/cmm/m/it/12 m[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ) : \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 m\OT1/cmr/m/n/12 ])([\OML/cmm/m/it/12 m\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ! \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 ])([\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 ]) := \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 ])(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 \OT1/cmr/m/n/12 )[] = \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 \OT1/cmr/m/n/12 )[] \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 m\OT1/cmr/m/n/12 ])(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 )
  []
 
-[50]
+[56]
 Overfull \hbox (11.48894pt too wide) detected at line 146
 \OML/cmm/m/it/12 m[]\OT1/cmr/m/n/12 ((\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ^^Q[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ))(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ) = (\OML/cmm/m/it/12 ^^Q[] \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )([\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 ])(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^N \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Q[] \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )(\OML/cmm/m/it/12 \OT1/cmr/m/n/12 )[] = 1[] \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 ^^Q[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ))[] = \OML/cmm/m/it/12 A\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 \OT1/cmr/m/n/12 )
  []
 
-[51]
+[57]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52] [53]
+ [58] [59]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [54]
+ [60]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
+ [61]
 Overfull \hbox (2.05418pt too wide) detected at line 374
 \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )[] := \OML/cmm/m/it/12 C[]^^O[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ! \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ;   C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )[] := \OML/cmm/m/it/12 C[]^^N[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ! \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A\OT1/cmr/m/n/12 )
  []
@@ -1519,19 +1537,19 @@ Overfull \hbox (11.5273pt too wide) detected at line 389
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [56]
+ [62]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [57] [58]
+ [63] [64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59]
+ [65]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [60]
+ [66]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [61]
+ [67]
 Overfull \hbox (19.4566pt too wide) detected at line 741
 \OT1/cmr/m/n/12 ([](\OML/cmm/m/it/12 H^^Q[]\OT1/cmr/m/n/12 )[])[] = \OML/cmm/m/it/12 H\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Q[]\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 H\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Q[]\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 H\OT1/cmr/m/n/12 (([](\OML/cmm/m/it/12 ^^Q\OT1/cmr/m/n/12 )[])[]) = [](\OML/cmm/m/it/12 H\OT1/cmr/m/n/12 )([](\OML/cmm/m/it/12 ^^Q\OT1/cmr/m/n/12 )[])[]
  []
@@ -1539,9 +1557,9 @@ Overfull \hbox (19.4566pt too wide) detected at line 741
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [62]
+ [68]
 
-LaTeX Warning: Reference ` lem:addFuncPres' on page 63 undefined on input line 770.
+LaTeX Warning: Reference ` lem:addFuncPres' on page 69 undefined on input line 770.
 
 
 Overfull \hbox (13.30951pt too wide) detected at line 786
@@ -1551,34 +1569,34 @@ Overfull \hbox (13.30951pt too wide) detected at line 786
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63]
+ [69]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [64]) (./Reading/DoldKan.tex [65]
+ [70]) (./Reading/DoldKan.tex [71]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [66]
+ [72]
 LaTeX Font Info:    Trying to load font information for U+euf on input line 76.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [67]
+ [73]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [68]
+ [74]
 Overfull \hbox (33.38933pt too wide) detected at line 214
 []
  []
 
-[69] [70] [71]
+[75] [76] [77]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [72] [73]
+ [78] [79]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [74]
+ [80]
 Overfull \hbox (34.7203pt too wide) detected at line 633
  []
  []
@@ -1586,7 +1604,7 @@ Overfull \hbox (34.7203pt too wide) detected at line 633
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [75]
+ [81]
 Overfull \hbox (28.94225pt too wide) detected at line 649
  []
  []
@@ -1601,7 +1619,7 @@ Overfull \hbox (56.73189pt too wide) detected at line 671
  []
  []
 
-[76]
+[82]
 Overfull \hbox (71.34813pt too wide) detected at line 743
  []
  []
@@ -1611,34 +1629,26 @@ Overfull \hbox (26.40932pt too wide) detected at line 757
 []
  []
 
-[77] [78]) (./SideWork/(co)LimCons.tex [79]
+[83] [84]) (./SideWork/(co)LimCons.tex [85]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [80]
+ [86]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [81]) (./Reading/TranslatingGoodwillie.tex
-
-Package natbib Warning: Citation `good' on page 82 undefined on input line 1.
-
-)) [82]
+ [87]) (./Reading/TranslatingGoodwillie.tex)) [88]
 Chapter 2.
-(./SideWork/MonadAttempts.tex [83
+(./SideWork/MonadAttempts.tex [89
 
-] [84] [85]
+] [90] [91]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [86]) [87] [88
+ [92]) [93] [94
 
 ]
 Chapter 3.
-(./Questions.tex) (./MeetingNotes.tex [89]) (./ToDo.tex [90]) (./main.bbl [91] [92
+(./Questions.tex) (./MeetingNotes.tex [95]) (./ToDo.tex [96]) (./main.bbl [97] [98
 
-])
-
-Package natbib Warning: There were undefined citations.
-
-[93] (./main.aux)
+]) [99] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.74pt have occurred.
@@ -1650,21 +1660,21 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 39440AC55D850A8E51DF1E3AE4318437;4895.
+(rerunfilecheck)             Checksum: 77B2C8E2D157E9E2AC54B98D5A5E6D0C;5119.
  ) 
 Here is how much of TeX's memory you used:
- 45814 strings out of 478287
- 978403 string characters out of 5849289
- 1268112 words of memory out of 5000000
- 62929 multiletter control sequences out of 15000+600000
+ 45883 strings out of 478287
+ 979513 string characters out of 5849289
+ 1269932 words of memory out of 5000000
+ 62974 multiletter control sequences out of 15000+600000
  483680 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  114i,23n,130p,1121b,1499s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (93 pages, 637463 bytes).
+Output written on main.pdf (99 pages, 659109 bytes).
 PDF statistics:
- 1063 PDF objects out of 1200 (max. 8388607)
- 889 compressed objects within 9 object streams
- 296 named destinations out of 1000 (max. 500000)
- 357 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1127 PDF objects out of 1200 (max. 8388607)
+ 946 compressed objects within 10 object streams
+ 317 named destinations out of 1000 (max. 500000)
+ 365 words of extra memory for PDF output out of 10000 (max. 10000000)
 

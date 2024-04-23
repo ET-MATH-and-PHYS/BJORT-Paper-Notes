@@ -465,6 +465,15 @@ is indeed a functor between functor categories.
     where fiber indicates the pullback along zero.
 \end{rmk}
 
+Cross-effects preserve multi-reduced.
+
+\begin{lem}[label=lem:multiRed]
+    Let $H:\mathcal{B}^n\to \mathcal{A}$ be a multi-reduced functor. Then $\text{cr}_1(H):\mathcal{B}^n\to \mathcal{A}$ is multi-reduced.
+\end{lem}
+\begin{proof}
+    Since $\text{cr}_1(H)$ is the kernel of the map from $H$ to $H(0) = 0$, we must have that $\text{cr}_1(H)$ is zero when $H$ is zero, and so $\text{cr}_1(H)$ is strictly multi-reduced.
+\end{proof}
+
 
 \begin{lem}[label=lem:idempotCr1]
     For any $n \geq 1$ and any $F:\mathcal{B}\rightarrow \mathcal{A}$, $\text{cr}_n(s_{F,1}):\text{cr}_n(\text{cr}_1(F))\to \text{cr}_n(F)$ is an isomorphism.

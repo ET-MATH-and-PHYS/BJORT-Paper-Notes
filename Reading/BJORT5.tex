@@ -117,7 +117,18 @@ We can now prove the previously asserted equivalence.
     so by Lemma~\ref{lem:homotopCancel} it follows that $F(0) \simeq_{\cat{Ch}} 0$. Similarly, using the inductive formula for $\text{cr}_2(F)$ and Lemma~\ref{lem:homotopCancel} we have that $\text{cr}_2(F)$ is naturally contractible, so $F$ is degree 1.
 \end{proof}
 
-Note that since $D_1$ is an exact functor it is linear in the sense that it preserves the zero object and direct sums of functors up to natural isomorphism.
+Note that since $D_1$ is an exact functor it is linear in the sense that it preserves the zero object and direct sums of functors up to natural isomorphism. Additionally, $D_1(F)$ is also a linear functor for any $F$.
+
+\begin{lem}[label=lem:5.6]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$. Then $D_1(F):\mathcal{B}\to \cat{Ch}(\mathcal{A})$ is strictly reduced and linear. 
+\end{lem}
+\begin{proof}
+    Recall $D_1(F) \cong P_1(\text{cr}_1(F))$. Then as $\text{cr}_1(F)$ is strictly reduced and each $C_2(\text{cr}_1(F))$ is strictly reduced, it follows that $P_1(\text{cr}_1(F))$ is strictly reduced.
+
+    \vspace{10pt}
+
+    By Proposition~\ref{prop:4.5} we have that $P_1(\text{cr}_1(F))$ is degree 1, which completes the proof.
+\end{proof}
 
 
 The next main result we wish to show is that $D_1$ preserves composition up to \rd{naturally} chain homotopy, upgrading the original pointwise chain homotopy results in~\cite{BJORT}. The primary work and lemmas for this result are contained in Section~\ref{sec:Lotswork}. In particular, we will prove the following result in Section~\ref{sec:Lotswork}.
@@ -137,7 +148,7 @@ In this section we will extend this result to non-reduced $G$. First, by Lemma~\
     Let $F,G:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then there is a natural isomorphism
     %%
     \begin{equation*}
-        (F\oplus G)\lhd H\cong (F\oplus H)\lhd (G\oplus H)
+        (F\oplus G)\lhd H\cong (F\lhd H)\oplus (G\lhd H)
     \end{equation*}
     %%
 \end{lem}
@@ -155,6 +166,15 @@ In this section we will extend this result to non-reduced $G$. First, by Lemma~\
     \end{equation*}
     %%
     as desired.
+\end{proof}
+
+As a simple corollary we find that post-composing by a $0$ functor is zero.
+
+\begin{cor}[label=cor:contractLHD]
+    Let $H:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ and let $0:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be a zero functor. Then $0\lhd H$ is a zero functor.
+\end{cor}
+\begin{proof}
+    Note that by Lemma~\ref{lem:compDirSum} we have that $0\lhd H \cong (0\lhd H)\oplus (0\lhd H)$, so from general properties of Abelian categories we have that $0\lhd H \cong 0$.
 \end{proof}
 
 \begin{lem}[label=lem:constComp]
@@ -280,4 +300,136 @@ We now extend Proposition~\ref{prop:5.7}.
     as desired.
 \end{proof}
 
+
+We now move on to multilinearization of multivariable functors, $F:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$. We introduce the same convention as in~\cite[Conv 5.11]{BJORT} where for $X_1,...,X_{i-1},X_{i+1},...,X_n \in \mathcal{B}$ fixed we define $F_i:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ to be the functor given by 
+%%
+\begin{equation*}
+    F_i(Y) := F(X_1,...,X_{i-1},Y,X_{i+1},...,X_n)
+\end{equation*}
+%%
+In general we define the following.
+
+\begin{defn}[label=defn:multivariateLin]
+    Let $1 \leq i_1 < i_2 < \cdots < i_k\leq n$ be a set of distinct increasing indices. Let $\pi_{i_1\times \cdots \times i_k}:\mathcal{B}^n\to \mathcal{B}^k$ and let $\iota_{i_1\times \cdots \times i_k}:\mathcal{B}^{n-k}\times\text{Fun}(\mathcal{B}^n,\mathcal{A})\to \text{Fun}(\mathcal{B}^k,\mathcal{A})$ be the functor defined by 
+    %%
+    \begin{equation*}
+        \iota_{i_1\times\cdots\times i_k}((B_j)_{j\neq i_\ell},F)((B_{i_\ell})_{1\leq \ell\leq k}) := F((B_i)_{1\leq i \leq n})
+    \end{equation*}
+    %%
+    with natural action on maps. We define a functor $D_1^{i_1\times \cdots \times i_k}:\text{Fun}(\mathcal{B}^n,\mathcal{A})\to \text{Fun}(\mathcal{B}^n,\mathcal{A})$ by 
+    %%
+    \begin{equation*}
+        D_1^{i_1\times \cdots \times i_k}(F)((B_i)_{1\leq i \leq n}) := D_1(\iota_{i_1\times\cdots\times i_k}((B_j)_{j\neq i_\ell},F))((B_{i_\ell})_{1\leq \ell\leq k})
+    \end{equation*}
+    %%
+    where on maps for $f_i:B_i\to B_i'$, we have that 
+    %%
+    \begin{equation*}
+        D_1^{i_1\times \cdots \times i_k}(F)((f_i)_{1\leq i \leq n}) := D_1(\iota_{i_1\times\cdots \times i_k}((f_j)_{j\neq i_\ell},F))_{(B_{i_\ell}')_{1\leq \ell\leq k}}\circ D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},F))((f_{i_\ell})_{1\leq \ell\leq k})
+    \end{equation*}
+    %%
+    which is functorial by definition of composition of natural transformations and functoriality of $D_1,F$, and $\iota_{i_1\times \cdots \times i_k}$. Now, if $\alpha:F\Rightarrow G$ is a natural transformation, we define 
+    %%
+    \begin{equation*}
+        D_1^{i_1\times \cdots \times i_k}(\alpha)_{(B_i)_{1\leq i \leq n}} := D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},\alpha))_{(B_{i_\ell})_{1\leq \ell\leq k}}
+    \end{equation*}
+    %%
+\end{defn}
+
+Note that we can also apply this multilinearization procedure sequentially by applying $D_1^i$ terms. When we are multilinearing over all variables in this way we write
+%%
+\begin{equation*}
+    D_1^{(n)}(F) := D_1^n\circ \cdots D_1^1(F)
+\end{equation*}
+%%
+
+
+We proceed to prove a number of lemmas on the behaviour of these multilinearization operations.
+
+
+\begin{lem}[label=lem:5.12]
+    Let $H:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$ be a strictly multi-reduced functor. Then for any $1 \leq i_1< i_2 <\cdots < i_k \leq n$, $D_1^{i_1\times \cdots \times i_k}(H)$ is contractible.
+\end{lem}
+\begin{proof}
+    Let $B_1,...,B_n \in \mathcal{B}$ and let $C_{i_1},...,C_{i_k} \in \mathcal{B}$. For $1 \leq i \leq n$ let $A_i'$ be $B_{i_j} \oplus C_{i_j}$ if there exists $1 \leq j \leq k$ such that $i = i_j$, and $B_i$ otherwise. Then we have that 
+    %%
+    \begin{equation*}
+        D_1^{i_1\times \cdots \times i_k}(H)((A_i')_{1\leq i \leq n}) = D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},H))((B_{i_j}\oplus C_{i,j})_{1\leq j \leq k})
+    \end{equation*}
+    %%
+    But by Lemma~\ref{lem:5.6} $D_1$ of a functor is linear, so we have a natural chain homotopy
+    %%
+    \begin{equation*}
+        D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},H))((B_{i_j}\oplus C_{i_j})_{1\leq j \leq k})\simeq_{\cat{Ch}}D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},H))((B_{i_j})_{1\leq j \leq k})\oplus D_1(\iota_{i_1\times \cdots \times i_k}((B_j)_{j\neq i_\ell},H))((C_{i_j})_{1\leq j \leq k})
+    \end{equation*}
+    %%
+    Note that in the special case where $B_{i_j} = 0$ for $1 < j \leq k$ and $C_{i_1} = 0$, the natural chain homotopy equivalence implies that $D_1^{i_1\times \cdots \times i_k}(H)$ is contractible since $D_1$ of a multireduced functor is multireduced by Lemma~\ref{lem:multiRed}.
+\end{proof}
+
+
+An important form of Lemma~\ref{lem:5.12} is the following.
+
+\begin{cor}[label=cor:5.13]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$ be functors such that $F = H\circ \Delta$, where $H$ is strictly multi-reduced. Then $D_1(F)$ is contractible.
+\end{cor}
+\begin{proof}
+    By Proposition~\ref{prop:5.7} we have that $D_1(F)$ is naturally chain homotopy equivalent to $D_1(H)\lhd D_1(\Delta)$ since $\Delta$ is strictly reduced. But $D_1(H) = D_1^{1\times \cdots \times n}(H)$, so by Lemma~\ref{lem:5.12} $D_1(H)$ is naturally contractible. Further, since $\Delta$ is degree $1$ we have that $\Delta$ is naturally chain homotopy equivalent to $P_1(\Delta) \cong P_1(\text{cr}_1(\Delta)) \cong D_1(\Delta)$ by Proposition~\ref{prop:4.5}. 
+
+    \vspace{10pt}
+
+    Since $\lhd$ preserves natural chain homotopy equivalences we have that 
+    %%
+    \begin{equation*}
+        D_1(H)\lhd D_1(\Delta) \simeq_{\cat{Ch}}D_1(H)\lhd \Delta \simeq_{\cat{Ch}} 0 \lhd \Delta \cong 0
+    \end{equation*}
+    %%
+    where the last isomorphism is by Corollary~\ref{cor:contractLHD}.
+\end{proof}
+
+Next we will provide an isomorphism for sequential linearization, analogous to the commutivity of partial differentiation from calculus when dealing with smooth functions.
+
+\begin{lem}[label=lem:5.15]
+    For any $F:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$ and any $1 \leq i,j\leq n$ we have a natural isomorphism
+    %%
+    \begin{equation*}
+        D_1^i(D_1^j(F)) \cong D_1^j(D_1^i(F))
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    \textbf{TBD} 
+\end{proof}
+
+Next, we show that linearization preserves strictly linear functors up to isomorphism.
+
+\begin{prop}[label=prop:strictLin]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be a functor that is strictly linear. Then $D_1(F)\cong F$.
+\end{prop}
+\begin{proof}
+    Since $F$ is strictly linear $\text{cr}_2(F) \cong 0$ and $\text{cr}_1(F) \cong F$. Thus, the bicomplex defining $D_1(F)$ contains $F$ in the zeroth column and zeros elsewhere, so its totalization is isomorphic to $F$.
+\end{proof}
+
+As a simple consequence we have that the projection functor $\pi_i:\mathcal{B}^n\to \mathcal{B}$ is its own linearization, which is to say $D_1(\pi_i)\cong \pi_i$.
+
+
+\begin{cor}[label=cor:constLinearization]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$. Then $D_1(F\circ \pi_1)(B_1,B_2)\cong D_1(F)(B_1)$ for all $B_1,B_2 \in \mathcal{B}$.
+\end{cor}
+\begin{proof}
+    By the kernel definition of the cross-effect we have that $\text{cr}_1(F\circ \pi_1)\circ \iota_{B_2}\cong \text{cr}_1(F)$ for any $B_2 \in \mathcal{B}$. Similarly, from our kernel description of the second cross-effect $\text{cr}_2(F)\cong \text{cr}_2(F\circ \pi_1)\circ (\iota_{B_2}\times \iota_{B_1})$. Then since these are natural isomorphisms we conclude that $D_1(F\circ \pi_1)\circ \iota_{B_2}\cong D_1(F)$ for all $B_2 \in \mathcal{B}$.
+\end{proof}
+
+Finally, using this result we can obtain a commutativity between functors into products and linearization.
+
+\begin{lem}[label=lem:5.18]
+    Let $F:\mathcal{C}\to \cat{Ch}(\mathcal{A})$ and $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ and consider $\langle F,G\rangle:\mathcal{C}\to \cat{Ch}(\mathcal{A})\times \cat{Ch}(\mathcal{B})$. Under the isomorphism $\cat{Ch}(\mathcal{A})\times \cat{Ch}(\mathcal{B}) \cong \cat{Ch}(\mathcal{A}\times \mathcal{B})$ we obtain an isomorphisms
+    %%
+    \begin{equation*}
+        D_1(\langle F,G\rangle) \cong \langle D_1(F),D_1(G)\rangle
+    \end{equation*}
+    %%
+\end{lem}
+\begin{proof}
+    Since limits are computed componentwise in the product category $\mathcal{A}\times \mathcal{B}$ we have that $\text{cr}_n(\langle F,G\rangle) \cong \langle \text{cr}_n(F),\text{cr}_n(G)\rangle$, from which the result follows since the bicomplex defining $D_1$ is expressed in terms of cross-effects.
+\end{proof}
 
