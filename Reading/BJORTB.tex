@@ -69,28 +69,11 @@ Note that since $D_1(F)\lhd D_1(G)\cong D_1(\text{cr}_1(F))\lhd D_1(G)$, Corolla
     %%
 \end{rmk}
 
-We now show some chain homotopy equivalence results for linear functors. First we investigate how linear functors act on sums of maps.
-
-\begin{rmk}
-    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be a linear functor, so by Proposition~\ref{prop:linearEquiv} we have a natural chain homotopy equivalence
-    %%
-    \begin{equation*}
-        F\oplus F\simeq_{\cat{Ch}}F(-\oplus -)
-    \end{equation*}
-    %%
-    induced by the natural inclusion $F\oplus F\hookrightarrow F(-\oplus -)$. Now consider maps $f,g:B\to B'$ in $\mathcal{B}$. Then the sum $f+g$ can be represented as the composite
-    %%
-    \begin{equation*}
-        B\xrightarrow{\langle 1_B,1_B\rangle}B\oplus B\xrightarrow{f\oplus g}B'\oplus B'\xrightarrow{\langle 1_{B'}|1_{B'}\rangle}B'
-    \end{equation*}
-    %%
-    Now we can apply $F$ to this  \textbf{TBC}
-\end{rmk}
-
+We now show some chain homotopy equivalence results for linear functors. 
 
 
 \begin{lem}[label=lem:equivDef]
-    Let $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ be linear. Then $F_*\Gamma_\mathcal{A}$ and $\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$ are \rd{naturally} chain homotopy equivalent.
+    Let $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ be linear and strictly reduced. Then $\text{Tot}_*NF_*\Gamma_\mathcal{A}$ and $\text{Tot}_*\cat{Ch}(F)$ are \rd{naturally} chain homotopy equivalent.
 \end{lem}
 \begin{proof}
     Note that by assumption $F$ is linear and strictly reduced. Then by Proposition~\ref{prop:linearEquiv}, for each $A_\bullet \in \cat{Ch}(\mathcal{A})$ and each $n$ we have a natural chain homotopy equivalence
@@ -99,5 +82,66 @@ We now show some chain homotopy equivalence results for linear functors. First w
         F\left(\bigoplus_{[n]\twoheadrightarrow[k]}A_k\right) \simeq_{\cat{Ch}} \bigoplus_{[n]\twoheadrightarrow[k]}F(A_k)
     \end{equation*}
     %%
-    which is natural in the $A_k$, and hence in $A_{\bullet}$. We want to enhance these to a natural chain homotopy $F_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}}\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$. To this end let $\alpha_n,\beta_n,s^n,r^n$ denote such a natural chain homotopy for each $n$. 
+    which is natural in the $A_k$, and hence in $A_{\bullet}$. Note that in particular this is a natural chain homotopy equivalence of columns induced by the natural inclusion of bicomplexes from $\mathfrak{C}F_*\Gamma_\mathcal{A}$ into $\mathfrak{C}\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)$. By Theorem~\ref{thm:A2} we obtain a natural chain homotopy equivalence between totalizations.
+    
+
+    By~\cite[Thm 2.5]{goerss-jardine} we have that $N$ and $\mathfrak{C}$ are natural chain homotopy equivalent. Thus, since natural chain homotopy equivalence is preserved by pre-composition and post-composition, and $\text{Tot}_*$ preserves natural chain homotopy equivalences, it follows that we obtain the natural chain homotopy equivalence
+    %%
+    \begin{equation*}
+        \text{Tot}_*NF_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}} \text{Tot}_*N\Gamma_{\cat{Ch}(\mathcal{B})}\cat{Ch}(F)
+    \end{equation*}
+    %%
+    Finally, since $N\Gamma_{\cat{Ch}(\mathcal{B})} \cong 1_{\cat{Ch}^2(\mathcal{B})}$, it follows that 
+    %%
+    \begin{equation*}
+        \text{Tot}_*NF_*\Gamma_\mathcal{A}\simeq_{\cat{Ch}} \text{Tot}_*\cat{Ch}(F)
+    \end{equation*}
+    %%
+    as desired.
+\end{proof}
+
+
+Using the generalized Eilenberg-Zilber Theorem proved in~\cite[Chap. 7, Thm 4.1]{barr2002acyclic} we can relate this result on composition in~\cite{BJORT} to our current convention for composition in $\cat{AbCat}_{\cat{Ch}}$. In particular, the version of the generalized Eilenberg-Zilber Theorem in~\cite[Chap. 7, Thm 4.1]{barr2002acyclic} tells us that we have a natural chain homotopy equivalence between $\mathfrak{C}\Delta$ and $\text{Tot}_*\mathfrak{C}^2$ \textbf{Double check this}, or equivalently by~\cite[Thm 2.5]{goerss-jardine}, a natural chain homotopy equivalence between $N\Delta$ and $\text{Tot}_*N^2$. Thus, for $F:\mathcal{A}\to \cat{Ch}(\mathcal{B})$ and $G:\mathcal{B}\to \cat{Ch}(\mathcal{C})$, we have a natural chain homotopy equivalence 
+%%
+\begin{align*}
+    N_\mathcal{C}\Delta_\mathcal{C}(\Gamma_\mathcal{C})_*G_*\Gamma_\mathcal{B}F &\simeq_{\cat{Ch}} (\text{Tot}_\mathcal{C})_*N_{\cat{Ch}(\mathcal{C})}(N_\mathcal{C})_*(\Gamma_\mathcal{C})_*G_*\Gamma_\mathcal{B}F \\
+    &\cong (\text{Tot}_\mathcal{C})_*N_{\cat{Ch}(\mathcal{C})}G_*\Gamma_\mathcal{B}F 
+\end{align*}
+%%
+which is exactly composition, as defined in~\cite{BJORT}. Thus, by Lemma~\ref{lem:equivDef} we have the natural chain homotopy equivalence when $G$ is linear and strictly reduced
+%%
+\begin{equation*}
+    G\lhd F \simeq_{\cat{Ch}} (\text{Tot}_\mathcal{C})_*\cat{Ch}(G)F
+\end{equation*}
+%%
+
+
+
+Before proving the final claim we prove a useful property of the diagonal functor.
+
+\begin{lem}[label=lem:B.8]
+    For any $G:\mathcal{C}\to \cat{Ch}(\mathcal{B})$ and any $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$, we have the commutative diagrams
+    %%
+    \begin{equation*}
+        \begin{tikzcd}
+            {\text{Fun}_*(\mathcal{C}^n,\cat{Ch}(\mathcal{B}))} & {\text{Fun}_*(\mathcal{C},\cat{Ch}(\mathcal{B}))} \\
+            {\text{Fun}_*(\mathcal{C}^n,\cat{Ch}(\mathcal{A}))} & {\text{Fun}_*(\mathcal{C},\cat{Ch}(\mathcal{A}))}
+            \arrow["\Delta", from=1-1, to=1-2]
+            \arrow["{F_*}"', from=1-1, to=2-1]
+            \arrow["{F_*}", from=1-2, to=2-2]
+            \arrow["\Delta"', from=2-1, to=2-2]
+        \end{tikzcd},\;\;\begin{tikzcd}
+            {\text{Fun}_*(\mathcal{B}^n,\cat{Ch}(\mathcal{A}))} & {\text{Fun}_*(\mathcal{B},\cat{Ch}(\mathcal{A}))} \\
+            {\text{Fun}_*(\mathcal{C}^n,\cat{Ch}(\mathcal{A}))} & {\text{Fun}_*(\mathcal{C},\cat{Ch}(\mathcal{A}))}
+            \arrow["\Delta", from=1-1, to=1-2]
+            \arrow["{G^*}"', from=1-1, to=2-1]
+            \arrow["{G^*}", from=1-2, to=2-2]
+            \arrow["\Delta"', from=2-1, to=2-2]
+        \end{tikzcd}
+    \end{equation*}
+    %%
+    where pre- and post-composition is done using the composition in $\cat{AbCat}_{\cat{Ch}}$.
+\end{lem}
+\begin{proof}
+    
 \end{proof}

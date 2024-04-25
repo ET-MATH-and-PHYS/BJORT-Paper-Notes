@@ -8,6 +8,10 @@
 \providecommand{\href}[2]{#2}
 \begin{thebibliography}{BJO{\etalchar{+}}18}
 
+\bibitem[Bar02]{barr2002acyclic}
+M.~Barr, \emph{Acyclic models}, CRM monograph series, American Mathematical
+  Society, 2002.
+
 \bibitem[BJO{\etalchar{+}}18]{BJORT}
 Kristine Bauer, Brenda Johnson, Christina Osborne, Emily Riehl, and Amelia
   Tebbe, \emph{Directional derivatives and higher order chain rules for abelian
