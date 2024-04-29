@@ -3,10 +3,11 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: amsalpha.bst
 Database file #1: Refs.bib
+Warning--I didn't find a database entry for "lem:implNatIso"
 Warning--missing publisher in StacksProject
 You've used 13 entries,
             2624 wiz_defined-function locations,
-            642 strings with 5943 characters,
+            644 strings with 5971 characters,
 and the built_in function-call counts, 4589 in all, are:
 = -- 403
 > -- 186
@@ -45,4 +46,4 @@ warning$ -- 1
 while$ -- 41
 width$ -- 17
 write$ -- 148
-(There was 1 warning)
+(There were 2 warnings)

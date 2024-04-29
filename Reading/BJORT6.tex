@@ -112,3 +112,43 @@ We now will state the theorem that with this operation $\cat{HoAbCat}_{\cat{Ch}}
 
 As a result of Theorem~\ref{thm:6.5} we conclude that the homotopy category $\cat{HoAbCat}_{\cat{Ch}}$ is a cartesian differential category. We now proceed to the proof of Theorem~\ref{thm:6.5} in segments.
 
+
+We begin by proving parts (i) through (iv). For some of the proofs it is useful to note that $D_1^{i_1\times \cdots \times i_k}$ is exact, and hence additive, since it is defined in terms $D_1$ which is exact and evaluations, where finite limits in functor categories are computed pointwise. Further, we have the following brief lemma on pre-composition and additivity of functors.
+
+\begin{lem}[label=lem:pre-compAdd]
+    Let $H:\mathcal{A}\to \mathcal{B}$ be a functor between abelian categories. Then $H$ induces an additive functor $H^*:\text{Fun}(\mathcal{B},\mathcal{C})\to \text{Fun}(\mathcal{A},\mathcal{C})$ for any abelian category $\mathcal{C}$.
+\end{lem}
+\begin{proof}
+    Let $F,G:\mathcal{B}\to \mathcal{C}$. Then $H^*(F\oplus G) = (F\oplus G)\circ H \cong (F\circ H)\oplus (G\circ H)$ since limits in functor categories are computed pointwise when the limit exists in the codomain category.
+\end{proof}
+
+We now have sufficient tools to begin proving the first four properties in Theorem~\ref{thm:6.5}.
+
+
+\begin{proof}[Part (i)]
+    Note that $\nabla = D_1^1\circ (-\oplus-)^*$. Thus, as a composite of additive functors, $\nabla$ is additive.
+\end{proof}
+
+
+\begin{proof}[Part (ii)]
+    Since $\nabla F = D_1^1(F\circ (-\oplus -))$, the result follows by Proposition~\ref{prop:multiVarLin}. 
+\end{proof}
+
+
+\begin{proof}[Part (iii)]
+    Observe that $\nabla\deg_0^\mathcal{A} = D_1^1(\deg_0^\mathcal{A}\circ (-\oplus -))$. Then, since $\text{cr}_1(\deg_0^\mathcal{A}\circ (A\oplus -)) \cong \deg_0^\mathcal{A}$ naturally for any fixed $A \in \mathcal{A}$. Thus, as $D_1 = P_1(\text{cr}_1)$ and $P_1(\deg_0^\mathcal{A}) \cong \deg_0^\mathcal{A}$, we obtain the desired natural isomorphism 
+    %%
+    \begin{equation*}
+        \nabla\deg_0^\mathcal{A} \cong \pi_0
+    \end{equation*}
+    %%
+    \textbf{Needs some more details}.
+\end{proof}
+
+
+\begin{proof}[Part (iv)]
+    This result follows immediately from Lemma~\ref{lem:5.18}.
+\end{proof}
+
+The remaining three properties will require some additional work. In particular, we will begin by proving some preliminary lemmas to assist with proving the properties. Since property (v) has the most involved argument we will begin by developing the theory for properties (vi) and (vii). 
+

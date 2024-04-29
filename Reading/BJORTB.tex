@@ -143,5 +143,39 @@ Before proving the final claim we prove a useful property of the diagonal functo
     where pre- and post-composition is done using the composition in $\cat{AbCat}_{\cat{Ch}}$.
 \end{lem}
 \begin{proof}
-    
+    First, let $H:\mathcal{C}^n\to \cat{Ch}(\mathcal{B})$. Then $F_*\Delta(H):\mathcal{C}\to \cat{Ch}(\mathcal{A})$ is given by 
+    %%
+    \begin{equation*}
+        N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}\Delta(H)
+    \end{equation*}
+    %%
+    while $\Delta(F_*H)$ is 
+    %%
+    \begin{equation*}
+        \Delta(N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*F_*\Gamma_\mathcal{B}H)
+    \end{equation*}
+    %%
+    which, upon evaluating at an object $X$ and a morphism $f:X\to Y$ in $\mathcal{C}$, gives the same result.
+
+    \vspace{10pt}
+
+    Next, let $K:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$. Then $G^*(\Delta(K))$ is given by 
+    %%
+    \begin{equation*}
+        N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*\Delta(K)_*\Gamma_\mathcal{B}G
+    \end{equation*}
+    %%
+    while $\Delta(G^*K)$ is given by 
+    %%
+    \begin{equation*}
+        \Delta(N_\mathcal{A}\Delta_\mathcal{A}(\Gamma_\mathcal{A})_*K_*\Gamma_{\mathcal{B}^n}(G\times \cdots \times G))
+    \end{equation*}
+    %%
+    \textbf{WRITE OUT FULLY}
+\end{proof}
+
+We now have enough to prove the main claim of the section, Proposition~\ref{prop:5.7}. In particular, we can prove the claim for both $F$ and $G$ reduced.
+
+\begin{proof}[Proof of Proposition~\ref{prop:5.7}]
+    \textbf{TBC}
 \end{proof}

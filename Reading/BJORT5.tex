@@ -212,20 +212,35 @@ As a simple corollary we find that post-composing by a $0$ functor is zero.
     Note that we have functors $H_1\times \cdots \times H_n:\mathcal{C}^n\to \mathcal{B}^n$. Then the desired isomorphism is obtained from the isomorphism in Equation~\eqref{eq:natN} by whiskering by $H_1\times \cdots \times H_n$.
 \end{proof}
 
-\begin{lem}[label=lem:dirCompLhd]
-    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H_1,...,H_n:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then 
+\begin{lem}[label=lem:pushforwardCr]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and let $H_1,\ldots,H_n:\mathcal{C}\to \mathcal{B}^{\Delta^{op}}$. Then we have an isomorphism 
     %%
     \begin{align*}
-        \text{cr}_{n-1}(F)\lhd (H_1\oplus H_2,H_3,...,H_n) \cong \text{cr}_{n-1}(F)\lhd (H_1,H_3,...,H_n)&\oplus \text{cr}_{n-1}(F)\lhd (H_2,...,H_n) \\
-        &\oplus \text{cr}_n(F)\lhd (H_1,...,H_n) 
+        \text{cr}_{n-1}(F)_*\circ (H_1\oplus H_2,H_3,\ldots,H_n) \cong \text{cr}_{n-1}(F)_*\circ (H_1,H_3,\ldots,H_n)&\oplus \text{cr}_{n-1}(F)_*\circ (H_2,H_3,\ldots,H_n) \\
+        &\oplus \text{cr}_n(F)\circ (H_1,\ldots,H_n)
     \end{align*}
 \end{lem}
 \begin{proof}
-    Since $\Gamma_\mathcal{B}$ preserves finite limits and colimits, we have that \textbf{TBD}
+    As in Lemma~\ref{lem:dirComp}, the desired isomorphism follows by the analogous isomorphism in Corollary~\ref{cor:DeltaIndDefn}.
+\end{proof}
+
+\begin{lem}[label=lem:dirCompLhd]
+    Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ and $H_1,\ldots,H_n:\mathcal{C}\to \cat{Ch}(\mathcal{B})$. Then 
     %%
     \begin{align*}
-        \text{cr}_{n-1}(F)_*\Gamma_{\mathcal{B}^{n-1}}(H_1\oplus H_2,H_3,...,H_n) &\cong 
+        \text{cr}_{n-1}(F)\lhd (H_1\oplus H_2,H_3,\ldots,H_n) \cong \text{cr}_{n-1}(F)\lhd (H_1,H_3,\ldots,H_n)&\oplus \text{cr}_{n-1}(F)\lhd (H_2,\ldots,H_n) \\
+        &\oplus \text{cr}_n(F)\lhd (H_1,\ldots,H_n) 
     \end{align*}
+\end{lem}
+\begin{proof}
+    Since $\Gamma_\mathcal{B}$ preserves finite limits and colimits, we have that 
+    %%
+    \begin{align*}
+        \text{cr}_{n-1}(F)_*\Gamma_{\mathcal{B}^{n-1}}(H_1\oplus H_2,H_3,\ldots,H_n) &= \text{cr}_{n-1}(F)_*\circ (\Gamma_\mathcal{B}(H_1\oplus H_2),\Gamma_\mathcal{B}H_3,\ldots,\Gamma_\mathcal{B}H_n) \\
+        &\cong  \text{cr}_{n-1}(F)_*\circ (\Gamma_\mathcal{B}H_1\oplus \Gamma_\mathcal{B}H_2,\Gamma_\mathcal{B}H_3,\ldots,\Gamma_\mathcal{B}H_n) 
+    \end{align*}
+    %%
+    Therefore, we are reduced to the case of Lemma~\ref{lem:pushforwardCr}, completing the proof.
 \end{proof}
 
 In order to extend the proposition we require one additional result.
@@ -316,7 +331,7 @@ In general we define the following.
         \iota_{i_1\times\cdots\times i_k}((B_j)_{j\neq i_\ell},F)((B_{i_\ell})_{1\leq \ell\leq k}) := F((B_i)_{1\leq i \leq n})
     \end{equation*}
     %%
-    with natural action on maps. We define a functor $D_1^{i_1\times \cdots \times i_k}:\text{Fun}(\mathcal{B}^n,\mathcal{A})\to \text{Fun}(\mathcal{B}^n,\mathcal{A})$ by 
+    with natural action on maps. We define a functor $D_1^{i_1\times \cdots \times i_k}:\text{Fun}(\mathcal{B}^n,\cat{Ch}(\mathcal{A}))\to \text{Fun}(\mathcal{B}^n,\cat{Ch}(\mathcal{A}))$ by 
     %%
     \begin{equation*}
         D_1^{i_1\times \cdots \times i_k}(F)((B_i)_{1\leq i \leq n}) := D_1(\iota_{i_1\times\cdots\times i_k}((B_j)_{j\neq i_\ell},F))((B_{i_\ell})_{1\leq \ell\leq k})
@@ -386,6 +401,16 @@ An important form of Lemma~\ref{lem:5.12} is the following.
     where the last isomorphism is by Corollary~\ref{cor:contractLHD}.
 \end{proof}
 
+
+In addition to these contraction properties, we obtain a partial extension of the linearity of $D_1$ to that of $D_1^{i_1\times \cdots \times i_k}$.
+
+\begin{prop}[label=prop:multiVarLin]
+    If $F:\mathcal{B}^n\to \cat{Ch}(\mathcal{A})$ a multi-variable functor into chains, and $1 \leq i_1 < \cdots < i_k \leq n$, then $D_1^{i_1\times \cdots \times i_k}(F)$ is linear in the $i_1\times \cdots \times i_k$ variables (\textbf{Note:} Not multilinear).
+\end{prop}
+\begin{proof}
+    Recall that $D_1^{i_1\times \cdots \times i_k}(F) = D_1(\iota_{i_1\times \cdots \times i_k}(-,F))$, so as $D_1$ is linear we have a natural chain homotopy between $D_1(\iota_{i_1\times \cdots \times i_k}(-,F))\circ (-\oplus -) \simeq_{\cat{Ch}} D_1(\iota_{i_1\times \cdots \times i_k}(-,F))(-)\oplus D_1(\iota_{i_1\times \cdots \times i_k}(-,F))(-)$. Further, we have an isomorphism $D_1(\iota_{i_1\times\cdots\times i_k}(-,F))(0,\cdots,0)\cong 0$. We need to show that these are natural in the $j \neq i_\ell$ variables. But a change in these variables correspond to a natural transformation, and hence the desired square will commute by naturality. \textbf{NEED TO MAKE PRECISE}
+\end{proof}
+
 Next we will provide an isomorphism for sequential linearization, analogous to the commutivity of partial differentiation from calculus when dealing with smooth functions.
 
 \begin{lem}[label=lem:5.15]
@@ -400,7 +425,7 @@ Next we will provide an isomorphism for sequential linearization, analogous to t
     \textbf{TBD} 
 \end{proof}
 
-Next, we show that linearization preserves strictly linear functors up to isomorphism.
+Next, we show that linearization preserves strictly linear (i.e. additive) functors up to isomorphism.
 
 \begin{prop}[label=prop:strictLin]
     Let $F:\mathcal{B}\to \cat{Ch}(\mathcal{A})$ be a functor that is strictly linear. Then $D_1(F)\cong F$.
@@ -433,3 +458,4 @@ Finally, using this result we can obtain a commutativity between functors into p
     Since limits are computed componentwise in the product category $\mathcal{A}\times \mathcal{B}$ we have that $\text{cr}_n(\langle F,G\rangle) \cong \langle \text{cr}_n(F),\text{cr}_n(G)\rangle$, from which the result follows since the bicomplex defining $D_1$ is expressed in terms of cross-effects.
 \end{proof}
 
+Lemma~\ref{lem:5.18} also extends to $D_1^{i_1\times \cdots \times i_k}$ for any $1 \leq i_1 < \cdots < i_k\leq n$ since the same isomorphism of cross-effects holds when the variables $j \neq i_\ell$ are fixed.

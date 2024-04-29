@@ -351,6 +351,45 @@ Note that under this isomorphism, natural simplicial homotopy is simplicial homo
     Then $\Delta^{op}(h):\Delta^{op}(F)\times \Delta^1\to \Delta^{op}(G)$, and since $\Delta^{op}$ is a strict 2-functor it preserves composition so $\Delta^{op}(h)$ is a homotopy from $\Delta^{op}(f)$ to $\Delta^{op}(g)$.
 \end{proof}
 
+
+Under the isomorphism of categories in Lemma~\ref{lem:isoOfSimpFuncs} we obtain the following description of cross-effect and wedge product functors.
+
+
+\begin{lem}[label=lem:deltaCrossEffect]
+    If $\mathcal{B}$ is a pointed-category and $\mathcal{A}$ is an abelian category then we have the diagram
+    %%
+    \[\begin{tikzcd}
+        {\text{Fun}(\mathcal{B},\mathcal{A})\Sob} & {\text{Fun}(\mathcal{B}^n,\mathcal{A})\Sob} \\
+        {\text{Fun}(\mathcal{A},\mathcal{A}\Sob)} & {\text{Fun}(\mathcal{B}^n,\mathcal{A}\Sob)}
+        \arrow["{\text{cr}_{n},*}", from=1-1, to=1-2]
+        \arrow["\cong"{description}, from=1-1, to=2-1]
+        \arrow["\cong"{description}, from=1-2, to=2-2]
+        \arrow["{\text{cr}_n}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    %%
+    which commutes up to natural isomorphism.
+\end{lem}
+\begin{proof}
+    The commutative up to natural isomorphism square in the lemma is immediate from the fact that limits in a functor category are computed pointwise.
+\end{proof}
+
+\begin{cor}[label=cor:DeltaIndDefn]
+    If $\mathcal{B}$ is a pointed-category and $\mathcal{A}$ is an abelian category then we have natural isomorphisms 
+    %%
+    \begin{equation*}
+        1_{\text{Fun}(\mathcal{A},\mathcal{B})\Sob} \cong (\text{ev}_\star)_*\oplus (\text{cr}_1)_*
+    \end{equation*}
+    %%
+    and
+    %%
+    \begin{equation*}
+        (\lor_{i=1}^2\times 1_{\mathcal{B}^{n-2}})_*\circ (\text{cr}_{n-1})_* \cong (((\hat{\pi}_2)^*)_*\circ (\text{cr}_{n-1})_*)\oplus (((\hat{\pi}_1)^*)_*\circ (\text{cr}_{n-1})_*) \oplus (\text{cr}_n)_*
+    \end{equation*}
+\end{cor}
+\begin{proof}
+    This result follows from the observations in Lemma~\ref{lem:deltaCrossEffect} and the isomorphisms in~\cite{lem:implNatIso}.
+\end{proof}
+
 Next, we construct simplicial objects out comonads on a category.
 
 \begin{prop}[label=prop:comonadSimp]
